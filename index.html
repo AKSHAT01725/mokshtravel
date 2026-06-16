@@ -1280,5 +1280,18 @@ setTimeout(() => {
   }
 }, 90000);
 </script>
+
+<!-- Success Modal -->
+<div id="successModal" style="position:fixed; inset:0; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; z-index:10000;">
+  <div style="background:#0f2348; border:2px solid #f5a623; border-radius:20px; padding:40px 30px; max-width:440px; text-align:center; margin:20px;">
+    <h2 style="color:#f5a623; margin-bottom:16px;">✅ Booking Received!</h2>
+    <p id="successMessage" style="color:#eef2f8; line-height:1.6; font-size:15.5px;"></p>
+    <button onclick="closeSuccessModal()" 
+            style="background:#f5a623; color:#1a0f00; padding:14px 40px; border:none; border-radius:50px; font-weight:700; font-size:16px; cursor:pointer; margin-top:20px;">
+      OK
+    </button>
+  </div>
+</div>
+
 </body>
 </html>
