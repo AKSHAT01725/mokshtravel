@@ -1,344 +1,556 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us - Moksh Tours</title>
+<title>About Us | Moksh Tours & Travel — Ahmedabad's Trusted Cab Service</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<meta name="description" content="Learn about Moksh Tours & Travel — Ahmedabad's trusted cab service for outstation trips, airport transfers, corporate travel and Gujarat tours.">
+<meta name="robots" content="index, follow">
+<meta name="geo.region" content="IN-GJ">
+<meta name="geo.placename" content="Ahmedabad">
+<link rel="canonical" href="https://yourdomain.com/about.html">
 
 <style>
-body{
-    font-family:Arial;
-    margin:0;
-    background:linear-gradient(135deg,#0a1a3a,#1b4d8a);
-    color:white;
+/* ══════════════════════════════════════════
+   DESIGN TOKENS — shared with index.html
+══════════════════════════════════════════ */
+:root {
+  --navy:       #060f22;
+  --navy-2:     #0b1a35;
+  --navy-3:     #0f2348;
+  --surface:    rgba(255,255,255,0.04);
+  --surface-2:  rgba(255,255,255,0.08);
+  --line:       rgba(255,255,255,0.08);
+  --line-2:     rgba(255,255,255,0.14);
+  --gold:       #f5a623;
+  --gold-light: #ffcc66;
+  --gold-dim:   rgba(245,166,35,0.12);
+  --teal:       #3ddc97;
+  --teal-dim:   rgba(61,220,151,0.1);
+  --ice:        #eef2f8;
+  --mute:       #7e8fa8;
+  --radius:     16px;
+  --radius-lg:  24px;
+  --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
 }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Plus Jakarta Sans', Arial, sans-serif; background:var(--navy); color:var(--ice); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--navy); }
+::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
 
 /* HEADER */
-header{
-    text-align:center;
-    padding:40px 20px 20px;
+header { position:fixed; top:0; left:0; right:0; z-index:1000; padding:0 5%; height:72px; display:flex; align-items:center; background:rgba(6,15,34,0.72); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--line); transition:background var(--transition); }
+header.scrolled { background:rgba(6,15,34,0.95); border-bottom-color:var(--line-2); }
+.navbar { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo img { width:52px; border-radius:10px; background:white; padding:3px; }
+.logo-text { display:flex; flex-direction:column; }
+.logo-text strong { font-family:'Space Grotesk'; font-size:15px; font-weight:700; color:var(--ice); letter-spacing:.3px; line-height:1.2; }
+.logo-text span { font-size:10.5px; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase; }
+.menu { display:flex; align-items:center; gap:4px; }
+.menu a { color:rgba(238,242,248,0.75); text-decoration:none; font-size:13.5px; font-weight:600; padding:8px 14px; border-radius:8px; transition:var(--transition); letter-spacing:.2px; }
+.menu a:hover, .menu a.current { color:var(--ice); background:var(--surface-2); }
+.nav-cta { background:var(--gold); color:#1a0f00 !important; padding:10px 22px !important; border-radius:30px !important; font-weight:700 !important; letter-spacing:.3px !important; }
+.nav-cta:hover { background:#fff !important; color:#000 !important; transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,166,35,0.4) !important; }
+.hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:var(--ice); font-size:22px; }
+@media(max-width:860px){
+  .hamburger { display:flex; }
+  .menu { display:none; flex-direction:column; align-items:flex-start; position:absolute; top:72px; left:0; right:0; background:rgba(6,15,34,0.97); backdrop-filter:blur(20px); padding:16px 5% 24px; border-bottom:1px solid var(--line); gap:2px; }
+  .menu.open { display:flex; }
+  .menu a { width:100%; padding:12px 16px; font-size:15px; }
 }
 
-header h1{
-    color:#ffcc00;
-    font-size:32px;
+/* PAGE HEADER */
+.page-hero { padding:150px 6% 70px; position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 30%, rgba(245,166,35,0.08), transparent),
+    radial-gradient(ellipse 60% 60% at 10% 90%, rgba(61,220,151,0.05), transparent),
+    linear-gradient(160deg, #060f22 0%, #0b1a35 55%, #0d2040 100%);
 }
+.page-hero::before { content:''; position:absolute; inset:0;
+  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent);
+}
+.page-hero-inner { position:relative; z-index:1; max-width:720px; }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.25); border-radius:30px; padding:6px 16px; font-size:12px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:22px; }
+.eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 1.8s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+.page-hero h1 { font-family:'Space Grotesk'; font-size:clamp(32px,4.6vw,54px); font-weight:700; line-height:1.1; letter-spacing:-1px; margin-bottom:18px; }
+.page-hero h1 em { font-style:normal; color:var(--gold); }
+.page-hero p { font-size:clamp(14.5px,1.6vw,17px); color:var(--mute); line-height:1.7; max-width:560px; }
+.breadcrumb { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--mute); margin-top:24px; }
+.breadcrumb a { color:var(--mute); text-decoration:none; transition:var(--transition); }
+.breadcrumb a:hover { color:var(--gold); }
+.breadcrumb i { font-size:10px; }
 
-/* GRID */
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
-}
+/* SECTION COMMON */
+section { padding:80px 6%; }
+.section-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.section-title { font-family:'Space Grotesk'; font-size:clamp(26px,3.2vw,38px); font-weight:700; margin-bottom:14px; line-height:1.18; }
+.section-sub { font-size:14.5px; color:var(--mute); line-height:1.65; max-width:560px; margin-bottom:44px; }
+.section-header-center { text-align:center; }
+.section-header-center .section-sub { margin:0 auto 44px; }
 
-/* CARDS */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    margin-top:20px;
-}
+/* STORY */
+#story { background:var(--navy); }
+.story-grid { display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:center; }
+.story-text p { font-size:15px; color:rgba(238,242,248,0.78); line-height:1.85; margin-bottom:18px; }
+.story-text p:last-child { margin-bottom:0; }
+.story-stats { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.stat-box { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px 22px; transition:var(--transition); }
+.stat-box:hover { border-color:var(--gold); background:var(--gold-dim); transform:translateY(-3px); }
+.stat-box-num { font-family:'Space Grotesk'; font-size:34px; font-weight:700; color:var(--gold); line-height:1; }
+.stat-box-label { font-size:12px; color:var(--mute); margin-top:8px; letter-spacing:.3px; }
+@media(max-width:860px){ .story-grid { grid-template-columns:1fr; gap:36px; } }
 
-.card{
-    background:rgba(255,255,255,0.08);
-    padding:20px;
-    border-radius:15px;
-    border:1px solid rgba(255,255,255,0.2);
-    transition:0.3s;
-}
+/* WHY CHOOSE US */
+#why { background:var(--navy-2); }
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+.service-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; transition:var(--transition); }
+.service-card:hover { border-color:var(--gold); background:var(--gold-dim); transform:translateY(-4px); }
+.service-icon { width:46px; height:46px; border-radius:12px; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.2); display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:18px; }
+.service-card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
+.service-card p { font-size:13.5px; color:var(--mute); line-height:1.6; }
 
-.card:hover{
-    transform:translateY(-5px);
-    background:rgba(255,255,255,0.12);
-}
+/* COMMITMENT / FEATURE GRID (replaces old text wall) */
+#commitment { background:var(--navy); }
+.commit-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.commit-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius-lg); padding:30px 26px; transition:var(--transition); position:relative; overflow:hidden; }
+.commit-card:hover { border-color:var(--line-2); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.35); }
+.commit-num { font-family:'Space Grotesk'; font-size:12px; font-weight:700; color:var(--gold); letter-spacing:1.5px; margin-bottom:14px; }
+.commit-card h3 { font-family:'Space Grotesk'; font-size:17px; font-weight:700; margin-bottom:10px; }
+.commit-card p { font-size:13.5px; color:var(--mute); line-height:1.7; }
+.commit-closing { max-width:760px; margin:48px auto 0; text-align:center; padding-top:40px; border-top:1px solid var(--line); }
+.commit-closing p { font-size:15px; color:rgba(238,242,248,0.8); line-height:1.8; }
+.commit-closing strong { color:var(--gold); }
 
-/* TEXT */
-p{
-    line-height:1.7;
-}
+/* CTA / QUOTE */
+#cta { background:linear-gradient(135deg,#070f24,#0e2040); border-top:1px solid var(--line); }
+.cta-inner { max-width:680px; margin:0 auto; text-align:center; }
+.cta-phone { font-family:'Space Grotesk'; font-size:clamp(32px,5.4vw,56px); font-weight:700; color:var(--gold); margin:18px 0 30px; letter-spacing:-1px; }
+.cta-btns { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+.contact-btn { display:inline-flex; align-items:center; gap:9px; padding:13px 26px; border-radius:50px; font-weight:700; font-size:14.5px; text-decoration:none; transition:var(--transition); cursor:pointer; border:none; font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.contact-btn-gold { background:var(--gold); color:#1a0f00; box-shadow:0 8px 24px rgba(245,166,35,0.3); }
+.contact-btn-gold:hover { background:#fff; transform:translateY(-2px); }
+.contact-btn-green { background:rgba(37,211,102,0.12); color:#25d366; border:1px solid rgba(37,211,102,0.3); }
+.contact-btn-green:hover { background:rgba(37,211,102,0.22); transform:translateY(-2px); }
+.contact-btn-outline { background:var(--surface-2); color:var(--ice); border:1px solid var(--line-2); }
+.contact-btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
 
-/* BUTTON */
-.btn{
-    display:inline-block;
-    margin:20px auto;
-    padding:10px 20px;
-    background:#ffb400;
-    color:black;
-    text-decoration:none;
-    border-radius:20px;
-    font-weight:bold;
-}
+/* FOOTER */
+.footer { background:#030810; border-top:1px solid var(--line); padding:60px 6% 30px; }
+.footer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; max-width:1100px; margin:0 auto 48px; }
+.footer-col h4 { font-family:'Space Grotesk'; font-size:13.5px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
+.footer-col a { display:block; color:rgba(238,242,248,0.6); text-decoration:none; font-size:13.5px; margin-bottom:10px; transition:var(--transition); }
+.footer-col a:hover { color:var(--gold); transform:translateX(4px); }
+.footer-col p { font-size:13px; color:rgba(238,242,248,0.55); line-height:1.7; margin-bottom:8px; }
+.footer-map { border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--line); }
+.footer-map iframe { display:block; }
+.footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--line); padding-top:24px; text-align:center; font-size:12.5px; color:rgba(238,242,248,0.35); }
+.footer-keywords { font-size:12px; color:rgba(238,242,248,0.25); max-width:1100px; margin:12px auto 0; text-align:center; line-height:1.8; }
+@media(max-width:768px){ .footer-grid { grid-template-columns:1fr; gap:32px; } }
 
-/* CENTER */
-.center{
-    text-align:center;
-}
+/* FLOATING BUTTONS + RATING BOX */
+.float-wrap { position:fixed; bottom:28px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px; }
+.float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; }
+.float-btn:hover { transform:scale(1.12) translateY(-2px); animation:none; }
+.float-wa { background:linear-gradient(135deg,#25d366,#128c7e); color:white; }
+.float-call { background:linear-gradient(135deg,var(--gold),#ff8800); color:#1a0f00; animation-delay:.5s; }
+@keyframes floatAnim { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+.rating-box { position:fixed; left:20px; bottom:28px; background:var(--navy-2); border:1px solid rgba(245,166,35,0.3); border-radius:12px; padding:10px 16px; font-size:13px; font-weight:600; z-index:9999; box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.rating-box span { color:var(--gold); font-family:'Space Grotesk'; font-weight:700; }
+.rating-count { font-size:11px; color:var(--mute); margin-top:2px; }
+@media(max-width:640px) { .rating-box { display:none; } }
 
-/* ICON */
-.icon{
-    font-size:30px;
-    margin-bottom:10px;
-}
+/* FORM ELEMENTS (shared input styling) */
+.form-group { display:flex; flex-direction:column; gap:6px; }
+.form-label { font-size:11.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mute); }
+.form-input, .form-select { background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:10px; padding:13px 15px; color:var(--ice); font-size:14.5px; font-family:'Plus Jakarta Sans',Arial,sans-serif; outline:none; transition:var(--transition); width:100%; }
+.form-input::placeholder { color:rgba(126,143,168,0.6); }
+.form-input:focus, .form-select:focus { border-color:var(--gold); background:rgba(245,166,35,0.05); box-shadow:0 0 0 3px rgba(245,166,35,0.12); }
+
+/* TOAST */
+#toast { position:fixed; top:80px; right:20px; z-index:99999; background:var(--navy-3); border:1px solid var(--teal); color:var(--teal); padding:14px 20px; border-radius:10px; font-size:14px; font-weight:600; opacity:0; transform:translateX(30px); transition:.3s ease; pointer-events:none; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
+#toast.show { opacity:1; transform:translateX(0); }
+#toast.error { border-color:var(--gold); color:var(--gold); }
+
+/* SUCCESS MODAL */
+#successModal { position:fixed; inset:0; z-index:10000; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
+.success-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.35); border-radius:28px; padding:52px 44px 44px; max-width:480px; width:100%; text-align:center; box-shadow:0 0 0 1px rgba(245,166,35,0.08), 0 40px 100px rgba(0,0,0,0.65), 0 0 80px rgba(245,166,35,0.06); position:relative; overflow:hidden; animation:successSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+.success-card::before { content:''; position:absolute; top:0; left:12%; right:12%; height:2px; background:linear-gradient(90deg,transparent,#f5a623 40%,#ffcc66 60%,transparent); }
+.success-card::after { content:''; position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(245,166,35,0.1), transparent 70%); pointer-events:none; }
+.success-check { width:88px; height:88px; border-radius:50%; background:rgba(61,220,151,0.1); border:2px solid rgba(61,220,151,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 28px; animation:successPop 0.55s 0.15s cubic-bezier(0.22,1,0.36,1) both; position:relative; z-index:1; }
+.success-check svg path { stroke-dasharray:42; stroke-dashoffset:42; animation:drawCheck 0.5s 0.5s ease forwards; }
+.success-eyebrow { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; position:relative; z-index:1; }
+.success-title { font-family:'Space Grotesk'; font-size:28px; font-weight:700; color:var(--gold); margin-bottom:16px; letter-spacing:-0.5px; position:relative; z-index:1; }
+.success-message { font-size:15.5px; color:rgba(238,242,248,0.78); line-height:1.72; margin-bottom:32px; position:relative; z-index:1; }
+.success-progress-wrap { background:rgba(255,255,255,0.06); border-radius:4px; height:4px; overflow:hidden; margin-bottom:14px; position:relative; z-index:1; }
+.success-progress-bar { height:100%; background:linear-gradient(90deg,#f5a623,#ffcc66); border-radius:4px; width:100%; animation:drainBar 3s linear forwards; }
+.success-hint { font-size:12px; color:var(--mute); letter-spacing:.3px; position:relative; z-index:1; }
+@keyframes successSlideIn { from{opacity:0; transform:translateY(32px) scale(0.94);} to{opacity:1; transform:translateY(0) scale(1);} }
+@keyframes successPop { from{opacity:0; transform:scale(0.5) rotate(-10deg);} to{opacity:1; transform:scale(1) rotate(0deg);} }
+@keyframes drawCheck { to{stroke-dashoffset:0;} }
+@keyframes drainBar { from{width:100%;} to{width:0%;} }
+@keyframes fadeOutModal { from{opacity:1; transform:scale(1);} to{opacity:0; transform:scale(0.96);} }
+
+/* QUOTE MODAL */
+#quoteModal { position:fixed; inset:0; z-index:10000; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
+.quote-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid var(--line-2); border-radius:28px; padding:40px 36px 36px; max-width:480px; width:100%; position:relative; overflow:hidden; box-shadow:0 0 0 1px rgba(245,166,35,0.06), 0 40px 100px rgba(0,0,0,0.65); animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; max-height:90vh; overflow-y:auto; }
+.quote-modal-card::before { content:''; position:absolute; top:0; left:12%; right:12%; height:2px; background:linear-gradient(90deg,transparent,#f5a623 40%,#ffcc66 60%,transparent); }
+.qm-close { position:absolute; top:18px; right:18px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid var(--line-2); color:var(--mute); font-size:20px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+.qm-close:hover { color:var(--ice); border-color:var(--gold); background:var(--gold-dim); }
+.qm-eyebrow { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
+.qm-title { font-family:'Space Grotesk'; font-size:24px; font-weight:700; color:var(--ice); margin-bottom:24px; letter-spacing:-.3px; }
+#quoteForm .form-group { margin-bottom:14px; }
+.qm-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.qm-submit { width:100%; padding:15px; background:var(--gold); color:#1a0f00; border:none; border-radius:12px; font-family:'Space Grotesk'; font-size:15.5px; font-weight:700; cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; gap:9px; box-shadow:0 8px 24px rgba(245,166,35,0.3); margin-top:8px; }
+.qm-submit:hover { background:#fff; transform:translateY(-2px); box-shadow:0 14px 36px rgba(245,166,35,0.4); }
+.qm-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 </style>
 </head>
-
 <body>
 
-<a class="btn" href="index.html">← Back Home</a>
+<!-- Rating Box -->
+<div class="rating-box">
+  <div>⭐ <span>4.9/5</span> Rating</div>
+  <div class="rating-count">100+ Happy Customers</div>
+</div>
 
-<header>
-    <h1>About Moksh Tours & Travel</h1>
-    <p>Safe • Comfortable • Trusted Travel Partner in Gujarat</p>
+<!-- Header -->
+<header id="siteHeader">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <img src="logo.jpeg" alt="Moksh Tours & Travel Logo">
+      <div class="logo-text">
+        <strong>MOKSH TOURS</strong>
+        <span>& Travel</span>
+      </div>
+    </a>
+    <div class="menu" id="mainMenu">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cars">Fleet</a>
+      <a href="index.html#routes">Routes</a>
+      <a href="index.html#booking">Booking</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html" class="current">About</a>
+      <a href="index.html#contact" class="nav-cta">📞 97244 29334</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+      <i class="fas fa-bars" id="hamburgerIcon"></i>
+    </button>
+  </nav>
 </header>
 
-<div class="container">
-
-<!-- INTRO -->
-<div class="card">
-<p>
-Moksh Tours & Travel is one of the most trusted cab service providers in Ahmedabad,
-offering reliable and affordable travel solutions for all your transportation needs.
-</p>
-</div>
-
-<!-- FEATURES -->
-<div class="grid">
-
-<div class="card">
-<div class="icon">🚖</div>
-<h3>Outstation Trips</h3>
-<p>Comfortable long-distance travel across Gujarat & India.</p>
-</div>
-
-<div class="card">
-<div class="icon">✈️</div>
-<h3>Airport Transfer</h3>
-<p>On-time pickup & drop with professional drivers.</p>
-</div>
-
-<div class="card">
-<div class="icon">🏙️</div>
-<h3>Local Travel</h3>
-<p>Easy and affordable city rides in Ahmedabad.</p>
-</div>
-
-<div class="card">
-<div class="icon">👨‍✈️</div>
-<h3>Professional Drivers</h3>
-<p>Experienced, polite and safety-focused drivers.</p>
-</div>
-
-<div class="card">
-<div class="icon">💰</div>
-<h3>Affordable Pricing</h3>
-<p>No hidden charges, 100% transparent pricing.</p>
-</div>
-
-<div class="card">
-<div class="icon">📞</div>
-<h3>24/7 Support</h3>
-<p>Always available customer assistance anytime.</p>
-</div>
-
-</div>
-
-<!-- LONG TEXT -->
-<div class="card" style="margin-top:20px;">
-
-<p>
-<b>Ahmedabad Taxi Service | Outstation Cab Booking | Airport Transfer | One Way Taxi | Round Trip Cab Service in Gujarat</b>
-</p>
-
-<p>
-Moksh Tours & Travel is one of the leading and most trusted cab service providers in Ahmedabad, offering premium, reliable, and affordable travel solutions for individuals, families, tourists, and businesses.
-</p>
-
-<p>
-With a strong commitment to safety, punctuality, and customer satisfaction, we provide comfortable and hassle-free transportation for local travel, outstation journeys, airport transfers, corporate travel, family vacations, wedding events, and customized Gujarat tour packages.
-</p>
-
-<p>
-Our fleet consists of clean, well-maintained, and comfortable vehicles driven by experienced and professional drivers who ensure a smooth, safe, and pleasant travel experience on every journey.
-</p>
-
-<p>
-Whether you need a one-way cab, round-trip taxi, airport pickup & drop service, business travel solution, or a complete Gujarat sightseeing tour, Moksh Tours & Travel is dedicated to providing dependable service at transparent and competitive prices.
-</p>
-
-<p>
-We take pride in being the preferred travel partner for hundreds of satisfied customers across Gujarat by delivering reliable service, on-time pickups, 24×7 booking assistance, and personalized customer support.
-</p>
-
-<p>
-<b>Moksh Tours & Travel – Your Trusted Travel Partner for Safe, Comfortable, and Memorable Journeys.</b>
-</p>
-
-</div>
-
-<!-- CONTACT -->
-<div class="center">
-<button class="btn" onclick="openForm()">
-📞 Contact on WhatsApp
-</button>
-</div>
-
-</div>
-
-<div id="phoneBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
-    
-    <div style="background:white; padding:20px; border-radius:10px; text-align:center; width:280px;">
-        <h3>Enter Your Phone Number</h3>
-        
-        <input id="phoneInput" type="text" placeholder="10-digit number"
-        style="width:100%; padding:10px; margin-top:10px;">
-
-        <br><br>
-
-        <button onclick="sendWhatsApp()" class="btn">Send</button>
-        <br><br>
-        <button onclick="closeBox()" style="background:red;color:white;padding:8px 12px;border:none;border-radius:5px;">
-            Cancel
-        </button>
-    </div>
-
-</div>
-
-
-<script>
-function askPhone(){
-
-    let phone = prompt("Enter your 10-digit mobile number:");
-
-    // validation
-    let pattern = /^[0-9]{10}$/;
-
-    if(!pattern.test(phone)){
-        alert("Please enter valid 10-digit mobile number");
-        return;
-    }
-
-    let message = "Customer Mobile: " + phone + "\n\nHello Moksh Tours & Travel, I want cab service. Please share details.";
-
-    let url = "https://wa.me/91" + phone + "?text=" + encodeURIComponent(message);
-
-    window.open(url, "_blank");
-}
-</script>
-
-
-<div id="bookingBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;">
-
-  <div style="background:white; padding:20px; border-radius:10px; width:300px; text-align:center;">
-
-    <h3>Book Your Cab</h3>
-
-    <h3 style="color:black; margin-bottom:10px;">Your Trip Booking Form</h3>
-
-    <input id="name" type="text" placeholder="Your Name" style="width:100%;padding:8px;margin:5px 0;">
-    <input id="phone" type="text" placeholder="10-digit Mobile" style="width:100%;padding:8px;margin:5px 0;">
-    <input id="pickup" type="text" placeholder="Pickup Location" style="width:100%;padding:8px;margin:5px 0;">
-    <input id="drop" type="text" placeholder="Destination" style="width:100%;padding:8px;margin:5px 0;">
-    <div style="display:flex; gap:10px;">
-
-  <div style="display:flex; gap:10px;">
-
-  <input id="date" type="date" style="width:50%;padding:8px;margin:5px 0;">
-
-  <select id="time" style="width:50%;padding:8px;margin:5px 0;">
-    <option value="">Select Time</option>
-    
-    <option>1:00 AM</option>
-    <option>2:00 AM</option>
-    <option>3:00 AM</option>
-    <option>4:00 AM</option>
-    <option>5:00 AM</option>
-    <option>6:00 AM</option>
-    <option>7:00 AM</option>
-    <option>8:00 AM</option>
-    <option>9:00 AM</option>
-    <option>10:00 AM</option>
-    <option>11:00 AM</option>
-    <option>12:00 PM</option>
-    <option>1:00 PM</option>
-    <option>2:00 PM</option>
-    <option>3:00 PM</option>
-    <option>4:00 PM</option>
-    <option>5:00 PM</option>
-    <option>6:00 PM</option>
-    <option>7:00 PM</option>
-    <option>8:00 PM</option>
-    <option>9:00 PM</option>
-    <option>10:00 PM</option>
-    <option>11:00 PM</option>
-    
-  </select>
-
-</div>
-
-</div>
-
-    <br><br>
-
-    <button onclick="sendBooking()" class="btn">Send on WhatsApp</button>
-    <br><br>
-    <button onclick="closeForm()" style="background:red;color:white;padding:8px 12px;border:none;border-radius:5px;">
-      Cancel
-    </button>
-
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow"><span class="dot"></span>About Moksh Tours & Travel</div>
+    <h1>Your Trusted Travel<br>Partner Across <em>Gujarat</em></h1>
+    <p>Safe, comfortable and dependable cab service built on punctuality, transparent pricing and genuine care for every passenger we drive — from daily city rides to complete Gujarat tours.</p>
+    <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>About Us</span></div>
   </div>
+</section>
 
+<!-- STORY -->
+<section id="story">
+  <div class="story-grid">
+    <div class="story-text">
+      <div class="section-tag">Who We Are</div>
+      <h2 class="section-title">Built on Punctuality and Trust</h2>
+      <p>Moksh Tours & Travel is one of Ahmedabad's most trusted cab service providers, offering reliable and affordable travel solutions for individuals, families, tourists and businesses across Gujarat.</p>
+      <p>With a strong commitment to safety and customer satisfaction, we handle everything from quick local rides to multi-day outstation journeys, airport transfers, corporate travel, wedding logistics and custom Gujarat tour packages — all with the same standard of care.</p>
+      <p>Our fleet is clean, well-maintained and driven by experienced, courteous drivers who know the routes and treat every trip like it's the only one that matters.</p>
+    </div>
+    <div class="story-stats">
+      <div class="stat-box"><div class="stat-box-num">100+</div><div class="stat-box-label">Happy Customers</div></div>
+      <div class="stat-box"><div class="stat-box-num">4.9★</div><div class="stat-box-label">Google Rating</div></div>
+      <div class="stat-box"><div class="stat-box-num">24×7</div><div class="stat-box-label">Available</div></div>
+      <div class="stat-box"><div class="stat-box-num">50+</div><div class="stat-box-label">Gujarat Destinations</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-header-center">
+    <div class="section-tag">Why Choose Us</div>
+    <h2 class="section-title">What Sets Us Apart</h2>
+    <p class="section-sub">Every trip is backed by the same six commitments, whether you're going across town or across the state.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🚖</div><h3>Outstation Trips</h3><p>Comfortable long-distance travel across Gujarat and India, with experienced drivers who know the highways.</p></div>
+    <div class="service-card"><div class="service-icon">✈️</div><h3>Airport Transfer</h3><p>On-time pickup and drop with flight tracking, so delays never become your problem.</p></div>
+    <div class="service-card"><div class="service-icon">🏙️</div><h3>Local Travel</h3><p>Easy, affordable city rides across Ahmedabad whenever you need to get somewhere fast.</p></div>
+    <div class="service-card"><div class="service-icon">👨‍✈️</div><h3>Professional Drivers</h3><p>Experienced, polite and safety-focused — our drivers are the reason customers come back.</p></div>
+    <div class="service-card"><div class="service-icon">💰</div><h3>Affordable Pricing</h3><p>Transparent, upfront fares with zero hidden charges, every single time.</p></div>
+    <div class="service-card"><div class="service-icon">📞</div><h3>24/7 Support</h3><p>Always-available customer assistance, whether you're booking ahead or need a cab right now.</p></div>
+  </div>
+</section>
+
+<!-- COMMITMENT -->
+<section id="commitment">
+  <div class="section-header-center">
+    <div class="section-tag">Our Commitment</div>
+    <h2 class="section-title">Ahmedabad Taxi Service, Done Right</h2>
+    <p class="section-sub">Outstation cab booking, airport transfers, one-way taxis and round-trip cab service — built around five core promises.</p>
+  </div>
+  <div class="commit-grid">
+    <div class="commit-card">
+      <div class="commit-num">01</div>
+      <h3>Complete Travel Solutions</h3>
+      <p>From one-way drops to round trips, business travel and full Gujarat sightseeing tours, we cover every kind of journey under one roof.</p>
+    </div>
+    <div class="commit-card">
+      <div class="commit-num">02</div>
+      <h3>Safety &amp; Punctuality First</h3>
+      <p>Every booking is handled with careful attention to safe driving, on-time pickups and clear communication from start to finish.</p>
+    </div>
+    <div class="commit-card">
+      <div class="commit-num">03</div>
+      <h3>Premium, Well-Maintained Fleet</h3>
+      <p>Clean, regularly serviced sedans and SUVs driven by professional chauffeurs who ensure a smooth ride on every trip.</p>
+    </div>
+    <div class="commit-card">
+      <div class="commit-num">04</div>
+      <h3>Transparent, Competitive Pricing</h3>
+      <p>The fare we quote is the fare you pay — toll and driver charges included, with no last-minute surprises.</p>
+    </div>
+    <div class="commit-card">
+      <div class="commit-num">05</div>
+      <h3>24×7 Booking Support</h3>
+      <p>Reach us anytime by call or WhatsApp for instant assistance, route guidance or last-minute bookings.</p>
+    </div>
+    <div class="commit-card">
+      <div class="commit-num">06</div>
+      <h3>Trusted Across Gujarat</h3>
+      <p>From Ahmedabad to Dwarka, Mount Abu to Mumbai — hundreds of satisfied customers rely on us for every kind of trip.</p>
+    </div>
+  </div>
+  <div class="commit-closing">
+    <p>Whether you need a one-way cab, round-trip taxi, airport pickup, corporate travel solution or a complete Gujarat sightseeing tour, <strong>Moksh Tours & Travel</strong> is dedicated to dependable service at honest, competitive prices.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-title">Plan Your Next Trip With Us</h2>
+    <div class="cta-phone">97244 29334</div>
+    <div class="cta-btns">
+      <button class="contact-btn contact-btn-gold" onclick="openQuoteModal()"><i class="fas fa-calendar-check"></i> Request a Free Quote</button>
+      <a href="tel:+919724429334" class="contact-btn contact-btn-outline"><i class="fas fa-phone"></i> Call Now</a>
+      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html#services">Our Services</a>
+      <a href="index.html#cars">Our Fleet</a>
+      <a href="index.html#routes">Popular Routes</a>
+      <a href="index.html#roundtrip">Round Trip</a>
+      <a href="index.html#booking">Book Online</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About Us</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect With Us</h4>
+      <p>Safe & Reliable Cab Service Across Gujarat — Ahmedabad Based Travel Partner</p>
+      <p>1600 Bhavsar No Khacho,<br>Opp Swaminarayan Temple,<br>Ahmedabad — 380018</p>
+      <a href="mailto:mokshtour.travel@gmail.com">mokshtour.travel@gmail.com</a>
+      <a href="tel:+919724429334">+91 97244 29334</a>
+    </div>
+    <div class="footer-col">
+      <h4>Our Location</h4>
+      <div class="footer-map">
+        <iframe src="https://www.google.com/maps?q=Moksh+Tours+%26+Travel+Ahmedabad&output=embed" width="100%" height="180" style="border:0;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="footer-keywords">
+    Ahmedabad Taxi Service • Airport Cab Ahmedabad • Outstation Taxi Gujarat • One Way Cab Ahmedabad • Round Trip Taxi Gujarat • Corporate Cab Ahmedabad
+  </div>
+  <div class="footer-bottom">© 2026 Moksh Tours & Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
+</footer>
+
+<!-- Floating Buttons -->
+<div class="float-wrap">
+  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+919724429334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
 </div>
 
-<script>
-function openForm(){
-    document.getElementById("bookingBox").style.display="flex";
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModal">
+  <div class="success-card" id="successCard">
+    <div class="success-check">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M9 21 L17 29 L31 13" stroke="#3ddc97" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="success-eyebrow">✦ Request Received ✦</div>
+    <h2 class="success-title">You're All Set!</h2>
+    <p class="success-message" id="successMessage"></p>
+    <div class="success-progress-wrap"><div class="success-progress-bar" id="successProgress"></div></div>
+    <div class="success-hint">Closing automatically in 3 seconds…</div>
+  </div>
+</div>
+
+<!-- QUOTE MODAL -->
+<div id="quoteModal">
+  <div class="quote-modal-card" id="quoteModalCard">
+    <button type="button" class="qm-close" onclick="closeQuoteModal()" aria-label="Close">&times;</button>
+    <div class="qm-eyebrow">Quick Request</div>
+    <h3 class="qm-title">Request a Free Quote</h3>
+    <form id="quoteForm">
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input class="form-input" type="text" id="qName" placeholder="Full name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mobile Number</label>
+        <input class="form-input" type="tel" id="qMobile" placeholder="10-digit number" pattern="[0-9]{10}" inputmode="numeric" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Pickup Location</label>
+        <input class="form-input" type="text" id="qPickup" placeholder="City or place" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Destination</label>
+        <input class="form-input" type="text" id="qDrop" placeholder="City or place" required>
+      </div>
+      <div class="qm-row">
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input class="form-input" type="date" id="qDate" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Time</label>
+          <select class="form-input" id="qTime" required>
+            <option value="" disabled selected>Select</option>
+            <option>6:00 AM</option><option>7:00 AM</option><option>8:00 AM</option><option>9:00 AM</option>
+            <option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option>
+            <option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
+            <option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option>
+            <option>10:00 PM</option><option>11:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="qm-submit" id="qSubmitBtn">
+        <i class="fab fa-whatsapp"></i> Send Booking Request
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Firebase Module -->
+<script type="module">
+import { saveDocument } from './firebase-config.js';
+
+function showSuccessModal(message) {
+  const modal = document.getElementById('successModal');
+  const msgEl = document.getElementById('successMessage');
+  const progress = document.getElementById('successProgress');
+  msgEl.innerHTML = message;
+  modal.style.display = 'flex';
+  progress.style.animation = 'none';
+  void progress.offsetWidth;
+  progress.style.animation = 'drainBar 3s linear forwards';
+  clearTimeout(window._successTimer);
+  window._successTimer = setTimeout(closeSuccessModal, 3000);
 }
-
-function closeForm(){
-    document.getElementById("bookingBox").style.display="none";
+function closeSuccessModal() {
+  const modal = document.getElementById('successModal');
+  const card = document.getElementById('successCard');
+  card.style.animation = 'fadeOutModal 0.35s cubic-bezier(0.4,0,0.2,1) forwards';
+  setTimeout(() => { modal.style.display = 'none'; card.style.animation = ''; }, 350);
 }
+window.closeSuccessModal = closeSuccessModal;
+document.getElementById('successModal').addEventListener('click', function(e){ if(e.target === this) closeSuccessModal(); });
 
-function sendBooking(){
+window.openQuoteModal = function(){
+  document.getElementById('quoteForm').reset();
+  document.getElementById('quoteModal').style.display = 'flex';
+  document.getElementById('quoteModalCard').style.animation = 'successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both';
+};
+window.closeQuoteModal = function(){
+  const modal = document.getElementById('quoteModal');
+  const card = document.getElementById('quoteModalCard');
+  card.style.animation = 'fadeOutModal 0.3s cubic-bezier(0.4,0,0.2,1) forwards';
+  setTimeout(() => { modal.style.display = 'none'; card.style.animation = ''; }, 300);
+};
+document.getElementById('quoteModal').addEventListener('click', function(e){ if(e.target === this) closeQuoteModal(); });
 
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let pickup = document.getElementById("pickup").value;
-    let drop = document.getElementById("drop").value;
-    let date = document.getElementById("date").value;
-    let time = document.getElementById("time").value;
-    // validation
-    let pattern = /^[0-9]{10}$/;
+document.getElementById('quoteForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const name    = document.getElementById('qName').value.trim();
+  const mobile  = document.getElementById('qMobile').value.trim();
+  const pickup  = document.getElementById('qPickup').value.trim();
+  const dest    = document.getElementById('qDrop').value.trim();
+  const date    = document.getElementById('qDate').value;
+  const time    = document.getElementById('qTime').value;
 
-        if(!name || !pickup || !drop || !date || !time){
-        alert("Please fill all fields");
-        return;
-    }
+  if(!mobile || mobile.length !== 10 || isNaN(mobile)){
+    showToast('Please enter a valid 10-digit mobile number', true); return;
+  }
 
-    if(!pattern.test(phone)){
-        alert("Enter valid 10-digit mobile number");
-        return;
-    }
+  const btn = document.getElementById('qSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
 
-    let message =
-`🚖 *New Cab Booking Request*
+  try {
+    await saveDocument('bookings', { name, mobile, pickup, destination:dest, date, time, car:'Not specified', passenger:'Not specified', trip:'General Inquiry', received:new Date() });
+  } catch(err) { console.error('Firebase save error:', err); }
 
-👤 Name: ${name}
-📱 Mobile: ${phone}
-📍 Pickup: ${pickup}
-🎯 Destination: ${drop}
-📅 Date: ${date}
-⏰ Time: ${time}
+  closeQuoteModal();
+  setTimeout(() => {
+    showSuccessModal(`Your quote request has been received successfully.<br><br>Our team will contact you shortly on <strong style="color:var(--gold)">${mobile}</strong> with pricing and availability.`);
+  }, 320);
 
-Hello Moksh Tours & Travel, please confirm my booking.`;
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fab fa-whatsapp"></i> Send Booking Request';
+});
 
-    let url = "https://wa.me/91" + phone + "?text=" + encodeURIComponent(message);
-
-    window.open(url, "_blank");
-
-    closeForm();
+function showToast(msg, isError){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (isError ? ' error' : '');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.className = '', 3500);
 }
+window.showToast = showToast;
 </script>
 
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 40);
+});
+function toggleMenu(){
+  const menu = document.getElementById('mainMenu');
+  const icon = document.getElementById('hamburgerIcon');
+  menu.classList.toggle('open');
+  icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+}
+document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', () => {
+  document.getElementById('mainMenu').classList.remove('open');
+  document.getElementById('hamburgerIcon').className = 'fas fa-bars';
+}));
+</script>
 
 </body>
 </html>
