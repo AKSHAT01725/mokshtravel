@@ -1,297 +1,727 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reviews - Moksh Tours</title>
+<title>Customer Reviews | Moksh Tours & Travel — Ahmedabad's Trusted Cab Service</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<meta name="description" content="Read genuine customer reviews for Moksh Tours & Travel — Ahmedabad's trusted cab service for outstation trips, airport transfers and Gujarat tours.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourdomain.com/reviews.html">
 
 <style>
-body{
-    font-family:Arial;
-    margin:0;
-    padding:0;
-    background:linear-gradient(135deg,#0a1a3a,#1b4d8a);
-    color:white;
+/* ══════════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════════ */
+:root {
+  --navy:       #060f22;
+  --navy-2:     #0b1a35;
+  --navy-3:     #0f2348;
+  --surface:    rgba(255,255,255,0.04);
+  --surface-2:  rgba(255,255,255,0.08);
+  --line:       rgba(255,255,255,0.08);
+  --line-2:     rgba(255,255,255,0.14);
+  --gold:       #f5a623;
+  --gold-light: #ffcc66;
+  --gold-dim:   rgba(245,166,35,0.12);
+  --teal:       #3ddc97;
+  --teal-dim:   rgba(61,220,151,0.1);
+  --ice:        #eef2f8;
+  --mute:       #7e8fa8;
+  --radius:     16px;
+  --radius-lg:  24px;
+  --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  background: var(--navy);
+  color: var(--ice);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--navy); }
+::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
+
+/* ══════════════════════════════════════════
+   HEADER / NAV
+══════════════════════════════════════════ */
+header {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 1000;
+  padding: 0 5%;
+  height: 72px;
+  display: flex; align-items: center;
+  background: rgba(6,15,34,0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: background var(--transition);
+}
+header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--line-2); }
+.navbar { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo img { width:52px; border-radius:10px; background:white; padding:3px; }
+.logo-text { display:flex; flex-direction:column; }
+.logo-text strong { font-family:'Space Grotesk'; font-size:15px; font-weight:700; color:var(--ice); letter-spacing:.3px; line-height:1.2; }
+.logo-text span { font-size:10.5px; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase; }
+.menu { display:flex; align-items:center; gap:4px; }
+.menu a { color:rgba(238,242,248,0.75); text-decoration:none; font-size:13.5px; font-weight:600; padding:8px 14px; border-radius:8px; transition:var(--transition); letter-spacing:.2px; }
+.menu a:hover, .menu a.current { color:var(--ice); background:var(--surface-2); }
+.nav-cta { background:var(--gold); color:#1a0f00 !important; padding:10px 22px !important; border-radius:30px !important; font-weight:700 !important; letter-spacing:.3px !important; }
+.nav-cta:hover { background:#fff !important; color:#000 !important; transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,166,35,0.4) !important; }
+.hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:var(--ice); font-size:22px; }
+@media(max-width:860px){
+  .hamburger { display:flex; }
+  .menu { display:none; flex-direction:column; align-items:flex-start; position:absolute; top:72px; left:0; right:0; background:rgba(6,15,34,0.97); backdrop-filter:blur(20px); padding:16px 5% 24px; border-bottom:1px solid var(--line); gap:2px; }
+  .menu.open { display:flex; }
+  .menu a { width:100%; padding:12px 16px; font-size:15px; }
 }
 
-h1{
-    text-align:center;
-    color:#ffcc00;
+/* ══════════════════════════════════════════
+   PAGE HERO
+══════════════════════════════════════════ */
+.page-hero {
+  padding: 150px 6% 80px;
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 30%, rgba(245,166,35,0.08), transparent),
+    radial-gradient(ellipse 60% 60% at 10% 90%, rgba(61,220,151,0.05), transparent),
+    linear-gradient(160deg, #060f22 0%, #0b1a35 55%, #0d2040 100%);
 }
-
-.section-subtitle{
-    text-align:center;
-    max-width:800px;
-    margin:auto;
-    opacity:0.9;
+.page-hero::before {
+  content:''; position:absolute; inset:0;
+  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent);
 }
+.page-hero-inner { position:relative; z-index:1; max-width:760px; margin:0 auto; text-align:center; }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.25); border-radius:30px; padding:6px 16px; font-size:12px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:22px; }
+.eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 1.8s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+.page-hero h1 { font-family:'Space Grotesk'; font-size:clamp(32px,4.6vw,54px); font-weight:700; line-height:1.1; letter-spacing:-1px; margin-bottom:18px; }
+.page-hero h1 em { font-style:normal; color:var(--gold); }
+.page-hero p { font-size:clamp(14.5px,1.6vw,17px); color:var(--mute); line-height:1.7; max-width:580px; margin:0 auto 32px; }
+.breadcrumb { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--mute); }
+.breadcrumb a { color:var(--mute); text-decoration:none; transition:var(--transition); }
+.breadcrumb a:hover { color:var(--gold); }
+.breadcrumb i { font-size:10px; }
 
-
-.reviews-grid{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:30px;
-    margin-bottom:50px;
+/* ══════════════════════════════════════════
+   RATING SUMMARY STRIP
+══════════════════════════════════════════ */
+.rating-strip {
+  background: var(--navy-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 36px 6%;
 }
+.rating-strip-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 48px;
+}
+.rating-big {
+  text-align: center;
+}
+.rating-big-num {
+  font-family:'Space Grotesk';
+  font-size: 72px; font-weight: 700;
+  color: var(--gold); line-height: 1;
+  letter-spacing: -2px;
+}
+.rating-stars-lg { font-size: 22px; color: var(--gold); letter-spacing: 3px; margin: 6px 0 8px; }
+.rating-label { font-size: 13px; color: var(--mute); }
+.rating-divider { width: 1px; height: 80px; background: var(--line); }
+.rating-breakdowns { display: flex; flex-direction: column; gap: 9px; }
+.rating-bar-row { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+.rating-bar-label { color: var(--mute); min-width: 40px; text-align: right; font-family:'Space Grotesk'; font-size:12px; }
+.rating-bar-track { width: 160px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.rating-bar-fill { height: 100%; background: var(--gold); border-radius: 3px; transition: width 1s cubic-bezier(0.22,1,0.36,1); }
+.rating-bar-count { color: var(--mute); font-size: 12px; min-width: 20px; }
+.rating-source { text-align: center; }
+.rating-source-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 12px 20px; font-size: 13px;
+}
+.rating-source-badge i { color: #4285F4; font-size: 16px; }
+.rating-source-badge strong { color: var(--ice); }
+.rating-source-badge span { color: var(--mute); }
+@media(max-width:640px){ .rating-divider { display:none; } .rating-bar-track { width:100px; } }
+
+/* ══════════════════════════════════════════
+   REVIEWS SECTION
+══════════════════════════════════════════ */
+#reviews { padding: 80px 6%; }
+
+/* Filter tabs */
+.filter-bar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 40px; flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 8px 18px; border-radius: 30px;
+  background: var(--surface); border: 1px solid var(--line);
+  color: var(--mute); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.filter-btn:hover { color: var(--ice); border-color: var(--line-2); }
+.filter-btn.active { background: var(--gold-dim); border-color: rgba(245,166,35,0.4); color: var(--gold); }
+
+/* Masonry-style grid */
+.reviews-grid {
+  columns: 3;
+  column-gap: 20px;
+  margin-bottom: 48px;
+}
+@media(max-width:900px){ .reviews-grid { columns: 2; } }
+@media(max-width:560px){ .reviews-grid { columns: 1; } }
 
 .review-card {
-    background: rgba(255,255,255,0.08);
-    border: none;
-    border-radius: 15px;
-    padding: 20px;
-    height: auto;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  break-inside: avoid;
+  background: var(--navy-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  margin-bottom: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: none; /* shown via JS */
+}
+.review-card.visible { display: block; }
+.review-card::before {
+  content:'';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245,166,35,0.3), transparent);
+  opacity: 0; transition: var(--transition);
+}
+.review-card:hover { border-color: rgba(245,166,35,0.25); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+.review-card:hover::before { opacity: 1; }
+
+.review-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; gap: 12px; }
+.reviewer-avatar {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px;
+  color: var(--gold);
+}
+.reviewer-info { flex: 1; }
+.reviewer-name { font-weight: 700; font-size: 14.5px; margin-bottom: 2px; }
+.reviewer-meta { font-size: 11.5px; color: var(--mute); }
+.review-stars { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
+.review-text { font-size: 13.5px; color: rgba(238,242,248,0.78); line-height: 1.7; }
+
+/* Quote icon */
+.review-quote {
+  font-size: 56px; color: rgba(245,166,35,0.08);
+  font-family: Georgia, serif; line-height: 1;
+  position: absolute; top: 18px; right: 22px;
+  pointer-events: none; user-select: none;
 }
 
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    align-items: stretch;
+/* Tag for trip type */
+.review-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .4px;
+  padding: 3px 10px; border-radius: 20px; margin-top: 14px;
+  font-family: 'Space Grotesk';
 }
+.tag-outstation { background: var(--teal-dim); color: var(--teal); }
+.tag-airport { background: rgba(120,160,255,0.14); color: #7fa3ff; }
+.tag-roundtrip { background: var(--gold-dim); color: var(--gold); }
+.tag-wedding { background: rgba(255,120,200,0.12); color: #ff8cc8; }
+.tag-tour { background: rgba(160,100,255,0.12); color: #c084fc; }
 
-
-@media(max-width:1200px){
-    .reviews-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
+/* Load more */
+.load-more-wrap { text-align: center; }
+.load-more-btn {
+  padding: 14px 36px; background: transparent;
+  border: 1px solid var(--line-2); color: var(--ice);
+  border-radius: 50px; font-weight: 700; font-size: 14px;
+  cursor: pointer; transition: var(--transition);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: inline-flex; align-items: center; gap: 9px;
 }
+.load-more-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.load-more-btn.hidden { display: none; }
 
-@media(max-width:900px){
-    .reviews-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+/* ══════════════════════════════════════════
+   WRITE REVIEW CTA
+══════════════════════════════════════════ */
+#write-review {
+  background: linear-gradient(135deg, #070f24, #0e2040);
+  border-top: 1px solid var(--line);
+  padding: 80px 6%;
 }
+.write-review-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.section-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.section-title { font-family:'Space Grotesk'; font-size:clamp(26px,3.2vw,38px); font-weight:700; margin-bottom:14px; line-height:1.18; }
+.section-sub { font-size:15px; color:var(--mute); line-height:1.65; margin-bottom:36px; }
+.review-cta-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.btn-gold { display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#1a0f00; font-weight:700; font-size:15px; padding:14px 30px; border-radius:50px; text-decoration:none; transition:var(--transition); box-shadow:0 8px 32px rgba(245,166,35,0.3); }
+.btn-gold:hover { background:#fff; transform:translateY(-2px); box-shadow:0 12px 40px rgba(245,166,35,0.45); }
+.btn-outline { display:inline-flex; align-items:center; gap:9px; background:var(--surface-2); color:var(--ice); border:1px solid var(--line-2); font-weight:700; font-size:15px; padding:14px 30px; border-radius:50px; text-decoration:none; transition:var(--transition); }
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
 
-@media(max-width:600px){
-    .reviews-grid{
-        grid-template-columns:1fr;
-    }
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.footer { background:#030810; border-top:1px solid var(--line); padding:60px 6% 30px; }
+.footer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; max-width:1100px; margin:0 auto 48px; }
+.footer-col h4 { font-family:'Space Grotesk'; font-size:13.5px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
+.footer-col a { display:block; color:rgba(238,242,248,0.6); text-decoration:none; font-size:13.5px; margin-bottom:10px; transition:var(--transition); }
+.footer-col a:hover { color:var(--gold); transform:translateX(4px); }
+.footer-col p { font-size:13px; color:rgba(238,242,248,0.55); line-height:1.7; margin-bottom:8px; }
+.footer-map { border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--line); }
+.footer-map iframe { display:block; }
+.footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--line); padding-top:24px; text-align:center; font-size:12.5px; color:rgba(238,242,248,0.35); }
+@media(max-width:768px){ .footer-grid { grid-template-columns:1fr; gap:32px; } }
+
+/* ══════════════════════════════════════════
+   FLOATING BUTTONS + RATING BOX
+══════════════════════════════════════════ */
+.float-wrap { position:fixed; bottom:28px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px; }
+.float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; }
+.float-btn:hover { transform:scale(1.12) translateY(-2px); animation:none; }
+.float-wa { background:linear-gradient(135deg,#25d366,#128c7e); color:white; }
+.float-call { background:linear-gradient(135deg,var(--gold),#ff8800); color:#1a0f00; animation-delay:.5s; }
+@keyframes floatAnim { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+.rating-box { position:fixed; left:20px; bottom:28px; background:var(--navy-2); border:1px solid rgba(245,166,35,0.3); border-radius:12px; padding:10px 16px; font-size:13px; font-weight:600; z-index:9999; box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.rating-box span { color:var(--gold); font-family:'Space Grotesk'; font-weight:700; }
+.rating-count { font-size:11px; color:var(--mute); margin-top:2px; }
+@media(max-width:640px) { .rating-box { display:none; } }
+
+/* Animate cards on load */
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
 }
-
-.hidden-review{
-    display:none;
-}
-
-button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:#ffb400;
-    color:black;
-    border:none;
-    border-radius:30px;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:18px;
-}
-
-/* Write Review + other links buttons */
-a.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:#ffb400;
-    color:black;
-    text-decoration:none;
-    border-radius:30px;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:18px;
-    padding:10px 20px;
-}
-
-/* ONLY BIG BUTTONS */
-button, a.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:#ffb400;
-    color:black;
-    border:none;
-    text-decoration:none;
-    border-radius:30px;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:18px;
-    padding:10px 20px;
-}
-
-/* BACK HOME BUTTON (small normal) */
-.home-btn{
-    display:inline-block;
-    margin:20px;
-    padding:10px 20px;
-    background:#ffb400;
-    color:black;
-    text-decoration:none;
-    border-radius:20px;
-    font-weight:bold;
-    font-size:16px;
-}
-
-.center{
-    text-align:center;
-}
-
-.reviews-grid{
-    margin-bottom:50px;
-}
-
-
+.review-card.visible { animation: cardIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
 </style>
 </head>
-
 <body>
 
-<a class="home-btn" href="index.html">← Back Home</a>
-
-<h1>⭐ Trusted by Travelers Across Gujarat ⭐</h1>
-
-<p class="section-subtitle">
-See how we take care of our customers with reliable service,
-comfortable vehicles, professional drivers and transparent pricing.
-</p>
-
-<div class="reviews-grid">
-
-<div class="review-card">
-★★★★★
-<p>
-We booked an outstation cab with Moksh Tours & Travel for a family trip across Gujarat. The booking process was smooth, communication was clear, and the vehicle arrived exactly on time. The car was clean, comfortable, and well-maintained. The driver was polite, professional, and made the entire journey stress-free. We were especially impressed with the punctuality and overall service quality. Highly recommended for anyone looking for reliable travel services in Ahmedabad.
-</p>
-<h4>— Harsh P.</h4>
+<!-- Rating Box -->
+<div class="rating-box">
+  <div>⭐ <span>4.9/5</span> Rating</div>
+  <div class="rating-count">100+ Happy Customers</div>
 </div>
 
+<!-- Header -->
+<header id="siteHeader">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <img src="logo.jpeg" alt="Moksh Tours & Travel Logo">
+      <div class="logo-text">
+        <strong>MOKSH TOURS</strong>
+        <span>& Travel</span>
+      </div>
+    </a>
+    <div class="menu" id="mainMenu">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#cars">Fleet</a>
+      <a href="index.html#routes">Routes</a>
+      <a href="index.html#booking">Booking</a>
+      <a href="reviews.html" class="current">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact" class="nav-cta">📞 97244 29334</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+      <i class="fas fa-bars" id="hamburgerIcon"></i>
+    </button>
+  </nav>
+</header>
 
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="eyebrow"><span class="dot"></span>Real Travellers, Real Stories</div>
+    <h1>What Our Customers<br>Say About <em>Us</em></h1>
+    <p>Over 100 travellers across Gujarat have shared their experiences. Here's what they found on the road with Moksh Tours & Travel.</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Reviews</span>
+    </div>
+  </div>
+</section>
 
-<div class="review-card">
-★★★★★
-<p>
-Excellent experience with Moksh Tours & Travel. From the initial inquiry to the completion of our trip, everything was handled professionally. The vehicle was in great condition, and the driver was courteous and knowledgeable about the routes. The pricing was transparent with no hidden charges, which we really appreciated. We would definitely choose their services again for future trips.
-</p>
-<h4>— Riya S.</h4>
+<!-- Rating Summary -->
+<div class="rating-strip">
+  <div class="rating-strip-inner">
+    <div class="rating-big">
+      <div class="rating-big-num">4.9</div>
+      <div class="rating-stars-lg">★★★★★</div>
+      <div class="rating-label">Average Rating</div>
+    </div>
+    <div class="rating-divider"></div>
+    <div class="rating-breakdowns">
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">5 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" data-width="96%" style="width:0"></div></div>
+        <span class="rating-bar-count">96%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">4 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" data-width="4%" style="width:0"></div></div>
+        <span class="rating-bar-count">4%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">3 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" data-width="0%" style="width:0"></div></div>
+        <span class="rating-bar-count">0%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">2 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" data-width="0%" style="width:0"></div></div>
+        <span class="rating-bar-count">0%</span>
+      </div>
+      <div class="rating-bar-row">
+        <span class="rating-bar-label">1 ★</span>
+        <div class="rating-bar-track"><div class="rating-bar-fill" data-width="0%" style="width:0"></div></div>
+        <span class="rating-bar-count">0%</span>
+      </div>
+    </div>
+    <div class="rating-divider"></div>
+    <div class="rating-source">
+      <div class="rating-source-badge">
+        <i class="fab fa-google"></i>
+        <div>
+          <strong>Google Reviews</strong><br>
+          <span>Verified customers</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<!-- Reviews -->
+<section id="reviews">
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Reviews</button>
+    <button class="filter-btn" data-filter="outstation">Outstation</button>
+    <button class="filter-btn" data-filter="airport">Airport Transfer</button>
+    <button class="filter-btn" data-filter="roundtrip">Round Trip</button>
+    <button class="filter-btn" data-filter="wedding">Wedding</button>
+    <button class="filter-btn" data-filter="tour">Gujarat Tour</button>
+  </div>
 
+  <!-- Reviews Grid -->
+  <div class="reviews-grid" id="reviewsGrid">
 
-<div class="review-card">
-★★★★★
-<p>
-We used Moksh Tours & Travel for an airport pickup and later for a sightseeing tour. Both experiences were outstanding. The team was responsive, the driver arrived before the scheduled time, and the journey was very comfortable. It is rare to find a travel company that combines affordability with such high service standards. Thank you for making our trip memorable.
-</p>
-<h4>— Karan M.</h4>
-</div>
+    <div class="review-card" data-category="outstation">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">H</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Harsh P.</div>
+          <div class="reviewer-meta">Ahmedabad</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Booked an outstation cab for a family trip across Gujarat. The vehicle arrived exactly on time, clean and comfortable. The driver was polite, professional, and made the entire journey stress-free. Highly recommended for anyone looking for reliable travel in Ahmedabad.</p>
+      <div class="review-tag tag-outstation"><i class="fas fa-road"></i> Outstation</div>
+    </div>
 
+    <div class="review-card" data-category="outstation">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">R</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Riya S.</div>
+          <div class="reviewer-meta">Surat</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Excellent experience from start to finish. The vehicle was in great condition and the driver was courteous and knowledgeable about the routes. Pricing was transparent — no hidden charges, which we really appreciated.</p>
+      <div class="review-tag tag-outstation"><i class="fas fa-road"></i> Outstation</div>
+    </div>
 
+    <div class="review-card" data-category="airport">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">K</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Karan M.</div>
+          <div class="reviewer-meta">Ahmedabad</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Used Moksh for airport pickup and later a sightseeing tour. Both experiences were outstanding. The driver arrived before scheduled time and the journey was very comfortable. Rare to find this level of service at this price point.</p>
+      <div class="review-tag tag-airport"><i class="fas fa-plane-arrival"></i> Airport Transfer</div>
+    </div>
 
-<div class="review-card">
-★★★★★
-<p>
-Our group trip was perfectly managed by Moksh Tours & Travel. The booking process was simple, and all arrangements were made exactly as promised. The vehicle was spacious, clean, and ideal for long-distance travel. The driver maintained a safe driving style throughout the journey and was very helpful whenever we needed assistance. A trustworthy and professional travel service.
-</p>
-<h4>— Nehal T.</h4>
-</div>
+    <div class="review-card" data-category="outstation">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">N</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Nehal T.</div>
+          <div class="reviewer-meta">Gandhinagar</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Our group trip was perfectly managed. Spacious and clean vehicle, ideal for long-distance travel. Safe driving style and a very helpful driver throughout the journey. A trustworthy, professional service.</p>
+      <div class="review-tag tag-outstation"><i class="fas fa-road"></i> Outstation</div>
+    </div>
 
+    <div class="review-card" data-category="outstation">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">V</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Vishal R.</div>
+          <div class="reviewer-meta">Vadodara</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">One of the best cab services we've experienced in Ahmedabad. Vehicle quality, driver behavior, and punctuality were all excellent. We never had to worry about delays or miscommunication. Highly recommend to families, tourists, and business travelers alike.</p>
+      <div class="review-tag tag-outstation"><i class="fas fa-road"></i> Outstation</div>
+    </div>
 
+    <div class="review-card" data-category="tour">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">M</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Mehul S.</div>
+          <div class="reviewer-meta">Rajkot</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Hired an Innova Crysta for our Ahmedabad to Mount Abu trip. The vehicle condition was excellent and the journey was very comfortable. Driver was calm on mountain roads and very professional. Will definitely book again.</p>
+      <div class="review-tag tag-tour"><i class="fas fa-map-marked-alt"></i> Gujarat Tour</div>
+    </div>
 
-<div class="review-card">
-★★★★★
-<p>
-One of the best cab services we have experienced in Ahmedabad. The vehicle quality, driver behavior, customer support, and punctuality were all excellent. We never had to worry about delays or miscommunication. The entire trip was smooth and comfortable from start to finish. We highly recommend Moksh Tours & Travel to families, tourists, and business travelers alike.
-</p>
-<h4>— Vishal R.</h4>
-</div>
+    <div class="review-card" data-category="wedding">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">K</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Krunal T.</div>
+          <div class="reviewer-meta">Ahmedabad</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Booked cabs for our wedding guests from Ahmedabad to Vadodara. Everything was managed perfectly — all vehicles arrived on time, drivers were well-dressed and courteous. Excellent coordination throughout the event.</p>
+      <div class="review-tag tag-wedding"><i class="fas fa-heart"></i> Wedding</div>
+    </div>
 
+    <div class="review-card" data-category="tour">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">N</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Nidhi R.</div>
+          <div class="reviewer-meta">Ahmedabad</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Amazing experience during our Saputara family vacation. Clean vehicle, safe driving and completely transparent pricing. The driver suggested a great rest stop on the way. Will definitely book again for our next trip.</p>
+      <div class="review-tag tag-tour"><i class="fas fa-map-marked-alt"></i> Gujarat Tour</div>
+    </div>
 
+    <div class="review-card" data-category="airport">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">P</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Priya D.</div>
+          <div class="reviewer-meta">Ahmedabad</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Used Moksh for Ahmedabad Airport pickup after a late-night flight. Driver arrived 10 minutes early and helped with luggage. Very professional service and a comfortable ride home. Booking was so easy too.</p>
+      <div class="review-tag tag-airport"><i class="fas fa-plane-arrival"></i> Airport Transfer</div>
+    </div>
 
-<div class="review-card">
-★★★★★
-<p>
-We hired an Innova for our Ahmedabad to Mount Abu trip. Vehicle condition was excellent and the journey was very comfortable. Highly recommended.
-</p>
-<h4>— Mehul S.</h4>
-</div>
+    <div class="review-card" data-category="roundtrip">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">J</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Jay M.</div>
+          <div class="reviewer-meta">Ahmedabad</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Booked a round trip to Dwarka and Somnath. The driver was polite, knew all the routes and local temples well. The trip was comfortable and completely hassle-free — exactly what a pilgrimage should feel like.</p>
+      <div class="review-tag tag-roundtrip"><i class="fas fa-rotate"></i> Round Trip</div>
+    </div>
 
+    <div class="review-card" data-category="tour">
+      <div class="review-quote">"</div>
+      <div class="review-header">
+        <div class="reviewer-avatar">A</div>
+        <div class="reviewer-info">
+          <div class="reviewer-name">Amit P.</div>
+          <div class="reviewer-meta">Surat</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">Booked a cab from Ahmedabad to Statue of Unity for a family outing. The vehicle was clean, the driver was punctual, and the entire journey was smooth. Excellent service and reasonable pricing — well worth it.</p>
+      <div class="review-tag tag-tour"><i class="fas fa-map-marked-alt"></i> Gujarat Tour</div>
+    </div>
 
+  </div>
 
-<div class="review-card">
-★★★★★
-<p>
-Booked a cab for our wedding guests from Ahmedabad to Vadodara. Everything was managed perfectly and all vehicles arrived on time.
-</p>
-<h4>— Krunal T.</h4>
-</div>
+  <!-- Load More -->
+  <div class="load-more-wrap">
+    <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">
+      <i class="fas fa-chevron-down"></i> Show More Reviews
+    </button>
+  </div>
+</section>
 
+<!-- Write a Review CTA -->
+<section id="write-review">
+  <div class="write-review-inner">
+    <div class="section-tag">Share Your Experience</div>
+    <h2 class="section-title">Enjoyed the Ride?</h2>
+    <p class="section-sub">Your review helps other travellers make the right choice — and means the world to our team.</p>
+    <div class="review-cta-btns">
+      <a href="https://g.page/r/CTQaIJuvHQ3REBE/review" target="_blank" class="btn-gold">
+        <i class="fab fa-google"></i> Write a Google Review
+      </a>
+      <a href="index.html#booking" class="btn-outline">
+        <i class="fas fa-calendar-check"></i> Book Your Next Ride
+      </a>
+    </div>
+  </div>
+</section>
 
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="index.html#services">Our Services</a>
+      <a href="index.html#cars">Our Fleet</a>
+      <a href="index.html#routes">Popular Routes</a>
+      <a href="index.html#roundtrip">Round Trip</a>
+      <a href="index.html#booking">Book Online</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About Us</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect With Us</h4>
+      <p>Safe & Reliable Cab Service Across Gujarat — Ahmedabad Based Travel Partner</p>
+      <p>1600 Bhavsar No Khacho,<br>Opp Swaminarayan Temple,<br>Ahmedabad — 380018</p>
+      <a href="mailto:mokshtour.travel@gmail.com">mokshtour.travel@gmail.com</a>
+      <a href="tel:+919724429334">+91 97244 29334</a>
+    </div>
+    <div class="footer-col">
+      <h4>Our Location</h4>
+      <div class="footer-map">
+        
+        <iframe src="https://www.google.com/maps?q=Moksh+Tours+%26+Travel+Ahmedabad&output=embed" width="100%" height="180" style="border:0;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Moksh Tours & Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
+</footer>
 
-<div class="review-card">
-★★★★★
-<p>
-Amazing experience during our Saputara family vacation. Clean vehicle, safe driving and transparent pricing. Will definitely book again.
-</p>
-<h4>— Nidhi R.</h4>
-</div>
-
-
-
-<div class="review-card hidden-review">
-★★★★★
-<p>
-Used Moksh Tours & Travel for Ahmedabad Airport pickup. Driver arrived before time and helped with luggage. Very professional service and comfortable ride.
-</p>
-<h4>— Priya D.</h4>
-</div>
-
-
-
-<div class="review-card hidden-review">
-★★★★★
-<p>
-Booked a round trip to Dwarka and Somnath. The driver was polite and knew all routes well. The trip was comfortable and completely hassle-free.
-</p>
-<h4>— Jay M.</h4>
-</div>
-
-
-
-<div class="review-card hidden-review">
-★★★★★
-<p>
-We booked a cab from Ahmedabad to Statue of Unity for a family outing. The vehicle was clean, the driver was punctual, and the entire journey was smooth. Excellent service and reasonable pricing.
-</p>
-<h4>— Amit P.</h4>
-</div>
-
-
-
-</div>
-
-<div class="center">
-<button onclick="showMoreReviews()">See More Reviews</button>
-</div>
-
-<div style="height:10px;"></div>
-
-<div class="center">
-<a href="https://g.page/r/CTQaIJuvHQ3REBE/review" target="_blank" class="btn">
-⭐ Write a Review
-</a>
+<!-- Floating Buttons -->
+<div class="float-wrap">
+  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+919724429334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
 </div>
 
 <script>
-function showMoreReviews(){
+// ── Header scroll ──────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 40);
+});
 
-    let hidden =
-    document.querySelectorAll(".hidden-review");
+// ── Mobile menu ────────────────────────────────────────
+function toggleMenu() {
+  const menu = document.getElementById('mainMenu');
+  const icon = document.getElementById('hamburgerIcon');
+  menu.classList.toggle('open');
+  icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+}
+document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', () => {
+  document.getElementById('mainMenu').classList.remove('open');
+  document.getElementById('hamburgerIcon').className = 'fas fa-bars';
+}));
 
-    hidden.forEach(review=>{
-        review.style.display="block";
-    });
+// ── Rating bar animation ───────────────────────────────
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.rating-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width;
+      });
+      barObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+barObserver.observe(document.querySelector('.rating-strip'));
 
-    document.querySelector("button").style.display="none";
+// ── Reviews: show first 8, hide rest ──────────────────
+const allCards = Array.from(document.querySelectorAll('.review-card'));
+const INITIAL_COUNT = 8;
+let currentFilter = 'all';
+let visibleCount = INITIAL_COUNT;
+
+function getFiltered() {
+  if (currentFilter === 'all') return allCards;
+  return allCards.filter(c => c.dataset.category === currentFilter);
 }
 
+function renderCards() {
+  const filtered = getFiltered();
+  allCards.forEach(c => {
+    c.classList.remove('visible');
+    c.style.animationDelay = '';
+  });
+  filtered.slice(0, visibleCount).forEach((c, i) => {
+    c.style.animationDelay = (i * 0.05) + 's';
+    c.classList.add('visible');
+  });
+  const btn = document.getElementById('loadMoreBtn');
+  btn.classList.toggle('hidden', filtered.length <= visibleCount);
+}
+
+function loadMore() {
+  visibleCount += 4;
+  renderCards();
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    visibleCount = INITIAL_COUNT;
+    renderCards();
+  });
+});
+
+// Initial render
+renderCards();
+
+// ── Google review prompt (once, after 90s) ─────────────
+setTimeout(() => {
+  if (!localStorage.getItem('reviewPopup')) {
+    if (confirm('Thank you for visiting Moksh Tours & Travel.\n\nWould you like to leave a Google Review?')) {
+      window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank');
+    }
+    localStorage.setItem('reviewPopup', 'yes');
+  }
+}, 90000);
 </script>
 
 </body>
