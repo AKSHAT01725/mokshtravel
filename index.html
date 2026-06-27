@@ -57,6 +57,7 @@ body {
 ::-webkit-scrollbar-track { background:var(--navy); }
 ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
 
+/* ── HEADER ── */
 header {
   position: fixed; top:0; left:0; right:0;
   z-index: 1000;
@@ -70,8 +71,8 @@ header {
   transition: background var(--transition);
 }
 header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--line-2); }
-.navbar { display:flex; align-items:center; justify-content:space-between; width:100%; }
-.logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.navbar { display:flex; align-items:center; justify-content:space-between; width:100%; gap:10px; }
+.logo { display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0; }
 .logo img { width:52px; border-radius:10px; background:white; padding:3px; }
 .logo-text { display:flex; flex-direction:column; }
 .logo-text strong { font-family:'Space Grotesk'; font-size:15px; font-weight:700; color:var(--ice); letter-spacing:.3px; line-height:1.2; }
@@ -81,14 +82,38 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 .menu a:hover { color:var(--ice); background:var(--surface-2); }
 .nav-cta { background:var(--gold); color:#1a0f00 !important; padding:10px 22px !important; border-radius:30px !important; font-weight:700 !important; letter-spacing:.3px !important; }
 .nav-cta:hover { background:#fff !important; color:#000 !important; transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,166,35,0.4) !important; }
-.hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:var(--ice); font-size:22px; }
-@media(max-width:860px){
+.hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:var(--ice); font-size:22px; flex-shrink:0; }
+
+/* ── MOBILE NAV PHONE PILL ── */
+.mobile-nav-phone { display:none; }
+@media(max-width:860px) {
   .hamburger { display:flex; }
   .menu { display:none; flex-direction:column; align-items:flex-start; position:absolute; top:72px; left:0; right:0; background:rgba(6,15,34,0.97); backdrop-filter:blur(20px); padding:16px 5% 24px; border-bottom:1px solid var(--line); gap:2px; }
   .menu.open { display:flex; }
   .menu a { width:100%; padding:12px 16px; font-size:15px; }
+  .mobile-nav-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(245,166,35,0.35);
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: .3px;
+    white-space: nowrap;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .mobile-nav-phone:hover { background: var(--gold); color: #1a0f00; }
+  .mobile-nav-phone i { font-size: 10px; }
 }
 
+/* ── HERO ── */
 .hero {
   min-height:100vh; display:flex; align-items:center;
   padding:120px 6% 80px; position:relative; overflow:hidden;
@@ -119,11 +144,13 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 .hero-stat-num { font-family:'Space Grotesk'; font-size:32px; font-weight:700; color:var(--gold); }
 .hero-stat-label { font-size:12px; color:var(--mute); margin-top:2px; letter-spacing:.5px; }
 
+/* ── TRUST STRIP ── */
 .trust-strip { background:var(--navy-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:18px 6%; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
 .trust-pill { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:30px; padding:8px 18px; font-size:13px; font-weight:600; color:var(--ice); transition:var(--transition); cursor:default; }
 .trust-pill:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
 .trust-pill i { color:var(--teal); font-size:12px; }
 
+/* ── SECTIONS ── */
 section { padding:90px 6%; }
 .section-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
 .section-title { font-family:'Space Grotesk'; font-size:clamp(28px,3.5vw,42px); font-weight:700; color:var(--ice); margin-bottom:14px; line-height:1.15; }
@@ -131,6 +158,7 @@ section { padding:90px 6%; }
 .section-header-center { text-align:center; }
 .section-header-center .section-sub { margin:0 auto 48px; }
 
+/* ── BOOKING FORM ── */
 #booking { background:var(--navy-2); }
 .booking-wrap { max-width:860px; margin:0 auto; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); padding:40px; box-shadow:0 24px 80px rgba(0,0,0,0.45); position:relative; overflow:hidden; }
 .booking-wrap::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
@@ -148,6 +176,7 @@ section { padding:90px 6%; }
 .booking-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 @media(max-width:640px){ .booking-grid { grid-template-columns:1fr; } .booking-wrap { padding:24px 18px; } }
 
+/* ── SERVICES ── */
 .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
 .service-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; transition:var(--transition); }
 .service-card:hover { border-color:var(--gold); background:var(--gold-dim); transform:translateY(-4px); }
@@ -155,6 +184,7 @@ section { padding:90px 6%; }
 .service-card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
 .service-card p { font-size:13.5px; color:var(--mute); line-height:1.6; }
 
+/* ── CARS ── */
 #cars { background:var(--navy-2); }
 .cars-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
 .car-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); }
@@ -166,6 +196,7 @@ section { padding:90px 6%; }
 .car-body h3 { font-family:'Space Grotesk'; font-size:17px; font-weight:700; margin-bottom:6px; }
 .car-seater { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--teal); font-weight:600; background:var(--teal-dim); border-radius:20px; padding:4px 12px; margin-bottom:14px; }
 
+/* ── ROUTES ── */
 .routes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
 .route-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; }
 .route-card:hover { border-color:rgba(245,166,35,0.3); transform:translateY(-4px); }
@@ -179,6 +210,7 @@ section { padding:90px 6%; }
 .route-btn { margin-top:auto; width:100%; padding:12px; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.3); color:var(--gold); font-weight:700; font-size:14px; border-radius:10px; cursor:pointer; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
 .route-btn:hover { background:var(--gold); color:#1a0f00; border-color:var(--gold); }
 
+/* ── ROUND TRIP ── */
 #roundtrip { background:var(--navy-2); }
 .roundtrip-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
 .rt-card { background: linear-gradient(160deg, #0d1f3e 0%, #091629 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 36px 28px 32px; text-align:center; transition: var(--transition); position:relative; overflow:hidden; cursor:default; }
@@ -224,6 +256,7 @@ section { padding:90px 6%; }
 @keyframes countUp { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
 .rt-rate-num.animate { animation:countUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
 
+/* ── REVIEWS ── */
 #reviews { background:var(--navy); }
 .reviews-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-bottom:36px; }
 .review-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px; transition:var(--transition); }
@@ -235,8 +268,6 @@ section { padding:90px 6%; }
 .see-more-wrap { text-align:center; }
 .see-more-btn { padding:13px 32px; background:transparent; border:1px solid var(--line-2); color:var(--ice); border-radius:50px; font-weight:700; cursor:pointer; font-size:14px; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
 .see-more-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
-
-/* Write Review CTA */
 .write-review-cta { margin-top:48px; text-align:center; padding:40px; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); position:relative; overflow:hidden; }
 .write-review-cta::before { content:''; position:absolute; top:0; left:20%; right:20%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
 .write-review-cta h3 { font-family:'Space Grotesk'; font-size:22px; font-weight:700; margin-bottom:8px; }
@@ -244,6 +275,7 @@ section { padding:90px 6%; }
 .review-btn-gold { display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#1a0f00; font-weight:700; font-size:15px; padding:14px 28px; border-radius:50px; border:none; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; box-shadow:0 8px 24px rgba(245,166,35,0.3); }
 .review-btn-gold:hover { background:#fff; transform:translateY(-2px); }
 
+/* ── CONTACT ── */
 #contact { background:linear-gradient(135deg,#070f24,#0e2040); border-top:1px solid var(--line); }
 .contact-inner { max-width:680px; margin:0 auto; text-align:center; }
 .contact-phone { font-family:'Space Grotesk'; font-size:clamp(36px,6vw,64px); font-weight:700; color:var(--gold); margin:20px 0 32px; letter-spacing:-1px; }
@@ -256,6 +288,7 @@ section { padding:90px 6%; }
 .contact-btn-outline { background:var(--surface-2); color:var(--ice); border:1px solid var(--line-2); }
 .contact-btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
 
+/* ── FOOTER ── */
 .footer { background:#030810; border-top:1px solid var(--line); padding:60px 6% 30px; }
 .footer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; max-width:1100px; margin:0 auto 48px; }
 .footer-col h4 { font-family:'Space Grotesk'; font-size:13.5px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
@@ -268,6 +301,7 @@ section { padding:90px 6%; }
 .footer-keywords { font-size:12px; color:rgba(238,242,248,0.25); max-width:1100px; margin:12px auto 0; text-align:center; line-height:1.8; }
 @media(max-width:768px){ .footer-grid { grid-template-columns:1fr; gap:32px; } }
 
+/* ── FLOATING BUTTONS ── */
 .float-wrap { position:fixed; bottom:28px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px; }
 .float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; cursor:pointer; border:none; }
 .float-btn:hover { transform:scale(1.12) translateY(-2px); animation:none; }
@@ -280,18 +314,18 @@ section { padding:90px 6%; }
 .rating-count { font-size:11px; color:var(--mute); margin-top:2px; }
 @media(max-width:640px) { .rating-box { display:none; } }
 
+/* ── LOADING / TOAST ── */
 #loadingScreen { position:fixed; inset:0; background:rgba(6,15,34,0.92); display:none; align-items:center; justify-content:center; z-index:99999; backdrop-filter:blur(6px); }
 .loader-box { text-align:center; padding:36px 42px; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); box-shadow:0 24px 60px rgba(0,0,0,0.5); }
 .spinner { width:60px; height:60px; margin:0 auto 18px; border:5px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.9s linear infinite; }
 @keyframes spin { 100%{transform:rotate(360deg);} }
 .loader-box h3 { font-family:'Space Grotesk'; color:var(--gold); font-size:17px; margin-bottom:6px; }
 .loader-box p { color:var(--mute); font-size:13.5px; }
-
 #toast { position:fixed; top:80px; right:20px; z-index:99999; background:var(--navy-3); border:1px solid var(--teal); color:var(--teal); padding:14px 20px; border-radius:10px; font-size:14px; font-weight:600; opacity:0; transform:translateX(30px); transition:.3s ease; pointer-events:none; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
 #toast.show { opacity:1; transform:translateX(0); }
 #toast.error { border-color:var(--gold); color:var(--gold); }
 
-/* SUCCESS MODAL */
+/* ── SUCCESS MODAL ── */
 #successModal { position:fixed; inset:0; z-index:10000; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
 .success-card { background: linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.35); border-radius:28px; padding:52px 44px 44px; max-width:480px; width:calc(100% - 40px); text-align:center; box-shadow:0 0 0 1px rgba(245,166,35,0.08), 0 40px 100px rgba(0,0,0,0.65), 0 0 80px rgba(245,166,35,0.06); position:relative; overflow:hidden; animation:successSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
 .success-card::before { content:''; position:absolute; top:0; left:12%; right:12%; height:2px; background:linear-gradient(90deg,transparent,#f5a623 40%,#ffcc66 60%,transparent); }
@@ -310,7 +344,7 @@ section { padding:90px 6%; }
 @keyframes drainBar { from{width:100%;} to{width:0%;} }
 @keyframes fadeOutModal { from{opacity:1; transform:scale(1);} to{opacity:0; transform:scale(0.96);} }
 
-/* PHONE MODAL (for WhatsApp float button) */
+/* ── PHONE MODAL (floating WA) ── */
 #phoneModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
 .phone-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(37,211,102,0.3); border-radius:24px; padding:40px 36px; max-width:400px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.6); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
 .phone-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#25d366,transparent); }
@@ -325,7 +359,23 @@ section { padding:90px 6%; }
 .phone-modal-cancel:hover { color:var(--ice); }
 .phone-err { color:#ff7070; font-size:12.5px; margin-bottom:10px; display:none; }
 
-/* REVIEW MODAL */
+/* ── ROUND TRIP MODAL ── */
+#rtModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
+.rt-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.35); border-radius:24px; padding:40px 36px; max-width:400px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.6); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+.rt-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.rt-modal-icon { width:68px; height:68px; border-radius:50%; background:var(--gold-dim); border:2px solid rgba(245,166,35,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:26px; color:var(--gold); }
+.rt-modal-card h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; margin-bottom:6px; }
+.rt-modal-vehicle { font-size:13px; font-weight:600; margin-bottom:18px; display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; }
+.rt-modal-card .rt-modal-note { color:var(--mute); font-size:13.5px; margin-bottom:20px; line-height:1.6; }
+.rt-modal-input { width:100%; padding:14px 16px; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:10px; color:var(--ice); font-size:16px; font-family:'Plus Jakarta Sans',Arial,sans-serif; outline:none; transition:var(--transition); text-align:center; letter-spacing:2px; margin-bottom:14px; }
+.rt-modal-input:focus { border-color:var(--gold); background:rgba(245,166,35,0.05); box-shadow:0 0 0 3px rgba(245,166,35,0.12); }
+.rt-modal-submit { width:100%; padding:14px; background:linear-gradient(135deg,var(--gold),#e8941a); color:#1a0f00; border:none; border-radius:50px; font-weight:700; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:10px; box-shadow:0 8px 24px rgba(245,166,35,0.3); }
+.rt-modal-submit:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(245,166,35,0.45); background:linear-gradient(135deg,#fff,#ffe0a0); }
+.rt-modal-cancel { background:none; border:none; color:var(--mute); font-size:13px; cursor:pointer; padding:6px 12px; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.rt-modal-cancel:hover { color:var(--ice); }
+.rt-phone-err { color:#ff7070; font-size:12.5px; margin-bottom:10px; display:none; }
+
+/* ── REVIEW MODAL ── */
 #reviewModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
 .review-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.3); border-radius:24px; padding:40px 36px; max-width:520px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.65); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; max-height:90vh; overflow-y:auto; }
 .review-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#f5a623,transparent); }
@@ -361,6 +411,10 @@ section { padding:90px 6%; }
         <span>& Travel</span>
       </div>
     </a>
+    <!-- Mobile phone pill — visible only on mobile beside logo -->
+    <a href="tel:+919724429334" class="mobile-nav-phone">
+      <i class="fas fa-phone"></i> 97244 29334
+    </a>
     <div class="menu" id="mainMenu">
       <a href="#services">Services</a>
       <a href="#cars">Fleet</a>
@@ -376,6 +430,7 @@ section { padding:90px 6%; }
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow"><span class="dot"></span>Ahmedabad's Most Trusted Cab Service</div>
@@ -394,6 +449,7 @@ section { padding:90px 6%; }
   </div>
 </section>
 
+<!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="trust-pill"><i class="fas fa-check-circle"></i> 24×7 Service</div>
   <div class="trust-pill"><i class="fas fa-check-circle"></i> Verified Drivers</div>
@@ -518,7 +574,7 @@ section { padding:90px 6%; }
   </div>
 </section>
 
-<!-- CARS / FLEET -->
+<!-- FLEET -->
 <section id="cars">
   <div class="section-header-center" style="margin-bottom:48px">
     <div class="section-tag">Our Fleet</div>
@@ -682,7 +738,7 @@ section { padding:90px 6%; }
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> 24×7 Available</div>
       </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Swift Dzire','11')"><i class="fas fa-calendar-check"></i> &nbsp;Book Now</button>
+      <button class="rt-book-btn" onclick="bookRoundTrip('Swift Dzire','11')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
     </div>
     <div class="rt-card ertiga">
       <div class="rt-img-wrap">
@@ -701,7 +757,7 @@ section { padding:90px 6%; }
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Family Ideal</div>
       </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Maruti Ertiga','14')"><i class="fas fa-calendar-check"></i> &nbsp;Book Now</button>
+      <button class="rt-book-btn" onclick="bookRoundTrip('Maruti Ertiga','14')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
     </div>
     <div class="rt-card crysta">
       <div class="rt-img-wrap"><img src="Inova Crysta.png" alt="Innova Crysta"></div>
@@ -717,7 +773,7 @@ section { padding:90px 6%; }
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Long-Distance</div>
       </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Innova Crysta','19')"><i class="fas fa-calendar-check"></i> &nbsp;Book Now</button>
+      <button class="rt-book-btn" onclick="bookRoundTrip('Innova Crysta','19')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
     </div>
   </div>
 </section>
@@ -742,8 +798,6 @@ section { padding:90px 6%; }
   <div class="see-more-wrap" style="margin-bottom:24px">
     <button class="see-more-btn" onclick="showMoreReviews()">Show More Reviews</button>
   </div>
-
-  <!-- Write a Review CTA -->
   <div class="write-review-cta">
     <h3>Enjoyed Your Ride? 🌟</h3>
     <p>Share your experience and help other travelers discover Moksh Tours & Travel.</p>
@@ -836,7 +890,7 @@ section { padding:90px 6%; }
   </div>
 </div>
 
-<!-- PHONE MODAL (for floating WhatsApp button) -->
+<!-- PHONE MODAL (floating WhatsApp button) -->
 <div id="phoneModal">
   <div class="phone-modal-card">
     <div class="phone-modal-icon"><i class="fab fa-whatsapp"></i></div>
@@ -848,6 +902,22 @@ section { padding:90px 6%; }
       <i class="fab fa-whatsapp"></i> Open WhatsApp
     </button>
     <button class="phone-modal-cancel" onclick="closePhoneModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- ROUND TRIP MODAL -->
+<div id="rtModal">
+  <div class="rt-modal-card">
+    <div class="rt-modal-icon"><i class="fas fa-car-side"></i></div>
+    <h3>Book Round Trip</h3>
+    <div class="rt-modal-vehicle" id="rtModalVehicle"></div>
+    <p class="rt-modal-note">Enter your mobile number and we'll confirm pricing &amp; availability on WhatsApp.</p>
+    <input type="tel" class="rt-modal-input" id="rtPhone" placeholder="9999999999" maxlength="10" inputmode="numeric">
+    <div class="rt-phone-err" id="rtPhoneErr">Please enter a valid 10-digit number.</div>
+    <button class="rt-modal-submit" onclick="submitRtWA()">
+      <i class="fab fa-whatsapp"></i> Book on WhatsApp
+    </button>
+    <button class="rt-modal-cancel" onclick="closeRtModal()">Cancel</button>
   </div>
 </div>
 
@@ -926,14 +996,12 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 
   const time = hour + ' ' + ampm;
 
-  // Save to Firebase
   try {
     await saveDocument('bookings', { name, mobile, pickup, destination: dest, date, time, car, passenger, trip, received: new Date() });
   } catch(err) {
     console.error('Firebase save error:', err);
   }
 
-  // Build WhatsApp message
   const waMsg =
 `━━━━━━━━━━━━━━━━━━━━━━━━━
 🚖 I WANT TO BOOK CAB
@@ -952,10 +1020,7 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   const waUrl = 'https://wa.me/919724429334?text=' + encodeURIComponent(waMsg);
 
   document.getElementById('loadingScreen').style.display = 'none';
-
-  showSuccessModal(
-    `Booking saved! Redirecting you to WhatsApp to confirm with our team.`
-  );
+  showSuccessModal('Booking saved! Redirecting you to WhatsApp to confirm with our team.');
 
   setTimeout(() => {
     window.open(waUrl, '_blank');
@@ -985,22 +1050,59 @@ window.bookRoute = async function(route, sedan, suv) {
   window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
 };
 
-// ── ROUND TRIP BOOKING ────────────────────────────────
-window.bookRoundTrip = async function(car, rate) {
-  const mobile = prompt('Enter your 10-digit mobile number:');
-  if (!mobile || mobile.length !== 10 || isNaN(mobile)) { alert('Please enter a valid 10-digit mobile number.'); return; }
+// ── ROUND TRIP BOOKING — Styled modal, saves to Firebase ──
+window.bookRoundTrip = function(car, rate) {
+  window._rtCar  = car;
+  window._rtRate = rate;
+  document.getElementById('rtPhone').value = '';
+  document.getElementById('rtPhoneErr').style.display = 'none';
+  document.getElementById('rtModalVehicle').innerHTML =
+    `<i class="fas fa-circle" style="font-size:7px;color:var(--teal)"></i>
+     <span style="color:var(--ice);font-weight:700">${car}</span>
+     <span style="color:var(--gold);font-family:'Space Grotesk'">₹${rate} / km</span>`;
+  document.getElementById('rtModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('rtPhone').focus(), 100);
+};
 
-  try { await saveDocument('roundTripRequests', { car, rate, mobile, received: new Date() }); }
-  catch(err) { console.error('Firebase error:', err); }
+window.closeRtModal = function() {
+  document.getElementById('rtModal').style.display = 'none';
+};
+
+window.submitRtWA = async function() {
+  const mobile = document.getElementById('rtPhone').value.trim();
+  const errEl  = document.getElementById('rtPhoneErr');
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
+    errEl.style.display = 'block';
+    document.getElementById('rtPhone').focus();
+    return;
+  }
+  errEl.style.display = 'none';
+  const car  = window._rtCar;
+  const rate = window._rtRate;
+  closeRtModal();
+
+  try {
+    await saveDocument('roundTripRequests', { car, rate, mobile, received: new Date() });
+  } catch(err) { console.error('Firebase error:', err); }
 
   const waMsg =
 `🚖 ROUND TRIP BOOKING
+━━━━━━━━━━━━━━━━━━━━
 🚘 Vehicle : ${car}
-💰 Rate : Rs.${rate}/KM
-📱 Customer Number : ${mobile}`;
+💰 Rate : ₹${rate}/KM
+📱 Customer Number : ${mobile}
+━━━━━━━━━━━━━━━━━━━━`;
 
   window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
 };
+
+document.getElementById('rtPhone').addEventListener('keydown', e => {
+  if (e.key === 'Enter') window.submitRtWA();
+  if (!/[0-9]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) e.preventDefault();
+});
+document.getElementById('rtModal').addEventListener('click', function(e) {
+  if (e.target === this) closeRtModal();
+});
 
 // ── FLOATING WHATSAPP BUTTON ──────────────────────────
 window.openFloatWA = function(e) {
@@ -1026,7 +1128,6 @@ window.submitFloatWA = async function() {
   errEl.style.display = 'none';
   closePhoneModal();
 
-  // Save to Firebase admin panel
   try {
     await saveDocument('whatsappInquiries', { mobile, source: 'Floating WhatsApp Button', received: new Date() });
   } catch(err) {
@@ -1037,14 +1138,10 @@ window.submitFloatWA = async function() {
   window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
 };
 
-// Allow Enter key in phone modal
 document.getElementById('floatPhone').addEventListener('keydown', e => {
   if (e.key === 'Enter') window.submitFloatWA();
-  // Only allow digits
   if (!/[0-9]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) e.preventDefault();
 });
-
-// Click outside phone modal to close
 document.getElementById('phoneModal').addEventListener('click', function(e) {
   if (e.target === this) closePhoneModal();
 });
@@ -1068,7 +1165,6 @@ window.openReviewModal = function() {
       <p>Generating your personalised review…</p>
     </div>`;
 
-  // Pick a random review after a short delay to simulate generation
   setTimeout(() => {
     const review = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
     window._currentReview = review;
@@ -1095,12 +1191,8 @@ window.copyReview = function() {
     btn.classList.add('copied');
     btn.innerHTML = '<i class="fas fa-check"></i> Copied! Now paste on Google';
     showToast('Review copied to clipboard!');
-    // Auto-open Google Reviews after 1.5s
-    setTimeout(() => {
-      window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank');
-    }, 1500);
+    setTimeout(() => { window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank'); }, 1500);
   }).catch(() => {
-    // Fallback for browsers that block clipboard
     const el = document.createElement('textarea');
     el.value = review;
     el.style.position = 'fixed';
@@ -1120,11 +1212,9 @@ window.copyReview = function() {
 window.closeReviewModal = function() {
   document.getElementById('reviewModal').style.display = 'none';
 };
-
 document.getElementById('reviewModal').addEventListener('click', function(e) {
   if (e.target === this) closeReviewModal();
 });
-
 </script>
 
 <script>
