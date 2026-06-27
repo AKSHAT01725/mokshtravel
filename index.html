@@ -25,9 +25,6 @@
 </script>
 
 <style>
-/* ══════════════════════════════════════════
-   DESIGN TOKENS
-══════════════════════════════════════════ */
 :root {
   --navy:       #060f22;
   --navy-2:     #0b1a35;
@@ -60,9 +57,6 @@ body {
 ::-webkit-scrollbar-track { background:var(--navy); }
 ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
 
-/* ══════════════════════════════════════════
-   HEADER / NAV
-══════════════════════════════════════════ */
 header {
   position: fixed; top:0; left:0; right:0;
   z-index: 1000;
@@ -75,10 +69,7 @@ header {
   border-bottom: 1px solid var(--line);
   transition: background var(--transition);
 }
-header.scrolled {
-  background: rgba(6,15,34,0.95);
-  border-bottom-color: var(--line-2);
-}
+header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--line-2); }
 .navbar { display:flex; align-items:center; justify-content:space-between; width:100%; }
 .logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
 .logo img { width:52px; border-radius:10px; background:white; padding:3px; }
@@ -98,9 +89,6 @@ header.scrolled {
   .menu a { width:100%; padding:12px 16px; font-size:15px; }
 }
 
-/* ══════════════════════════════════════════
-   HERO
-══════════════════════════════════════════ */
 .hero {
   min-height:100vh; display:flex; align-items:center;
   padding:120px 6% 80px; position:relative; overflow:hidden;
@@ -131,17 +119,11 @@ header.scrolled {
 .hero-stat-num { font-family:'Space Grotesk'; font-size:32px; font-weight:700; color:var(--gold); }
 .hero-stat-label { font-size:12px; color:var(--mute); margin-top:2px; letter-spacing:.5px; }
 
-/* ══════════════════════════════════════════
-   TRUST STRIP
-══════════════════════════════════════════ */
 .trust-strip { background:var(--navy-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:18px 6%; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
 .trust-pill { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:30px; padding:8px 18px; font-size:13px; font-weight:600; color:var(--ice); transition:var(--transition); cursor:default; }
 .trust-pill:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
 .trust-pill i { color:var(--teal); font-size:12px; }
 
-/* ══════════════════════════════════════════
-   SECTION COMMON
-══════════════════════════════════════════ */
 section { padding:90px 6%; }
 .section-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
 .section-title { font-family:'Space Grotesk'; font-size:clamp(28px,3.5vw,42px); font-weight:700; color:var(--ice); margin-bottom:14px; line-height:1.15; }
@@ -149,9 +131,6 @@ section { padding:90px 6%; }
 .section-header-center { text-align:center; }
 .section-header-center .section-sub { margin:0 auto 48px; }
 
-/* ══════════════════════════════════════════
-   BOOKING FORM
-══════════════════════════════════════════ */
 #booking { background:var(--navy-2); }
 .booking-wrap { max-width:860px; margin:0 auto; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); padding:40px; box-shadow:0 24px 80px rgba(0,0,0,0.45); position:relative; overflow:hidden; }
 .booking-wrap::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
@@ -169,9 +148,6 @@ section { padding:90px 6%; }
 .booking-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
 @media(max-width:640px){ .booking-grid { grid-template-columns:1fr; } .booking-wrap { padding:24px 18px; } }
 
-/* ══════════════════════════════════════════
-   SERVICES
-══════════════════════════════════════════ */
 .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
 .service-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; transition:var(--transition); }
 .service-card:hover { border-color:var(--gold); background:var(--gold-dim); transform:translateY(-4px); }
@@ -179,9 +155,6 @@ section { padding:90px 6%; }
 .service-card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
 .service-card p { font-size:13.5px; color:var(--mute); line-height:1.6; }
 
-/* ══════════════════════════════════════════
-   CARS
-══════════════════════════════════════════ */
 #cars { background:var(--navy-2); }
 .cars-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
 .car-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); }
@@ -193,9 +166,6 @@ section { padding:90px 6%; }
 .car-body h3 { font-family:'Space Grotesk'; font-size:17px; font-weight:700; margin-bottom:6px; }
 .car-seater { display:inline-flex; align-items:center; gap:6px; font-size:12px; color:var(--teal); font-weight:600; background:var(--teal-dim); border-radius:20px; padding:4px 12px; margin-bottom:14px; }
 
-/* ══════════════════════════════════════════
-   ROUTES
-══════════════════════════════════════════ */
 .routes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
 .route-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; }
 .route-card:hover { border-color:rgba(245,166,35,0.3); transform:translateY(-4px); }
@@ -209,249 +179,51 @@ section { padding:90px 6%; }
 .route-btn { margin-top:auto; width:100%; padding:12px; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.3); color:var(--gold); font-weight:700; font-size:14px; border-radius:10px; cursor:pointer; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
 .route-btn:hover { background:var(--gold); color:#1a0f00; border-color:var(--gold); }
 
-/* ══════════════════════════════════════════
-   ROUND TRIP — PREMIUM REDESIGN
-══════════════════════════════════════════ */
 #roundtrip { background:var(--navy-2); }
-
-.roundtrip-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
-}
-
-.rt-card {
-  background: linear-gradient(160deg, #0d1f3e 0%, #091629 100%);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 24px;
-  padding: 36px 28px 32px;
-  text-align:center;
-  transition: var(--transition);
-  position:relative;
-  overflow:hidden;
-  cursor:default;
-}
-
-/* Ambient glow behind each card */
-.rt-card::after {
-  content:'';
-  position:absolute;
-  bottom:-40px; left:50%;
-  transform:translateX(-50%);
-  width:200px; height:200px;
-  border-radius:50%;
-  background:var(--rt-glow, rgba(245,166,35,0.08));
-  filter:blur(40px);
-  pointer-events:none;
-  transition:var(--transition);
-}
+.roundtrip-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+.rt-card { background: linear-gradient(160deg, #0d1f3e 0%, #091629 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 36px 28px 32px; text-align:center; transition: var(--transition); position:relative; overflow:hidden; cursor:default; }
+.rt-card::after { content:''; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); width:200px; height:200px; border-radius:50%; background:var(--rt-glow, rgba(245,166,35,0.08)); filter:blur(40px); pointer-events:none; transition:var(--transition); }
 .rt-card:hover::after { opacity:1.8; transform:translateX(-50%) scale(1.2); }
-
-/* Top accent line with gradient */
-.rt-card::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0; height:3px;
-  background: var(--rt-accent, linear-gradient(90deg, #f5a623, #ffcc66));
-}
-
-.rt-card:hover {
-  transform:translateY(-8px);
-  border-color: rgba(245,166,35,0.25);
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,166,35,0.1);
-}
-
-/* Vehicle image */
-.rt-img-wrap {
-  position:relative;
-  margin-bottom:20px;
-}
-.rt-img-wrap img {
-  width:100%; height:150px; object-fit:contain;
-  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), filter 0.4s ease;
-  filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5));
-}
-.rt-card:hover .rt-img-wrap img {
-  transform: translateY(-6px) scale(1.04);
-  filter:drop-shadow(0 18px 36px rgba(245,166,35,0.2));
-}
-
-/* Badge for most popular */
-.rt-badge {
-  position:absolute; top:-8px; right:12px;
-  background: linear-gradient(90deg, #f5a623, #ffcc66);
-  color:#1a0f00; font-size:10px; font-weight:800;
-  letter-spacing:1.2px; text-transform:uppercase;
-  padding:4px 12px; border-radius:20px;
-  font-family:'Space Grotesk';
-  box-shadow:0 4px 12px rgba(245,166,35,0.4);
-}
-
-.rt-card h3 {
-  font-family:'Space Grotesk';
-  font-size:20px; font-weight:700;
-  color:var(--ice); margin-bottom:4px;
-}
-.rt-card .capacity {
-  font-size:12.5px; color:var(--mute);
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  margin-bottom:24px;
-}
+.rt-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--rt-accent, linear-gradient(90deg, #f5a623, #ffcc66)); }
+.rt-card:hover { transform:translateY(-8px); border-color: rgba(245,166,35,0.25); box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,166,35,0.1); }
+.rt-img-wrap { position:relative; margin-bottom:20px; }
+.rt-img-wrap img { width:100%; height:150px; object-fit:contain; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1), filter 0.4s ease; filter:drop-shadow(0 8px 24px rgba(0,0,0,0.5)); }
+.rt-card:hover .rt-img-wrap img { transform: translateY(-6px) scale(1.04); filter:drop-shadow(0 18px 36px rgba(245,166,35,0.2)); }
+.rt-badge { position:absolute; top:-8px; right:12px; background: linear-gradient(90deg, #f5a623, #ffcc66); color:#1a0f00; font-size:10px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; padding:4px 12px; border-radius:20px; font-family:'Space Grotesk'; box-shadow:0 4px 12px rgba(245,166,35,0.4); }
+.rt-card h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; color:var(--ice); margin-bottom:4px; }
+.rt-card .capacity { font-size:12.5px; color:var(--mute); display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:24px; }
 .rt-card .capacity i { font-size:11px; color:var(--teal); }
-
-/* ── THE HERO NUMBER ── */
-.rt-rate-block {
-  margin:0 -8px 24px;
-  padding:20px 16px;
-  background: rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:16px;
-  position:relative;
-}
-
-.rt-rate-label {
-  font-size:10px; font-weight:700;
-  letter-spacing:2px; text-transform:uppercase;
-  color:var(--mute); margin-bottom:6px;
-}
-
-.rt-rate {
-  font-family:'Space Grotesk';
-  font-size:56px;
-  font-weight:700;
-  line-height:1;
-  color: var(--gold);
-  letter-spacing:-2px;
-  position:relative;
-  display:inline-flex;
-  align-items:flex-start;
-  gap:2px;
-  /* Shimmer animation on hover */
-  transition: all 0.3s ease;
-}
-
-.rt-rate-sym {
-  font-size:26px;
-  font-weight:700;
-  color:var(--gold-light);
-  margin-top:6px;
-  letter-spacing:0;
-}
-
-.rt-rate-num {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
-  background-size:200% 100%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:shimmerRate 3s infinite;
-  transition:all 0.3s ease;
-}
-
-.rt-card:hover .rt-rate-num {
-  animation:shimmerRate 1.2s infinite;
-  filter:drop-shadow(0 0 20px rgba(245,166,35,0.5));
-}
-
-@keyframes shimmerRate {
-  0%   { background-position:200% 0; }
-  100% { background-position:-200% 0; }
-}
-
-.rt-rate-unit {
-  font-family:'Space Grotesk';
-  font-size:13px;
-  color:var(--mute);
-  font-weight:600;
-  align-self:flex-end;
-  margin-bottom:8px;
-  letter-spacing:.5px;
-}
-
-/* Count-up effect via data attribute */
+.rt-rate-block { margin:0 -8px 24px; padding:20px 16px; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:16px; position:relative; }
+.rt-rate-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--mute); margin-bottom:6px; }
+.rt-rate { font-family:'Space Grotesk'; font-size:56px; font-weight:700; line-height:1; color: var(--gold); letter-spacing:-2px; position:relative; display:inline-flex; align-items:flex-start; gap:2px; transition: all 0.3s ease; }
+.rt-rate-sym { font-size:26px; font-weight:700; color:var(--gold-light); margin-top:6px; letter-spacing:0; }
+.rt-rate-num { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:shimmerRate 3s infinite; transition:all 0.3s ease; }
+.rt-card:hover .rt-rate-num { animation:shimmerRate 1.2s infinite; filter:drop-shadow(0 0 20px rgba(245,166,35,0.5)); }
+@keyframes shimmerRate { 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+.rt-rate-unit { font-family:'Space Grotesk'; font-size:13px; color:var(--mute); font-weight:600; align-self:flex-end; margin-bottom:8px; letter-spacing:.5px; }
 .rt-rate-num { display:inline-block; }
-
-/* Divider with icon */
-.rt-divider {
-  display:flex; align-items:center; gap:10px;
-  margin:0 0 20px;
-  color:var(--mute);
-  font-size:11px;
-}
-.rt-divider::before, .rt-divider::after {
-  content:''; flex:1; height:1px; background:var(--line);
-}
-
-/* Feature pills */
-.rt-features {
-  display:flex; gap:8px; justify-content:center;
-  flex-wrap:wrap; margin-bottom:24px;
-}
-.rt-feature-pill {
-  display:inline-flex; align-items:center; gap:5px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:20px; padding:5px 12px;
-  font-size:11.5px; color:rgba(238,242,248,0.65);
-}
+.rt-divider { display:flex; align-items:center; gap:10px; margin:0 0 20px; color:var(--mute); font-size:11px; }
+.rt-divider::before, .rt-divider::after { content:''; flex:1; height:1px; background:var(--line); }
+.rt-features { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:24px; }
+.rt-feature-pill { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:20px; padding:5px 12px; font-size:11.5px; color:rgba(238,242,248,0.65); }
 .rt-feature-pill i { color:var(--teal); font-size:10px; }
-
-/* Book button */
-.rt-book-btn {
-  width:100%; padding:15px;
-  background: linear-gradient(135deg, var(--gold), #e8941a);
-  color:#1a0f00;
-  border:none; border-radius:50px;
-  font-weight:800; font-size:15px; cursor:pointer;
-  transition:var(--transition);
-  font-family:'Space Grotesk';
-  letter-spacing:.3px;
-  box-shadow: 0 8px 24px rgba(245,166,35,0.3);
-  position:relative;
-  overflow:hidden;
-}
-.rt-book-btn::after {
-  content:'';
-  position:absolute; inset:0;
-  background:linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-  opacity:0; transition:opacity .25s;
-}
+.rt-book-btn { width:100%; padding:15px; background: linear-gradient(135deg, var(--gold), #e8941a); color:#1a0f00; border:none; border-radius:50px; font-weight:800; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; letter-spacing:.3px; box-shadow: 0 8px 24px rgba(245,166,35,0.3); position:relative; overflow:hidden; }
+.rt-book-btn::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,0.15), transparent); opacity:0; transition:opacity .25s; }
 .rt-book-btn:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 16px 40px rgba(245,166,35,0.45); }
 .rt-book-btn:hover::after { opacity:1; }
 .rt-book-btn:active { transform:translateY(0) scale(0.99); }
-
-/* Sedan variant */
 .rt-card.sedan { --rt-glow:rgba(120,160,255,0.1); --rt-accent:linear-gradient(90deg,#4a90d9,#7fb3f5); }
-.rt-card.sedan .rt-rate-num {
-  background:linear-gradient(135deg,#4a90d9 0%,#a0c4f8 50%,#4a90d9 100%);
-  background-size:200% 100%;
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-}
+.rt-card.sedan .rt-rate-num { background:linear-gradient(135deg,#4a90d9 0%,#a0c4f8 50%,#4a90d9 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .rt-card.sedan .rt-book-btn { background:linear-gradient(135deg,#4a90d9,#2e6bb0); color:white; box-shadow:0 8px 24px rgba(74,144,217,0.35); }
 .rt-card.sedan .rt-book-btn:hover { box-shadow:0 16px 40px rgba(74,144,217,0.5); }
-
-/* Ertiga variant */
 .rt-card.ertiga { --rt-glow:rgba(245,166,35,0.1); --rt-accent:linear-gradient(90deg,#f5a623,#ffcc66); }
-
-/* Crysta variant */
 .rt-card.crysta { --rt-glow:rgba(61,220,151,0.1); --rt-accent:linear-gradient(90deg,#3ddc97,#22b075); }
-.rt-card.crysta .rt-rate-num {
-  background:linear-gradient(135deg,#3ddc97 0%,#a8f0d8 50%,#3ddc97 100%);
-  background-size:200% 100%;
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-}
+.rt-card.crysta .rt-rate-num { background:linear-gradient(135deg,#3ddc97 0%,#a8f0d8 50%,#3ddc97 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .rt-card.crysta .rt-book-btn { background:linear-gradient(135deg,#3ddc97,#22b075); color:#081a10; box-shadow:0 8px 24px rgba(61,220,151,0.3); }
 .rt-card.crysta .rt-book-btn:hover { box-shadow:0 16px 40px rgba(61,220,151,0.45); }
-
-/* Number count-up animation */
-@keyframes countUp {
-  from { opacity:0; transform:translateY(12px); }
-  to   { opacity:1; transform:translateY(0); }
-}
+@keyframes countUp { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
 .rt-rate-num.animate { animation:countUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
 
-/* ══════════════════════════════════════════
-   REVIEWS
-══════════════════════════════════════════ */
 #reviews { background:var(--navy); }
 .reviews-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-bottom:36px; }
 .review-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px; transition:var(--transition); }
@@ -464,9 +236,14 @@ section { padding:90px 6%; }
 .see-more-btn { padding:13px 32px; background:transparent; border:1px solid var(--line-2); color:var(--ice); border-radius:50px; font-weight:700; cursor:pointer; font-size:14px; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
 .see-more-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
 
-/* ══════════════════════════════════════════
-   CONTACT
-══════════════════════════════════════════ */
+/* Write Review CTA */
+.write-review-cta { margin-top:48px; text-align:center; padding:40px; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); position:relative; overflow:hidden; }
+.write-review-cta::before { content:''; position:absolute; top:0; left:20%; right:20%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.write-review-cta h3 { font-family:'Space Grotesk'; font-size:22px; font-weight:700; margin-bottom:8px; }
+.write-review-cta p { color:var(--mute); font-size:14px; margin-bottom:24px; }
+.review-btn-gold { display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#1a0f00; font-weight:700; font-size:15px; padding:14px 28px; border-radius:50px; border:none; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; box-shadow:0 8px 24px rgba(245,166,35,0.3); }
+.review-btn-gold:hover { background:#fff; transform:translateY(-2px); }
+
 #contact { background:linear-gradient(135deg,#070f24,#0e2040); border-top:1px solid var(--line); }
 .contact-inner { max-width:680px; margin:0 auto; text-align:center; }
 .contact-phone { font-family:'Space Grotesk'; font-size:clamp(36px,6vw,64px); font-weight:700; color:var(--gold); margin:20px 0 32px; letter-spacing:-1px; }
@@ -479,9 +256,6 @@ section { padding:90px 6%; }
 .contact-btn-outline { background:var(--surface-2); color:var(--ice); border:1px solid var(--line-2); }
 .contact-btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
 
-/* ══════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════ */
 .footer { background:#030810; border-top:1px solid var(--line); padding:60px 6% 30px; }
 .footer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; max-width:1100px; margin:0 auto 48px; }
 .footer-col h4 { font-family:'Space Grotesk'; font-size:13.5px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
@@ -494,27 +268,18 @@ section { padding:90px 6%; }
 .footer-keywords { font-size:12px; color:rgba(238,242,248,0.25); max-width:1100px; margin:12px auto 0; text-align:center; line-height:1.8; }
 @media(max-width:768px){ .footer-grid { grid-template-columns:1fr; gap:32px; } }
 
-/* ══════════════════════════════════════════
-   FLOATING BUTTONS
-══════════════════════════════════════════ */
 .float-wrap { position:fixed; bottom:28px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px; }
-.float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; }
+.float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; cursor:pointer; border:none; }
 .float-btn:hover { transform:scale(1.12) translateY(-2px); animation:none; }
 .float-wa { background:linear-gradient(135deg,#25d366,#128c7e); color:white; }
 .float-call { background:linear-gradient(135deg,var(--gold),#ff8800); color:#1a0f00; animation-delay:.5s; }
 @keyframes floatAnim { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
 
-/* ══════════════════════════════════════════
-   RATING BOX
-══════════════════════════════════════════ */
 .rating-box { position:fixed; left:20px; bottom:28px; background:var(--navy-2); border:1px solid rgba(245,166,35,0.3); border-radius:12px; padding:10px 16px; font-size:13px; font-weight:600; z-index:9999; box-shadow:0 8px 24px rgba(0,0,0,0.3); }
 .rating-box span { color:var(--gold); font-family:'Space Grotesk'; font-weight:700; }
 .rating-count { font-size:11px; color:var(--mute); margin-top:2px; }
 @media(max-width:640px) { .rating-box { display:none; } }
 
-/* ══════════════════════════════════════════
-   LOADING SCREEN
-══════════════════════════════════════════ */
 #loadingScreen { position:fixed; inset:0; background:rgba(6,15,34,0.92); display:none; align-items:center; justify-content:center; z-index:99999; backdrop-filter:blur(6px); }
 .loader-box { text-align:center; padding:36px 42px; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); box-shadow:0 24px 60px rgba(0,0,0,0.5); }
 .spinner { width:60px; height:60px; margin:0 auto 18px; border:5px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.9s linear infinite; }
@@ -522,144 +287,71 @@ section { padding:90px 6%; }
 .loader-box h3 { font-family:'Space Grotesk'; color:var(--gold); font-size:17px; margin-bottom:6px; }
 .loader-box p { color:var(--mute); font-size:13.5px; }
 
-/* ══════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════ */
 #toast { position:fixed; top:80px; right:20px; z-index:99999; background:var(--navy-3); border:1px solid var(--teal); color:var(--teal); padding:14px 20px; border-radius:10px; font-size:14px; font-weight:600; opacity:0; transform:translateX(30px); transition:.3s ease; pointer-events:none; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
 #toast.show { opacity:1; transform:translateX(0); }
 #toast.error { border-color:var(--gold); color:var(--gold); }
 
-/* ══════════════════════════════════════════
-   SUCCESS MODAL — PROFESSIONAL
-══════════════════════════════════════════ */
-#successModal {
-  position:fixed; inset:0; z-index:10000;
-  display:none;
-  align-items:center; justify-content:center;
-  background:rgba(4,10,24,0.88);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
+/* SUCCESS MODAL */
+#successModal { position:fixed; inset:0; z-index:10000; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+.success-card { background: linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.35); border-radius:28px; padding:52px 44px 44px; max-width:480px; width:calc(100% - 40px); text-align:center; box-shadow:0 0 0 1px rgba(245,166,35,0.08), 0 40px 100px rgba(0,0,0,0.65), 0 0 80px rgba(245,166,35,0.06); position:relative; overflow:hidden; animation:successSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+.success-card::before { content:''; position:absolute; top:0; left:12%; right:12%; height:2px; background:linear-gradient(90deg,transparent,#f5a623 40%,#ffcc66 60%,transparent); }
+.success-card::after { content:''; position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(245,166,35,0.1), transparent 70%); pointer-events:none; }
+.success-check { width:88px; height:88px; border-radius:50%; background:rgba(61,220,151,0.1); border:2px solid rgba(61,220,151,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 28px; animation:successPop 0.55s 0.15s cubic-bezier(0.22,1,0.36,1) both; position:relative; z-index:1; }
+.success-check svg path { stroke-dasharray:42; stroke-dashoffset:42; animation:drawCheck 0.5s 0.5s ease forwards; }
+.success-eyebrow { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; position:relative; z-index:1; }
+.success-title { font-family:'Space Grotesk'; font-size:28px; font-weight:700; color:var(--gold); margin-bottom:16px; letter-spacing:-0.5px; position:relative; z-index:1; }
+.success-message { font-size:15.5px; color:rgba(238,242,248,0.78); line-height:1.72; margin-bottom:32px; position:relative; z-index:1; }
+.success-progress-wrap { background:rgba(255,255,255,0.06); border-radius:4px; height:4px; overflow:hidden; margin-bottom:14px; position:relative; z-index:1; }
+.success-progress-bar { height:100%; background:linear-gradient(90deg,#f5a623,#ffcc66); border-radius:4px; width:100%; animation:drainBar 3s linear forwards; }
+.success-hint { font-size:12px; color:var(--mute); letter-spacing:.3px; position:relative; z-index:1; }
+@keyframes successSlideIn { from{opacity:0; transform:translateY(32px) scale(0.94);} to{opacity:1; transform:translateY(0) scale(1);} }
+@keyframes successPop { from{opacity:0; transform:scale(0.5) rotate(-10deg);} to{opacity:1; transform:scale(1) rotate(0deg);} }
+@keyframes drawCheck { to{stroke-dashoffset:0;} }
+@keyframes drainBar { from{width:100%;} to{width:0%;} }
+@keyframes fadeOutModal { from{opacity:1; transform:scale(1);} to{opacity:0; transform:scale(0.96);} }
 
-.success-card {
-  background: linear-gradient(145deg, #0f2348 0%, #091629 100%);
-  border:1px solid rgba(245,166,35,0.35);
-  border-radius:28px;
-  padding:52px 44px 44px;
-  max-width:480px;
-  width:calc(100% - 40px);
-  text-align:center;
-  box-shadow:
-    0 0 0 1px rgba(245,166,35,0.08),
-    0 40px 100px rgba(0,0,0,0.65),
-    0 0 80px rgba(245,166,35,0.06);
-  position:relative;
-  overflow:hidden;
-  animation:successSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) both;
-}
+/* PHONE MODAL (for WhatsApp float button) */
+#phoneModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
+.phone-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(37,211,102,0.3); border-radius:24px; padding:40px 36px; max-width:400px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.6); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+.phone-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#25d366,transparent); }
+.phone-modal-icon { width:68px; height:68px; border-radius:50%; background:rgba(37,211,102,0.12); border:2px solid rgba(37,211,102,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:26px; color:#25d366; }
+.phone-modal-card h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; margin-bottom:8px; }
+.phone-modal-card p { color:var(--mute); font-size:13.5px; margin-bottom:24px; line-height:1.6; }
+.phone-modal-input { width:100%; padding:14px 16px; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:10px; color:var(--ice); font-size:16px; font-family:'Plus Jakarta Sans',Arial,sans-serif; outline:none; transition:var(--transition); text-align:center; letter-spacing:2px; margin-bottom:14px; }
+.phone-modal-input:focus { border-color:#25d366; background:rgba(37,211,102,0.05); box-shadow:0 0 0 3px rgba(37,211,102,0.12); }
+.phone-modal-submit { width:100%; padding:14px; background:linear-gradient(135deg,#25d366,#128c7e); color:white; border:none; border-radius:50px; font-weight:700; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:10px; }
+.phone-modal-submit:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(37,211,102,0.3); }
+.phone-modal-cancel { background:none; border:none; color:var(--mute); font-size:13px; cursor:pointer; padding:6px 12px; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.phone-modal-cancel:hover { color:var(--ice); }
+.phone-err { color:#ff7070; font-size:12.5px; margin-bottom:10px; display:none; }
 
-/* Gold top beam */
-.success-card::before {
-  content:''; position:absolute; top:0; left:12%; right:12%; height:2px;
-  background:linear-gradient(90deg,transparent,#f5a623 40%,#ffcc66 60%,transparent);
-}
-/* Ambient glow */
-.success-card::after {
-  content:''; position:absolute; bottom:-60px; left:50%;
-  transform:translateX(-50%);
-  width:300px; height:300px; border-radius:50%;
-  background:radial-gradient(circle, rgba(245,166,35,0.1), transparent 70%);
-  pointer-events:none;
-}
-
-/* Checkmark */
-.success-check {
-  width:88px; height:88px; border-radius:50%;
-  background:rgba(61,220,151,0.1);
-  border:2px solid rgba(61,220,151,0.35);
-  display:flex; align-items:center; justify-content:center;
-  margin:0 auto 28px;
-  animation:successPop 0.55s 0.15s cubic-bezier(0.22,1,0.36,1) both;
-  position:relative; z-index:1;
-}
-.success-check svg path {
-  stroke-dasharray:42;
-  stroke-dashoffset:42;
-  animation:drawCheck 0.5s 0.5s ease forwards;
-}
-
-.success-eyebrow {
-  font-size:10.5px; font-weight:700;
-  letter-spacing:2.5px; text-transform:uppercase;
-  color:var(--teal); margin-bottom:10px;
-  position:relative; z-index:1;
-}
-
-.success-title {
-  font-family:'Space Grotesk';
-  font-size:28px; font-weight:700;
-  color:var(--gold); margin-bottom:16px;
-  letter-spacing:-0.5px;
-  position:relative; z-index:1;
-}
-
-.success-message {
-  font-size:15.5px; color:rgba(238,242,248,0.78);
-  line-height:1.72; margin-bottom:32px;
-  position:relative; z-index:1;
-}
-
-/* Progress bar */
-.success-progress-wrap {
-  background:rgba(255,255,255,0.06);
-  border-radius:4px; height:4px;
-  overflow:hidden; margin-bottom:14px;
-  position:relative; z-index:1;
-}
-.success-progress-bar {
-  height:100%;
-  background:linear-gradient(90deg,#f5a623,#ffcc66);
-  border-radius:4px;
-  width:100%;
-  animation:drainBar 3s linear forwards;
-}
-.success-hint {
-  font-size:12px; color:var(--mute);
-  letter-spacing:.3px;
-  position:relative; z-index:1;
-}
-
-/* Animations */
-@keyframes successSlideIn {
-  from { opacity:0; transform:translateY(32px) scale(0.94); }
-  to   { opacity:1; transform:translateY(0) scale(1); }
-}
-@keyframes successPop {
-  from { opacity:0; transform:scale(0.5) rotate(-10deg); }
-  to   { opacity:1; transform:scale(1) rotate(0deg); }
-}
-@keyframes drawCheck {
-  to { stroke-dashoffset:0; }
-}
-@keyframes drainBar {
-  from { width:100%; }
-  to   { width:0%; }
-}
-@keyframes fadeOutModal {
-  from { opacity:1; transform:scale(1); }
-  to   { opacity:0; transform:scale(0.96); }
-}
+/* REVIEW MODAL */
+#reviewModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
+.review-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.3); border-radius:24px; padding:40px 36px; max-width:520px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.65); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; max-height:90vh; overflow-y:auto; }
+.review-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#f5a623,transparent); }
+.rm-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid var(--line-2); color:var(--mute); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+.rm-close:hover { color:var(--ice); border-color:var(--gold); }
+.rm-stars { font-size:28px; color:var(--gold); letter-spacing:4px; margin-bottom:16px; }
+.rm-tag { display:inline-block; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.25); border-radius:20px; padding:4px 14px; font-size:11px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; }
+.rm-review-text { background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:12px; padding:18px 20px; font-size:14.5px; color:rgba(238,242,248,0.85); line-height:1.75; text-align:left; margin-bottom:20px; font-style:italic; position:relative; }
+.rm-review-text::before { content:'"'; position:absolute; top:-10px; left:14px; font-size:48px; color:rgba(245,166,35,0.15); font-family:Georgia,serif; line-height:1; }
+.rm-copy-btn { width:100%; padding:14px; background:var(--gold); color:#1a0f00; border:none; border-radius:50px; font-weight:700; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; display:flex; align-items:center; justify-content:center; gap:9px; box-shadow:0 8px 24px rgba(245,166,35,0.3); margin-bottom:12px; }
+.rm-copy-btn:hover { background:#fff; transform:translateY(-2px); }
+.rm-copy-btn.copied { background:var(--teal); color:#081a10; }
+.rm-redirect-hint { font-size:12.5px; color:var(--mute); line-height:1.6; }
+.rm-redirect-hint a { color:var(--gold); text-decoration:none; }
+.rm-loader { display:flex; flex-direction:column; align-items:center; gap:12px; padding:20px 0; }
+.rm-spinner { width:40px; height:40px; border:4px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; }
+.rm-loader p { color:var(--mute); font-size:14px; }
 </style>
 </head>
 <body>
 
-<!-- Rating Box -->
 <div class="rating-box">
   <div>⭐ <span>4.9/5</span> Rating</div>
   <div class="rating-count">100+ Happy Customers</div>
 </div>
 
-<!-- Header -->
 <header id="siteHeader">
   <nav class="navbar">
     <a href="#" class="logo">
@@ -684,7 +376,6 @@ section { padding:90px 6%; }
   </nav>
 </header>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow"><span class="dot"></span>Ahmedabad's Most Trusted Cab Service</div>
@@ -692,7 +383,7 @@ section { padding:90px 6%; }
     <p class="hero-sub">Safe, comfortable and reliable travel for outstation trips, airport transfers, corporate travel and Gujarat tours — available 24×7.</p>
     <div class="hero-btns">
       <a href="#booking" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Your Cab</a>
-      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      <a href="#" class="btn-secondary" onclick="openFloatWA(event)"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
     </div>
     <div class="hero-stats">
       <div><div class="hero-stat-num">100+</div><div class="hero-stat-label">Happy Customers</div></div>
@@ -703,7 +394,6 @@ section { padding:90px 6%; }
   </div>
 </section>
 
-<!-- Trust Strip -->
 <div class="trust-strip">
   <div class="trust-pill"><i class="fas fa-check-circle"></i> 24×7 Service</div>
   <div class="trust-pill"><i class="fas fa-check-circle"></i> Verified Drivers</div>
@@ -978,25 +668,13 @@ section { padding:90px 6%; }
     <p class="section-sub">Transparent per-kilometre pricing for your complete round trip journey. No hidden charges, ever.</p>
   </div>
   <div class="roundtrip-grid">
-
-    <!-- Sedan -->
     <div class="rt-card sedan">
-      <div class="rt-img-wrap">
-        <img src="Swift Dzire.jpg" alt="Swift Dzire">
-      </div>
+      <div class="rt-img-wrap"><img src="Swift Dzire.jpg" alt="Swift Dzire"></div>
       <h3>Swift Dzire</h3>
-      <div class="capacity">
-        <span><i class="fas fa-user"></i> 4 Persons</span>
-        <span>·</span>
-        <span><i class="fas fa-briefcase"></i> 3 Bags</span>
-      </div>
+      <div class="capacity"><span><i class="fas fa-user"></i> 4 Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> 3 Bags</span></div>
       <div class="rt-rate-block">
         <div class="rt-rate-label">Round Trip Rate</div>
-        <div class="rt-rate">
-          <span class="rt-rate-sym">₹</span>
-          <span class="rt-rate-num" data-target="11">11</span>
-          <span class="rt-rate-unit">&nbsp;/ km</span>
-        </div>
+        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="11">11</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
       </div>
       <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
       <div class="rt-features">
@@ -1004,30 +682,18 @@ section { padding:90px 6%; }
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> 24×7 Available</div>
       </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Swift Dzire','11')">
-        <i class="fas fa-calendar-check"></i> &nbsp;Book Now
-      </button>
+      <button class="rt-book-btn" onclick="bookRoundTrip('Swift Dzire','11')"><i class="fas fa-calendar-check"></i> &nbsp;Book Now</button>
     </div>
-
-    <!-- Ertiga — Most Popular -->
     <div class="rt-card ertiga">
       <div class="rt-img-wrap">
         <div class="rt-badge">Most Popular</div>
         <img src="Ertigaa.png" alt="Ertiga">
       </div>
       <h3>Maruti Ertiga</h3>
-      <div class="capacity">
-        <span><i class="fas fa-user"></i> 6 Persons</span>
-        <span>·</span>
-        <span><i class="fas fa-briefcase"></i> 4 Bags</span>
-      </div>
+      <div class="capacity"><span><i class="fas fa-user"></i> 6 Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> 4 Bags</span></div>
       <div class="rt-rate-block">
         <div class="rt-rate-label">Round Trip Rate</div>
-        <div class="rt-rate">
-          <span class="rt-rate-sym">₹</span>
-          <span class="rt-rate-num" data-target="14">14</span>
-          <span class="rt-rate-unit">&nbsp;/ km</span>
-        </div>
+        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="14">14</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
       </div>
       <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
       <div class="rt-features">
@@ -1035,29 +701,15 @@ section { padding:90px 6%; }
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Family Ideal</div>
       </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Maruti Ertiga','14')">
-        <i class="fas fa-calendar-check"></i> &nbsp;Book Now
-      </button>
+      <button class="rt-book-btn" onclick="bookRoundTrip('Maruti Ertiga','14')"><i class="fas fa-calendar-check"></i> &nbsp;Book Now</button>
     </div>
-
-    <!-- Innova Crysta -->
     <div class="rt-card crysta">
-      <div class="rt-img-wrap">
-        <img src="Inova Crysta.png" alt="Innova Crysta">
-      </div>
+      <div class="rt-img-wrap"><img src="Inova Crysta.png" alt="Innova Crysta"></div>
       <h3>Innova Crysta</h3>
-      <div class="capacity">
-        <span><i class="fas fa-user"></i> 6 Persons</span>
-        <span>·</span>
-        <span><i class="fas fa-briefcase"></i> 4 Bags</span>
-      </div>
+      <div class="capacity"><span><i class="fas fa-user"></i> 6 Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> 4 Bags</span></div>
       <div class="rt-rate-block">
         <div class="rt-rate-label">Round Trip Rate</div>
-        <div class="rt-rate">
-          <span class="rt-rate-sym">₹</span>
-          <span class="rt-rate-num" data-target="19">19</span>
-          <span class="rt-rate-unit">&nbsp;/ km</span>
-        </div>
+        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="19">19</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
       </div>
       <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
       <div class="rt-features">
@@ -1065,11 +717,8 @@ section { padding:90px 6%; }
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Long-Distance</div>
       </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Innova Crysta','19')">
-        <i class="fas fa-calendar-check"></i> &nbsp;Book Now
-      </button>
+      <button class="rt-book-btn" onclick="bookRoundTrip('Innova Crysta','19')"><i class="fas fa-calendar-check"></i> &nbsp;Book Now</button>
     </div>
-
   </div>
 </section>
 
@@ -1090,8 +739,17 @@ section { padding:90px 6%; }
     <div class="review-card hidden-review"><div class="review-stars">★★★★★</div><p class="review-text">Amazing experience during our Saputara family vacation. Clean vehicle, safe driving and transparent pricing. Will definitely book again.</p><div class="reviewer">— Nidhi R.</div></div>
     <div class="review-card hidden-review"><div class="review-stars">★★★★★</div><p class="review-text">Booked a round trip to Dwarka and Somnath. The driver was polite and knew all routes well. The trip was comfortable and completely hassle-free.</p><div class="reviewer">— Jay M.</div></div>
   </div>
-  <div class="see-more-wrap">
+  <div class="see-more-wrap" style="margin-bottom:24px">
     <button class="see-more-btn" onclick="showMoreReviews()">Show More Reviews</button>
+  </div>
+
+  <!-- Write a Review CTA -->
+  <div class="write-review-cta">
+    <h3>Enjoyed Your Ride? 🌟</h3>
+    <p>Share your experience and help other travelers discover Moksh Tours & Travel.</p>
+    <button class="review-btn-gold" onclick="openReviewModal()">
+      <i class="fab fa-google"></i> Write a Google Review
+    </button>
   </div>
 </section>
 
@@ -1103,7 +761,7 @@ section { padding:90px 6%; }
     <div class="contact-phone">97244 29334</div>
     <div class="contact-btns">
       <a href="tel:+919724429334" class="contact-btn contact-btn-gold"><i class="fas fa-phone"></i> Call Now</a>
-      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="#" class="contact-btn contact-btn-green" onclick="openFloatWA(event)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       <a href="https://www.instagram.com/moksh_tour_travel/" target="_blank" class="contact-btn contact-btn-outline"><i class="fab fa-instagram"></i> Instagram</a>
       <a href="https://www.google.com/search?q=Moksh+Tours+%26+Travel" target="_blank" class="contact-btn contact-btn-outline"><i class="fas fa-star"></i> Google</a>
     </div>
@@ -1146,7 +804,7 @@ section { padding:90px 6%; }
 
 <!-- Floating Buttons -->
 <div class="float-wrap">
-  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <button class="float-btn float-wa" onclick="openFloatWA(event)" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
   <a href="tel:+919724429334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
 </div>
 
@@ -1155,16 +813,14 @@ section { padding:90px 6%; }
   <div class="loader-box">
     <div class="spinner"></div>
     <h3>Booking Your Cab…</h3>
-    <p>Connecting you with Moksh Tours & Travel</p>
+    <p>Saving your details and opening WhatsApp</p>
   </div>
 </div>
 
 <!-- Toast -->
 <div id="toast"></div>
 
-<!-- ══════════════════════════════════════════
-     SUCCESS MODAL — PROFESSIONAL
-══════════════════════════════════════════ -->
+<!-- SUCCESS MODAL -->
 <div id="successModal">
   <div class="success-card" id="successCard">
     <div class="success-check">
@@ -1175,10 +831,36 @@ section { padding:90px 6%; }
     <div class="success-eyebrow">✦ Booking Received ✦</div>
     <h2 class="success-title">You're All Set!</h2>
     <p class="success-message" id="successMessage"></p>
-    <div class="success-progress-wrap">
-      <div class="success-progress-bar" id="successProgress"></div>
+    <div class="success-progress-wrap"><div class="success-progress-bar" id="successProgress"></div></div>
+    <div class="success-hint">Redirecting to WhatsApp…</div>
+  </div>
+</div>
+
+<!-- PHONE MODAL (for floating WhatsApp button) -->
+<div id="phoneModal">
+  <div class="phone-modal-card">
+    <div class="phone-modal-icon"><i class="fab fa-whatsapp"></i></div>
+    <h3>WhatsApp Us</h3>
+    <p>Enter your 10-digit mobile number to connect with us on WhatsApp.</p>
+    <input type="tel" class="phone-modal-input" id="floatPhone" placeholder="9999999999" maxlength="10" inputmode="numeric">
+    <div class="phone-err" id="floatPhoneErr">Please enter a valid 10-digit number.</div>
+    <button class="phone-modal-submit" onclick="submitFloatWA()">
+      <i class="fab fa-whatsapp"></i> Open WhatsApp
+    </button>
+    <button class="phone-modal-cancel" onclick="closePhoneModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- REVIEW MODAL -->
+<div id="reviewModal">
+  <div class="review-modal-card" id="reviewModalCard">
+    <button class="rm-close" onclick="closeReviewModal()">×</button>
+    <div id="reviewModalContent">
+      <div class="rm-loader">
+        <div class="rm-spinner"></div>
+        <p>Generating your personalised review…</p>
+      </div>
     </div>
-    <div class="success-hint">Closing automatically in 3 seconds…</div>
   </div>
 </div>
 
@@ -1186,48 +868,40 @@ section { padding:90px 6%; }
 <script type="module">
 import { saveDocument } from './firebase-config.js';
 
-async function saveBookingToFirebase(data) {
-  try { await saveDocument('bookings', data); }
-  catch(e) { console.error('Firebase save error:', e); }
+// ── Helpers ───────────────────────────────────────────
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (isError ? ' error' : '');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.className = '', 3500);
 }
+window.showToast = showToast;
 
 function showSuccessModal(message) {
   const modal    = document.getElementById('successModal');
   const msgEl    = document.getElementById('successMessage');
   const progress = document.getElementById('successProgress');
-
   msgEl.innerHTML = message;
   modal.style.display = 'flex';
-
-  // Reset & restart progress bar animation
   progress.style.animation = 'none';
-  void progress.offsetWidth; // reflow
-  progress.style.animation = 'drainBar 3s linear forwards';
-
+  void progress.offsetWidth;
+  progress.style.animation = 'drainBar 2.5s linear forwards';
   clearTimeout(window._successTimer);
-  window._successTimer = setTimeout(closeSuccessModal, 3000);
+  window._successTimer = setTimeout(closeSuccessModal, 2600);
 }
-
 function closeSuccessModal() {
   const modal = document.getElementById('successModal');
   const card  = document.getElementById('successCard');
   card.style.animation = 'fadeOutModal 0.35s cubic-bezier(0.4,0,0.2,1) forwards';
-  setTimeout(() => {
-    modal.style.display = 'none';
-    card.style.animation = '';
-  }, 350);
+  setTimeout(() => { modal.style.display = 'none'; card.style.animation = ''; }, 350);
 }
 window.closeSuccessModal = closeSuccessModal;
 
-// Click outside to dismiss
-document.getElementById('successModal').addEventListener('click', function(e) {
-  if(e.target === this) closeSuccessModal();
-});
-
-// Main Booking Form
+// ── MAIN BOOKING FORM ─────────────────────────────────
 document.getElementById('bookingForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const btn = document.getElementById('bookBtn');
+  const btn       = document.getElementById('bookBtn');
   const name      = document.getElementById('bName').value.trim();
   const mobile    = document.getElementById('bMobile').value.trim();
   const pickup    = document.getElementById('bPickup').value.trim();
@@ -1239,10 +913,10 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   const passenger = document.getElementById('bPassenger').value;
   const trip      = document.getElementById('bTrip').value;
 
-  if(!mobile || mobile.length !== 10 || isNaN(mobile)) {
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
     showToast('Please enter a valid 10-digit mobile number', true); return;
   }
-  if(!hour) {
+  if (!hour) {
     showToast('Please select a pickup hour', true); return;
   }
 
@@ -1251,43 +925,198 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   document.getElementById('loadingScreen').style.display = 'flex';
 
   const time = hour + ' ' + ampm;
-  await saveBookingToFirebase({ name, mobile, pickup, destination:dest, date, time, car, passenger, trip, received: new Date() });
+
+  // Save to Firebase
+  try {
+    await saveDocument('bookings', { name, mobile, pickup, destination: dest, date, time, car, passenger, trip, received: new Date() });
+  } catch(err) {
+    console.error('Firebase save error:', err);
+  }
+
+  // Build WhatsApp message
+  const waMsg =
+`━━━━━━━━━━━━━━━━━━━━━━━━━
+🚖 I WANT TO BOOK CAB
+━━━━━━━━━━━━━━━━━━━━━━━━━
+▪️ Customer Name : ${name}
+▪️ Contact Number : ${mobile}
+▪️ Pickup Location : ${pickup}
+▪️ Destination : ${dest}
+▪️ Journey Date : ${date}
+▪️ Pickup Time : ${time}
+▪️ Vehicle Type : ${car}
+▪️ Passengers : ${passenger}
+▪️ Trip Type : ${trip}
+━━━━━━━━━━━━━━━━━━━━━━━━━`;
+
+  const waUrl = 'https://wa.me/919724429334?text=' + encodeURIComponent(waMsg);
+
+  document.getElementById('loadingScreen').style.display = 'none';
+
+  showSuccessModal(
+    `Booking saved! Redirecting you to WhatsApp to confirm with our team.`
+  );
 
   setTimeout(() => {
-    document.getElementById('loadingScreen').style.display = 'none';
-    showSuccessModal(
-      `Your cab booking has been received successfully.<br><br>Our team will contact you shortly on <strong style="color:var(--gold)">${mobile}</strong> to confirm details and availability.`
-    );
+    window.open(waUrl, '_blank');
     document.getElementById('bookingForm').reset();
     btn.disabled = false;
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp';
-  }, 1400);
+  }, 1200);
 });
 
-// Route Booking
+// ── ROUTE BOOKING ─────────────────────────────────────
 window.bookRoute = async function(route, sedan, suv) {
   const mobile = prompt('Enter your 10-digit mobile number to book this route:');
-  if(!mobile || mobile.length !== 10 || isNaN(mobile)) { alert('Please enter a valid 10-digit mobile number.'); return; }
-  await saveDocument('routeInquiries', { route, sedan, suv, mobile, received: new Date() });
-  showSuccessModal(`Booking request for <strong style="color:var(--gold)">${route}</strong> received.<br><br>Our team will contact you shortly on <strong style="color:var(--gold)">${mobile}</strong>.`);
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) { alert('Please enter a valid 10-digit mobile number.'); return; }
+
+  try { await saveDocument('routeInquiries', { route, sedan, suv, mobile, received: new Date() }); }
+  catch(err) { console.error('Firebase error:', err); }
+
+  const waMsg =
+`🚖 I WANT TO BOOK CAB
+━━━━━━━━━━━━━━━━━━━━
+📍 Route: ${route}
+💺 Sedan Price: ₹${sedan}
+🚙 SUV Price: ₹${suv}
+📱 Customer Number: ${mobile}
+━━━━━━━━━━━━━━━━━━━━`;
+
+  window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
 };
 
-// Round Trip Booking
+// ── ROUND TRIP BOOKING ────────────────────────────────
 window.bookRoundTrip = async function(car, rate) {
   const mobile = prompt('Enter your 10-digit mobile number:');
-  if(!mobile || mobile.length !== 10 || isNaN(mobile)) { alert('Please enter a valid 10-digit mobile number.'); return; }
-  await saveDocument('roundTripRequests', { car, rate, mobile, received: new Date() });
-  showSuccessModal(`Round trip booking for <strong style="color:var(--gold)">${car}</strong> at <strong style="color:var(--gold)">₹${rate}/km</strong> received.<br><br>Our team will contact you shortly on <strong style="color:var(--gold)">${mobile}</strong>.`);
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) { alert('Please enter a valid 10-digit mobile number.'); return; }
+
+  try { await saveDocument('roundTripRequests', { car, rate, mobile, received: new Date() }); }
+  catch(err) { console.error('Firebase error:', err); }
+
+  const waMsg =
+`🚖 ROUND TRIP BOOKING
+🚘 Vehicle : ${car}
+💰 Rate : Rs.${rate}/KM
+📱 Customer Number : ${mobile}`;
+
+  window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
 };
 
-function showToast(msg, isError) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'show' + (isError ? ' error' : '');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => t.className = '', 3500);
-}
-window.showToast = showToast;
+// ── FLOATING WHATSAPP BUTTON ──────────────────────────
+window.openFloatWA = function(e) {
+  if (e) e.preventDefault();
+  document.getElementById('floatPhone').value = '';
+  document.getElementById('floatPhoneErr').style.display = 'none';
+  document.getElementById('phoneModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('floatPhone').focus(), 100);
+};
+
+window.closePhoneModal = function() {
+  document.getElementById('phoneModal').style.display = 'none';
+};
+
+window.submitFloatWA = function() {
+  const mobile = document.getElementById('floatPhone').value.trim();
+  const errEl  = document.getElementById('floatPhoneErr');
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
+    errEl.style.display = 'block';
+    document.getElementById('floatPhone').focus();
+    return;
+  }
+  errEl.style.display = 'none';
+  closePhoneModal();
+  const waMsg = `Hello Moksh Tours & Travel, I want cab service. Please share details.\n📱 My Number: ${mobile}`;
+  window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
+};
+
+// Allow Enter key in phone modal
+document.getElementById('floatPhone').addEventListener('keydown', e => {
+  if (e.key === 'Enter') window.submitFloatWA();
+  // Only allow digits
+  if (!/[0-9]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) e.preventDefault();
+});
+
+// Click outside phone modal to close
+document.getElementById('phoneModal').addEventListener('click', function(e) {
+  if (e.target === this) closePhoneModal();
+});
+
+// ── REVIEW MODAL ──────────────────────────────────────
+const reviewTemplates = [
+  "Outstanding cab service! The driver was punctual, the car was spotless, and the entire trip was smooth and comfortable. Transparent pricing with no hidden charges. Moksh Tours & Travel is the best cab service in Ahmedabad — will definitely book again!",
+  "Excellent experience with Moksh Tours & Travel! Professional driver, well-maintained vehicle, and on-time pickup. The pricing was fair and completely transparent. Highly recommend for anyone looking for a reliable cab service in Ahmedabad or Gujarat.",
+  "Very impressed with Moksh Tours & Travel. From easy booking to a comfortable journey, everything was perfect. The driver was courteous and took the best route. Loved the clean car and professional service. 5 stars without any hesitation!",
+  "Booked a cab with Moksh Tours & Travel and had a wonderful experience. The vehicle was clean, AC was perfect, driver was polite and professional. Arrived on time and the trip was stress-free. Best cab service in Ahmedabad!",
+  "Absolutely wonderful service by Moksh Tours & Travel! Quick response, punctual driver, and a comfortable ride throughout. The pricing was exactly as quoted — no hidden charges. Perfect for outstation trips from Ahmedabad. Highly recommended!",
+  "Moksh Tours & Travel deserves all 5 stars! From prompt booking confirmation to a smooth, comfortable journey, they exceeded expectations. The driver was experienced and friendly. This is the most trustworthy cab service I have used in Gujarat."
+];
+
+window.openReviewModal = function() {
+  document.getElementById('reviewModal').style.display = 'flex';
+  const content = document.getElementById('reviewModalContent');
+  content.innerHTML = `
+    <div class="rm-loader">
+      <div class="rm-spinner"></div>
+      <p>Generating your personalised review…</p>
+    </div>`;
+
+  // Pick a random review after a short delay to simulate generation
+  setTimeout(() => {
+    const review = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
+    window._currentReview = review;
+    content.innerHTML = `
+      <div class="rm-stars">★★★★★</div>
+      <div class="rm-tag">✦ Your Review is Ready ✦</div>
+      <div class="rm-review-text" id="rmReviewText">${review}</div>
+      <button class="rm-copy-btn" id="rmCopyBtn" onclick="copyReview()">
+        <i class="fas fa-copy"></i> Copy Review
+      </button>
+      <p class="rm-redirect-hint">
+        After copying, click <strong>"Go to Google Reviews"</strong> and paste your review there.<br>
+        <a href="https://g.page/r/CTQaIJuvHQ3REBE/review" target="_blank" id="rmGoogleLink" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--gold-dim);border:1px solid rgba(245,166,35,0.3);padding:10px 20px;border-radius:30px;font-weight:700;font-size:13.5px;">
+          <i class="fab fa-google"></i> Go to Google Reviews
+        </a>
+      </p>`;
+  }, 1400);
+};
+
+window.copyReview = function() {
+  const review = window._currentReview || '';
+  navigator.clipboard.writeText(review).then(() => {
+    const btn = document.getElementById('rmCopyBtn');
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied! Now paste on Google';
+    showToast('Review copied to clipboard!');
+    // Auto-open Google Reviews after 1.5s
+    setTimeout(() => {
+      window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank');
+    }, 1500);
+  }).catch(() => {
+    // Fallback for browsers that block clipboard
+    const el = document.createElement('textarea');
+    el.value = review;
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    const btn = document.getElementById('rmCopyBtn');
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied! Now paste on Google';
+    showToast('Review copied!');
+    setTimeout(() => { window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank'); }, 1500);
+  });
+};
+
+window.closeReviewModal = function() {
+  document.getElementById('reviewModal').style.display = 'none';
+};
+
+document.getElementById('reviewModal').addEventListener('click', function(e) {
+  if (e.target === this) closeReviewModal();
+});
+
 </script>
 
 <script>
@@ -1314,47 +1143,30 @@ function showMoreReviews() {
   document.querySelector('.see-more-btn').style.display = 'none';
 }
 
-// Round trip rate count-up animation on scroll
+// Round trip count-up animation on scroll
 (function() {
   const rateNums = document.querySelectorAll('.rt-rate-num');
-
   function animateCount(el) {
-    if(el.dataset.animated) return;
+    if (el.dataset.animated) return;
     el.dataset.animated = 'true';
     const target = parseInt(el.dataset.target, 10);
     const duration = 900;
     const start = Date.now();
     el.classList.add('animate');
-
     function tick() {
       const elapsed = Date.now() - start;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       el.textContent = Math.round(eased * target);
-      if(progress < 1) requestAnimationFrame(tick);
+      if (progress < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
-
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) animateCount(entry.target);
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) animateCount(entry.target); });
   }, { threshold: 0.4 });
-
   rateNums.forEach(el => observer.observe(el));
 })();
-
-// Google review popup (once)
-setTimeout(() => {
-  if(!localStorage.getItem('reviewPopup')) {
-    if(confirm('Thank you for visiting Moksh Tours & Travel.\n\nWould you like to leave a Google Review?')) {
-      window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank');
-    }
-    localStorage.setItem('reviewPopup', 'yes');
-  }
-}, 90000);
 </script>
 
 </body>
