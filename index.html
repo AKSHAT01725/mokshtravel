@@ -174,6 +174,57 @@ section { padding:90px 6%; }
 .booking-submit { width:100%; padding:16px; margin-top:6px; background:var(--gold); color:#1a0f00; border:none; border-radius:12px; font-family:'Space Grotesk'; font-size:16px; font-weight:700; cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 8px 24px rgba(245,166,35,0.3); }
 .booking-submit:hover { background:#fff; transform:translateY(-2px); box-shadow:0 14px 36px rgba(245,166,35,0.4); }
 .booking-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+/* ── TRIP PILLS ── */
+.trip-pills { display:flex; gap:8px; overflow-x:auto; margin-bottom:20px; padding-bottom:2px; scrollbar-width:none; }
+.trip-pills::-webkit-scrollbar { display:none; }
+.trip-pill { flex-shrink:0; padding:10px 22px; border-radius:30px; background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--mute); font-weight:700; font-size:13.5px; cursor:pointer; transition:var(--transition); white-space:nowrap; font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.trip-pill:hover { border-color:var(--line-2); color:var(--ice); }
+.trip-pill.active { background:var(--gold); color:#1a0f00; border-color:var(--gold); box-shadow:0 6px 20px rgba(245,166,35,0.3); }
+
+/* ── FROM / TO CARD ── */
+.loc-card { background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:16px; position:relative; margin-bottom:14px; }
+.loc-row { position: relative; }
+.loc-dropdown {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--navy-3); border: 1px solid var(--line-2);
+  border-radius: 12px; margin-top: 6px; max-height: 220px;
+  overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  z-index: 50; display: none;
+}
+.loc-dropdown.open { display: block; }
+.loc-dropdown-item { padding: 11px 16px; font-size: 14px; color: var(--ice); cursor: pointer; transition: background .15s; }
+.loc-dropdown-item:hover, .loc-dropdown-item.highlighted { background: var(--gold-dim); color: var(--gold); }
+.loc-dropdown-empty { padding: 14px 16px; font-size: 13px; color: var(--mute); }
+
+/* Native date/time picker icon styling */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(1.6);
+  cursor: pointer;
+  opacity: .85;
+}
+.loc-row { padding:16px 60px 16px 20px; }
+.loc-row + .loc-row { border-top:1px solid var(--line); }
+.loc-label { display:block; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mute); margin-bottom:5px; }
+.loc-input { width:100%; background:transparent; border:none; outline:none; color:var(--ice); font-family:'Space Grotesk'; font-size:19px; font-weight:700; padding:0; }
+.loc-input::placeholder { color:rgba(238,242,248,0.28); font-weight:600; }
+.swap-btn { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; background:var(--navy-3); border:1.5px solid var(--gold); color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:var(--transition); z-index:2; box-shadow:0 4px 14px rgba(0,0,0,0.35); padding:0; }
+.swap-btn:hover { background:var(--gold); color:#1a0f00; }
+.swap-btn i { font-size:14px; transform:rotate(90deg); display:block; transition:var(--transition); }
+.swap-btn:hover i { transform:rotate(270deg); }
+
+/* ── DATE / TIME / DETAIL CARDS ── */
+.date-time-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.dt-card { background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:14px; padding:14px 18px; transition:var(--transition); }
+.dt-card:focus-within { border-color:var(--gold); background:rgba(245,166,35,0.04); }
+.dt-input { font-size:17px !important; }
+.dt-card select.loc-input { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237e8fa8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 2px center; padding-right:22px; }
+.dt-card select.loc-input option { background:#0b1a35; font-size:14px; }
+
+@media(max-width:640px){
+  .date-time-grid { grid-template-columns:1fr; }
+  .loc-input { font-size:17px; }
+}
 @media(max-width:640px){ .booking-grid { grid-template-columns:1fr; } .booking-wrap { padding:24px 18px; } }
 
 /* ── SERVICES ── */
@@ -363,21 +414,6 @@ section { padding:90px 6%; }
 @keyframes drainBar { from{width:100%;} to{width:0%;} }
 @keyframes fadeOutModal { from{opacity:1; transform:scale(1);} to{opacity:0; transform:scale(0.96);} }
 
-/* ── PHONE MODAL (floating WA) ── */
-#phoneModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
-.phone-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(37,211,102,0.3); border-radius:24px; padding:40px 36px; max-width:400px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.6); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
-.phone-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#25d366,transparent); }
-.phone-modal-icon { width:68px; height:68px; border-radius:50%; background:rgba(37,211,102,0.12); border:2px solid rgba(37,211,102,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; font-size:26px; color:#25d366; }
-.phone-modal-card h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; margin-bottom:8px; }
-.phone-modal-card p { color:var(--mute); font-size:13.5px; margin-bottom:24px; line-height:1.6; }
-.phone-modal-input { width:100%; padding:14px 16px; background:rgba(255,255,255,0.05); border:1px solid var(--line); border-radius:10px; color:var(--ice); font-size:16px; font-family:'Plus Jakarta Sans',Arial,sans-serif; outline:none; transition:var(--transition); text-align:center; letter-spacing:2px; margin-bottom:14px; }
-.phone-modal-input:focus { border-color:#25d366; background:rgba(37,211,102,0.05); box-shadow:0 0 0 3px rgba(37,211,102,0.12); }
-.phone-modal-submit { width:100%; padding:14px; background:linear-gradient(135deg,#25d366,#128c7e); color:white; border:none; border-radius:50px; font-weight:700; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:10px; }
-.phone-modal-submit:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(37,211,102,0.3); }
-.phone-modal-cancel { background:none; border:none; color:var(--mute); font-size:13px; cursor:pointer; padding:6px 12px; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
-.phone-modal-cancel:hover { color:var(--ice); }
-.phone-err { color:#ff7070; font-size:12.5px; margin-bottom:10px; display:none; }
-
 /* ── ROUND TRIP MODAL ── */
 #rtModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.88); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
 .rt-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.35); border-radius:24px; padding:40px 36px; max-width:400px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.6); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
@@ -457,7 +493,7 @@ section { padding:90px 6%; }
     <p class="hero-sub">Safe, comfortable and reliable travel for outstation trips, airport transfers, corporate travel and Gujarat tours — available 24×7.</p>
     <div class="hero-btns">
       <a href="#booking" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Your Cab</a>
-      <a href="#" class="btn-secondary" onclick="openFloatWA(event)"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
     </div>
     <div class="hero-stats">
       <div><div class="hero-stat-num">100+</div><div class="hero-stat-label">Happy Customers</div></div>
@@ -485,57 +521,79 @@ section { padding:90px 6%; }
     <h2 class="section-title">Book Your Cab Instantly</h2>
     <p class="section-sub">Fill in your trip details and we'll confirm on WhatsApp within minutes.</p>
   </div>
+
   <form id="bookingForm" class="booking-wrap">
-    <div class="booking-grid">
-      <div class="form-group">
-        <label class="form-label">Your Name</label>
-        <input class="form-input" type="text" id="bName" placeholder="Full name" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Mobile Number</label>
-        <input class="form-input" type="tel" id="bMobile" placeholder="10-digit number" pattern="[0-9]{10}" inputmode="numeric" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Pickup Location</label>
-        <input class="form-input" type="text" id="bPickup" list="gujaratLocations" placeholder="City or place" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Destination</label>
-        <input class="form-input" type="text" id="bDestination" list="gujaratLocations" placeholder="City or place" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Journey Date</label>
-        <input class="form-input" type="text" id="bDate" placeholder="Select date" onfocus="this.type='date'" onblur="if(!this.value)this.type='text'" required>
-      </div>
-      <div class="form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div>
-          <label class="form-label">Hour</label>
-          <select class="form-select" id="bHour">
-            <option value="" disabled selected>Hour</option>
-            <option>1</option><option>2</option><option>3</option><option>4</option>
-            <option>5</option><option>6</option><option>7</option><option>8</option>
-            <option>9</option><option>10</option><option>11</option><option>12</option>
-          </select>
-        </div>
-        <div>
-          <label class="form-label">AM / PM</label>
-          <select class="form-select" id="bAmpm">
-            <option>AM</option><option>PM</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Vehicle Type</label>
-        <select class="form-select" id="bCar">
+
+    <!-- Trip Type Pills -->
+    <div class="trip-pills" id="tripPills">
+      <button type="button" class="trip-pill active" data-trip="One Way">One Way</button>
+      <button type="button" class="trip-pill" data-trip="Round Trip">Round Trip</button>
+      <button type="button" class="trip-pill" data-trip="Rental">Rental</button>
+    </div>
+
+    <!-- Unified From / To Card -->
+    <div class="loc-card">
+  <div class="loc-row">
+    <label class="loc-label">From</label>
+    <input class="loc-input" type="text" id="bPickup" placeholder="Pickup city or place" required autocomplete="off">
+    <div class="loc-dropdown" id="pickupDropdown"></div>
+  </div>
+  <div class="loc-row">
+    <label class="loc-label">To</label>
+    <input class="loc-input" type="text" id="bDestination" placeholder="Destination city or place" required autocomplete="off">
+    <div class="loc-dropdown" id="destDropdown"></div>
+  </div>
+  <button type="button" class="swap-btn" id="swapBtn" title="Swap locations" aria-label="Swap pickup and destination">
+    <i class="fas fa-right-left"></i>
+  </button>
+</div>
+
+    <!-- Pickup Date / Return Date -->
+    <div class="date-time-grid" id="dateGrid">
+  <div class="dt-card" id="pickupDateCard">
+    <label class="loc-label">Pickup Date</label>
+    <input class="loc-input dt-input" type="date" id="bDate" required>
+  </div>
+  <div class="dt-card" id="returnDateCard" style="display:none;">
+    <label class="loc-label">Return Date</label>
+    <input class="loc-input dt-input" type="date" id="bReturnDate">
+  </div>
+  <div class="dt-card" id="rentalHoursCard" style="display:none;">
+    <label class="loc-label">Rental Duration</label>
+    <select class="loc-input dt-input" id="bRentalHours">
+      <option>4 Hours / 40 KM</option>
+      <option>8 Hours / 80 KM</option>
+      <option>12 Hours / 120 KM</option>
+      <option>Full Day (24 Hrs)</option>
+    </select>
+  </div>
+</div>
+
+<div class="date-time-grid">
+  <div class="dt-card">
+    <label class="loc-label">Pickup Time</label>
+    <input class="loc-input dt-input" type="time" id="bTime" required>
+  </div>
+  <div class="dt-card">
+    <label class="loc-label">Mobile Number</label>
+    <input class="loc-input dt-input" type="tel" id="bMobile" placeholder="10-digit number" pattern="[0-9]{10}" inputmode="numeric" required>
+  </div>
+</div>
+
+    <!-- Vehicle Type / Passengers -->
+    <div class="date-time-grid">
+      <div class="dt-card">
+        <label class="loc-label">Vehicle Type</label>
+        <select class="loc-input dt-input" id="bCar">
           <option>Sedan (Swift Dzire)</option>
           <option>SUV (Ertiga)</option>
           <option>Premium SUV (Innova Crysta)</option>
           <option>Fortuner</option>
         </select>
       </div>
-      <div class="form-group">
-        <label class="form-label">Passengers</label>
-        <select class="form-select" id="bPassenger">
+      <div class="dt-card">
+        <label class="loc-label">Passengers</label>
+        <select class="loc-input dt-input" id="bPassenger">
           <option>1–2 Passengers</option>
           <option>3–4 Passengers</option>
           <option>5–6 Passengers</option>
@@ -544,15 +602,8 @@ section { padding:90px 6%; }
           <option>10–15 Passengers</option>
         </select>
       </div>
-      <div class="form-group booking-full">
-        <label class="form-label">Trip Type</label>
-        <select class="form-select" id="bTrip">
-          <option>One Way</option>
-          <option>Round Trip</option>
-          <option>Rental</option>
-        </select>
-      </div>
     </div>
+
     <button type="submit" class="booking-submit" id="bookBtn">
       <i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp
     </button>
@@ -843,7 +894,7 @@ section { padding:90px 6%; }
     <div class="contact-phone">97244 29334</div>
     <div class="contact-btns">
       <a href="tel:+919724429334" class="contact-btn contact-btn-gold"><i class="fas fa-phone"></i> Call Now</a>
-      <a href="#" class="contact-btn contact-btn-green" onclick="openFloatWA(event)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       <a href="https://www.instagram.com/moksh_tour_travel/" target="_blank" class="contact-btn contact-btn-outline"><i class="fab fa-instagram"></i> Instagram</a>
       <a href="https://www.google.com/search?q=Moksh+Tours+%26+Travel" target="_blank" class="contact-btn contact-btn-outline"><i class="fas fa-star"></i> Google</a>
     </div>
@@ -884,9 +935,8 @@ section { padding:90px 6%; }
   <div class="footer-bottom">© 2026 Moksh Tours & Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
 </footer>
 
-<!-- Floating Buttons -->
 <div class="float-wrap">
-  <button class="float-btn float-wa" onclick="openFloatWA(event)" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
+  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <a href="tel:+919724429334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
 </div>
 
@@ -918,20 +968,7 @@ section { padding:90px 6%; }
   </div>
 </div>
 
-<!-- PHONE MODAL (floating WhatsApp button) -->
-<div id="phoneModal">
-  <div class="phone-modal-card">
-    <div class="phone-modal-icon"><i class="fab fa-whatsapp"></i></div>
-    <h3>WhatsApp Us</h3>
-    <p>Enter your 10-digit mobile number to connect with us on WhatsApp.</p>
-    <input type="tel" class="phone-modal-input" id="floatPhone" placeholder="9999999999" maxlength="10" inputmode="numeric">
-    <div class="phone-err" id="floatPhoneErr">Please enter a valid 10-digit number.</div>
-    <button class="phone-modal-submit" onclick="submitFloatWA()">
-      <i class="fab fa-whatsapp"></i> Open WhatsApp
-    </button>
-    <button class="phone-modal-cancel" onclick="closePhoneModal()">Cancel</button>
-  </div>
-</div>
+
 
 <!-- ROUND TRIP MODAL -->
 <div id="rtModal">
@@ -996,36 +1033,135 @@ function closeSuccessModal() {
 }
 window.closeSuccessModal = closeSuccessModal;
 
+// ── TRIP TYPE PILLS ────────────────────────────────────
+// ── LOCATIONS DATA ─────────────────────────────────────
+const gujaratLocations = [
+  "Ahmedabad","Gandhinagar","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Junagadh",
+  "Porbandar","Anand","Nadiad","Mehsana","Patan","Palanpur","Bharuch","Navsari","Valsad","Vapi",
+  "Morbi","Surendranagar","Amreli","Gandhidham","Bhuj","Mundra","Dwarka","Somnath","Gir Somnath",
+  "Sasan Gir","Ambaji","Saputara","White Rann","Dhordo","Dholavira","Statue of Unity","Kevadia",
+  "Mount Abu","Rani Ki Vav","Modhera Sun Temple","Lothal","Adalaj","Palitana","Girnar",
+  "Ahmedpur Mandvi Beach","Mandvi Beach","Polo Forest","Sabarmati Ashram","Akshardham Gandhinagar",
+  "Daman","Diu","Vadnagar","Siddhpur","Mumbai","Pune","Jaipur"
+];
+
+function setupLocationAutocomplete(inputId, dropdownId) {
+  const input = document.getElementById(inputId);
+  const dropdown = document.getElementById(dropdownId);
+  let highlighted = -1;
+
+  function filteredList(val) {
+    if (!val) return gujaratLocations.slice(0, 8);
+    return gujaratLocations.filter(l => l.toLowerCase().includes(val.toLowerCase())).slice(0, 8);
+  }
+  function render(list) {
+    highlighted = -1;
+    if (!list.length) {
+      dropdown.innerHTML = '<div class="loc-dropdown-empty">No matching location</div>';
+    } else {
+      dropdown.innerHTML = list.map(loc => `<div class="loc-dropdown-item">${loc}</div>`).join('');
+    }
+    dropdown.classList.add('open');
+  }
+  function updateHighlight(items) {
+    items.forEach((it, i) => it.classList.toggle('highlighted', i === highlighted));
+    if (highlighted > -1) items[highlighted].scrollIntoView({ block: 'nearest' });
+  }
+
+  input.addEventListener('focus', () => render(filteredList(input.value)));
+  input.addEventListener('input', () => render(filteredList(input.value)));
+  input.addEventListener('blur', () => setTimeout(() => dropdown.classList.remove('open'), 150));
+
+  dropdown.addEventListener('mousedown', e => {
+    const item = e.target.closest('.loc-dropdown-item');
+    if (!item) return;
+    input.value = item.textContent;
+    dropdown.classList.remove('open');
+  });
+
+  input.addEventListener('keydown', e => {
+    const items = dropdown.querySelectorAll('.loc-dropdown-item');
+    if (!items.length) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); highlighted = (highlighted + 1) % items.length; updateHighlight(items); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); highlighted = (highlighted - 1 + items.length) % items.length; updateHighlight(items); }
+    else if (e.key === 'Enter' && highlighted > -1) { e.preventDefault(); input.value = items[highlighted].textContent; dropdown.classList.remove('open'); }
+  });
+}
+setupLocationAutocomplete('bPickup', 'pickupDropdown');
+setupLocationAutocomplete('bDestination', 'destDropdown');
+
+// Prevent past-date selection
+document.getElementById('bDate').min = new Date().toISOString().split('T')[0];
+document.getElementById('bReturnDate').min = new Date().toISOString().split('T')[0];
+
+// ── TRIP TYPE PILLS (fixed) ───────────────────────────
+let selectedTrip = 'One Way';
+document.querySelectorAll('.trip-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    selectedTrip = pill.dataset.trip;
+
+    const returnCard = document.getElementById('returnDateCard');
+    const rentalCard = document.getElementById('rentalHoursCard');
+
+    returnCard.style.display = 'none';
+    rentalCard.style.display = 'none';
+    document.getElementById('bReturnDate').value = '';
+
+    if (selectedTrip === 'Round Trip') {
+      returnCard.style.display = 'block';
+    } else if (selectedTrip === 'Rental') {
+      rentalCard.style.display = 'block';
+    }
+  });
+});
+
+// ── SWAP FROM / TO ─────────────────────────────────────
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const pickupEl = document.getElementById('bPickup');
+  const destEl   = document.getElementById('bDestination');
+  const temp = pickupEl.value;
+  pickupEl.value = destEl.value;
+  destEl.value = temp;
+});
+
 // ── MAIN BOOKING FORM ─────────────────────────────────
 document.getElementById('bookingForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const btn       = document.getElementById('bookBtn');
-  const name      = document.getElementById('bName').value.trim();
-  const mobile    = document.getElementById('bMobile').value.trim();
-  const pickup    = document.getElementById('bPickup').value.trim();
-  const dest      = document.getElementById('bDestination').value.trim();
-  const date      = document.getElementById('bDate').value;
-  const hour      = document.getElementById('bHour').value;
-  const ampm      = document.getElementById('bAmpm').value;
-  const car       = document.getElementById('bCar').value;
-  const passenger = document.getElementById('bPassenger').value;
-  const trip      = document.getElementById('bTrip').value;
+  const btn        = document.getElementById('bookBtn');
+  const mobile     = document.getElementById('bMobile').value.trim();
+  const pickup     = document.getElementById('bPickup').value.trim();
+  const dest       = document.getElementById('bDestination').value.trim();
+  const date       = document.getElementById('bDate').value;
+  const returnDate = document.getElementById('bReturnDate').value;
+  const time       = document.getElementById('bTime').value;
+  const car        = document.getElementById('bCar').value;
+  const passenger  = document.getElementById('bPassenger').value;
+  const rentalHours = document.getElementById('bRentalHours').value;
+  const trip       = selectedTrip;
 
   if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
     showToast('Please enter a valid 10-digit mobile number', true); return;
   }
-  if (!hour) {
-    showToast('Please select a pickup hour', true); return;
+  if (!time) {
+    showToast('Please select a pickup time', true); return;
+  }
+  if (trip === 'Round Trip' && !returnDate) {
+    showToast('Please select a return date', true); return;
   }
 
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
   document.getElementById('loadingScreen').style.display = 'flex';
 
-  const time = hour + ' ' + ampm;
-
   try {
-    await saveDocument('bookings', { name, mobile, pickup, destination: dest, date, time, car, passenger, trip, received: new Date() });
+    await saveDocument('bookings', {
+      mobile, pickup, destination: dest, date,
+      returnDate: trip === 'Round Trip' ? returnDate : '',
+      rentalHours: trip === 'Rental' ? rentalHours : '',
+      time, car, passenger, trip, received: new Date()
+    });
   } catch(err) {
     console.error('Firebase save error:', err);
   }
@@ -1034,15 +1170,14 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 `━━━━━━━━━━━━━━━━━━━━━━━━━
 🚖 I WANT TO BOOK CAB
 ━━━━━━━━━━━━━━━━━━━━━━━━━
-▪️ Customer Name : ${name}
 ▪️ Contact Number : ${mobile}
 ▪️ Pickup Location : ${pickup}
 ▪️ Destination : ${dest}
-▪️ Journey Date : ${date}
+▪️ Pickup Date : ${date}${trip === 'Round Trip' && returnDate ? `\n▪️ Return Date : ${returnDate}` : ''}
 ▪️ Pickup Time : ${time}
 ▪️ Vehicle Type : ${car}
 ▪️ Passengers : ${passenger}
-▪️ Trip Type : ${trip}
+▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
   const waUrl = 'https://wa.me/919724429334?text=' + encodeURIComponent(waMsg);
@@ -1053,6 +1188,10 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   setTimeout(() => {
     window.open(waUrl, '_blank');
     document.getElementById('bookingForm').reset();
+    document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('.trip-pill[data-trip="One Way"]').classList.add('active');
+    selectedTrip = 'One Way';
+    document.getElementById('returnDateCard').style.display = 'none';
     btn.disabled = false;
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp';
   }, 1200);
@@ -1132,47 +1271,6 @@ document.getElementById('rtModal').addEventListener('click', function(e) {
   if (e.target === this) closeRtModal();
 });
 
-// ── FLOATING WHATSAPP BUTTON ──────────────────────────
-window.openFloatWA = function(e) {
-  if (e) e.preventDefault();
-  document.getElementById('floatPhone').value = '';
-  document.getElementById('floatPhoneErr').style.display = 'none';
-  document.getElementById('phoneModal').style.display = 'flex';
-  setTimeout(() => document.getElementById('floatPhone').focus(), 100);
-};
-
-window.closePhoneModal = function() {
-  document.getElementById('phoneModal').style.display = 'none';
-};
-
-window.submitFloatWA = async function() {
-  const mobile = document.getElementById('floatPhone').value.trim();
-  const errEl  = document.getElementById('floatPhoneErr');
-  if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
-    errEl.style.display = 'block';
-    document.getElementById('floatPhone').focus();
-    return;
-  }
-  errEl.style.display = 'none';
-  closePhoneModal();
-
-  try {
-    await saveDocument('whatsappInquiries', { mobile, source: 'Floating WhatsApp Button', received: new Date() });
-  } catch(err) {
-    console.error('Firebase save error:', err);
-  }
-
-  const waMsg = `Hello Moksh Tours & Travel, I want cab service. Please share details.\n📱 My Number: ${mobile}`;
-  window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
-};
-
-document.getElementById('floatPhone').addEventListener('keydown', e => {
-  if (e.key === 'Enter') window.submitFloatWA();
-  if (!/[0-9]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) e.preventDefault();
-});
-document.getElementById('phoneModal').addEventListener('click', function(e) {
-  if (e.target === this) closePhoneModal();
-});
 
 // ── REVIEW MODAL ──────────────────────────────────────
 const reviewTemplates = [
