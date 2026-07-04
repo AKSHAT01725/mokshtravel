@@ -3,16 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer Reviews | Moksh Tours & Travel — Ahmedabad's Trusted Cab Service</title>
+<title>Customer Reviews | Moksh Travel — Ahmedabad's Trusted Cab Service</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-<meta name="description" content="Read genuine customer reviews for Moksh Tours & Travel — Ahmedabad's trusted cab service for outstation trips, airport transfers and Gujarat tours.">
+<meta name="description" content="Read genuine customer reviews for Moksh Travel — Ahmedabad's trusted cab service for outstation trips, airport transfers and Gujarat tours.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://yourdomain.com/reviews.html">
 
 <style>
+/* ══════════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════════ */
 :root {
   --navy:       #060f22;
   --navy-2:     #0b1a35;
@@ -45,7 +48,9 @@ body {
 ::-webkit-scrollbar-track { background:var(--navy); }
 ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
 
-/* HEADER */
+/* ══════════════════════════════════════════
+   HEADER / NAV
+══════════════════════════════════════════ */
 header {
   position: fixed; top:0; left:0; right:0;
   z-index: 1000;
@@ -78,7 +83,9 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
   .menu a { width:100%; padding:12px 16px; font-size:15px; }
 }
 
-/* PAGE HERO */
+/* ══════════════════════════════════════════
+   PAGE HERO
+══════════════════════════════════════════ */
 .page-hero {
   padding: 150px 6% 80px;
   position: relative; overflow: hidden;
@@ -105,7 +112,9 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 .breadcrumb a:hover { color:var(--gold); }
 .breadcrumb i { font-size:10px; }
 
-/* RATING SUMMARY STRIP */
+/* ══════════════════════════════════════════
+   RATING SUMMARY STRIP
+══════════════════════════════════════════ */
 .rating-strip {
   background: var(--navy-2);
   border-top: 1px solid var(--line);
@@ -117,8 +126,15 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
   display: flex; align-items: center; justify-content: center;
   flex-wrap: wrap; gap: 48px;
 }
-.rating-big { text-align: center; }
-.rating-big-num { font-family:'Space Grotesk'; font-size: 72px; font-weight: 700; color: var(--gold); line-height: 1; letter-spacing: -2px; }
+.rating-big {
+  text-align: center;
+}
+.rating-big-num {
+  font-family:'Space Grotesk';
+  font-size: 72px; font-weight: 700;
+  color: var(--gold); line-height: 1;
+  letter-spacing: -2px;
+}
 .rating-stars-lg { font-size: 22px; color: var(--gold); letter-spacing: 3px; margin: 6px 0 8px; }
 .rating-label { font-size: 13px; color: var(--mute); }
 .rating-divider { width: 1px; height: 80px; background: var(--line); }
@@ -129,64 +145,136 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 .rating-bar-fill { height: 100%; background: var(--gold); border-radius: 3px; transition: width 1s cubic-bezier(0.22,1,0.36,1); }
 .rating-bar-count { color: var(--mute); font-size: 12px; min-width: 20px; }
 .rating-source { text-align: center; }
-.rating-source-badge { display: inline-flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 20px; font-size: 13px; }
+.rating-source-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 12px 20px; font-size: 13px;
+}
 .rating-source-badge i { color: #4285F4; font-size: 16px; }
 .rating-source-badge strong { color: var(--ice); }
 .rating-source-badge span { color: var(--mute); }
 @media(max-width:640px){ .rating-divider { display:none; } .rating-bar-track { width:100px; } }
 
-/* REVIEWS SECTION */
+/* ══════════════════════════════════════════
+   REVIEWS SECTION
+══════════════════════════════════════════ */
 #reviews { padding: 80px 6%; }
 
-.filter-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
-.filter-btn { padding: 8px 18px; border-radius: 30px; background: var(--surface); border: 1px solid var(--line); color: var(--mute); font-size: 13px; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: 'Plus Jakarta Sans', sans-serif; }
+/* Filter tabs */
+.filter-bar {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 40px; flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 8px 18px; border-radius: 30px;
+  background: var(--surface); border: 1px solid var(--line);
+  color: var(--mute); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: var(--transition);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
 .filter-btn:hover { color: var(--ice); border-color: var(--line-2); }
 .filter-btn.active { background: var(--gold-dim); border-color: rgba(245,166,35,0.4); color: var(--gold); }
 
-.reviews-grid { columns: 3; column-gap: 20px; margin-bottom: 48px; }
+/* Masonry-style grid */
+.reviews-grid {
+  columns: 3;
+  column-gap: 20px;
+  margin-bottom: 48px;
+}
 @media(max-width:900px){ .reviews-grid { columns: 2; } }
 @media(max-width:560px){ .reviews-grid { columns: 1; } }
 
-.review-card { break-inside: avoid; background: var(--navy-3); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 26px; margin-bottom: 20px; transition: var(--transition); position: relative; overflow: hidden; display: none; }
+.review-card {
+  break-inside: avoid;
+  background: var(--navy-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  margin-bottom: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: none; /* shown via JS */
+}
 .review-card.visible { display: block; }
-.review-card::before { content:''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(245,166,35,0.3), transparent); opacity: 0; transition: var(--transition); }
+.review-card::before {
+  content:'';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245,166,35,0.3), transparent);
+  opacity: 0; transition: var(--transition);
+}
 .review-card:hover { border-color: rgba(245,166,35,0.25); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
 .review-card:hover::before { opacity: 1; }
 
 .review-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; gap: 12px; }
-.reviewer-avatar { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.25); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px; color: var(--gold); }
+.reviewer-avatar {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk'; font-weight: 700; font-size: 15px;
+  color: var(--gold);
+}
 .reviewer-info { flex: 1; }
 .reviewer-name { font-weight: 700; font-size: 14.5px; margin-bottom: 2px; }
 .reviewer-meta { font-size: 11.5px; color: var(--mute); }
 .review-stars { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
 .review-text { font-size: 13.5px; color: rgba(238,242,248,0.78); line-height: 1.7; }
-.review-quote { font-size: 56px; color: rgba(245,166,35,0.08); font-family: Georgia, serif; line-height: 1; position: absolute; top: 18px; right: 22px; pointer-events: none; user-select: none; }
 
-.review-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 700; letter-spacing: .4px; padding: 3px 10px; border-radius: 20px; margin-top: 14px; font-family: 'Space Grotesk'; }
+/* Quote icon */
+.review-quote {
+  font-size: 56px; color: rgba(245,166,35,0.08);
+  font-family: Georgia, serif; line-height: 1;
+  position: absolute; top: 18px; right: 22px;
+  pointer-events: none; user-select: none;
+}
+
+/* Tag for trip type */
+.review-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .4px;
+  padding: 3px 10px; border-radius: 20px; margin-top: 14px;
+  font-family: 'Space Grotesk';
+}
 .tag-outstation { background: var(--teal-dim); color: var(--teal); }
 .tag-airport { background: rgba(120,160,255,0.14); color: #7fa3ff; }
 .tag-roundtrip { background: var(--gold-dim); color: var(--gold); }
 .tag-wedding { background: rgba(255,120,200,0.12); color: #ff8cc8; }
 .tag-tour { background: rgba(160,100,255,0.12); color: #c084fc; }
 
+/* Load more */
 .load-more-wrap { text-align: center; }
-.load-more-btn { padding: 14px 36px; background: transparent; border: 1px solid var(--line-2); color: var(--ice); border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; transition: var(--transition); font-family: 'Plus Jakarta Sans', sans-serif; display: inline-flex; align-items: center; gap: 9px; }
+.load-more-btn {
+  padding: 14px 36px; background: transparent;
+  border: 1px solid var(--line-2); color: var(--ice);
+  border-radius: 50px; font-weight: 700; font-size: 14px;
+  cursor: pointer; transition: var(--transition);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: inline-flex; align-items: center; gap: 9px;
+}
 .load-more-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
 .load-more-btn.hidden { display: none; }
 
-/* WRITE REVIEW CTA */
-#write-review { background: linear-gradient(135deg, #070f24, #0e2040); border-top: 1px solid var(--line); padding: 80px 6%; }
+/* ══════════════════════════════════════════
+   WRITE REVIEW CTA
+══════════════════════════════════════════ */
+#write-review {
+  background: linear-gradient(135deg, #070f24, #0e2040);
+  border-top: 1px solid var(--line);
+  padding: 80px 6%;
+}
 .write-review-inner { max-width: 680px; margin: 0 auto; text-align: center; }
 .section-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
 .section-title { font-family:'Space Grotesk'; font-size:clamp(26px,3.2vw,38px); font-weight:700; margin-bottom:14px; line-height:1.18; }
 .section-sub { font-size:15px; color:var(--mute); line-height:1.65; margin-bottom:36px; }
 .review-cta-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-.btn-gold { display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#1a0f00; font-weight:700; font-size:15px; padding:14px 30px; border-radius:50px; text-decoration:none; transition:var(--transition); box-shadow:0 8px 32px rgba(245,166,35,0.3); border:none; cursor:pointer; font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.btn-gold { display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#1a0f00; font-weight:700; font-size:15px; padding:14px 30px; border-radius:50px; text-decoration:none; transition:var(--transition); box-shadow:0 8px 32px rgba(245,166,35,0.3); }
 .btn-gold:hover { background:#fff; transform:translateY(-2px); box-shadow:0 12px 40px rgba(245,166,35,0.45); }
 .btn-outline { display:inline-flex; align-items:center; gap:9px; background:var(--surface-2); color:var(--ice); border:1px solid var(--line-2); font-weight:700; font-size:15px; padding:14px 30px; border-radius:50px; text-decoration:none; transition:var(--transition); }
 .btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
 
-/* FOOTER */
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
 .footer { background:#030810; border-top:1px solid var(--line); padding:60px 6% 30px; }
 .footer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; max-width:1100px; margin:0 auto 48px; }
 .footer-col h4 { font-family:'Space Grotesk'; font-size:13.5px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
@@ -198,7 +286,9 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 .footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--line); padding-top:24px; text-align:center; font-size:12.5px; color:rgba(238,242,248,0.35); }
 @media(max-width:768px){ .footer-grid { grid-template-columns:1fr; gap:32px; } }
 
-/* FLOATING BUTTONS + RATING BOX */
+/* ══════════════════════════════════════════
+   FLOATING BUTTONS + RATING BOX
+══════════════════════════════════════════ */
 .float-wrap { position:fixed; bottom:28px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px; }
 .float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; }
 .float-btn:hover { transform:scale(1.12) translateY(-2px); animation:none; }
@@ -210,35 +300,12 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 .rating-count { font-size:11px; color:var(--mute); margin-top:2px; }
 @media(max-width:640px) { .rating-box { display:none; } }
 
-/* CARD ANIMATION */
-@keyframes cardIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+/* Animate cards on load */
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
 .review-card.visible { animation: cardIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
-
-/* TOAST */
-#toast { position:fixed; top:80px; right:20px; z-index:99999; background:var(--navy-3); border:1px solid var(--teal); color:var(--teal); padding:14px 20px; border-radius:10px; font-size:14px; font-weight:600; opacity:0; transform:translateX(30px); transition:.3s ease; pointer-events:none; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
-#toast.show { opacity:1; transform:translateX(0); }
-
-/* REVIEW MODAL */
-#reviewModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(4,10,24,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
-.review-modal-card { background:linear-gradient(145deg, #0f2348 0%, #091629 100%); border:1px solid rgba(245,166,35,0.3); border-radius:24px; padding:40px 36px; max-width:520px; width:100%; text-align:center; box-shadow:0 40px 100px rgba(0,0,0,0.65); position:relative; overflow:hidden; max-height:90vh; overflow-y:auto; animation:reviewModalIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
-.review-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#f5a623,transparent); }
-@keyframes reviewModalIn { from{opacity:0;transform:translateY(32px) scale(0.94);}to{opacity:1;transform:translateY(0) scale(1);} }
-.rm-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:var(--mute); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); line-height:1; }
-.rm-close:hover { color:var(--ice); border-color:var(--gold); }
-.rm-spinner { width:40px; height:40px; border:4px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto; }
-@keyframes spin { 100%{ transform:rotate(360deg); } }
-.rm-loader { display:flex; flex-direction:column; align-items:center; gap:12px; padding:24px 0; }
-.rm-loader p { color:var(--mute); font-size:14px; }
-.rm-stars { font-size:24px; color:var(--gold); letter-spacing:4px; margin-bottom:14px; }
-.rm-tag { display:inline-block; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.25); border-radius:20px; padding:4px 14px; font-size:11px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; }
-.rm-review-text { background:rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:12px; padding:18px 20px; font-size:14.5px; color:rgba(238,242,248,0.85); line-height:1.75; text-align:left; margin-bottom:20px; font-style:italic; position:relative; }
-.rm-review-text::before { content:'"'; position:absolute; top:-10px; left:14px; font-size:48px; color:rgba(245,166,35,0.15); font-family:Georgia,serif; line-height:1; }
-.rm-copy-btn { width:100%; padding:14px; background:var(--gold); color:#1a0f00; border:none; border-radius:50px; font-weight:700; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk',sans-serif; display:flex; align-items:center; justify-content:center; gap:9px; box-shadow:0 8px 24px rgba(245,166,35,0.3); margin-bottom:16px; }
-.rm-copy-btn:hover { background:#fff; transform:translateY(-2px); }
-.rm-copy-btn.copied { background:var(--teal); color:#081a10; transform:none; }
-.rm-hint { font-size:12.5px; color:var(--mute); line-height:1.6; }
-.rm-google-link { display:inline-flex; align-items:center; gap:6px; margin-top:12px; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.3); padding:10px 20px; border-radius:30px; font-weight:700; font-size:13.5px; color:var(--gold); text-decoration:none; transition:var(--transition); }
-.rm-google-link:hover { background:var(--gold); color:#1a0f00; }
 </style>
 </head>
 <body>
@@ -253,10 +320,10 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 <header id="siteHeader">
   <nav class="navbar">
     <a href="index.html" class="logo">
-      <img src="logo.jpeg" alt="Moksh Tours & Travel Logo">
+      <img src="logo.jpeg" alt="Moksh Travel Logo">
       <div class="logo-text">
-        <strong>MOKSH TOURS</strong>
-        <span>& Travel</span>
+        <strong>MOKSH</strong>
+        <span>Travel</span>
       </div>
     </a>
     <div class="menu" id="mainMenu">
@@ -279,7 +346,7 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
   <div class="page-hero-inner">
     <div class="eyebrow"><span class="dot"></span>Real Travellers, Real Stories</div>
     <h1>What Our Customers<br>Say About <em>Us</em></h1>
-    <p>Over 100 travellers across Gujarat have shared their experiences. Here's what they found on the road with Moksh Tours & Travel.</p>
+    <p>Over 100 travellers across Gujarat have shared their experiences. Here's what they found on the road with Moksh Travel.</p>
     <div class="breadcrumb">
       <a href="index.html">Home</a>
       <i class="fas fa-chevron-right"></i>
@@ -339,6 +406,7 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 
 <!-- Reviews -->
 <section id="reviews">
+  <!-- Filter Bar -->
   <div class="filter-bar">
     <button class="filter-btn active" data-filter="all">All Reviews</button>
     <button class="filter-btn" data-filter="outstation">Outstation</button>
@@ -348,6 +416,7 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
     <button class="filter-btn" data-filter="tour">Gujarat Tour</button>
   </div>
 
+  <!-- Reviews Grid -->
   <div class="reviews-grid" id="reviewsGrid">
 
     <div class="review-card" data-category="outstation">
@@ -506,6 +575,7 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 
   </div>
 
+  <!-- Load More -->
   <div class="load-more-wrap">
     <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">
       <i class="fas fa-chevron-down"></i> Show More Reviews
@@ -520,9 +590,9 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
     <h2 class="section-title">Enjoyed the Ride?</h2>
     <p class="section-sub">Your review helps other travellers make the right choice — and means the world to our team.</p>
     <div class="review-cta-btns">
-      <button class="btn-gold" onclick="openReviewModal()">
+      <a href="https://g.page/r/CTQaIJuvHQ3REBE/review" target="_blank" class="btn-gold">
         <i class="fab fa-google"></i> Write a Google Review
-      </button>
+      </a>
       <a href="index.html#booking" class="btn-outline">
         <i class="fas fa-calendar-check"></i> Book Your Next Ride
       </a>
@@ -554,33 +624,18 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
     <div class="footer-col">
       <h4>Our Location</h4>
       <div class="footer-map">
-        <iframe src="https://www.google.com/maps?q=Moksh+Tours+%26+Travel+Ahmedabad&output=embed" width="100%" height="180" style="border:0;" loading="lazy"></iframe>
+        
+        <iframe src="https://www.google.com/maps?q=Moksh+Travel+Ahmedabad&output=embed" width="100%" height="180" style="border:0;" loading="lazy"></iframe>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Moksh Tours & Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
+  <div class="footer-bottom">© 2026 Moksh Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
 </footer>
 
 <!-- Floating Buttons -->
 <div class="float-wrap">
-  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <a href="tel:+919724429334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
-</div>
-
-<!-- Toast -->
-<div id="toast"></div>
-
-<!-- REVIEW MODAL -->
-<div id="reviewModal">
-  <div class="review-modal-card" id="reviewModalCard">
-    <button class="rm-close" onclick="closeReviewModal()">×</button>
-    <div id="reviewModalContent">
-      <div class="rm-loader">
-        <div class="rm-spinner"></div>
-        <p>Generating your personalised review…</p>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -627,7 +682,10 @@ function getFiltered() {
 
 function renderCards() {
   const filtered = getFiltered();
-  allCards.forEach(c => { c.classList.remove('visible'); c.style.animationDelay = ''; });
+  allCards.forEach(c => {
+    c.classList.remove('visible');
+    c.style.animationDelay = '';
+  });
   filtered.slice(0, visibleCount).forEach((c, i) => {
     c.style.animationDelay = (i * 0.05) + 's';
     c.classList.add('visible');
@@ -641,6 +699,7 @@ function loadMore() {
   renderCards();
 }
 
+// Filter buttons
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -651,103 +710,18 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
+// Initial render
 renderCards();
 
-// ── Toast ──────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'show';
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => t.className = '', 3500);
-}
-
-// ── Review Templates ───────────────────────────────────
-const reviewTemplates = [
-  "Outstanding cab service! The driver was punctual, the car was spotless, and the entire trip was smooth and comfortable. Transparent pricing with no hidden charges. Moksh Tours & Travel is the best cab service in Ahmedabad — will definitely book again!",
-  "Excellent experience with Moksh Tours & Travel! Professional driver, well-maintained vehicle, and on-time pickup. The pricing was fair and completely transparent. Highly recommend for anyone looking for a reliable cab service in Ahmedabad or Gujarat.",
-  "Very impressed with Moksh Tours & Travel. From easy booking to a comfortable journey, everything was perfect. The driver was courteous and took the best route. Loved the clean car and professional service. 5 stars without any hesitation!",
-  "Booked a cab with Moksh Tours & Travel and had a wonderful experience. The vehicle was clean, AC was perfect, driver was polite and professional. Arrived on time and the trip was stress-free. Best cab service in Ahmedabad!",
-  "Absolutely wonderful service by Moksh Tours & Travel! Quick response, punctual driver, and a comfortable ride throughout. The pricing was exactly as quoted — no hidden charges. Perfect for outstation trips from Ahmedabad. Highly recommended!",
-  "Moksh Tours & Travel deserves all 5 stars! From prompt booking confirmation to a smooth, comfortable journey, they exceeded expectations. The driver was experienced and friendly. This is the most trustworthy cab service I have used in Gujarat."
-];
-
-// ── Review Modal ───────────────────────────────────────
-window.openReviewModal = function() {
-  const modal = document.getElementById('reviewModal');
-  const card  = document.getElementById('reviewModalCard');
-  const content = document.getElementById('reviewModalContent');
-
-  modal.style.display = 'flex';
-  card.style.animation = 'none';
-  void card.offsetWidth;
-  card.style.animation = 'reviewModalIn 0.4s cubic-bezier(0.22,1,0.36,1) both';
-
-  content.innerHTML = `
-    <div class="rm-loader">
-      <div class="rm-spinner"></div>
-      <p>Generating your personalised review…</p>
-    </div>`;
-
-  setTimeout(() => {
-    const review = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
-    window._currentReview = review;
-    content.innerHTML = `
-      <div class="rm-stars">★★★★★</div>
-      <div class="rm-tag">✦ Your Review is Ready ✦</div>
-      <div class="rm-review-text">${review}</div>
-      <button class="rm-copy-btn" id="rmCopyBtn" onclick="copyReview()">
-        <i class="fas fa-copy"></i> Copy Review
-      </button>
-      <p class="rm-hint">
-        After copying, click <strong>Go to Google Reviews</strong> below and paste your review there.
-        <br>
-        <a class="rm-google-link" href="https://g.page/r/CTQaIJuvHQ3REBE/review" target="_blank">
-          <i class="fab fa-google"></i> Go to Google Reviews
-        </a>
-      </p>`;
-  }, 1400);
-};
-
-window.copyReview = function() {
-  const review = window._currentReview || '';
-  const btn = document.getElementById('rmCopyBtn');
-
-  const afterCopy = () => {
-    btn.classList.add('copied');
-    btn.innerHTML = '<i class="fas fa-check"></i> Copied! Now paste on Google';
-    showToast('Review copied to clipboard!');
-    setTimeout(() => {
+// ── Google review prompt (once, after 90s) ─────────────
+setTimeout(() => {
+  if (!localStorage.getItem('reviewPopup')) {
+    if (confirm('Thank you for visiting Moksh Travel.\n\nWould you like to leave a Google Review?')) {
       window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank');
-    }, 1500);
-  };
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(review).then(afterCopy).catch(() => fallbackCopy(review, afterCopy));
-  } else {
-    fallbackCopy(review, afterCopy);
+    }
+    localStorage.setItem('reviewPopup', 'yes');
   }
-};
-
-function fallbackCopy(text, callback) {
-  const el = document.createElement('textarea');
-  el.value = text;
-  el.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0;';
-  document.body.appendChild(el);
-  el.focus();
-  el.select();
-  try { document.execCommand('copy'); } catch(e) {}
-  document.body.removeChild(el);
-  callback();
-}
-
-window.closeReviewModal = function() {
-  document.getElementById('reviewModal').style.display = 'none';
-};
-
-document.getElementById('reviewModal').addEventListener('click', function(e) {
-  if (e.target === this) closeReviewModal();
-});
+}, 90000);
 </script>
 
 </body>
