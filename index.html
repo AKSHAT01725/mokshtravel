@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://yourdomain.com/logo.jpeg">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"TaxiService","name":"Moksh Tours & Travel","telephone":"+919724429334","email":"mokshtour.travel@gmail.com","address":{"@type":"PostalAddress","streetAddress":"1600 Bhavsar No Khacho","addressLocality":"Ahmedabad","addressRegion":"Gujarat","postalCode":"380018","addressCountry":"IN"},"areaServed":"Gujarat","url":"https://yourdomain.com"}
+{"@context":"https://schema.org","@type":"TaxiService","name":"Moksh Tours & Travel","telephone":"+919727729334","email":"mokshtour.travel@gmail.com","address":{"@type":"PostalAddress","streetAddress":"1600 Bhavsar No Khacho","addressLocality":"Ahmedabad","addressRegion":"Gujarat","postalCode":"380018","addressCountry":"IN"},"areaServed":"Gujarat","url":"https://yourdomain.com"}
 </script>
 
 <style>
@@ -469,8 +469,8 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       </div>
     </a>
     <!-- Mobile phone pill — visible only on mobile beside logo -->
-    <a href="tel:+919724429334" class="mobile-nav-phone">
-      <i class="fas fa-phone"></i> 97244 29334
+    <a href="tel:+919727729334" class="mobile-nav-phone">
+      <i class="fas fa-phone"></i> 97277 29334
     </a>
     <div class="menu" id="mainMenu">
       <a href="#services">Services</a>
@@ -479,7 +479,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <a href="#booking">Booking</a>
       <a href="reviews.html">Reviews</a>
       <a href="about.html">About</a>
-      <a href="#contact" class="nav-cta">📞 97244 29334</a>
+      <a href="#contact" class="nav-cta">📞 97277 29334</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
       <i class="fas fa-bars" id="hamburgerIcon"></i>
@@ -495,7 +495,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <p class="hero-sub">Safe, comfortable and reliable travel for outstation trips, airport transfers, corporate travel and Gujarat tours — available 24×7.</p>
     <div class="hero-btns">
       <a href="#booking" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Your Cab</a>
-      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
     </div>
     <div class="hero-stats">
       <div><div class="hero-stat-num">100+</div><div class="hero-stat-label">Happy Customers</div></div>
@@ -538,11 +538,13 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <div class="loc-card">
   <div class="loc-row">
     <label class="loc-label">From</label>
-    <select class="loc-input" id="bPickup" required></select>
+    <input type="text" class="loc-input" id="bPickup" placeholder="Enter pickup city" autocomplete="off" required>
+    <div class="loc-dropdown" id="bPickupDropdown"></div>
   </div>
   <div class="loc-row">
     <label class="loc-label">To</label>
-    <select class="loc-input" id="bDestination" required></select>
+    <input type="text" class="loc-input" id="bDestination" placeholder="Enter destination city" autocomplete="off" required>
+    <div class="loc-dropdown" id="bDestinationDropdown"></div>
   </div>
   <button type="button" class="swap-btn" id="swapBtn" title="Swap locations" aria-label="Swap pickup and destination">
     <i class="fas fa-right-left"></i>
@@ -555,7 +557,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <label class="loc-label">Pickup Date</label>
     <input class="loc-input dt-input" type="date" id="bDate" required>
   </div>
-  <div class="dt-card" id="returnDateCard" style="display:none;">
+  <div class="dt-card" id="returnDateCard">
     <label class="loc-label">Return Date</label>
     <input class="loc-input dt-input" type="date" id="bReturnDate">
   </div>
@@ -574,13 +576,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <option>Airport Pickup</option>
       <option>Airport Drop</option>
     </select>
-  </div>
-</div>
-
-<div class="date-time-grid" id="flightGrid" style="display:none;">
-  <div class="dt-card booking-full" style="grid-column:1/-1;">
-    <label class="loc-label">Flight Number (Optional)</label>
-    <input class="loc-input dt-input" type="text" id="bFlightNumber" placeholder="e.g. AI-101">
   </div>
 </div>
 
@@ -682,7 +677,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   <div class="section-header-center" style="margin-bottom:48px">
     <div class="section-tag">Popular Routes</div>
     <h2 class="section-title">Route & Pricing</h2>
-    <p class="section-sub">Toll + driver charges inclusive. Transparent pricing — no surprises.</p>
+    <p class="section-sub">Transparent pricing — no surprises.</p>
   </div>
   <div class="routes-grid">
     <div class="route-card">
@@ -693,7 +688,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹1,799</span></div>
           <div class="route-price">SUV: <span>₹2,699</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Vadodara','1799','2699')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -705,7 +699,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹3,599</span></div>
           <div class="route-price">SUV: <span>₹3,999</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Surat','3599','3999')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -717,7 +710,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹2,499</span></div>
           <div class="route-price">SUV: <span>₹2,999</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Rajkot','2499','2999')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -729,7 +721,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹2,699</span></div>
           <div class="route-price">SUV: <span>₹3,199</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Bhavnagar','2699','3199')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -741,7 +732,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹7,500</span></div>
           <div class="route-price">SUV: <span>₹8,999</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Mumbai','7500','8999')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -753,7 +743,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹9,800</span></div>
           <div class="route-price">SUV: <span>₹11,000</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Pune','9800','11000')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -765,7 +754,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹3,699</span></div>
           <div class="route-price">SUV: <span>₹4,199</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Gandhidham','3699','4199')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -777,7 +765,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
           <div class="route-price">Sedan: <span>₹8,700</span></div>
           <div class="route-price">SUV: <span>₹11,500</span></div>
         </div>
-        <p class="route-note">Toll + driver charge inclusive</p>
         <button class="route-btn" onclick="bookRoute('Ahmedabad - Jaipur','8700','11500')"><i class="fas fa-arrow-right"></i> Book Now</button>
       </div>
     </div>
@@ -806,7 +793,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
       <div class="rt-features">
         <div class="rt-feature-pill"><i class="fas fa-check"></i> AC Comfort</div>
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> 24×7 Available</div>
       </div>
       <button class="rt-book-btn" onclick="bookRoundTrip('Swift Dzire','11')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
@@ -826,7 +812,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
       <div class="rt-features">
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Spacious Cabin</div>
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Family Ideal</div>
       </div>
       <button class="rt-book-btn" onclick="bookRoundTrip('Maruti Ertiga','14')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
@@ -845,7 +830,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
       <div class="rt-features">
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Premium SUV</div>
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> Toll Included</div>
         <div class="rt-feature-pill"><i class="fas fa-check"></i> Long-Distance</div>
       </div>
       <button class="rt-book-btn" onclick="bookRoundTrip('Innova Crysta','19')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
@@ -889,10 +873,10 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   <div class="contact-inner">
     <div class="section-tag">Get in Touch</div>
     <h2 class="section-title">Contact Us</h2>
-    <div class="contact-phone">97244 29334</div>
+    <div class="contact-phone">97277 29334</div>
     <div class="contact-btns">
-      <a href="tel:+919724429334" class="contact-btn contact-btn-gold"><i class="fas fa-phone"></i> Call Now</a>
-      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="tel:+919727729334" class="contact-btn contact-btn-gold"><i class="fas fa-phone"></i> Call Now</a>
+      <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       <a href="https://www.instagram.com/moksh_tour_travel/" target="_blank" class="contact-btn contact-btn-outline"><i class="fab fa-instagram"></i> Instagram</a>
       <a href="https://www.google.com/search?q=Moksh+Tours+%26+Travel" target="_blank" class="contact-btn contact-btn-outline"><i class="fas fa-star"></i> Google</a>
     </div>
@@ -918,7 +902,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <p>Safe & Reliable Cab Service Across Gujarat — Ahmedabad Based Travel Partner</p>
       <p>1600 Bhavsar No Khacho,<br>Opp Swaminarayan Temple,<br>Ahmedabad — 380018</p>
       <a href="mailto:mokshtour.travel@gmail.com">mokshtour.travel@gmail.com</a>
-      <a href="tel:+919724429334">+91 97244 29334</a>
+      <a href="tel:+919727729334">+91 97277 29334</a>
     </div>
     <div class="footer-col">
       <h4>Our Location</h4>
@@ -934,8 +918,8 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
 </footer>
 
 <div class="float-wrap">
-  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  <a href="tel:+919724429334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
+  <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+919727729334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
 </div>
 
 <!-- Loading Screen -->
@@ -1010,14 +994,64 @@ const gujaratLocations = [
   "Daman","Diu","Vadnagar","Siddhpur","Mumbai","Pune","Jaipur"
 ];
 
-function populateLocationSelect(id, defaultLabel, preselect) {
-  const sel = document.getElementById(id);
-  let html = `<option value="" disabled ${preselect ? '' : 'selected'}>${defaultLabel}</option>`;
-  html += gujaratLocations.map(loc => `<option value="${loc}"${loc === preselect ? ' selected' : ''}>${loc}</option>`).join('');
-  sel.innerHTML = html;
+function setupLocationAutocomplete(inputId, dropdownId) {
+  const input = document.getElementById(inputId);
+  const dropdown = document.getElementById(dropdownId);
+  let highlightedIndex = -1;
+  let currentMatches = [];
+
+  function filterLocations(query) {
+    const q = query.trim().toLowerCase();
+    if (!q) return gujaratLocations.slice(0, 8);
+    return gujaratLocations.filter(loc => loc.toLowerCase().includes(q)).slice(0, 8);
+  }
+
+  function renderDropdown(matches) {
+    currentMatches = matches;
+    highlightedIndex = -1;
+    if (matches.length === 0) {
+      dropdown.innerHTML = '';
+      dropdown.classList.remove('open');
+      return;
+    }
+    dropdown.innerHTML = matches.map((loc, i) =>
+      `<div class="loc-dropdown-item" data-index="${i}">${loc}</div>`
+    ).join('');
+    dropdown.classList.add('open');
+  }
+
+  function updateHighlight(items) {
+    items.forEach((item, i) => item.classList.toggle('highlighted', i === highlightedIndex));
+    if (highlightedIndex >= 0) items[highlightedIndex].scrollIntoView({ block: 'nearest' });
+  }
+
+  input.addEventListener('input', () => renderDropdown(filterLocations(input.value)));
+  input.addEventListener('focus', () => renderDropdown(filterLocations(input.value)));
+  input.addEventListener('blur', () => setTimeout(() => dropdown.classList.remove('open'), 150));
+
+  input.addEventListener('keydown', (e) => {
+    const items = dropdown.querySelectorAll('.loc-dropdown-item');
+    if (!dropdown.classList.contains('open') || items.length === 0) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1); updateHighlight(items); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); highlightedIndex = Math.max(highlightedIndex - 1, 0); updateHighlight(items); }
+    else if (e.key === 'Enter' && highlightedIndex >= 0) { e.preventDefault(); input.value = currentMatches[highlightedIndex]; dropdown.classList.remove('open'); }
+    else if (e.key === 'Escape') { dropdown.classList.remove('open'); }
+  });
+
+  dropdown.addEventListener('mousedown', (e) => {
+    const item = e.target.closest('.loc-dropdown-item');
+    if (!item) return;
+    e.preventDefault();
+    input.value = currentMatches[parseInt(item.dataset.index, 10)];
+    dropdown.classList.remove('open');
+  });
 }
-populateLocationSelect('bPickup', 'Select pickup city', 'Ahmedabad');
-populateLocationSelect('bDestination', 'Select destination city');
+
+document.getElementById('bPickup').value = 'Ahmedabad';
+setupLocationAutocomplete('bPickup', 'bPickupDropdown');
+setupLocationAutocomplete('bDestination', 'bDestinationDropdown');
+document.getElementById('bPickup').value = 'Ahmedabad';
+document.getElementById('bDestination').value = '';
 
 // ── SWAP FROM / TO ─────────────────────────────────────
 document.getElementById('swapBtn').addEventListener('click', () => {
@@ -1040,24 +1074,16 @@ document.querySelectorAll('.trip-pill').forEach(pill => {
     pill.classList.add('active');
     selectedTrip = pill.dataset.trip;
 
-    const returnCard  = document.getElementById('returnDateCard');
     const rentalCard  = document.getElementById('rentalHoursCard');
     const airportCard = document.getElementById('airportTypeCard');
-    const flightGrid  = document.getElementById('flightGrid');
 
-    returnCard.style.display = 'none';
     rentalCard.style.display = 'none';
     airportCard.style.display = 'none';
-    flightGrid.style.display = 'none';
-    document.getElementById('bReturnDate').value = '';
 
-    if (selectedTrip === 'Round Trip') {
-      returnCard.style.display = 'block';
-    } else if (selectedTrip === 'Rental') {
+    if (selectedTrip === 'Rental') {
       rentalCard.style.display = 'block';
     } else if (selectedTrip === 'Airport') {
       airportCard.style.display = 'block';
-      flightGrid.style.display = 'grid';
     }
   });
 });
@@ -1105,7 +1131,6 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   const passenger  = document.getElementById('bPassenger').value;
   const rentalHours = document.getElementById('bRentalHours').value;
   const airportType = document.getElementById('bAirportType').value;
-  const flightNumber = document.getElementById('bFlightNumber').value.trim();
   const trip       = selectedTrip;
 
   if (!pickup) { showToast('Please select a pickup city', true); return; }
@@ -1116,7 +1141,7 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   if (!time) {
     showToast('Please select a pickup time', true); return;
   }
-  if (trip === 'Round Trip' && !returnDate) {
+  if (!returnDate) {
     showToast('Please select a return date', true); return;
   }
 
@@ -1128,10 +1153,9 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     try {
       await window.saveBookingToFirebase('bookings', {
         mobile, pickup, destination: dest, date,
-        returnDate: trip === 'Round Trip' ? returnDate : '',
+        returnDate,
         rentalHours: trip === 'Rental' ? rentalHours : '',
         airportType: trip === 'Airport' ? airportType : '',
-        flightNumber: trip === 'Airport' ? flightNumber : '',
         time, car, passenger, trip, received: new Date()
       });
     } catch(err) {
@@ -1146,14 +1170,15 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 ▪️ Contact Number : ${mobile}
 ▪️ Pickup Location : ${pickup}
 ▪️ Destination : ${dest}
-▪️ Pickup Date : ${date}${trip === 'Round Trip' && returnDate ? `\n▪️ Return Date : ${returnDate}` : ''}
+▪️ Pickup Date : ${date}
+▪️ Return Date : ${returnDate}
 ▪️ Pickup Time : ${time}
 ▪️ Vehicle Type : ${car}
 ▪️ Passengers : ${passenger}
-▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}${trip === 'Airport' ? `\n▪️ Airport Transfer : ${airportType}${flightNumber ? `\n▪️ Flight Number : ${flightNumber}` : ''}` : ''}
+▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}${trip === 'Airport' ? `\n▪️ Airport Transfer : ${airportType}` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
-  const waUrl = 'https://wa.me/919724429334?text=' + encodeURIComponent(waMsg);
+  const waUrl = 'https://wa.me/919727729334?text=' + encodeURIComponent(waMsg);
 
   document.getElementById('loadingScreen').style.display = 'none';
   showSuccessModal('Booking saved! Redirecting you to WhatsApp to confirm with our team.');
@@ -1166,10 +1191,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
     document.querySelector('.trip-pill[data-trip="One Way"]').classList.add('active');
     selectedTrip = 'One Way';
-    document.getElementById('returnDateCard').style.display = 'none';
     document.getElementById('rentalHoursCard').style.display = 'none';
     document.getElementById('airportTypeCard').style.display = 'none';
-    document.getElementById('flightGrid').style.display = 'none';
     btn.disabled = false;
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp';
   }, 1200);
@@ -1194,7 +1217,7 @@ window.bookRoute = async function(route, sedan, suv) {
 📱 Customer Number: ${mobile}
 ━━━━━━━━━━━━━━━━━━━━`;
 
-  window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
+  window.open('https://wa.me/919727729334?text=' + encodeURIComponent(waMsg), '_blank');
 };
 
 // ── ROUND TRIP BOOKING ────────────────────────────────
@@ -1242,7 +1265,7 @@ window.submitRtWA = async function() {
 📱 Customer Number : ${mobile}
 ━━━━━━━━━━━━━━━━━━━━`;
 
-  window.open('https://wa.me/919724429334?text=' + encodeURIComponent(waMsg), '_blank');
+  window.open('https://wa.me/919727729334?text=' + encodeURIComponent(waMsg), '_blank');
 };
 
 document.getElementById('rtPhone').addEventListener('keydown', e => {
