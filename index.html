@@ -208,6 +208,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .loc-label { display:block; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mute); margin-bottom:5px; }
 .loc-input { width:100%; background:transparent; border:none; outline:none; color:var(--ice); font-family:'Space Grotesk'; font-size:19px; font-weight:700; padding:0; }
 .loc-input::placeholder { color:rgba(238,242,248,0.28); font-weight:600; }
+select.loc-input { cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237e8fa8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 6px center; padding-right:26px; }
+select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; }
 .swap-btn { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; background:var(--navy-3); border:1.5px solid var(--gold); color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:var(--transition); z-index:2; box-shadow:0 4px 14px rgba(0,0,0,0.35); padding:0; }
 .swap-btn:hover { background:var(--gold); color:#1a0f00; }
 .swap-btn i { font-size:14px; transform:rotate(90deg); display:block; transition:var(--transition); }
@@ -535,13 +537,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     <div class="loc-card">
   <div class="loc-row">
     <label class="loc-label">From</label>
-    <input class="loc-input" type="text" id="bPickup" placeholder="Pickup city or place" required autocomplete="off">
-    <div class="loc-dropdown" id="pickupDropdown"></div>
+    <select class="loc-input" id="bPickup" required></select>
   </div>
   <div class="loc-row">
     <label class="loc-label">To</label>
-    <input class="loc-input" type="text" id="bDestination" placeholder="Destination city or place" required autocomplete="off">
-    <div class="loc-dropdown" id="destDropdown"></div>
+    <select class="loc-input" id="bDestination" required></select>
   </div>
   <button type="button" class="swap-btn" id="swapBtn" title="Swap locations" aria-label="Swap pickup and destination">
     <i class="fas fa-right-left"></i>
@@ -608,23 +608,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
       <i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp
     </button>
   </form>
-
-  <datalist id="gujaratLocations">
-    <option value="Ahmedabad"><option value="Gandhinagar"><option value="Surat"><option value="Vadodara">
-    <option value="Rajkot"><option value="Bhavnagar"><option value="Jamnagar"><option value="Junagadh">
-    <option value="Porbandar"><option value="Anand"><option value="Nadiad"><option value="Mehsana">
-    <option value="Patan"><option value="Palanpur"><option value="Bharuch"><option value="Navsari">
-    <option value="Valsad"><option value="Vapi"><option value="Morbi"><option value="Surendranagar">
-    <option value="Amreli"><option value="Gandhidham"><option value="Bhuj"><option value="Mundra">
-    <option value="Dwarka"><option value="Somnath"><option value="Gir Somnath"><option value="Sasan Gir">
-    <option value="Ambaji"><option value="Saputara"><option value="White Rann"><option value="Dhordo">
-    <option value="Dholavira"><option value="Statue of Unity"><option value="Kevadia"><option value="Mount Abu">
-    <option value="Rani Ki Vav"><option value="Modhera Sun Temple"><option value="Lothal"><option value="Adalaj">
-    <option value="Palitana"><option value="Girnar"><option value="Ahmedpur Mandvi Beach"><option value="Mandvi Beach">
-    <option value="Polo Forest"><option value="Sabarmati Ashram"><option value="Akshardham Gandhinagar">
-    <option value="Daman"><option value="Diu"><option value="Vadnagar"><option value="Siddhpur">
-    <option value="Mumbai"><option value="Pune"><option value="Jaipur">
-  </datalist>
 </section>
 
 <!-- SERVICES -->
@@ -999,11 +982,64 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   </div>
 </div>
 
-<!-- Firebase Module -->
-<script type="module">
-import { saveDocument } from './firebase-config.js';
+<!-- ── CORE UI SCRIPT (runs always, no external dependency) ── -->
+<script>
+// ── LOCATIONS DATA ─────────────────────────────────────
+const gujaratLocations = [
+  "Ahmedabad","Gandhinagar","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Junagadh",
+  "Porbandar","Anand","Nadiad","Mehsana","Patan","Palanpur","Bharuch","Navsari","Valsad","Vapi",
+  "Morbi","Surendranagar","Amreli","Gandhidham","Bhuj","Mundra","Dwarka","Somnath","Gir Somnath",
+  "Sasan Gir","Ambaji","Saputara","White Rann","Dhordo","Dholavira","Statue of Unity","Kevadia",
+  "Mount Abu","Rani Ki Vav","Modhera Sun Temple","Lothal","Adalaj","Palitana","Girnar",
+  "Ahmedpur Mandvi Beach","Mandvi Beach","Polo Forest","Sabarmati Ashram","Akshardham Gandhinagar",
+  "Daman","Diu","Vadnagar","Siddhpur","Mumbai","Pune","Jaipur"
+];
 
-// ── Helpers ───────────────────────────────────────────
+function populateLocationSelect(id, defaultLabel, preselect) {
+  const sel = document.getElementById(id);
+  let html = `<option value="" disabled ${preselect ? '' : 'selected'}>${defaultLabel}</option>`;
+  html += gujaratLocations.map(loc => `<option value="${loc}"${loc === preselect ? ' selected' : ''}>${loc}</option>`).join('');
+  sel.innerHTML = html;
+}
+populateLocationSelect('bPickup', 'Select pickup city', 'Ahmedabad');
+populateLocationSelect('bDestination', 'Select destination city');
+
+// ── SWAP FROM / TO ─────────────────────────────────────
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const pickupEl = document.getElementById('bPickup');
+  const destEl   = document.getElementById('bDestination');
+  const temp = pickupEl.value;
+  pickupEl.value = destEl.value;
+  destEl.value = temp;
+});
+
+// Prevent past-date selection
+document.getElementById('bDate').min = new Date().toISOString().split('T')[0];
+document.getElementById('bReturnDate').min = new Date().toISOString().split('T')[0];
+
+// ── TRIP TYPE PILLS ────────────────────────────────────
+let selectedTrip = 'One Way';
+document.querySelectorAll('.trip-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    selectedTrip = pill.dataset.trip;
+
+    const returnCard = document.getElementById('returnDateCard');
+    const rentalCard = document.getElementById('rentalHoursCard');
+
+    returnCard.style.display = 'none';
+    rentalCard.style.display = 'none';
+    document.getElementById('bReturnDate').value = '';
+
+    if (selectedTrip === 'Round Trip') {
+      returnCard.style.display = 'block';
+    } else if (selectedTrip === 'Rental') {
+      rentalCard.style.display = 'block';
+    }
+  });
+});
+
 function showToast(msg, isError) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -1033,99 +1069,6 @@ function closeSuccessModal() {
 }
 window.closeSuccessModal = closeSuccessModal;
 
-// ── TRIP TYPE PILLS ────────────────────────────────────
-// ── LOCATIONS DATA ─────────────────────────────────────
-const gujaratLocations = [
-  "Ahmedabad","Gandhinagar","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Junagadh",
-  "Porbandar","Anand","Nadiad","Mehsana","Patan","Palanpur","Bharuch","Navsari","Valsad","Vapi",
-  "Morbi","Surendranagar","Amreli","Gandhidham","Bhuj","Mundra","Dwarka","Somnath","Gir Somnath",
-  "Sasan Gir","Ambaji","Saputara","White Rann","Dhordo","Dholavira","Statue of Unity","Kevadia",
-  "Mount Abu","Rani Ki Vav","Modhera Sun Temple","Lothal","Adalaj","Palitana","Girnar",
-  "Ahmedpur Mandvi Beach","Mandvi Beach","Polo Forest","Sabarmati Ashram","Akshardham Gandhinagar",
-  "Daman","Diu","Vadnagar","Siddhpur","Mumbai","Pune","Jaipur"
-];
-
-function setupLocationAutocomplete(inputId, dropdownId) {
-  const input = document.getElementById(inputId);
-  const dropdown = document.getElementById(dropdownId);
-  let highlighted = -1;
-
-  function filteredList(val) {
-    if (!val) return gujaratLocations.slice(0, 8);
-    return gujaratLocations.filter(l => l.toLowerCase().includes(val.toLowerCase())).slice(0, 8);
-  }
-  function render(list) {
-    highlighted = -1;
-    if (!list.length) {
-      dropdown.innerHTML = '<div class="loc-dropdown-empty">No matching location</div>';
-    } else {
-      dropdown.innerHTML = list.map(loc => `<div class="loc-dropdown-item">${loc}</div>`).join('');
-    }
-    dropdown.classList.add('open');
-  }
-  function updateHighlight(items) {
-    items.forEach((it, i) => it.classList.toggle('highlighted', i === highlighted));
-    if (highlighted > -1) items[highlighted].scrollIntoView({ block: 'nearest' });
-  }
-
-  input.addEventListener('focus', () => render(filteredList(input.value)));
-  input.addEventListener('input', () => render(filteredList(input.value)));
-  input.addEventListener('blur', () => setTimeout(() => dropdown.classList.remove('open'), 150));
-
-  dropdown.addEventListener('mousedown', e => {
-    const item = e.target.closest('.loc-dropdown-item');
-    if (!item) return;
-    input.value = item.textContent;
-    dropdown.classList.remove('open');
-  });
-
-  input.addEventListener('keydown', e => {
-    const items = dropdown.querySelectorAll('.loc-dropdown-item');
-    if (!items.length) return;
-    if (e.key === 'ArrowDown') { e.preventDefault(); highlighted = (highlighted + 1) % items.length; updateHighlight(items); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); highlighted = (highlighted - 1 + items.length) % items.length; updateHighlight(items); }
-    else if (e.key === 'Enter' && highlighted > -1) { e.preventDefault(); input.value = items[highlighted].textContent; dropdown.classList.remove('open'); }
-  });
-}
-setupLocationAutocomplete('bPickup', 'pickupDropdown');
-setupLocationAutocomplete('bDestination', 'destDropdown');
-
-// Prevent past-date selection
-document.getElementById('bDate').min = new Date().toISOString().split('T')[0];
-document.getElementById('bReturnDate').min = new Date().toISOString().split('T')[0];
-
-// ── TRIP TYPE PILLS (fixed) ───────────────────────────
-let selectedTrip = 'One Way';
-document.querySelectorAll('.trip-pill').forEach(pill => {
-  pill.addEventListener('click', () => {
-    document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
-    pill.classList.add('active');
-    selectedTrip = pill.dataset.trip;
-
-    const returnCard = document.getElementById('returnDateCard');
-    const rentalCard = document.getElementById('rentalHoursCard');
-
-    returnCard.style.display = 'none';
-    rentalCard.style.display = 'none';
-    document.getElementById('bReturnDate').value = '';
-
-    if (selectedTrip === 'Round Trip') {
-      returnCard.style.display = 'block';
-    } else if (selectedTrip === 'Rental') {
-      rentalCard.style.display = 'block';
-    }
-  });
-});
-
-// ── SWAP FROM / TO ─────────────────────────────────────
-document.getElementById('swapBtn').addEventListener('click', () => {
-  const pickupEl = document.getElementById('bPickup');
-  const destEl   = document.getElementById('bDestination');
-  const temp = pickupEl.value;
-  pickupEl.value = destEl.value;
-  destEl.value = temp;
-});
-
 // ── MAIN BOOKING FORM ─────────────────────────────────
 document.getElementById('bookingForm').addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -1141,6 +1084,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   const rentalHours = document.getElementById('bRentalHours').value;
   const trip       = selectedTrip;
 
+  if (!pickup) { showToast('Please select a pickup city', true); return; }
+  if (!dest) { showToast('Please select a destination city', true); return; }
   if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
     showToast('Please enter a valid 10-digit mobile number', true); return;
   }
@@ -1155,15 +1100,17 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
   document.getElementById('loadingScreen').style.display = 'flex';
 
-  try {
-    await saveDocument('bookings', {
-      mobile, pickup, destination: dest, date,
-      returnDate: trip === 'Round Trip' ? returnDate : '',
-      rentalHours: trip === 'Rental' ? rentalHours : '',
-      time, car, passenger, trip, received: new Date()
-    });
-  } catch(err) {
-    console.error('Firebase save error:', err);
+  if (window.saveBookingToFirebase) {
+    try {
+      await window.saveBookingToFirebase('bookings', {
+        mobile, pickup, destination: dest, date,
+        returnDate: trip === 'Round Trip' ? returnDate : '',
+        rentalHours: trip === 'Rental' ? rentalHours : '',
+        time, car, passenger, trip, received: new Date()
+      });
+    } catch(err) {
+      console.error('Firebase save error:', err);
+    }
   }
 
   const waMsg =
@@ -1188,10 +1135,13 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   setTimeout(() => {
     window.open(waUrl, '_blank');
     document.getElementById('bookingForm').reset();
+    populateLocationSelect('bPickup', 'Select pickup city', 'Ahmedabad');
+    populateLocationSelect('bDestination', 'Select destination city');
     document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
     document.querySelector('.trip-pill[data-trip="One Way"]').classList.add('active');
     selectedTrip = 'One Way';
     document.getElementById('returnDateCard').style.display = 'none';
+    document.getElementById('rentalHoursCard').style.display = 'none';
     btn.disabled = false;
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp';
   }, 1200);
@@ -1202,8 +1152,10 @@ window.bookRoute = async function(route, sedan, suv) {
   const mobile = prompt('Enter your 10-digit mobile number to book this route:');
   if (!mobile || mobile.length !== 10 || isNaN(mobile)) { alert('Please enter a valid 10-digit mobile number.'); return; }
 
-  try { await saveDocument('routeInquiries', { route, sedan, suv, mobile, received: new Date() }); }
-  catch(err) { console.error('Firebase error:', err); }
+  if (window.saveBookingToFirebase) {
+    try { await window.saveBookingToFirebase('routeInquiries', { route, sedan, suv, mobile, received: new Date() }); }
+    catch(err) { console.error('Firebase error:', err); }
+  }
 
   const waMsg =
 `🚖 I WANT TO BOOK CAB
@@ -1248,9 +1200,11 @@ window.submitRtWA = async function() {
   const rate = window._rtRate;
   closeRtModal();
 
-  try {
-    await saveDocument('roundTripRequests', { car, rate, mobile, received: new Date() });
-  } catch(err) { console.error('Firebase error:', err); }
+  if (window.saveBookingToFirebase) {
+    try {
+      await window.saveBookingToFirebase('roundTripRequests', { car, rate, mobile, received: new Date() });
+    } catch(err) { console.error('Firebase error:', err); }
+  }
 
   const waMsg =
 `🚖 ROUND TRIP BOOKING
@@ -1270,7 +1224,6 @@ document.getElementById('rtPhone').addEventListener('keydown', e => {
 document.getElementById('rtModal').addEventListener('click', function(e) {
   if (e.target === this) closeRtModal();
 });
-
 
 // ── REVIEW MODAL ──────────────────────────────────────
 const reviewTemplates = [
@@ -1341,9 +1294,7 @@ window.closeReviewModal = function() {
 document.getElementById('reviewModal').addEventListener('click', function(e) {
   if (e.target === this) closeReviewModal();
 });
-</script>
 
-<script>
 // Header scroll
 window.addEventListener('scroll', () => {
   document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 40);
@@ -1391,6 +1342,12 @@ function showMoreReviews() {
   }, { threshold: 0.4 });
   rateNums.forEach(el => observer.observe(el));
 })();
+</script>
+
+<!-- ── OPTIONAL FIREBASE MODULE (loaded separately; core site works even if this fails) ── -->
+<script type="module">
+import { saveDocument } from './firebase-config.js';
+window.saveBookingToFirebase = saveDocument;
 </script>
 
 </body>
