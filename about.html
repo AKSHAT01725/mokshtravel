@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us | Moksh Tours & Travel — Ahmedabad's Trusted Cab Service</title>
+<title>About Us | Moksh Travel — Ahmedabad's Trusted Cab Service</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-<meta name="description" content="Learn about Moksh Tours & Travel — Ahmedabad's trusted cab service for outstation trips, airport transfers, corporate travel and Gujarat tours.">
+<meta name="description" content="Learn about Moksh Travel — Ahmedabad's trusted cab service for outstation trips, airport transfers, corporate travel and Gujarat tours.">
 <meta name="robots" content="index, follow">
 <meta name="geo.region" content="IN-GJ">
 <meta name="geo.placename" content="Ahmedabad">
@@ -78,7 +78,23 @@ header.scrolled { background:rgba(6,15,34,0.95); border-bottom-color:var(--line-
   background-size:60px 60px;
   mask-image:radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent);
 }
-.page-hero-inner { position:relative; z-index:1; max-width:720px; }
+.page-hero-inner { max-width:620px; }
+.page-hero-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.page-hero-cta { flex-shrink: 0; }
+.page-hero-cta .contact-btn { font-size: 15px; padding: 15px 30px; }
+@media (max-width: 860px) {
+  .page-hero-row { flex-direction: column; align-items: flex-start; }
+  .page-hero-cta { width: 100%; }
+  .page-hero-cta .contact-btn { width: 100%; justify-content: center; }
+}
 .eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.25); border-radius:30px; padding:6px 16px; font-size:12px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:22px; }
 .eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 1.8s infinite; }
 @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
@@ -227,10 +243,10 @@ section { padding:80px 6%; }
 <header id="siteHeader">
   <nav class="navbar">
     <a href="index.html" class="logo">
-      <img src="logo.jpeg" alt="Moksh Tours & Travel Logo">
+      <img src="logo.jpeg" alt="Moksh Travel Logo">
       <div class="logo-text">
-        <strong>MOKSH TOURS</strong>
-        <span>& Travel</span>
+        <strong>MOKSH</strong>
+        <span>Travel</span>
       </div>
     </a>
     <div class="menu" id="mainMenu">
@@ -250,11 +266,18 @@ section { padding:80px 6%; }
 
 <!-- PAGE HERO -->
 <section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="eyebrow"><span class="dot"></span>About Moksh Tours & Travel</div>
-    <h1>Your Trusted Travel<br>Partner Across <em>Gujarat</em></h1>
-    <p>Safe, comfortable and dependable cab service built on punctuality, transparent pricing and genuine care for every passenger we drive — from daily city rides to complete Gujarat tours.</p>
-    <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>About Us</span></div>
+  <div class="page-hero-row">
+    <div class="page-hero-inner">
+      <div class="eyebrow"><span class="dot"></span>About Moksh Travel</div>
+      <h1>Your Trusted Travel<br>Partner Across <em>Gujarat</em></h1>
+      <p>Safe, comfortable and dependable cab service built on punctuality, transparent pricing and genuine care for every passenger we drive — from daily city rides to complete Gujarat tours.</p>
+      <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>About Us</span></div>
+    </div>
+    <div class="page-hero-cta">
+  <a href="index.html#booking" class="contact-btn contact-btn-gold">
+    <i class="fas fa-calendar-check"></i> Book Your Cab
+  </a>
+</div>
   </div>
 </section>
 
@@ -264,7 +287,7 @@ section { padding:80px 6%; }
     <div class="story-text">
       <div class="section-tag">Who We Are</div>
       <h2 class="section-title">Built on Punctuality and Trust</h2>
-      <p>Moksh Tours & Travel is one of Ahmedabad's most trusted cab service providers, offering reliable and affordable travel solutions for individuals, families, tourists and businesses across Gujarat.</p>
+      <p>Moksh Travel is one of Ahmedabad's most trusted cab service providers, offering reliable and affordable travel solutions for individuals, families, tourists and businesses across Gujarat.</p>
       <p>With a strong commitment to safety and customer satisfaction, we handle everything from quick local rides to multi-day outstation journeys, airport transfers, corporate travel, wedding logistics and custom Gujarat tour packages — all with the same standard of care.</p>
       <p>Our fleet is clean, well-maintained and driven by experienced, courteous drivers who know the routes and treat every trip like it's the only one that matters.</p>
     </div>
@@ -334,7 +357,7 @@ section { padding:80px 6%; }
     </div>
   </div>
   <div class="commit-closing">
-    <p>Whether you need a one-way cab, round-trip taxi, airport pickup, corporate travel solution or a complete Gujarat sightseeing tour, <strong>Moksh Tours & Travel</strong> is dedicated to dependable service at honest, competitive prices.</p>
+    <p>Whether you need a one-way cab, round-trip taxi, airport pickup, corporate travel solution or a complete Gujarat sightseeing tour, <strong>Moksh Travel</strong> is dedicated to dependable service at honest, competitive prices.</p>
   </div>
 </section>
 
@@ -347,7 +370,7 @@ section { padding:80px 6%; }
     <div class="cta-btns">
       <button class="contact-btn contact-btn-gold" onclick="openQuoteModal()"><i class="fas fa-calendar-check"></i> Request a Free Quote</button>
       <a href="tel:+919724429334" class="contact-btn contact-btn-outline"><i class="fas fa-phone"></i> Call Now</a>
-      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
   </div>
 </section>
@@ -376,19 +399,19 @@ section { padding:80px 6%; }
     <div class="footer-col">
       <h4>Our Location</h4>
       <div class="footer-map">
-        <iframe src="https://www.google.com/maps?q=Moksh+Tours+%26+Travel+Ahmedabad&output=embed" width="100%" height="180" style="border:0;" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps?q=Moksh+Travel+Ahmedabad&output=embed" width="100%" height="180" style="border:0;" loading="lazy"></iframe>
       </div>
     </div>
   </div>
   <div class="footer-keywords">
     Ahmedabad Taxi Service • Airport Cab Ahmedabad • Outstation Taxi Gujarat • One Way Cab Ahmedabad • Round Trip Taxi Gujarat • Corporate Cab Ahmedabad
   </div>
-  <div class="footer-bottom">© 2026 Moksh Tours & Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
+  <div class="footer-bottom">© 2026 Moksh Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
 </footer>
 
 <!-- Floating Buttons -->
 <div class="float-wrap">
-  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Tours%20%26%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://wa.me/919724429334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <a href="tel:+919724429334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
 </div>
 
