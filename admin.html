@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dispatch Console — Moksh Tours & Travel</title>
+<title>Dispatch Console — Moksh Travel</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,13 +22,12 @@
   --teal-dim:   rgba(61,220,151,0.14);
   --red:        #ff5c5c;
   --red-dim:    rgba(255,92,92,0.14);
-  --green:      #25d366;
-  --green-dim:  rgba(37,211,102,0.14);
   --ice:        #eef1f7;
   --mute:       #7e8ba3;
   --mute-2:     #586580;
   --radius:     14px;
 }
+
 *{ margin:0; padding:0; box-sizing:border-box; }
 body{
   font-family:'Inter',Arial,sans-serif;
@@ -41,7 +40,7 @@ body{
 }
 .mono, .num{ font-family:'Space Grotesk',monospace; }
 
-/* ══ LOGIN ══ */
+/* ══════════════ LOGIN ══════════════ */
 #loginScreen{
   position:fixed; inset:0;
   background: var(--navy);
@@ -65,124 +64,387 @@ body{
   position:absolute; top:0; left:18%; right:18%; height:2px;
   background:linear-gradient(90deg,transparent,var(--amber),transparent);
 }
-.login-eyebrow{ font-family:'Space Grotesk'; font-size:11px; letter-spacing:2.5px; color:var(--amber); text-transform:uppercase; margin-bottom:10px; }
-.login-box h1{ font-family:'Space Grotesk'; font-size:26px; font-weight:700; margin-bottom:6px; }
-.login-box .sub{ color:var(--mute); font-size:13.5px; margin-bottom:32px; }
+.login-eyebrow{
+  font-family:'Space Grotesk';
+  font-size:11px;
+  letter-spacing:2.5px;
+  color:var(--amber);
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.login-box h1{
+  font-family:'Space Grotesk';
+  font-size:26px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.login-box .sub{
+  color:var(--mute);
+  font-size:13.5px;
+  margin-bottom:32px;
+}
 .field{ margin-bottom:16px; }
-.field label{ display:block; font-size:11.5px; color:var(--mute); margin-bottom:7px; text-transform:uppercase; letter-spacing:1px; }
-.field input{ width:100%; padding:13px 15px; background: rgba(255,255,255,0.04); border:1px solid var(--line); border-radius:9px; color:var(--ice); font-size:14.5px; outline:none; transition:.2s; font-family:'Inter'; }
-.field input:focus{ border-color:var(--amber); background:rgba(255,180,0,0.05); }
-.login-btn{ width:100%; padding:14px; background:var(--amber); color:#10171c; border:none; border-radius:9px; font-weight:700; font-size:15px; cursor:pointer; margin-top:8px; transition:.2s; font-family:'Space Grotesk'; }
+.field label{
+  display:block;
+  font-size:11.5px;
+  color:var(--mute);
+  margin-bottom:7px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.field input{
+  width:100%;
+  padding:13px 15px;
+  background: rgba(255,255,255,0.04);
+  border:1px solid var(--line);
+  border-radius:9px;
+  color:var(--ice);
+  font-size:14.5px;
+  outline:none;
+  transition:.2s;
+  font-family:'Inter';
+}
+.field input:focus{
+  border-color:var(--amber);
+  background:rgba(255,180,0,0.05);
+}
+.login-btn{
+  width:100%;
+  padding:14px;
+  background:var(--amber);
+  color:#10171c;
+  border:none;
+  border-radius:9px;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  margin-top:8px;
+  transition:.2s;
+  font-family:'Space Grotesk';
+}
 .login-btn:hover{ filter:brightness(1.1); transform:translateY(-1px); }
 .login-btn:disabled{ opacity:.55; cursor:default; transform:none; }
-#loginError{ color:var(--red); font-size:13px; margin-top:14px; display:none; padding:10px 13px; background:var(--red-dim); border-radius:8px; border:1px solid rgba(255,92,92,0.25); }
+#loginError{
+  color:var(--red);
+  font-size:13px;
+  margin-top:14px;
+  display:none;
+  padding:10px 13px;
+  background:var(--red-dim);
+  border-radius:8px;
+  border:1px solid rgba(255,92,92,0.25);
+}
 
-/* ══ SHELL ══ */
+/* ══════════════ SHELL ══════════════ */
 #adminApp{ display:none; }
-.sidebar{ position:fixed; left:0; top:0; bottom:0; width:240px; background:var(--ink); border-right:1px solid var(--line); display:flex; flex-direction:column; z-index:100; transition:.3s; }
-.brand{ padding:26px 22px 22px; border-bottom:1px solid var(--line); }
-.brand-mark{ display:flex; align-items:center; gap:10px; margin-bottom:4px; }
-.brand-mark .dot{ width:9px; height:9px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 4px var(--teal-dim); animation:pulse 2s infinite; }
+
+.sidebar{
+  position:fixed; left:0; top:0; bottom:0;
+  width:240px;
+  background:var(--ink);
+  border-right:1px solid var(--line);
+  display:flex; flex-direction:column;
+  z-index:100;
+  transition:.3s;
+}
+.brand{
+  padding:26px 22px 22px;
+  border-bottom:1px solid var(--line);
+}
+.brand-mark{
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:4px;
+}
+.brand-mark .dot{
+  width:9px; height:9px; border-radius:50%;
+  background:var(--teal);
+  box-shadow:0 0 0 4px var(--teal-dim);
+  animation:pulse 2s infinite;
+}
 @keyframes pulse{ 50%{opacity:.4;} }
-.brand h2{ font-family:'Space Grotesk'; font-size:15.5px; letter-spacing:.5px; }
-.brand span{ font-size:11.5px; color:var(--mute); display:block; margin-top:5px; }
-.nav-item{ display:flex; align-items:center; gap:13px; padding:14px 22px; color:var(--mute); cursor:pointer; transition:.18s; font-size:13.5px; font-weight:500; border-left:3px solid transparent; }
+.brand h2{
+  font-family:'Space Grotesk';
+  font-size:15.5px;
+  letter-spacing:.5px;
+}
+.brand span{
+  font-size:11.5px; color:var(--mute); display:block; margin-top:5px;
+}
+.nav-item{
+  display:flex; align-items:center; gap:13px;
+  padding:14px 22px;
+  color:var(--mute);
+  cursor:pointer;
+  transition:.18s;
+  font-size:13.5px;
+  font-weight:500;
+  border-left:3px solid transparent;
+}
 .nav-item:hover{ color:var(--ice); background:rgba(255,255,255,0.03); }
-.nav-item.active{ color:var(--amber); border-left-color:var(--amber); background:var(--amber-dim); }
+.nav-item.active{
+  color:var(--amber);
+  border-left-color:var(--amber);
+  background:var(--amber-dim);
+}
 .nav-item i{ width:16px; text-align:center; font-size:13px; }
-.nav-count{ margin-left:auto; background:rgba(255,255,255,0.08); color:var(--mute); font-size:11px; padding:1px 7px; border-radius:10px; font-family:'Space Grotesk'; }
+.nav-count{
+  margin-left:auto;
+  background:rgba(255,255,255,0.08);
+  color:var(--mute);
+  font-size:11px;
+  padding:1px 7px;
+  border-radius:10px;
+  font-family:'Space Grotesk';
+}
 .nav-item.active .nav-count{ background:rgba(255,180,0,0.2); color:var(--amber); }
-.sidebar-bottom{ margin-top:auto; padding:18px 22px; border-top:1px solid var(--line); }
-.admin-id{ font-size:11.5px; color:var(--mute-2); margin-bottom:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.logout-btn{ display:flex; align-items:center; gap:9px; color:var(--red); cursor:pointer; font-size:13px; font-weight:600; }
+.sidebar-bottom{
+  margin-top:auto;
+  padding:18px 22px;
+  border-top:1px solid var(--line);
+}
+.admin-id{
+  font-size:11.5px; color:var(--mute-2); margin-bottom:12px;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.logout-btn{
+  display:flex; align-items:center; gap:9px;
+  color:var(--red);
+  cursor:pointer; font-size:13px; font-weight:600;
+}
 .logout-btn:hover{ opacity:.8; }
+
 .main{ margin-left:240px; padding:28px 32px 50px; min-height:100vh; }
 
-/* ══ TICKER ══ */
-.ticker{ display:flex; align-items:center; gap:14px; background:linear-gradient(90deg, var(--ink-2), var(--ink)); border:1px solid var(--line); border-radius:11px; padding:11px 18px; margin-bottom:24px; font-size:12.5px; overflow:hidden; position:relative; }
-.ticker-label{ font-family:'Space Grotesk'; font-size:10.5px; letter-spacing:1.5px; color:var(--teal); text-transform:uppercase; flex-shrink:0; display:flex; align-items:center; gap:7px; }
-.ticker-label .pip{ width:6px; height:6px; border-radius:50%; background:var(--teal); animation:pulse 1.4s infinite; }
-.ticker-msg{ color:var(--mute); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+/* DISPATCH TICKER — signature element */
+.ticker{
+  display:flex; align-items:center; gap:14px;
+  background:linear-gradient(90deg, var(--ink-2), var(--ink));
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:11px 18px;
+  margin-bottom:24px;
+  font-size:12.5px;
+  overflow:hidden;
+  position:relative;
+}
+.ticker-label{
+  font-family:'Space Grotesk';
+  font-size:10.5px;
+  letter-spacing:1.5px;
+  color:var(--teal);
+  text-transform:uppercase;
+  flex-shrink:0;
+  display:flex; align-items:center; gap:7px;
+}
+.ticker-label .pip{
+  width:6px; height:6px; border-radius:50%; background:var(--teal);
+  animation:pulse 1.4s infinite;
+}
+.ticker-msg{
+  color:var(--mute); flex:1;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
 .ticker-msg b{ color:var(--ice); font-weight:600; }
 .ticker-time{ color:var(--mute-2); font-family:'Space Grotesk'; flex-shrink:0; }
-.topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:26px; flex-wrap:wrap; gap:14px; }
-.topbar h1{ font-family:'Space Grotesk'; font-size:23px; font-weight:700; }
+
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:26px;
+  flex-wrap:wrap; gap:14px;
+}
+.topbar h1{
+  font-family:'Space Grotesk';
+  font-size:23px; font-weight:700;
+}
 .topbar-right{ display:flex; align-items:center; gap:12px; }
-.refresh-btn{ background:rgba(255,255,255,0.05); border:1px solid var(--line); color:var(--mute); padding:9px 14px; border-radius:8px; font-size:12.5px; cursor:pointer; display:flex; align-items:center; gap:7px; transition:.2s; }
+.refresh-btn{
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--line);
+  color:var(--mute);
+  padding:9px 14px;
+  border-radius:8px;
+  font-size:12.5px;
+  cursor:pointer;
+  display:flex; align-items:center; gap:7px;
+  transition:.2s;
+}
 .refresh-btn:hover{ color:var(--ice); border-color:var(--line-2); }
 .refresh-btn.spinning i{ animation:spin 0.8s linear infinite; }
 @keyframes spin{ 100%{ transform:rotate(360deg); } }
+
 .page{ display:none; }
 .page.active{ display:block; animation:fadeIn .25s ease; }
 @keyframes fadeIn{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
 
-/* ══ STAT CARDS ══ */
-.stats-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin-bottom:26px; }
-.stat-card{ background:var(--ink); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px; position:relative; overflow:hidden; }
-.stat-card::after{ content:''; position:absolute; right:-30px; top:-30px; width:100px; height:100px; border-radius:50%; background:var(--accent-glow, rgba(255,180,0,0.08)); filter:blur(10px); }
+/* STAT CARDS */
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:16px;
+  margin-bottom:26px;
+}
+.stat-card{
+  background:var(--ink);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px 22px;
+  position:relative;
+  overflow:hidden;
+}
+.stat-card::after{
+  content:''; position:absolute; right:-30px; top:-30px;
+  width:100px; height:100px; border-radius:50%;
+  background:var(--accent-glow, rgba(255,180,0,0.08));
+  filter:blur(10px);
+}
 .stat-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
-.stat-icon{ width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:15px; }
+.stat-icon{
+  width:38px; height:38px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px;
+}
 .stat-icon.amber{ background:var(--amber-dim); color:var(--amber); }
 .stat-icon.teal { background:var(--teal-dim); color:var(--teal); }
 .stat-icon.red  { background:var(--red-dim); color:var(--red); }
 .stat-icon.blue { background:rgba(120,160,255,0.14); color:#7fa3ff; }
-.stat-icon.green{ background:var(--green-dim); color:var(--green); }
+.stat-trend{ font-size:11px; color:var(--mute-2); font-family:'Space Grotesk'; }
 .stat-num{ font-family:'Space Grotesk'; font-size:30px; font-weight:700; line-height:1; }
 .stat-label{ font-size:12px; color:var(--mute); margin-top:6px; }
 
-/* ══ TABLE ══ */
-.table-card{ background:var(--ink); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-bottom:22px; }
-.table-header{ display:flex; align-items:center; justify-content:space-between; padding:18px 22px; border-bottom:1px solid var(--line); flex-wrap:wrap; gap:10px; }
-.table-header h3{ font-family:'Space Grotesk'; font-size:14.5px; font-weight:600; display:flex; align-items:center; gap:9px; }
+/* TABLE CARD */
+.table-card{
+  background:var(--ink);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin-bottom:22px;
+}
+.table-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 22px;
+  border-bottom:1px solid var(--line);
+  flex-wrap:wrap; gap:10px;
+}
+.table-header h3{
+  font-family:'Space Grotesk';
+  font-size:14.5px; font-weight:600;
+  display:flex; align-items:center; gap:9px;
+}
 .table-header h3 i{ color:var(--amber); }
 .table-actions{ display:flex; gap:9px; }
-.btn-sm{ padding:8px 14px; border-radius:8px; border:none; font-size:12.5px; font-weight:600; cursor:pointer; transition:.2s; display:flex; align-items:center; gap:6px; font-family:'Inter'; }
+.btn-sm{
+  padding:8px 14px;
+  border-radius:8px;
+  border:none;
+  font-size:12.5px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.2s;
+  display:flex; align-items:center; gap:6px;
+  font-family:'Inter';
+}
 .btn-amber{ background:var(--amber); color:#1a1200; }
 .btn-amber:hover{ filter:brightness(1.1); }
 .btn-outline{ background:transparent; border:1px solid var(--line-2); color:var(--ice); }
 .btn-outline:hover{ border-color:var(--amber); color:var(--amber); }
 .btn-danger-outline{ background:transparent; border:1px solid rgba(255,92,92,0.35); color:var(--red); }
 .btn-danger-outline:hover{ background:var(--red); color:white; border-color:var(--red); }
+
 .table-wrap{ overflow-x:auto; }
 table{ width:100%; border-collapse:collapse; font-size:13px; }
-th{ background:rgba(255,255,255,0.02); padding:11px 16px; text-align:left; color:var(--mute); font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:.6px; white-space:nowrap; font-family:'Space Grotesk'; }
+th{
+  background:rgba(255,255,255,0.02);
+  padding:11px 16px;
+  text-align:left;
+  color:var(--mute);
+  font-weight:600;
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  white-space:nowrap;
+  font-family:'Space Grotesk';
+}
 td{ padding:13px 16px; border-top:1px solid var(--line); vertical-align:top; }
 tr.data-row{ transition:.15s; }
 tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
-.tag{ display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:700; letter-spacing:.3px; font-family:'Space Grotesk'; }
+.tag{
+  display:inline-block; padding:3px 10px; border-radius:20px;
+  font-size:10.5px; font-weight:700; letter-spacing:.3px;
+  font-family:'Space Grotesk';
+}
 .tag-teal { background:var(--teal-dim); color:var(--teal); }
 .tag-amber{ background:var(--amber-dim); color:var(--amber); }
 .tag-blue { background:rgba(120,160,255,0.14); color:#7fa3ff; }
-.tag-green{ background:var(--green-dim); color:var(--green); }
-.del-btn{ background:transparent; border:1px solid rgba(255,92,92,0.3); color:var(--red); padding:6px 10px; border-radius:7px; cursor:pointer; font-size:12px; transition:.2s; }
+
+.del-btn{
+  background:transparent; border:1px solid rgba(255,92,92,0.3); color:var(--red);
+  padding:6px 10px; border-radius:7px; cursor:pointer; font-size:12px; transition:.2s;
+}
 .del-btn:hover{ background:var(--red); color:white; }
 .call-link{ color:var(--amber); text-decoration:none; font-family:'Space Grotesk'; }
-.wa-link{ color:var(--green); text-decoration:none; font-family:'Space Grotesk'; display:inline-flex; align-items:center; gap:5px; }
-.wa-link:hover{ opacity:.8; }
+
 .empty-row td{ text-align:center; padding:46px; color:var(--mute); }
 .empty-icon{ font-size:32px; margin-bottom:10px; opacity:.6; }
 .loading-row td{ text-align:center; padding:46px; color:var(--mute); }
 
-/* ══ SEARCH ══ */
+/* SEARCH BAR */
 .search-bar{ display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap; }
-.search-bar input{ flex:1; min-width:200px; padding:11px 16px; background:var(--ink); border:1px solid var(--line); border-radius:9px; color:var(--ice); font-size:13.5px; outline:none; transition:.2s; font-family:'Inter'; }
+.search-bar input{
+  flex:1; min-width:200px;
+  padding:11px 16px;
+  background:var(--ink);
+  border:1px solid var(--line);
+  border-radius:9px;
+  color:var(--ice);
+  font-size:13.5px;
+  outline:none;
+  transition:.2s;
+  font-family:'Inter';
+}
 .search-bar input:focus{ border-color:var(--amber); }
-.search-bar select{ padding:11px 14px; background:var(--ink); border:1px solid var(--line); border-radius:9px; color:var(--ice); font-size:13.5px; outline:none; cursor:pointer; }
+.search-bar select{
+  padding:11px 14px;
+  background:var(--ink);
+  border:1px solid var(--line);
+  border-radius:9px;
+  color:var(--ice);
+  font-size:13.5px;
+  outline:none;
+  cursor:pointer;
+}
 
-/* ══ SETTINGS ══ */
-.settings-card{ background:var(--ink); border:1px solid var(--line); border-radius:var(--radius); padding:26px; margin-bottom:18px; }
-.settings-card h3{ font-family:'Space Grotesk'; font-size:14.5px; margin-bottom:18px; color:var(--amber); display:flex; align-items:center; gap:9px; }
-.settings-row{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line); gap:14px; flex-wrap:wrap; }
+/* SETTINGS */
+.settings-card{
+  background:var(--ink); border:1px solid var(--line);
+  border-radius:var(--radius); padding:26px; margin-bottom:18px;
+}
+.settings-card h3{
+  font-family:'Space Grotesk'; font-size:14.5px; margin-bottom:18px; color:var(--amber);
+  display:flex; align-items:center; gap:9px;
+}
+.settings-row{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 0; border-bottom:1px solid var(--line); gap:14px; flex-wrap:wrap;
+}
 .settings-row:last-child{ border:none; }
 .settings-row label{ font-size:13.5px; }
 .settings-row span{ font-size:11.5px; color:var(--mute); margin-top:3px; display:block; }
 .settings-val{ color:var(--mute); font-size:13px; font-family:'Space Grotesk'; }
 
-/* ══ TOAST ══ */
-.toast{ position:fixed; top:22px; right:22px; background:var(--ink-2); border:1px solid var(--line-2); border-left:3px solid var(--amber); color:white; padding:14px 20px; border-radius:10px; font-size:13.5px; z-index:99999; opacity:0; transform:translateX(30px); transition:.3s; pointer-events:none; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.4); }
+/* TOAST */
+.toast{
+  position:fixed; top:22px; right:22px;
+  background:var(--ink-2); border:1px solid var(--line-2);
+  border-left:3px solid var(--amber);
+  color:white; padding:14px 20px; border-radius:10px;
+  font-size:13.5px; z-index:99999;
+  opacity:0; transform:translateX(30px); transition:.3s;
+  pointer-events:none; max-width:320px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
 .toast.show{ opacity:1; transform:translateX(0); }
 
-/* ══ MOBILE ══ */
+/* MOBILE */
 .hamburger-admin{ display:none; font-size:20px; cursor:pointer; color:var(--ice); }
 @media(max-width:768px){
   .sidebar{ transform:translateX(-100%); }
@@ -196,12 +458,13 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ══════════════ LOGIN ══════════════ -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-eyebrow">Restricted Access</div>
     <h1>Dispatch Console</h1>
-    <p class="sub">Moksh Tours &amp; Travel — Admin Sign In</p>
+    <p class="sub">Moksh Travel — Admin Sign In</p>
+
     <div class="field">
       <label>Email</label>
       <input type="email" id="loginEmail" placeholder="admin@mokshtours.com" autocomplete="off">
@@ -217,26 +480,42 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
   </div>
 </div>
 
-<!-- APP -->
+<!-- ══════════════ APP ══════════════ -->
 <div id="adminApp">
+
   <nav class="sidebar" id="sidebar">
     <div class="brand">
-      <div class="brand-mark"><div class="dot"></div><h2>DISPATCH CONSOLE</h2></div>
-      <span>Moksh Tours &amp; Travel</span>
+      <div class="brand-mark">
+        <div class="dot"></div>
+        <h2>DISPATCH CONSOLE</h2>
+      </div>
+      <span>Moksh Travel</span>
     </div>
-    <div class="nav-item active" onclick="showPage('dashboard',this)"><i class="fas fa-gauge-high"></i> Dashboard</div>
-    <div class="nav-item" onclick="showPage('bookings',this)"><i class="fas fa-calendar-check"></i> Bookings <span class="nav-count" id="navCountBookings">0</span></div>
-    <div class="nav-item" onclick="showPage('routes',this)"><i class="fas fa-route"></i> Route Inquiries <span class="nav-count" id="navCountRoutes">0</span></div>
-    <div class="nav-item" onclick="showPage('roundtrip',this)"><i class="fas fa-rotate"></i> Round Trips <span class="nav-count" id="navCountRound">0</span></div>
-    <div class="nav-item" onclick="showPage('whatsapp',this)"><i class="fab fa-whatsapp"></i> WA Inquiries <span class="nav-count" id="navCountWA">0</span></div>
-    <div class="nav-item" onclick="showPage('settings',this)"><i class="fas fa-gear"></i> Settings</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)">
+      <i class="fas fa-gauge-high"></i> Dashboard
+    </div>
+    <div class="nav-item" onclick="showPage('bookings',this)">
+      <i class="fas fa-calendar-check"></i> Bookings <span class="nav-count" id="navCountBookings">0</span>
+    </div>
+    <div class="nav-item" onclick="showPage('routes',this)">
+      <i class="fas fa-route"></i> Route Inquiries <span class="nav-count" id="navCountRoutes">0</span>
+    </div>
+    <div class="nav-item" onclick="showPage('roundtrip',this)">
+      <i class="fas fa-rotate"></i> Round Trips <span class="nav-count" id="navCountRound">0</span>
+    </div>
+    <div class="nav-item" onclick="showPage('settings',this)">
+      <i class="fas fa-gear"></i> Settings
+    </div>
     <div class="sidebar-bottom">
       <div class="admin-id" id="adminEmailLabel">—</div>
-      <div class="logout-btn" onclick="doLogout()"><i class="fas fa-power-off"></i> Sign Out</div>
+      <div class="logout-btn" onclick="doLogout()">
+        <i class="fas fa-power-off"></i> Sign Out
+      </div>
     </div>
   </nav>
 
   <main class="main">
+
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:14px;">
         <span class="hamburger-admin" onclick="toggleSidebar()"><i class="fas fa-bars"></i></span>
@@ -259,35 +538,39 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
     <div class="page active" id="page-dashboard">
       <div class="stats-row">
         <div class="stat-card" style="--accent-glow:rgba(255,180,0,0.1)">
-          <div class="stat-top"><div class="stat-icon amber"><i class="fas fa-calendar-check"></i></div></div>
+          <div class="stat-top">
+            <div class="stat-icon amber"><i class="fas fa-calendar-check"></i></div>
+          </div>
           <div class="stat-num num" id="stat-total">—</div>
           <div class="stat-label">Total Bookings</div>
         </div>
         <div class="stat-card" style="--accent-glow:rgba(61,220,151,0.1)">
-          <div class="stat-top"><div class="stat-icon teal"><i class="fas fa-route"></i></div></div>
+          <div class="stat-top">
+            <div class="stat-icon teal"><i class="fas fa-route"></i></div>
+          </div>
           <div class="stat-num num" id="stat-routes">—</div>
           <div class="stat-label">Route Inquiries</div>
         </div>
         <div class="stat-card" style="--accent-glow:rgba(120,160,255,0.1)">
-          <div class="stat-top"><div class="stat-icon blue"><i class="fas fa-rotate"></i></div></div>
+          <div class="stat-top">
+            <div class="stat-icon blue"><i class="fas fa-rotate"></i></div>
+          </div>
           <div class="stat-num num" id="stat-round">—</div>
           <div class="stat-label">Round Trip Requests</div>
         </div>
-        <div class="stat-card" style="--accent-glow:rgba(37,211,102,0.1)">
-          <div class="stat-top"><div class="stat-icon green"><i class="fab fa-whatsapp"></i></div></div>
-          <div class="stat-num num" id="stat-wa">—</div>
-          <div class="stat-label">WhatsApp Inquiries</div>
-        </div>
         <div class="stat-card" style="--accent-glow:rgba(255,92,92,0.1)">
-          <div class="stat-top"><div class="stat-icon red"><i class="fas fa-list-check"></i></div></div>
+          <div class="stat-top">
+            <div class="stat-icon red"><i class="fas fa-list-check"></i></div>
+          </div>
           <div class="stat-num num" id="stat-all">—</div>
           <div class="stat-label">All Inquiries</div>
         </div>
       </div>
+
       <div class="table-card">
         <div class="table-header">
           <h3><i class="fas fa-clock"></i>Recent Bookings</h3>
-          <button class="btn-sm btn-outline" onclick="document.querySelectorAll('.nav-item')[1].click()">View All</button>
+          <button class="btn-sm btn-outline" onclick="document.querySelector('.nav-item:nth-child(2)').click()">View All</button>
         </div>
         <div class="table-wrap">
           <table>
@@ -304,7 +587,9 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
         <input type="text" id="bookSearch" placeholder="Search by name, mobile, pickup…" oninput="renderBookings()">
         <select id="bookFilter" onchange="renderBookings()">
           <option value="">All Trip Types</option>
-          <option>One Way</option><option>Round Trip</option><option>Rental</option>
+          <option>One Way</option>
+          <option>Round Trip</option>
+          <option>Rental</option>
         </select>
         <button class="btn-sm btn-danger-outline" onclick="clearAll('bookings')"><i class="fas fa-trash"></i> Clear All</button>
         <button class="btn-sm btn-amber" onclick="exportCSV('bookings')"><i class="fas fa-download"></i> Export</button>
@@ -365,33 +650,18 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       </div>
     </div>
 
-    <!-- WHATSAPP INQUIRIES -->
-    <div class="page" id="page-whatsapp">
-      <div class="search-bar">
-        <input type="text" id="waSearch" placeholder="Search mobile number…" oninput="renderWA()">
-        <button class="btn-sm btn-danger-outline" onclick="clearAll('whatsapp')"><i class="fas fa-trash"></i> Clear All</button>
-        <button class="btn-sm btn-amber" onclick="exportCSV('whatsapp')"><i class="fas fa-download"></i> Export</button>
-      </div>
-      <div class="table-card">
-        <div class="table-header">
-          <h3><i class="fab fa-whatsapp"></i>WhatsApp Inquiries</h3>
-          <span class="settings-val" id="waCount"></span>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Mobile</th><th>Source</th><th>WhatsApp</th><th>Received</th><th>Action</th></tr></thead>
-            <tbody id="waBody"><tr class="loading-row"><td colspan="5">Loading…</td></tr></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
     <!-- SETTINGS -->
     <div class="page" id="page-settings">
       <div class="settings-card">
         <h3><i class="fas fa-circle-info"></i>Account</h3>
-        <div class="settings-row"><div><label>Signed in as</label></div><div class="settings-val" id="settingsEmail">—</div></div>
-        <div class="settings-row"><div><label>Authentication</label><span>Managed by Firebase Authentication</span></div><div class="settings-val">Email / Password</div></div>
+        <div class="settings-row">
+          <div><label>Signed in as</label></div>
+          <div class="settings-val" id="settingsEmail">—</div>
+        </div>
+        <div class="settings-row">
+          <div><label>Authentication</label><span>Managed by Firebase Authentication</span></div>
+          <div class="settings-val">Email / Password</div>
+        </div>
       </div>
       <div class="settings-card">
         <h3><i class="fas fa-building"></i>Business Info</h3>
@@ -402,7 +672,7 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       <div class="settings-card">
         <h3><i class="fas fa-database"></i>Data Management</h3>
         <div class="settings-row">
-          <div><label>Clear All Records</label><span>Permanently delete every booking, route inquiry, round trip and WhatsApp inquiry</span></div>
+          <div><label>Clear All Records</label><span>Permanently delete every booking, route inquiry, and round trip request</span></div>
           <button class="btn-sm btn-danger-outline" onclick="clearAll('all')"><i class="fas fa-trash-can"></i> Clear All Data</button>
         </div>
         <div class="settings-row">
@@ -411,6 +681,7 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
         </div>
       </div>
     </div>
+
   </main>
 </div>
 
@@ -422,16 +693,12 @@ import {
   fetchCollection, deleteDocument
 } from './firebase-config.js';
 
-// Sign out on tab close
-window.addEventListener('beforeunload', () => { logoutAdmin(); });
-
 // ─────────────────────────────────────────
 // STATE
 // ─────────────────────────────────────────
 let bookingsCache = [];
 let routesCache   = [];
 let roundCache    = [];
-let waCache       = [];
 let isFetching    = false;
 
 // ─────────────────────────────────────────
@@ -443,16 +710,28 @@ window.doLogin = async function(){
   const btn   = document.getElementById('loginBtn');
   const err   = document.getElementById('loginError');
   err.style.display = 'none';
-  if(!email || !pass){ err.textContent = 'Please enter both email and password.'; err.style.display = 'block'; return; }
+
+  if(!email || !pass){
+    err.textContent = 'Please enter both email and password.';
+    err.style.display = 'block';
+    return;
+  }
+
   btn.disabled = true;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> &nbsp;Signing in…';
+
   try{
     await loginAdmin(email, pass);
+    // onAuthStateChanged will handle showing the app
   }catch(e){
     let msg = 'Login failed. Check your email and password.';
-    if(e.code === 'auth/invalid-credential' || e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found') msg = 'Invalid email or password.';
-    else if(e.code === 'auth/too-many-requests') msg = 'Too many attempts. Please wait and try again.';
-    else if(e.code === 'auth/invalid-email') msg = 'Please enter a valid email address.';
+    if(e.code === 'auth/invalid-credential' || e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found'){
+      msg = 'Invalid email or password.';
+    } else if(e.code === 'auth/too-many-requests'){
+      msg = 'Too many attempts. Please wait and try again.';
+    } else if(e.code === 'auth/invalid-email'){
+      msg = 'Please enter a valid email address.';
+    }
     err.textContent = msg;
     err.style.display = 'block';
   } finally {
@@ -461,7 +740,9 @@ window.doLogin = async function(){
   }
 };
 
-window.doLogout = async function(){ await logoutAdmin(); };
+window.doLogout = async function(){
+  await logoutAdmin();
+};
 
 watchAuthState(user => {
   if(user){
@@ -478,7 +759,7 @@ watchAuthState(user => {
   }
 });
 
-document.getElementById('loginPass').addEventListener('keydown', e => {
+document.getElementById('loginPass').addEventListener('keydown', e=>{
   if(e.key === 'Enter') window.doLogin();
 });
 
@@ -490,24 +771,23 @@ window.refreshAll = async function(showSpinner){
   isFetching = true;
   const btn = document.getElementById('refreshBtn');
   if(showSpinner) btn.classList.add('spinning');
+
   try{
-    const [bookings, routes, round, wa] = await Promise.all([
+    const [bookings, routes, round] = await Promise.all([
       fetchCollection('bookings'),
       fetchCollection('routeInquiries'),
-      fetchCollection('roundTripRequests'),
-      fetchCollection('whatsappInquiries')
+      fetchCollection('roundTripRequests')
     ]);
     bookingsCache = bookings;
     routesCache   = routes;
     roundCache    = round;
-    waCache       = wa;
+
     updateStats();
     updateTicker();
     renderRecent();
     renderBookings();
     renderRoutes();
     renderRound();
-    renderWA();
   }catch(e){
     console.error(e);
     showToast('⚠ Could not load data: ' + (e.message||'check Firestore rules'));
@@ -538,19 +818,13 @@ window.deleteRound = async function(id){
   showToast('Round trip request deleted');
   refreshAll(false);
 };
-window.deleteWA = async function(id){
-  if(!confirm('Delete this WhatsApp inquiry?')) return;
-  await deleteDocument('whatsappInquiries', id);
-  showToast('WhatsApp inquiry deleted');
-  refreshAll(false);
-};
+
 window.clearAll = async function(type){
   if(!confirm('This will permanently delete the selected records. Continue?')) return;
   const jobs = [];
-  if(type==='bookings'  ||type==='all') jobs.push(...bookingsCache.map(b=>deleteDocument('bookings', b.id)));
-  if(type==='routes'    ||type==='all') jobs.push(...routesCache.map(r=>deleteDocument('routeInquiries', r.id)));
-  if(type==='roundtrip' ||type==='all') jobs.push(...roundCache.map(r=>deleteDocument('roundTripRequests', r.id)));
-  if(type==='whatsapp'  ||type==='all') jobs.push(...waCache.map(w=>deleteDocument('whatsappInquiries', w.id)));
+  if(type==='bookings'||type==='all')   jobs.push(...bookingsCache.map(b=>deleteDocument('bookings', b.id)));
+  if(type==='routes'  ||type==='all')   jobs.push(...routesCache.map(r=>deleteDocument('routeInquiries', r.id)));
+  if(type==='roundtrip'||type==='all')  jobs.push(...roundCache.map(r=>deleteDocument('roundTripRequests', r.id)));
   await Promise.all(jobs);
   showToast('Records cleared');
   refreshAll(false);
@@ -560,17 +834,15 @@ window.clearAll = async function(type){
 // STATS / TICKER
 // ─────────────────────────────────────────
 function updateStats(){
-  const total = bookingsCache.length + routesCache.length + roundCache.length + waCache.length;
   document.getElementById('stat-total').textContent  = bookingsCache.length;
   document.getElementById('stat-routes').textContent = routesCache.length;
   document.getElementById('stat-round').textContent  = roundCache.length;
-  document.getElementById('stat-wa').textContent     = waCache.length;
-  document.getElementById('stat-all').textContent    = total;
+  document.getElementById('stat-all').textContent    = bookingsCache.length + routesCache.length + roundCache.length;
   document.getElementById('navCountBookings').textContent = bookingsCache.length;
   document.getElementById('navCountRoutes').textContent   = routesCache.length;
   document.getElementById('navCountRound').textContent    = roundCache.length;
-  document.getElementById('navCountWA').textContent       = waCache.length;
 }
+
 function updateTicker(){
   const latest = bookingsCache[0];
   const msgEl  = document.getElementById('tickerMsg');
@@ -585,12 +857,15 @@ function updateTicker(){
 }
 
 // ─────────────────────────────────────────
-// RENDERS
+// RENDER: DASHBOARD RECENT
 // ─────────────────────────────────────────
 function renderRecent(){
   const tbody = document.getElementById('recentBookingsBody');
   const data  = bookingsCache.slice(0,5);
-  if(!data.length){ tbody.innerHTML = `<tr class="empty-row"><td colspan="6"><div class="empty-icon">📭</div>No bookings yet</td></tr>`; return; }
+  if(!data.length){
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="6"><div class="empty-icon">📭</div>No bookings yet</td></tr>`;
+    return;
+  }
   tbody.innerHTML = data.map(b => `
     <tr class="data-row">
       <td><strong>${esc(b.name)}</strong></td>
@@ -603,15 +878,22 @@ function renderRecent(){
   `).join('');
 }
 
+// ─────────────────────────────────────────
+// RENDER: BOOKINGS
+// ─────────────────────────────────────────
 window.renderBookings = function(){
   const q = (document.getElementById('bookSearch').value||'').toLowerCase();
   const f = document.getElementById('bookFilter').value;
   let data = bookingsCache;
   if(q) data = data.filter(b => ((b.name||'')+(b.mobile||'')+(b.pickup||'')+(b.destination||'')).toLowerCase().includes(q));
   if(f) data = data.filter(b => b.trip === f);
+
   document.getElementById('bookCount').textContent = data.length + ' record(s)';
   const tbody = document.getElementById('bookingsBody');
-  if(!data.length){ tbody.innerHTML = `<tr class="empty-row"><td colspan="10"><div class="empty-icon">📭</div>No bookings found</td></tr>`; return; }
+  if(!data.length){
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="10"><div class="empty-icon">📭</div>No bookings found</td></tr>`;
+    return;
+  }
   tbody.innerHTML = data.map(b => `
     <tr class="data-row">
       <td><strong>${esc(b.name)}</strong></td>
@@ -628,13 +910,19 @@ window.renderBookings = function(){
   `).join('');
 };
 
+// ─────────────────────────────────────────
+// RENDER: ROUTES
+// ─────────────────────────────────────────
 window.renderRoutes = function(){
   const q = (document.getElementById('routeSearch').value||'').toLowerCase();
   let data = routesCache;
   if(q) data = data.filter(r => ((r.route||'')+(r.mobile||'')).toLowerCase().includes(q));
   document.getElementById('routeCount').textContent = data.length + ' record(s)';
   const tbody = document.getElementById('routesBody');
-  if(!data.length){ tbody.innerHTML = `<tr class="empty-row"><td colspan="6"><div class="empty-icon">🗺️</div>No route inquiries yet</td></tr>`; return; }
+  if(!data.length){
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="6"><div class="empty-icon">🗺️</div>No route inquiries yet</td></tr>`;
+    return;
+  }
   tbody.innerHTML = data.map(r => `
     <tr class="data-row">
       <td><strong>${esc(r.route)}</strong></td>
@@ -647,13 +935,19 @@ window.renderRoutes = function(){
   `).join('');
 };
 
+// ─────────────────────────────────────────
+// RENDER: ROUND TRIPS
+// ─────────────────────────────────────────
 window.renderRound = function(){
   const q = (document.getElementById('roundSearch').value||'').toLowerCase();
   let data = roundCache;
   if(q) data = data.filter(r => ((r.car||'')+(r.mobile||'')).toLowerCase().includes(q));
   document.getElementById('roundCount').textContent = data.length + ' record(s)';
   const tbody = document.getElementById('roundBody');
-  if(!data.length){ tbody.innerHTML = `<tr class="empty-row"><td colspan="5"><div class="empty-icon">🔄</div>No round trip requests yet</td></tr>`; return; }
+  if(!data.length){
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="5"><div class="empty-icon">🔄</div>No round trip requests yet</td></tr>`;
+    return;
+  }
   tbody.innerHTML = data.map(r => `
     <tr class="data-row">
       <td><strong>${esc(r.car)}</strong></td>
@@ -661,28 +955,6 @@ window.renderRound = function(){
       <td><a class="call-link" href="tel:${esc(r.mobile)}">${esc(r.mobile)}</a></td>
       <td style="color:var(--mute);font-size:12px">${fmtDate(r.received)}</td>
       <td><button class="del-btn" onclick="deleteRound('${r.id}')"><i class="fas fa-trash"></i></button></td>
-    </tr>
-  `).join('');
-};
-
-window.renderWA = function(){
-  const q = (document.getElementById('waSearch').value||'').toLowerCase();
-  let data = waCache;
-  if(q) data = data.filter(w => ((w.mobile||'')+(w.source||'')).toLowerCase().includes(q));
-  document.getElementById('waCount').textContent = data.length + ' record(s)';
-  const tbody = document.getElementById('waBody');
-  if(!data.length){ tbody.innerHTML = `<tr class="empty-row"><td colspan="5"><div class="empty-icon">💬</div>No WhatsApp inquiries yet</td></tr>`; return; }
-  tbody.innerHTML = data.map(w => `
-    <tr class="data-row">
-      <td><a class="call-link" href="tel:${esc(w.mobile)}">${esc(w.mobile)}</a></td>
-      <td><span class="tag tag-green">${esc(w.source||'Website')}</span></td>
-      <td>
-        <a class="wa-link" href="https://wa.me/91${esc(w.mobile)}" target="_blank">
-          <i class="fab fa-whatsapp"></i> Chat
-        </a>
-      </td>
-      <td style="color:var(--mute);font-size:12px">${fmtDate(w.received)}</td>
-      <td><button class="del-btn" onclick="deleteWA('${w.id}')"><i class="fas fa-trash"></i></button></td>
     </tr>
   `).join('');
 };
@@ -707,11 +979,6 @@ window.exportCSV = function(type){
     rows.push(['Vehicle','Rate/KM','Mobile','Received']);
     roundCache.forEach(r => rows.push([r.car,r.rate,r.mobile,fmtDate(r.received)]));
   }
-  if(type==='whatsapp'||type==='all'){
-    rows.push([]); rows.push(['--- WHATSAPP INQUIRIES ---']);
-    rows.push(['Mobile','Source','Received']);
-    waCache.forEach(w => rows.push([w.mobile,w.source||'Website',fmtDate(w.received)]));
-  }
   const csv = rows.map(r => r.map(c => `"${(c||'').toString().replace(/"/g,'""')}"`).join(',')).join('\n');
   const blob = new Blob([csv], {type:'text/csv'});
   const a = document.createElement('a');
@@ -724,12 +991,21 @@ window.exportCSV = function(type){
 // ─────────────────────────────────────────
 // HELPERS
 // ─────────────────────────────────────────
-function esc(s){ if(s===undefined||s===null) return '—'; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function tripTag(trip){ if(trip==='One Way') return 'tag-blue'; if(trip==='Round Trip') return 'tag-teal'; return 'tag-amber'; }
+function esc(s){
+  if(s === undefined || s === null) return '—';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function tripTag(trip){
+  if(trip === 'One Way') return 'tag-blue';
+  if(trip === 'Round Trip') return 'tag-teal';
+  return 'tag-amber';
+}
 function fmtDate(ts){
   if(!ts) return '—';
-  try{ const d = ts.toDate ? ts.toDate() : new Date(ts); return d.toLocaleString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}); }
-  catch(e){ return '—'; }
+  try{
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  }catch(e){ return '—'; }
 }
 function showToast(msg){
   const t = document.getElementById('toast');
@@ -743,7 +1019,7 @@ window.showPage = function(name, el){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   if(el) el.classList.add('active');
-  const titles = {dashboard:'Dashboard',bookings:'Bookings',routes:'Route Inquiries',roundtrip:'Round Trip Requests',whatsapp:'WhatsApp Inquiries',settings:'Settings'};
+  const titles = {dashboard:'Dashboard',bookings:'Bookings',routes:'Route Inquiries',roundtrip:'Round Trip Requests',settings:'Settings'};
   document.getElementById('pageTitle').textContent = titles[name]||name;
   document.getElementById('sidebar').classList.remove('open');
 };
@@ -752,6 +1028,7 @@ window.toggleSidebar = function(){
   document.getElementById('sidebar').classList.toggle('open');
 };
 
+// live ticker clock-style refresh of "time ago" feel
 setInterval(()=>{ if(bookingsCache.length) updateTicker(); }, 30000);
 </script>
 
