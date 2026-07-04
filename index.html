@@ -531,6 +531,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <button type="button" class="trip-pill active" data-trip="One Way">One Way</button>
       <button type="button" class="trip-pill" data-trip="Round Trip">Round Trip</button>
       <button type="button" class="trip-pill" data-trip="Rental">Rental</button>
+      <button type="button" class="trip-pill" data-trip="Airport">Airport</button>
     </div>
 
     <!-- Unified From / To Card -->
@@ -566,6 +567,20 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <option>12 Hours / 120 KM</option>
       <option>Full Day (24 Hrs)</option>
     </select>
+  </div>
+  <div class="dt-card" id="airportTypeCard" style="display:none;">
+    <label class="loc-label">Airport Transfer Type</label>
+    <select class="loc-input dt-input" id="bAirportType">
+      <option>Airport Pickup</option>
+      <option>Airport Drop</option>
+    </select>
+  </div>
+</div>
+
+<div class="date-time-grid" id="flightGrid" style="display:none;">
+  <div class="dt-card booking-full" style="grid-column:1/-1;">
+    <label class="loc-label">Flight Number (Optional)</label>
+    <input class="loc-input dt-input" type="text" id="bFlightNumber" placeholder="e.g. AI-101">
   </div>
 </div>
 
@@ -1025,17 +1040,24 @@ document.querySelectorAll('.trip-pill').forEach(pill => {
     pill.classList.add('active');
     selectedTrip = pill.dataset.trip;
 
-    const returnCard = document.getElementById('returnDateCard');
-    const rentalCard = document.getElementById('rentalHoursCard');
+    const returnCard  = document.getElementById('returnDateCard');
+    const rentalCard  = document.getElementById('rentalHoursCard');
+    const airportCard = document.getElementById('airportTypeCard');
+    const flightGrid  = document.getElementById('flightGrid');
 
     returnCard.style.display = 'none';
     rentalCard.style.display = 'none';
+    airportCard.style.display = 'none';
+    flightGrid.style.display = 'none';
     document.getElementById('bReturnDate').value = '';
 
     if (selectedTrip === 'Round Trip') {
       returnCard.style.display = 'block';
     } else if (selectedTrip === 'Rental') {
       rentalCard.style.display = 'block';
+    } else if (selectedTrip === 'Airport') {
+      airportCard.style.display = 'block';
+      flightGrid.style.display = 'grid';
     }
   });
 });
@@ -1082,6 +1104,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   const car        = document.getElementById('bCar').value;
   const passenger  = document.getElementById('bPassenger').value;
   const rentalHours = document.getElementById('bRentalHours').value;
+  const airportType = document.getElementById('bAirportType').value;
+  const flightNumber = document.getElementById('bFlightNumber').value.trim();
   const trip       = selectedTrip;
 
   if (!pickup) { showToast('Please select a pickup city', true); return; }
@@ -1106,6 +1130,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
         mobile, pickup, destination: dest, date,
         returnDate: trip === 'Round Trip' ? returnDate : '',
         rentalHours: trip === 'Rental' ? rentalHours : '',
+        airportType: trip === 'Airport' ? airportType : '',
+        flightNumber: trip === 'Airport' ? flightNumber : '',
         time, car, passenger, trip, received: new Date()
       });
     } catch(err) {
@@ -1124,7 +1150,7 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 ▪️ Pickup Time : ${time}
 ▪️ Vehicle Type : ${car}
 ▪️ Passengers : ${passenger}
-▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}
+▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}${trip === 'Airport' ? `\n▪️ Airport Transfer : ${airportType}${flightNumber ? `\n▪️ Flight Number : ${flightNumber}` : ''}` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
   const waUrl = 'https://wa.me/919724429334?text=' + encodeURIComponent(waMsg);
@@ -1142,6 +1168,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     selectedTrip = 'One Way';
     document.getElementById('returnDateCard').style.display = 'none';
     document.getElementById('rentalHoursCard').style.display = 'none';
+    document.getElementById('airportTypeCard').style.display = 'none';
+    document.getElementById('flightGrid').style.display = 'none';
     btn.disabled = false;
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp';
   }, 1200);
