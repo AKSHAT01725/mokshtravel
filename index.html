@@ -549,7 +549,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <!-- Unified From / To Card -->
     <div class="loc-card">
   <div class="loc-row">
-    <label class="loc-label">From</label>
+    <label class="loc-label" id="bPickupLabel">From</label>
     <input type="text" class="loc-input" id="bPickup" placeholder="Enter pickup city" autocomplete="off" required>
     <div class="loc-dropdown" id="bPickupDropdown"></div>
   </div>
@@ -569,7 +569,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <label class="loc-label">Pickup Date</label>
     <input class="loc-input dt-input" type="date" id="bDate" required>
   </div>
-  <div class="dt-card" id="returnDateCard">
+  <div class="dt-card" id="returnDateCard" style="display:none;">
     <label class="loc-label">Return Date</label>
     <input class="loc-input dt-input" type="date" id="bReturnDate">
   </div>
@@ -578,13 +578,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <select class="loc-input dt-input" id="bRentalHours">
       <option>8 Hours / 80 KM</option>
       <option>12 Hours / 120 KM</option>
-    </select>
-  </div>
-  <div class="dt-card" id="airportTypeCard" style="display:none;">
-    <label class="loc-label">Airport Transfer Type</label>
-    <select class="loc-input dt-input" id="bAirportType">
-      <option>Airport Pickup</option>
-      <option>Airport Drop</option>
     </select>
   </div>
 </div>
@@ -1014,16 +1007,24 @@ const gujaratLocations = [
   "Daman","Diu","Vadnagar","Siddhpur","Mumbai","Pune","Jaipur"
 ];
 
-function setupLocationAutocomplete(inputId, dropdownId) {
+const airportLocations = [
+  "Ahmedabad Airport (SVPI)","Surat Airport","Vadodara Airport",
+  "Rajkot Airport (Hirasar)","Bhavnagar Airport","Mumbai Airport (CSMT)"
+];
+let pickupLocationList = gujaratLocations;
+
+function setupLocationAutocomplete(inputId, dropdownId, getList) {
   const input = document.getElementById(inputId);
   const dropdown = document.getElementById(dropdownId);
   let highlightedIndex = -1;
   let currentMatches = [];
+  const listSource = getList || (() => gujaratLocations);
 
   function filterLocations(query) {
+    const list = listSource();
     const q = query.trim().toLowerCase();
-    if (!q) return gujaratLocations.slice(0, 8);
-    return gujaratLocations.filter(loc => loc.toLowerCase().includes(q)).slice(0, 8);
+    if (!q) return list.slice(0, 8);
+    return list.filter(loc => loc.toLowerCase().includes(q)).slice(0, 8);
   }
 
   function renderDropdown(matches) {
@@ -1068,7 +1069,7 @@ function setupLocationAutocomplete(inputId, dropdownId) {
 }
 
 document.getElementById('bPickup').value = 'Ahmedabad';
-setupLocationAutocomplete('bPickup', 'bPickupDropdown');
+setupLocationAutocomplete('bPickup', 'bPickupDropdown', () => pickupLocationList);
 setupLocationAutocomplete('bDestination', 'bDestinationDropdown');
 
 
@@ -1094,15 +1095,28 @@ document.querySelectorAll('.trip-pill').forEach(pill => {
     selectedTrip = pill.dataset.trip;
 
     const rentalCard  = document.getElementById('rentalHoursCard');
-    const airportCard = document.getElementById('airportTypeCard');
+    const returnCard   = document.getElementById('returnDateCard');
+    const pickupLabel  = document.getElementById('bPickupLabel');
+    const pickupInput  = document.getElementById('bPickup');
 
     rentalCard.style.display = 'none';
-    airportCard.style.display = 'none';
+    returnCard.style.display = 'none';
 
     if (selectedTrip === 'Rental') {
       rentalCard.style.display = 'block';
-    } else if (selectedTrip === 'Airport') {
-      airportCard.style.display = 'block';
+    } else if (selectedTrip === 'Round Trip') {
+      returnCard.style.display = 'block';
+    }
+
+    if (selectedTrip === 'Airport') {
+      pickupLocationList = airportLocations;
+      pickupLabel.textContent = 'Which Airport';
+      pickupInput.placeholder = 'Select airport';
+      pickupInput.value = '';
+    } else {
+      pickupLocationList = gujaratLocations;
+      pickupLabel.textContent = 'From';
+      pickupInput.placeholder = 'Enter pickup city';
     }
   });
 });
@@ -1165,10 +1179,9 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   const car        = document.getElementById('bCar').value;
   const passenger  = document.getElementById('bPassenger').value;
   const rentalHours = document.getElementById('bRentalHours').value;
-  const airportType = document.getElementById('bAirportType').value;
   const trip       = selectedTrip;
 
-  if (!pickup) { showToast('Please select a pickup city', true); return; }
+  if (!pickup) { showToast(trip === 'Airport' ? 'Please select an airport' : 'Please select a pickup city', true); return; }
   if (!dest) { showToast('Please select a destination city', true); return; }
   if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
     showToast('Please enter a valid 10-digit mobile number', true); return;
@@ -1176,7 +1189,7 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   if (!time) {
     showToast('Please select a pickup time', true); return;
   }
-  if (!returnDate) {
+  if (trip === 'Round Trip' && !returnDate) {
     showToast('Please select a return date', true); return;
   }
 
@@ -1188,9 +1201,8 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     try {
       await window.saveBookingToFirebase('bookings', {
         mobile, pickup, destination: dest, date,
-        returnDate,
+        returnDate: trip === 'Round Trip' ? returnDate : '',
         rentalHours: trip === 'Rental' ? rentalHours : '',
-        airportType: trip === 'Airport' ? airportType : '',
         time, car, passenger, trip, received: new Date()
       });
     } catch(err) {
@@ -1202,7 +1214,7 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     await emailjs.send('service_xmnox9n', 'template_lqoj3yg', {
       mobile, pickup, destination: dest,
       date: toDMY(date),
-      returnDate: toDMY(returnDate),
+      returnDate: trip === 'Round Trip' ? toDMY(returnDate) : '',
       time: to12Hour(time),
       car, passenger, trip
     });
@@ -1217,12 +1229,11 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 ▪️ Contact Number : ${mobile}
 ▪️ Pickup Location : ${pickup}
 ▪️ Destination : ${dest}
-▪️ Pickup Date : ${date}
-▪️ Return Date : ${returnDate}
+▪️ Pickup Date : ${date}${trip === 'Round Trip' ? `\n▪️ Return Date : ${returnDate}` : ''}
 ▪️ Pickup Time : ${time}
 ▪️ Vehicle Type : ${car}
 ▪️ Passengers : ${passenger}
-▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}${trip === 'Airport' ? `\n▪️ Airport Transfer : ${airportType}` : ''}
+▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
   const waUrl = 'https://wa.me/919727729334?text=' + encodeURIComponent(waMsg);
@@ -1238,8 +1249,11 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
     document.querySelector('.trip-pill[data-trip="One Way"]').classList.add('active');
     selectedTrip = 'One Way';
+    pickupLocationList = gujaratLocations;
+    document.getElementById('bPickupLabel').textContent = 'From';
+    document.getElementById('bPickup').placeholder = 'Enter pickup city';
     document.getElementById('rentalHoursCard').style.display = 'none';
-    document.getElementById('airportTypeCard').style.display = 'none';
+    document.getElementById('returnDateCard').style.display = 'none';
     btn.disabled = false;
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp';
   }, 1200);
