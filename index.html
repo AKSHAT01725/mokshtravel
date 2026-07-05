@@ -593,29 +593,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   </div>
 </div>
 
-    <!-- Vehicle Type / Passengers -->
-    <div class="date-time-grid">
-      <div class="dt-card">
-        <label class="loc-label">Vehicle Type</label>
-        <select class="loc-input dt-input" id="bCar">
-          <option>Sedan</option>
-          <option>SUV</option>
-          <option>Premium SUV</option>
-          <option>Fortuner</option>
-        </select>
-      </div>
-      <div class="dt-card">
-        <label class="loc-label">Passengers</label>
-        <select class="loc-input dt-input" id="bPassenger">
-          <option>1–2 Passengers</option>
-          <option>3–4 Passengers</option>
-          <option>5–6 Passengers</option>
-          <option>7–8 Passengers</option>
-          <option>9–10 Passengers</option>
-          <option>10–15 Passengers</option>
-        </select>
-      </div>
-    </div>
+    
 
     <button type="submit" class="booking-submit" id="bookBtn">
       <i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp
@@ -1176,8 +1154,6 @@ document.getElementById('bookingForm').addEventListener('submit', async function
   const date       = document.getElementById('bDate').value;
   const returnDate = document.getElementById('bReturnDate').value;
   const time       = document.getElementById('bTime').value;
-  const car        = document.getElementById('bCar').value;
-  const passenger  = document.getElementById('bPassenger').value;
   const rentalHours = document.getElementById('bRentalHours').value;
   const trip       = selectedTrip;
 
@@ -1203,7 +1179,7 @@ document.getElementById('bookingForm').addEventListener('submit', async function
         mobile, pickup, destination: dest, date,
         returnDate: trip === 'Round Trip' ? returnDate : '',
         rentalHours: trip === 'Rental' ? rentalHours : '',
-        time, car, passenger, trip, received: new Date()
+        time, trip, received: new Date()
       });
     } catch(err) {
       console.error('Firebase save error:', err);
@@ -1216,7 +1192,7 @@ document.getElementById('bookingForm').addEventListener('submit', async function
       date: toDMY(date),
       returnDate: trip === 'Round Trip' ? toDMY(returnDate) : '',
       time: to12Hour(time),
-      car, passenger, trip,
+      trip,
       rentalHours: trip === 'Rental' ? rentalHours : ''
     });
   } catch(err) {
@@ -1233,8 +1209,6 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 ▪️ Destination : ${dest}
 ▪️ Pickup Date : ${date}${trip === 'Round Trip' ? `\n▪️ Return Date : ${returnDate}` : ''}
 ▪️ Pickup Time : ${time}
-▪️ Vehicle Type : ${car}
-▪️ Passengers : ${passenger}
 ▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}
 ━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
