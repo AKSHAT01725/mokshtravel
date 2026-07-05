@@ -753,14 +753,12 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       <input type="number" id="rmSuv" placeholder="2699">
     </div>
     <div class="field">
-      <label>Image Filename</label>
-      <input type="text" id="rmImage" placeholder="AV.png">
-    </div>
-    <button class="login-btn" onclick="saveRoutePricing()" style="margin-bottom:12px;">
-      <i class="fas fa-check"></i> &nbsp;Save Route
-    </button>
-    <button style="width:100%;background:none;border:none;color:var(--mute);font-size:13px;cursor:pointer;padding:6px;" onclick="closeRouteModal()">Cancel</button>
-  </div>
+  <label>Route Image</label>
+  <input type="file" id="rmImageFile" accept="image/*" onchange="previewRouteImage(event)"
+    style="width:100%;padding:10px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:9px;color:var(--ice);font-size:13px;">
+  <img id="rmImagePreview" style="display:none;max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line-2);">
+  <div id="rmUploadStatus" style="font-size:12px;color:var(--mute);margin-top:6px;"></div>
+</div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -768,7 +766,8 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
 <script type="module">
 import {
   auth, loginAdmin, logoutAdmin, watchAuthState,
-  fetchCollection, deleteDocument, saveDocument, updateDocument
+  fetchCollection, deleteDocument, saveDocument, updateDocument,
+  uploadRouteImage
 } from './firebase-config.js';
 
 // ─────────────────────────────────────────
@@ -1065,23 +1064,43 @@ window.renderRoutePricing = function(){
   `).join('');
 };
 
+window.previewRouteImage = function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const preview = document.getElementById('rmImagePreview');
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = 'block';
+};
+
 window.openRouteModal = function(id){
   const modal = document.getElementById('routeModal');
   const title = document.getElementById('routeModalTitle');
+  const preview = document.getElementById('rmImagePreview');
+  const fileInput = document.getElementById('rmImageFile');
   window._editingRouteId = id || null;
+  window._existingImageUrl = null;
+  fileInput.value = '';
+  document.getElementById('rmUploadStatus').textContent = '';
+
   if(id){
     const r = routePricingCache.find(x => x.id === id);
     title.textContent = 'Edit Route';
     document.getElementById('rmName').value  = r ? r.name  : '';
     document.getElementById('rmSedan').value = r ? r.sedan : '';
     document.getElementById('rmSuv').value   = r ? r.suv   : '';
-    document.getElementById('rmImage').value = r ? r.image : '';
+    if(r && r.image){
+      preview.src = r.image;
+      preview.style.display = 'block';
+      window._existingImageUrl = r.image;
+    } else {
+      preview.style.display = 'none';
+    }
   } else {
     title.textContent = 'Add Route';
     document.getElementById('rmName').value  = '';
     document.getElementById('rmSedan').value = '';
     document.getElementById('rmSuv').value   = '';
-    document.getElementById('rmImage').value = '';
+    preview.style.display = 'none';
   }
   modal.style.display = 'flex';
 };
@@ -1094,26 +1113,39 @@ window.saveRoutePricing = async function(){
   const name  = document.getElementById('rmName').value.trim();
   const sedan = document.getElementById('rmSedan').value.trim();
   const suv   = document.getElementById('rmSuv').value.trim();
-  const image = document.getElementById('rmImage').value.trim();
+  const fileInput = document.getElementById('rmImageFile');
+  const file = fileInput.files[0];
+  const statusEl = document.getElementById('rmUploadStatus');
 
   if(!name || !sedan || !suv){
     showToast('Please fill in route name, sedan price and SUV price');
     return;
   }
+  if(!file && !window._existingImageUrl){
+    showToast('Please upload a route image');
+    return;
+  }
 
   try{
+    let imageUrl = window._existingImageUrl || '';
+    if(file){
+      statusEl.textContent = 'Uploading image…';
+      imageUrl = await uploadRouteImage(file);
+      statusEl.textContent = 'Upload complete';
+    }
+
     if(window._editingRouteId){
-      await updateDocument('routes', window._editingRouteId, { name, sedan, suv, image });
+      await updateDocument('routes', window._editingRouteId, { name, sedan, suv, image: imageUrl });
       showToast('Route updated');
     } else {
-      await saveDocument('routes', { name, sedan, suv, image, order: Date.now() });
+      await saveDocument('routes', { name, sedan, suv, image: imageUrl, order: Date.now() });
       showToast('Route added');
     }
     closeRouteModal();
     refreshAll(false);
   }catch(e){
     console.error(e);
-    showToast('⚠ Could not save route: ' + (e.message||'check Firestore rules'));
+    showToast('⚠ Could not save route: ' + (e.message||'check Storage rules'));
   }
 };
 
