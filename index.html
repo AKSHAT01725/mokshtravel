@@ -721,95 +721,8 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <h2 class="section-title">Route & Pricing</h2>
     <p class="section-sub">Transparent pricing — no surprises.</p>
   </div>
-  <div class="routes-grid">
-    <div class="route-card">
-      <img src="AV.png" alt="Ahmedabad to Vadodara">
-      <div class="route-body">
-        <h3>Ahmedabad → Vadodara</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹1,799</span></div>
-          <div class="route-price">SUV: <span>₹2,699</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Vadodara','1799','2699')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
-    <div class="route-card">
-      <img src="AS.png" alt="Ahmedabad to Surat">
-      <div class="route-body">
-        <h3>Ahmedabad → Surat</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹3,599</span></div>
-          <div class="route-price">SUV: <span>₹3,999</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Surat','3599','3999')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
-    <div class="route-card">
-      <img src="AR.png" alt="Ahmedabad to Rajkot">
-      <div class="route-body">
-        <h3>Ahmedabad → Rajkot</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹2,499</span></div>
-          <div class="route-price">SUV: <span>₹2,999</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Rajkot','2499','2999')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
-    <div class="route-card">
-      <img src="ABB.png" alt="Ahmedabad to Bhavnagar">
-      <div class="route-body">
-        <h3>Ahmedabad → Bhavnagar</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹2,699</span></div>
-          <div class="route-price">SUV: <span>₹3,199</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Bhavnagar','2699','3199')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
-    <div class="route-card">
-      <img src="AM.png" alt="Ahmedabad to Mumbai">
-      <div class="route-body">
-        <h3>Ahmedabad → Mumbai</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹7,500</span></div>
-          <div class="route-price">SUV: <span>₹8,999</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Mumbai','7500','8999')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
-    <div class="route-card">
-      <img src="AP.png" alt="Ahmedabad to Pune">
-      <div class="route-body">
-        <h3>Ahmedabad → Pune</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹9,800</span></div>
-          <div class="route-price">SUV: <span>₹11,000</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Pune','9800','11000')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
-    <div class="route-card">
-      <img src="AG.png" alt="Ahmedabad to Gandhidham">
-      <div class="route-body">
-        <h3>Ahmedabad → Gandhidham</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹3,699</span></div>
-          <div class="route-price">SUV: <span>₹4,199</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Gandhidham','3699','4199')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
-    <div class="route-card">
-      <img src="AJ.png" alt="Ahmedabad to Jaipur">
-      <div class="route-body">
-        <h3>Ahmedabad → Jaipur</h3>
-        <div class="route-prices">
-          <div class="route-price">Sedan: <span>₹8,700</span></div>
-          <div class="route-price">SUV: <span>₹11,500</span></div>
-        </div>
-        <button class="route-btn" onclick="bookRoute('Ahmedabad - Jaipur','8700','11500')"><i class="fas fa-arrow-right"></i> Book Now</button>
-      </div>
-    </div>
+  <div class="routes-grid" id="routesGrid">
+    <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading routes…</div>
   </div>
 </section>
 
@@ -1451,6 +1364,28 @@ document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', ()
   document.getElementById('hamburgerIcon').className = 'fas fa-bars';
 }));
 
+// ── DYNAMIC ROUTES RENDER ─────────────────────────────
+window.renderRoutesGrid = function(routes) {
+  const grid = document.getElementById('routesGrid');
+  if (!routes || !routes.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">No routes available right now. Please check back soon.</div>`;
+    return;
+  }
+  grid.innerHTML = routes.map(r => `
+    <div class="route-card">
+      <img src="${r.image || ''}" alt="${r.name}">
+      <div class="route-body">
+        <h3>${r.name}</h3>
+        <div class="route-prices">
+          <div class="route-price">Sedan: <span>₹${r.sedan}</span></div>
+          <div class="route-price">SUV: <span>₹${r.suv}</span></div>
+        </div>
+        <button class="route-btn" onclick="bookRoute('${(r.name||'').replace(/'/g, "\\'")}','${r.sedan}','${r.suv}')"><i class="fas fa-arrow-right"></i> Book Now</button>
+      </div>
+    </div>
+  `).join('');
+};
+
 // Show more reviews
 function showMoreReviews() {
   document.querySelectorAll('.hidden-review').forEach(r => r.style.display = 'block');
@@ -1485,8 +1420,12 @@ function showMoreReviews() {
 
 <!-- ── OPTIONAL FIREBASE MODULE (loaded separately; core site works even if this fails) ── -->
 <script type="module">
-import { saveDocument } from './firebase-config.js';
+import { saveDocument, fetchCollection } from './firebase-config.js';
 window.saveBookingToFirebase = saveDocument;
+
+fetchCollection('routes', 'order', 'asc').then(routes => {
+  if (window.renderRoutesGrid) window.renderRoutesGrid(routes);
+});
 </script>
 
 </body>
