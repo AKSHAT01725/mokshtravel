@@ -2,7 +2,6 @@
 
 import { initializeApp }        from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics }         from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 import {
   getAuth,
@@ -39,7 +38,6 @@ const app       = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth      = getAuth(app);
 const db        = getFirestore(app);
-const storage   = getStorage(app);
 
 // ── Auth helpers ───────────────────────────────────────────────────────────────
 export { auth };
@@ -84,17 +82,6 @@ export async function fetchCollection(collectionName, orderField = "received", d
     console.warn(`fetchCollection(${collectionName}):`, e.message);
     return [];
   }
-}
-
-/**
- * Upload an image file to Firebase Storage and return its public URL.
- */
-export async function uploadRouteImage(file) {
-  const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-  const path = `routes/${Date.now()}_${safeName}`;
-  const storageRef = ref(storage, path);
-  await uploadBytes(storageRef, file);
-  return getDownloadURL(storageRef);
 }
 
 /**
