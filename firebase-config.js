@@ -1,5 +1,4 @@
 // firebase-config.js
-// Place this file in the same folder as index.html, admin.html, about.html, reviews.html
 
 import { initializeApp }        from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAnalytics }         from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -15,6 +14,7 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  updateDoc,
   doc,
   serverTimestamp,
   query,
@@ -64,13 +64,15 @@ export async function saveDocument(collectionName, data) {
 }
 
 /**
- * Fetch all documents from a collection, newest first.
+ * Fetch all documents from a collection.
+ * By default, orders by `received` descending (newest first).
+ * Pass orderField=null to skip ordering, or a different field/direction as needed.
  * Returns an array of objects including the Firestore `id`.
  */
-export async function fetchCollection(collectionName) {
+export async function fetchCollection(collectionName, orderField = "received", direction = "desc") {
   try {
     const ref  = collection(db, collectionName);
-    const q    = query(ref, orderBy("received", "desc"));
+    const q    = orderField ? query(ref, orderBy(orderField, direction)) : query(ref);
     const snap = await getDocs(q);
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   } catch (e) {
@@ -85,4 +87,11 @@ export async function fetchCollection(collectionName) {
  */
 export function deleteDocument(collectionName, id) {
   return deleteDoc(doc(db, collectionName, id));
+}
+
+/**
+ * Update fields on an existing document by ID.
+ */
+export function updateDocument(collectionName, id, data) {
+  return updateDoc(doc(db, collectionName, id), data);
 }
