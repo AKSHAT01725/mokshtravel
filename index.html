@@ -8,6 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){ emailjs.init("shZzGfL3Tpe1cy09F"); })();
+</script>
+
 <meta name="description" content="Moksh Travel — Ahmedabad's most trusted cab service. Outstation taxi, airport transfer, one way & round trip cab across Gujarat.">
 <meta name="keywords" content="Ahmedabad taxi service, Cab service Ahmedabad, Outstation taxi Ahmedabad, Airport taxi Ahmedabad, One way taxi Ahmedabad, Round trip taxi Gujarat, Best taxi service Ahmedabad, Innova Crysta Ahmedabad, Corporate taxi Ahmedabad">
 <meta name="robots" content="index, follow">
@@ -1177,6 +1182,14 @@ document.getElementById('bookingForm').addEventListener('submit', async function
     } catch(err) {
       console.error('Firebase save error:', err);
     }
+  }
+
+  try {
+    await emailjs.send('service_xmnox9n', 'template_lqoj3yg', {
+      mobile, pickup, destination: dest, date, returnDate, time, car, passenger, trip
+    });
+  } catch(err) {
+    console.error('EmailJS error:', err);
   }
 
   const waMsg =
