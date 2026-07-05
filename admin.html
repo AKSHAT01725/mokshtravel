@@ -574,8 +574,8 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
         </div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Name</th><th>Mobile</th><th>Pickup</th><th>Destination</th><th>Date</th><th>Type</th></tr></thead>
-            <tbody id="recentBookingsBody"><tr class="loading-row"><td colspan="6">Loading…</td></tr></tbody>
+            <thead><tr><th>Mobile</th><th>Pickup</th><th>Destination</th><th>Date</th><th>Type</th></tr></thead>
+            <tbody id="recentBookingsBody"><tr class="loading-row"><td colspan="5">Loading…</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -601,8 +601,8 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
         </div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Name</th><th>Mobile</th><th>Pickup</th><th>Destination</th><th>Date &amp; Time</th><th>Car</th><th>Passengers</th><th>Trip</th><th>Received</th><th>Action</th></tr></thead>
-            <tbody id="bookingsBody"><tr class="loading-row"><td colspan="10">Loading…</td></tr></tbody>
+           <thead><tr><th>Mobile</th><th>Pickup</th><th>Destination</th><th>Date &amp; Time</th><th>Trip</th><th>Received</th><th>Action</th></tr></thead>
+            <tbody id="bookingsBody"><tr class="loading-row"><td colspan="7">Loading…</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -863,12 +863,11 @@ function renderRecent(){
   const tbody = document.getElementById('recentBookingsBody');
   const data  = bookingsCache.slice(0,5);
   if(!data.length){
-    tbody.innerHTML = `<tr class="empty-row"><td colspan="6"><div class="empty-icon">📭</div>No bookings yet</td></tr>`;
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="5"><div class="empty-icon">📭</div>No bookings yet</td></tr>`;
     return;
   }
   tbody.innerHTML = data.map(b => `
     <tr class="data-row">
-      <td><strong>${esc(b.name)}</strong></td>
       <td><a class="call-link" href="tel:${esc(b.mobile)}">${esc(b.mobile)}</a></td>
       <td>${esc(b.pickup)}</td>
       <td>${esc(b.destination)}</td>
@@ -891,18 +890,15 @@ window.renderBookings = function(){
   document.getElementById('bookCount').textContent = data.length + ' record(s)';
   const tbody = document.getElementById('bookingsBody');
   if(!data.length){
-    tbody.innerHTML = `<tr class="empty-row"><td colspan="10"><div class="empty-icon">📭</div>No bookings found</td></tr>`;
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="7"><div class="empty-icon">📭</div>No bookings found</td></tr>`;
     return;
   }
   tbody.innerHTML = data.map(b => `
     <tr class="data-row">
-      <td><strong>${esc(b.name)}</strong></td>
       <td><a class="call-link" href="tel:${esc(b.mobile)}">${esc(b.mobile)}</a></td>
       <td>${esc(b.pickup)}</td>
       <td>${esc(b.destination)}</td>
       <td style="white-space:nowrap">${esc(b.date)}<br><small style="color:var(--mute)">${esc(b.time||'')}</small></td>
-      <td>${esc(b.car)}</td>
-      <td>${esc(b.passenger)}</td>
       <td><span class="tag ${tripTag(b.trip)}">${esc(b.trip)}</span></td>
       <td style="white-space:nowrap;color:var(--mute);font-size:12px">${fmtDate(b.received)}</td>
       <td><button class="del-btn" onclick="deleteBooking('${b.id}')"><i class="fas fa-trash"></i></button></td>
@@ -966,8 +962,8 @@ window.exportCSV = function(type){
   const rows = [];
   if(type==='bookings'||type==='all'){
     rows.push(['--- BOOKINGS ---']);
-    rows.push(['Name','Mobile','Pickup','Destination','Date','Time','Car','Passengers','Trip','Received']);
-    bookingsCache.forEach(b => rows.push([b.name,b.mobile,b.pickup,b.destination,b.date,b.time,b.car,b.passenger,b.trip,fmtDate(b.received)]));
+    rows.push(['Mobile','Pickup','Destination','Date','Time','Trip','Received']);
+    bookingsCache.forEach(b => rows.push([b.mobile,b.pickup,b.destination,b.date,b.time,b.trip,fmtDate(b.received)]));
   }
   if(type==='routes'||type==='all'){
     rows.push([]); rows.push(['--- ROUTE INQUIRIES ---']);
