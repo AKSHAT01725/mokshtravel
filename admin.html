@@ -753,12 +753,17 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       <input type="number" id="rmSuv" placeholder="2699">
     </div>
     <div class="field">
-  <label>Route Image</label>
-  <input type="file" id="rmImageFile" accept="image/*" onchange="previewRouteImage(event)"
-    style="width:100%;padding:10px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:9px;color:var(--ice);font-size:13px;">
-  <img id="rmImagePreview" style="display:none;max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line-2);">
-  <div id="rmUploadStatus" style="font-size:12px;color:var(--mute);margin-top:6px;"></div>
-</div>
+      <label>Route Image</label>
+      <input type="file" id="rmImageFile" accept="image/*" onchange="previewRouteImage(event)"
+        style="width:100%;padding:10px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:9px;color:var(--ice);font-size:13px;">
+      <img id="rmImagePreview" style="display:none;max-width:100%;margin-top:10px;border-radius:8px;border:1px solid var(--line-2);">
+      <div id="rmUploadStatus" style="font-size:12px;color:var(--mute);margin-top:6px;"></div>
+    </div>
+    <button class="login-btn" onclick="saveRoutePricing()" style="margin-bottom:12px;">
+      <i class="fas fa-check"></i> &nbsp;Save Route
+    </button>
+    <button style="width:100%;background:none;border:none;color:var(--mute);font-size:13px;cursor:pointer;padding:6px;" onclick="closeRouteModal()">Cancel</button>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
