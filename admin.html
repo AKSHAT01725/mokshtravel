@@ -41,6 +41,8 @@ body{
 .mono, .num{ font-family:'Space Grotesk',monospace; }
 
 /* ══════════════ LOGIN ══════════════ */
+
+
 #loginScreen{
   position:fixed; inset:0;
   background: var(--navy);
@@ -50,6 +52,27 @@ body{
   display:flex; align-items:center; justify-content:center;
   z-index:9999;
 }
+
+.login-logo{
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:18px;
+}
+.login-logo img{
+  width:56px; height:56px;
+  border-radius:12px;
+  background:white;
+  padding:4px;
+  box-shadow:0 8px 24px rgba(255,180,0,0.15);
+}
+
+.brand-mark img{
+  width:34px; height:34px;
+  border-radius:8px;
+  background:white;
+  padding:2px;
+  flex-shrink:0;
+}
+
 .login-box{
   width:400px; max-width:92vw;
   background: var(--ink);
@@ -460,7 +483,10 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
 
 <!-- ══════════════ LOGIN ══════════════ -->
 <div id="loginScreen">
-  <div class="login-box">
+    <div class="login-box">
+  <div class="login-logo">
+    <img src="logo.jpeg" alt="Moksh Travel Logo">
+  </div>
     <div class="login-eyebrow">Restricted Access</div>
     <h1>Dispatch Console</h1>
     <p class="sub">Moksh Travel — Admin Sign In</p>
@@ -486,6 +512,7 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
   <nav class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-mark">
+        <img src="logo.jpeg" alt="Moksh Travel Logo">
         <div class="dot"></div>
         <h2>DISPATCH CONSOLE</h2>
       </div>
