@@ -1216,11 +1216,13 @@ document.getElementById('bookingForm').addEventListener('submit', async function
       date: toDMY(date),
       returnDate: trip === 'Round Trip' ? toDMY(returnDate) : '',
       time: to12Hour(time),
-      car, passenger, trip
+      car, passenger, trip,
+      rentalHours: trip === 'Rental' ? rentalHours : ''
     });
   } catch(err) {
     console.error('EmailJS error:', err);
   }
+  
 
   const waMsg =
 `━━━━━━━━━━━━━━━━━━━━━━━━━
