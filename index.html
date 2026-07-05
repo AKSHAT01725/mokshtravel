@@ -181,6 +181,22 @@ section { padding:90px 6%; }
 .trip-pill:hover { border-color:var(--line-2); color:var(--ice); }
 .trip-pill.active { background:var(--gold); color:#1a0f00; border-color:var(--gold); box-shadow:0 6px 20px rgba(245,166,35,0.3); }
 
+/* Mobile: fit all 4 pills in one row, no horizontal scroll */
+@media(max-width:480px){
+  .trip-pills {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow-x: visible;
+    gap: 6px;
+  }
+  .trip-pill {
+    padding: 9px 4px;
+    font-size: 11px;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
 /* ── FROM / TO CARD ── */
 .loc-card { background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:16px; position:relative; margin-bottom:14px; }
 .loc-row { position: relative; }
@@ -506,15 +522,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> 24×7 Service</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Verified Drivers</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Clean Vehicles</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Transparent Pricing</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> No Hidden Charges</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Safe Travel</div>
-</div>
 
 <!-- BOOKING FORM -->
 <section id="booking">
@@ -595,9 +602,9 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <div class="dt-card">
         <label class="loc-label">Vehicle Type</label>
         <select class="loc-input dt-input" id="bCar">
-          <option>Sedan (Swift Dzire)</option>
-          <option>SUV (Ertiga)</option>
-          <option>Premium SUV (Innova Crysta)</option>
+          <option>Sedan</option>
+          <option>SUV</option>
+          <option>Premium SUV</option>
           <option>Fortuner</option>
         </select>
       </div>
@@ -619,6 +626,16 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     </button>
   </form>
 </section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> 24×7 Service</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Verified Drivers</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Clean Vehicles</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Transparent Pricing</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> No Hidden Charges</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Safe Travel</div>
+</div>
 
 <!-- SERVICES -->
 <section id="services">
@@ -877,7 +894,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <div class="contact-btns">
       <a href="tel:+919727729334" class="contact-btn contact-btn-gold"><i class="fas fa-phone"></i> Call Now</a>
       <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <a href="https://www.instagram.com/moksh_tour_travel/" target="_blank" class="contact-btn contact-btn-outline"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.instagram.com/mokshtravel/" target="_blank" class="contact-btn contact-btn-outline"><i class="fab fa-instagram"></i> Instagram</a>
       <a href="https://www.google.com/search?q=Moksh+Travel" target="_blank" class="contact-btn contact-btn-outline"><i class="fas fa-star"></i> Google</a>
     </div>
   </div>
