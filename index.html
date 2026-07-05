@@ -1136,6 +1136,22 @@ function closeSuccessModal() {
 }
 window.closeSuccessModal = closeSuccessModal;
 
+function toDMY(isoDate) {
+  if (!isoDate) return '';
+  const [y, m, d] = isoDate.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function to12Hour(time24) {
+  if (!time24) return '';
+  let [h, m] = time24.split(':').map(Number);
+  const period = h >= 12 ? 'PM' : 'AM';
+  h = h % 12;
+  if (h === 0) h = 12;
+  return `${h}:${String(m).padStart(2,'0')} ${period}`;
+}
+
+
 // ── MAIN BOOKING FORM ─────────────────────────────────
 document.getElementById('bookingForm').addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -1184,7 +1200,11 @@ document.getElementById('bookingForm').addEventListener('submit', async function
 
   try {
     await emailjs.send('service_xmnox9n', 'template_lqoj3yg', {
-      mobile, pickup, destination: dest, date, returnDate, time, car, passenger, trip
+      mobile, pickup, destination: dest,
+      date: toDMY(date),
+      returnDate: toDMY(returnDate),
+      time: to12Hour(time),
+      car, passenger, trip
     });
   } catch(err) {
     console.error('EmailJS error:', err);
