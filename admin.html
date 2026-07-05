@@ -530,6 +530,9 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
     <div class="nav-item" onclick="showPage('roundtrip',this)">
       <i class="fas fa-rotate"></i> Round Trips <span class="nav-count" id="navCountRound">0</span>
     </div>
+    <div class="nav-item" onclick="showPage('routepricing',this)">
+      <i class="fas fa-map-signs"></i> Routes &amp; Pricing <span class="nav-count" id="navCountRoutePricing">0</span>
+    </div>
     <div class="nav-item" onclick="showPage('settings',this)">
       <i class="fas fa-gear"></i> Settings
     </div>
@@ -677,7 +680,28 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       </div>
     </div>
 
+    <!-- ROUTES & PRICING -->
+    <div class="page" id="page-routepricing">
+      <div class="search-bar">
+        <input type="text" id="rpSearch" placeholder="Search route name…" oninput="renderRoutePricing()">
+        <button class="btn-sm btn-amber" onclick="openRouteModal()"><i class="fas fa-plus"></i> Add Route</button>
+      </div>
+      <div class="table-card">
+        <div class="table-header">
+          <h3><i class="fas fa-map-signs"></i>Routes &amp; Pricing</h3>
+          <span class="settings-val" id="rpCount"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Route</th><th>Sedan Price</th><th>SUV Price</th><th>Image</th><th>Action</th></tr></thead>
+            <tbody id="rpBody"><tr class="loading-row"><td colspan="5">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- SETTINGS -->
+     
     <div class="page" id="page-settings">
       <div class="settings-card">
         <h3><i class="fas fa-circle-info"></i>Account</h3>
@@ -712,12 +736,39 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
   </main>
 </div>
 
+<!-- ROUTE ADD/EDIT MODAL -->
+<div id="routeModal" style="position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;background:rgba(4,10,24,0.75);backdrop-filter:blur(10px);padding:20px;">
+  <div style="background:var(--ink);border:1px solid var(--line-2);border-radius:16px;padding:32px;max-width:420px;width:100%;position:relative;">
+    <h3 style="font-family:'Space Grotesk';font-size:18px;margin-bottom:20px;color:var(--amber);" id="routeModalTitle">Add Route</h3>
+    <div class="field">
+      <label>Route Name</label>
+      <input type="text" id="rmName" placeholder="Ahmedabad → Vadodara">
+    </div>
+    <div class="field">
+      <label>Sedan Price (₹)</label>
+      <input type="number" id="rmSedan" placeholder="1799">
+    </div>
+    <div class="field">
+      <label>SUV Price (₹)</label>
+      <input type="number" id="rmSuv" placeholder="2699">
+    </div>
+    <div class="field">
+      <label>Image Filename</label>
+      <input type="text" id="rmImage" placeholder="AV.png">
+    </div>
+    <button class="login-btn" onclick="saveRoutePricing()" style="margin-bottom:12px;">
+      <i class="fas fa-check"></i> &nbsp;Save Route
+    </button>
+    <button style="width:100%;background:none;border:none;color:var(--mute);font-size:13px;cursor:pointer;padding:6px;" onclick="closeRouteModal()">Cancel</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script type="module">
 import {
   auth, loginAdmin, logoutAdmin, watchAuthState,
-  fetchCollection, deleteDocument
+  fetchCollection, deleteDocument, saveDocument, updateDocument
 } from './firebase-config.js';
 
 // ─────────────────────────────────────────
@@ -726,6 +777,7 @@ import {
 let bookingsCache = [];
 let routesCache   = [];
 let roundCache    = [];
+let routePricingCache = [];
 let isFetching    = false;
 
 // ─────────────────────────────────────────
@@ -800,14 +852,16 @@ window.refreshAll = async function(showSpinner){
   if(showSpinner) btn.classList.add('spinning');
 
   try{
-    const [bookings, routes, round] = await Promise.all([
+    const [bookings, routes, round, routePricing] = await Promise.all([
       fetchCollection('bookings'),
       fetchCollection('routeInquiries'),
-      fetchCollection('roundTripRequests')
+      fetchCollection('roundTripRequests'),
+      fetchCollection('routes', 'order', 'asc')
     ]);
     bookingsCache = bookings;
     routesCache   = routes;
     roundCache    = round;
+    routePricingCache = routePricing;
 
     updateStats();
     updateTicker();
@@ -815,6 +869,7 @@ window.refreshAll = async function(showSpinner){
     renderBookings();
     renderRoutes();
     renderRound();
+    renderRoutePricing();
   }catch(e){
     console.error(e);
     showToast('⚠ Could not load data: ' + (e.message||'check Firestore rules'));
@@ -868,6 +923,7 @@ function updateStats(){
   document.getElementById('navCountBookings').textContent = bookingsCache.length;
   document.getElementById('navCountRoutes').textContent   = routesCache.length;
   document.getElementById('navCountRound').textContent    = roundCache.length;
+  document.getElementById('navCountRoutePricing').textContent = routePricingCache.length;
 }
 
 function updateTicker(){
@@ -983,6 +1039,92 @@ window.renderRound = function(){
 };
 
 // ─────────────────────────────────────────
+// RENDER: ROUTES & PRICING
+// ─────────────────────────────────────────
+window.renderRoutePricing = function(){
+  const q = (document.getElementById('rpSearch').value||'').toLowerCase();
+  let data = routePricingCache;
+  if(q) data = data.filter(r => (r.name||'').toLowerCase().includes(q));
+  document.getElementById('rpCount').textContent = data.length + ' route(s)';
+  const tbody = document.getElementById('rpBody');
+  if(!data.length){
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="5"><div class="empty-icon">🗺️</div>No routes added yet</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = data.map(r => `
+    <tr class="data-row">
+      <td><strong>${esc(r.name)}</strong></td>
+      <td>₹${esc(r.sedan)}</td>
+      <td>₹${esc(r.suv)}</td>
+      <td style="color:var(--mute);font-size:12px">${esc(r.image)}</td>
+      <td>
+        <button class="del-btn" style="border-color:rgba(255,180,0,0.3);color:var(--amber);margin-right:6px;" onclick="openRouteModal('${r.id}')"><i class="fas fa-pen"></i></button>
+        <button class="del-btn" onclick="deleteRoutePricing('${r.id}')"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+  `).join('');
+};
+
+window.openRouteModal = function(id){
+  const modal = document.getElementById('routeModal');
+  const title = document.getElementById('routeModalTitle');
+  window._editingRouteId = id || null;
+  if(id){
+    const r = routePricingCache.find(x => x.id === id);
+    title.textContent = 'Edit Route';
+    document.getElementById('rmName').value  = r ? r.name  : '';
+    document.getElementById('rmSedan').value = r ? r.sedan : '';
+    document.getElementById('rmSuv').value   = r ? r.suv   : '';
+    document.getElementById('rmImage').value = r ? r.image : '';
+  } else {
+    title.textContent = 'Add Route';
+    document.getElementById('rmName').value  = '';
+    document.getElementById('rmSedan').value = '';
+    document.getElementById('rmSuv').value   = '';
+    document.getElementById('rmImage').value = '';
+  }
+  modal.style.display = 'flex';
+};
+
+window.closeRouteModal = function(){
+  document.getElementById('routeModal').style.display = 'none';
+};
+
+window.saveRoutePricing = async function(){
+  const name  = document.getElementById('rmName').value.trim();
+  const sedan = document.getElementById('rmSedan').value.trim();
+  const suv   = document.getElementById('rmSuv').value.trim();
+  const image = document.getElementById('rmImage').value.trim();
+
+  if(!name || !sedan || !suv){
+    showToast('Please fill in route name, sedan price and SUV price');
+    return;
+  }
+
+  try{
+    if(window._editingRouteId){
+      await updateDocument('routes', window._editingRouteId, { name, sedan, suv, image });
+      showToast('Route updated');
+    } else {
+      await saveDocument('routes', { name, sedan, suv, image, order: Date.now() });
+      showToast('Route added');
+    }
+    closeRouteModal();
+    refreshAll(false);
+  }catch(e){
+    console.error(e);
+    showToast('⚠ Could not save route: ' + (e.message||'check Firestore rules'));
+  }
+};
+
+window.deleteRoutePricing = async function(id){
+  if(!confirm('Delete this route?')) return;
+  await deleteDocument('routes', id);
+  showToast('Route deleted');
+  refreshAll(false);
+};
+
+// ─────────────────────────────────────────
 // EXPORT CSV
 // ─────────────────────────────────────────
 window.exportCSV = function(type){
@@ -1042,7 +1184,7 @@ window.showPage = function(name, el){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   if(el) el.classList.add('active');
-  const titles = {dashboard:'Dashboard',bookings:'Bookings',routes:'Route Inquiries',roundtrip:'Round Trip Requests',settings:'Settings'};
+  const titles = {dashboard:'Dashboard',bookings:'Bookings',routes:'Route Inquiries',roundtrip:'Round Trip Requests',routepricing:'Routes & Pricing',settings:'Settings'};
   document.getElementById('pageTitle').textContent = titles[name]||name;
   document.getElementById('sidebar').classList.remove('open');
 };
@@ -1050,6 +1192,10 @@ window.showPage = function(name, el){
 window.toggleSidebar = function(){
   document.getElementById('sidebar').classList.toggle('open');
 };
+
+document.getElementById('routeModal').addEventListener('click', function(e){
+  if(e.target === this) closeRouteModal();
+});
 
 // live ticker clock-style refresh of "time ago" feel
 setInterval(()=>{ if(bookingsCache.length) updateTicker(); }, 30000);
