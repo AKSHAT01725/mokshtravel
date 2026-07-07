@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Best Cab Service in Ahmedabad | Moksh Travel</title>
+<link rel="icon" type="image/jpeg" href="logo.jpeg">
+<link rel="shortcut icon" type="image/jpeg" href="logo.jpeg">
+<link rel="apple-touch-icon" href="logo.jpeg">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +17,7 @@
 </script>
 
 <meta name="description" content="Moksh Travel — Ahmedabad's most trusted cab service. Outstation taxi, airport transfer, one way & round trip cab across Gujarat. Call +91 97277 29334.">
-<meta name="keywords" content="Moksh Travel, Moksh Tours and Travel, Ahmedabad taxi service, Cab service Ahmedabad, Outstation taxi Ahmedabad, Airport taxi Ahmedabad, One way taxi Ahmedabad, Round trip taxi Gujarat, Best taxi service Ahmedabad, Innova Crysta Ahmedabad, Corporate taxi Ahmedabad">
+<meta name="keywords" content="Moksh Travel, Moksh Tours and Travel, Ahmedabad Taxi Service, Best Taxi Service in Ahmedabad, Taxi Service in Ahmedabad, Taxi Booking Ahmedabad, Online Taxi Booking Ahmedabad, Local Taxi Service Ahmedabad, One Way Taxi Ahmedabad, Round Trip Taxi Ahmedabad, Outstation Taxi Service Ahmedabad, Outstation Taxi Ahmedabad, Affordable Taxi Service Ahmedabad, Cheap Taxi Service Ahmedabad, 24/7 Taxi Service Ahmedabad, AC Taxi Service Ahmedabad, Luxury Taxi Service Ahmedabad, SUV Taxi Service Ahmedabad, Sedan Taxi Service Ahmedabad, Taxi Rental Ahmedabad, Corporate Taxi Service Ahmedabad, Family Taxi Service Ahmedabad, Driver on Call Ahmedabad, Taxi Near Me, Taxi Service Near Me, Best Taxi Near Me, Local Taxi Near Me, Airport Taxi Near Me, Outstation Taxi Near Me, Ahmedabad Airport Taxi, Airport Taxi Service Ahmedabad, Airport Pickup Ahmedabad, Airport Drop Ahmedabad, Taxi to Ahmedabad Airport, Airport Transfer Ahmedabad, Airport Taxi Booking Ahmedabad, Ahmedabad to Dwarka Taxi, Ahmedabad to Somnath Taxi, Ahmedabad to Surat Taxi, Ahmedabad to Rajkot Taxi, Ahmedabad to Vadodara Taxi, Ahmedabad to Bhavnagar Taxi, Ahmedabad to Jamnagar Taxi, Ahmedabad to Junagadh Taxi, Ahmedabad to Kutch Taxi, Ahmedabad to Bhuj Taxi, Ahmedabad to Gandhinagar Taxi, Ahmedabad to Statue of Unity Taxi, Ahmedabad to Mount Abu Taxi, Ahmedabad to Udaipur Taxi, Ahmedabad to Jaipur Taxi, Ahmedabad to Mumbai Taxi, Ahmedabad to Pune Taxi, Ahmedabad to Nashik Taxi, Ahmedabad to Diu Taxi, Ahmedabad to Saputara Taxi, Ahmedabad to Ambaji Taxi, Ahmedabad to Palitana Taxi, Ahmedabad to Virpur Taxi, Ahmedabad to Dakor Taxi, Ahmedabad to Kevadia Taxi, Ahmedabad to Anand Taxi, Ahmedabad to Nadiad Taxi, Ahmedabad to Mehsana Taxi, Ahmedabad to Patan Taxi, Ahmedabad to Modhera Taxi, Ahmedabad to Morbi Taxi, Ahmedabad to Porbandar Taxi, Ahmedabad to Veraval Taxi, Ahmedabad to Sasan Gir Taxi, Ahmedabad to Dholavira Taxi, Ahmedabad to Mandvi Taxi, Ahmedabad to Vapi Taxi, Ahmedabad to Valsad Taxi, Ahmedabad to Bharuch Taxi, Ahmedabad to Ankleshwar Taxi, Ahmedabad to Godhra Taxi, Ahmedabad to Dahod Taxi, Ahmedabad to Abu Road Taxi, Ahmedabad to Ajmer Taxi, Ahmedabad to Jodhpur Taxi, Ahmedabad to Chotila Taxi, Ahmedabad to Shirdi Taxi, Ahmedabad to Indore Taxi, Ahmedabad to Silvassa Taxi, Ahmedabad to Mahudi Taxi, Book Taxi Online Ahmedabad, Hire Taxi in Ahmedabad, Taxi for Family Trip Ahmedabad, Taxi for Gujarat Tour, Gujarat Tour Taxi Package, Wedding Taxi Service Ahmedabad, Tempo Traveller Ahmedabad, Innova Taxi Ahmedabad, Ertiga Taxi Ahmedabad, Swift Dzire Taxi Ahmedabad">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="author" content="Moksh Travel">
 <meta name="geo.region" content="IN-GJ">
@@ -520,6 +523,18 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
 .rm-loader { display:flex; flex-direction:column; align-items:center; gap:12px; padding:20px 0; }
 .rm-spinner { width:40px; height:40px; border:4px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; }
 .rm-loader p { color:var(--mute); font-size:14px; }
+
+/* ── FAQ ── */
+#faq { background:var(--navy); }
+.faq-list { max-width:820px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+.faq-item { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:var(--transition); }
+.faq-item:hover { border-color:var(--line-2); }
+.faq-item.open { border-color:rgba(245,166,35,0.35); background:var(--gold-dim); }
+.faq-question { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 24px; background:none; border:none; text-align:left; cursor:pointer; font-family:'Space Grotesk'; font-size:15.5px; font-weight:700; color:var(--ice); }
+.faq-question .faq-icon { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(245,166,35,0.14); border:1px solid rgba(245,166,35,0.3); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:13px; transition:var(--transition); }
+.faq-item.open .faq-icon { transform:rotate(45deg); background:var(--gold); color:#1a0f00; }
+.faq-answer { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+.faq-answer-inner { padding:0 24px 22px; font-size:14px; color:var(--mute); line-height:1.75; }
 </style>
 </head>
 <body>
@@ -547,6 +562,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <a href="#cars">Fleet</a>
       <a href="#routes">Routes</a>
       <a href="#booking">Booking</a>
+      <a href="#faq">FAQ</a>
       <a href="reviews.html">Reviews</a>
       <a href="about.html">About</a>
       <a href="#contact" class="nav-cta">📞 97277 29334</a>
@@ -792,7 +808,110 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   </div>
 </section>
 
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Got Questions?</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about one way taxi booking with Moksh Travel.</p>
+  </div>
+  <div class="faq-list" id="faqList">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What is a one way taxi service?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">A one way taxi service allows you to travel from your pickup point to your destination without paying for a return trip. It's perfect for airport transfers, intercity travel, or point-to-point journeys.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>How can I book a one way taxi with Moksh Travel?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">You can book online via our website, through WhatsApp, or by calling our customer support team. Just provide your pickup location, destination, and preferred time, and your cab will be ready.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What types of vehicles are available for one way trips?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Moksh Travel offers a range of vehicles including sedans, SUVs, and luxury cars. All our taxis are well-maintained, clean, and equipped with modern amenities for a comfortable ride.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Are one way taxi fares fixed or flexible?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Our one way taxi fares are transparent and based on distance, vehicle type, and route. There are no hidden charges, making it a cost-effective solution for both short and long-distance travel.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Is the one way taxi service available for outstation trips?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes! Moksh Travel provides one way taxi services for intercity and outstation travel. You can reach your destination without worrying about return trips, ensuring a hassle-free journey.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a one way taxi service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A one way taxi service allows you to travel from your pickup point to your destination without paying for a return trip. It's perfect for airport transfers, intercity travel, or point-to-point journeys."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I book a one way taxi with Moksh Travel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can book online via our website, through WhatsApp, or by calling our customer support team. Just provide your pickup location, destination, and preferred time, and your cab will be ready."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of vehicles are available for one way trips?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Moksh Travel offers a range of vehicles including sedans, SUVs, and luxury cars. All our taxis are well-maintained, clean, and equipped with modern amenities for a comfortable ride."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are one way taxi fares fixed or flexible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our one way taxi fares are transparent and based on distance, vehicle type, and route. There are no hidden charges, making it a cost-effective solution for both short and long-distance travel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the one way taxi service available for outstation trips?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Moksh Travel provides one way taxi services for intercity and outstation travel. You can reach your destination without worrying about return trips, ensuring a hassle-free journey."
+      }
+    }
+  ]
+}
+</script>
 
 <!-- REVIEWS -->
 <section id="reviews">
@@ -848,6 +967,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <a href="#routes">Popular Routes</a>
       <a href="#roundtrip">Round Trip</a>
       <a href="#booking">Book Online</a>
+      <a href="#faq">FAQ</a>
       <a href="reviews.html">Reviews</a>
       <a href="about.html">About Us</a>
       <a href="#contact">Contact</a>
@@ -1384,6 +1504,28 @@ window.renderRoutesGrid = function(routes) {
       </div>
     </div>
   `).join('');
+};
+
+// ── FAQ ACCORDION ─────────────────────────────────────
+window.toggleFaq = function(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-answer');
+  const wasOpen = item.classList.contains('open');
+
+  document.querySelectorAll('.faq-item.open').forEach(other => {
+    if (other !== item) {
+      other.classList.remove('open');
+      other.querySelector('.faq-answer').style.maxHeight = null;
+    }
+  });
+
+  if (wasOpen) {
+    item.classList.remove('open');
+    answer.style.maxHeight = null;
+  } else {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
 };
 
 // Show more reviews
