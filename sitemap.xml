@@ -5,11 +5,11 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mokshtravel.com/reviews.html</loc>
+    <loc>https://mokshtravel.com/about.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mokshtravel.com/about.html</loc>
+    <loc>https://mokshtravel.com/reviews.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
