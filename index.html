@@ -524,6 +524,24 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
 .rm-spinner { width:40px; height:40px; border:4px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; }
 .rm-loader p { color:var(--mute); font-size:14px; }
 
+/* ── TICKET SERVICES (Railway / Flight / Hotel) ── */
+#ticket-services { background:var(--navy-2); }
+.ticket-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+.ticket-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; }
+.ticket-card:hover { border-color:rgba(245,166,35,0.3); transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+.ticket-img-wrap { position:relative; overflow:hidden; }
+.ticket-img-wrap img { width:100%; height:190px; object-fit:cover; display:block; transition:transform 0.5s ease; }
+.ticket-card:hover .ticket-img-wrap img { transform:scale(1.06); }
+.ticket-badge { position:absolute; top:12px; left:12px; background:rgba(6,15,34,0.75); backdrop-filter:blur(6px); border:1px solid rgba(245,166,35,0.3); color:var(--gold); font-size:18px; width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.ticket-body { padding:24px 22px 26px; flex:1; display:flex; flex-direction:column; }
+.ticket-body h3 { font-family:'Space Grotesk'; font-size:17.5px; font-weight:700; margin-bottom:6px; color:var(--ice); }
+.ticket-desc { font-size:13px; color:var(--mute); line-height:1.6; margin-bottom:18px; }
+.ticket-list { list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:20px; }
+.ticket-list li { display:flex; align-items:center; gap:11px; font-size:13.5px; color:rgba(238,242,248,0.85); font-weight:600; }
+.ticket-check { flex-shrink:0; width:23px; height:23px; border-radius:50%; background:var(--gold-dim); border:1px solid rgba(245,166,35,0.3); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:10.5px; }
+.ticket-btn { margin-top:auto; width:100%; padding:13px; background:rgba(37,211,102,0.12); border:1px solid rgba(37,211,102,0.3); color:#25d366; font-weight:700; font-size:13.5px; border-radius:10px; cursor:pointer; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; }
+.ticket-btn:hover { background:#25d366; color:#06341f; border-color:#25d366; }
+
 /* ── FAQ ── */
 #faq { background:var(--navy); }
 .faq-list { max-width:820px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
@@ -559,6 +577,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     </a>
     <div class="menu" id="mainMenu">
       <a href="#services">Services</a>
+      <a href="#ticket-services">Tickets</a>
       <a href="#cars">Fleet</a>
       <a href="#routes">Routes</a>
       <a href="#booking">Booking</a>
@@ -692,6 +711,69 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <div class="service-card"><div class="service-icon">💍</div><h3>Wedding & Events</h3><p>Luxury vehicle arrangements for weddings, ceremonies and special occasions.</p></div>
     <div class="service-card"><div class="service-icon">🌆</div><h3>Gujarat Tours</h3><p>Explore Gujarat's heritage, beaches and wildlife with premium rides and expert drivers.</p></div>
     <div class="service-card"><div class="service-icon">🔁</div><h3>One Way & Round Trip</h3><p>Flexible booking options — pay only for the distance you travel, no hassle.</p></div>
+  </div>
+</section>
+
+<!-- TICKET BOOKING SERVICES (Railway / Flight / Hotel) -->
+<section id="ticket-services">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Beyond Cabs</div>
+    <h2 class="section-title">Railway, Flight &amp; Hotel Booking</h2>
+    <p class="section-sub">One-stop travel assistance — let us handle your train tickets, flights and hotel stays alongside your cab, all under one roof.</p>
+  </div>
+  <div class="ticket-grid">
+
+    <div class="ticket-card">
+      <div class="ticket-img-wrap">
+        <img src="railway-booking.jpeg" alt="Railway Ticket Booking">
+        <div class="ticket-badge"><i class="fas fa-train"></i></div>
+      </div>
+      <div class="ticket-body">
+        <h3>Railway Ticket Booking</h3>
+        <p class="ticket-desc">Book train tickets quickly and securely across India.</p>
+        <ul class="ticket-list">
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Instant Ticket Booking</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> PNR Status Check</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> 24/7 Booking Support</li>
+        </ul>
+        <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20to%20book%20a%20Railway%20Ticket.%20Please%20share%20details." target="_blank" class="ticket-btn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="ticket-card">
+      <div class="ticket-img-wrap">
+        <img src="flight-booking.jpeg" alt="Flight Ticket Booking">
+        <div class="ticket-badge"><i class="fas fa-plane"></i></div>
+      </div>
+      <div class="ticket-body">
+        <h3>Flight Ticket Booking</h3>
+        <p class="ticket-desc">Book domestic and international flights at the best prices.</p>
+        <ul class="ticket-list">
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Easy Online Booking</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Multiple Airline Options</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> 24/7 Customer Support</li>
+        </ul>
+        <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20to%20book%20a%20Flight%20Ticket.%20Please%20share%20details." target="_blank" class="ticket-btn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="ticket-card">
+      <div class="ticket-img-wrap">
+        <img src="hotel-booking.jpeg" alt="Hotel Booking">
+        <div class="ticket-badge"><i class="fas fa-hotel"></i></div>
+      </div>
+      <div class="ticket-body">
+        <h3>Hotel Booking</h3>
+        <p class="ticket-desc">Find and book comfortable stays anywhere across India.</p>
+        <ul class="ticket-list">
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Best Price Guarantee</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Wide Range of Hotels</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Instant Confirmation</li>
+        </ul>
+        <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20to%20book%20a%20Hotel.%20Please%20share%20details." target="_blank" class="ticket-btn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
