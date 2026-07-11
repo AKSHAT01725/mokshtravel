@@ -829,62 +829,9 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <p class="section-sub">Transparent per-kilometre pricing for your complete round trip journey. No hidden charges, ever.</p>
   </div>
 
-  <div class="roundtrip-grid">
-    <div class="rt-card sedan">
-      <div class="rt-img-wrap">
-        <img src="Swift Dzire.webp" alt="Swift Dzire">
-      </div>
-      <h3>Swift Dzire</h3>
-      <div class="capacity"><span><i class="fas fa-user"></i> 4 Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> 3 Bags</span></div>
-      <div class="rt-rate-block">
-        <div class="rt-rate-label">Round Trip Rate</div>
-        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="11">11</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
-      </div>
-      <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
-      <div class="rt-features">
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> AC Comfort</div>
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> 24×7 Available</div>
-      </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Swift Dzire','11')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
-    </div>
-
-    <div class="rt-card ertiga">
-      <div class="rt-img-wrap">
-        <div class="rt-badge">Most Popular</div>
-        <img src="Ertigaa.webp" alt="Ertiga">
-      </div>
-      <h3>Maruti Ertiga</h3>
-      <div class="capacity"><span><i class="fas fa-user"></i> 6 Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> 4 Bags</span></div>
-      <div class="rt-rate-block">
-        <div class="rt-rate-label">Round Trip Rate</div>
-        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="14">14</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
-      </div>
-      <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
-      <div class="rt-features">
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> Spacious Cabin</div>
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> Family Ideal</div>
-      </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Maruti Ertiga','14')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
-    </div>
-
-    <div class="rt-card crysta">
-      <div class="rt-img-wrap">
-        <img src="Inova Crysta.webp" alt="Innova Crysta">
-      </div>
-      <h3>Innova Crysta</h3>
-      <div class="capacity"><span><i class="fas fa-user"></i> 6 Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> 4 Bags</span></div>
-      <div class="rt-rate-block">
-        <div class="rt-rate-label">Round Trip Rate</div>
-        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="19">19</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
-      </div>
-      <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
-      <div class="rt-features">
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> Premium SUV</div>
-        <div class="rt-feature-pill"><i class="fas fa-check"></i> Long-Distance</div>
-      </div>
-      <button class="rt-book-btn" onclick="bookRoundTrip('Innova Crysta','19')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
-    </div>
-  </div>
+  <div class="roundtrip-grid" id="roundtripGrid">
+  <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading round trip rates…</div>
+</div>
 </section>
 
 <!-- FAQ -->
@@ -1615,7 +1562,7 @@ function showMoreReviews() {
 }
 
 // Round trip count-up animation on scroll
-(function() {
+function initRoundTripCountUp() {
   const rateNums = document.querySelectorAll('.rt-rate-num');
   function animateCount(el) {
     if (el.dataset.animated) return;
@@ -1637,7 +1584,40 @@ function showMoreReviews() {
     entries.forEach(entry => { if (entry.isIntersecting) animateCount(entry.target); });
   }, { threshold: 0.4 });
   rateNums.forEach(el => observer.observe(el));
-})();
+}
+
+// ── DYNAMIC ROUND TRIP RENDER ─────────────────────────
+window.renderRoundTripGrid = function(rates) {
+  const grid = document.getElementById('roundtripGrid');
+  if (!rates || !rates.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Round trip rates coming soon. Please check back shortly.</div>`;
+    return;
+  }
+  grid.innerHTML = rates.map(r => {
+    const theme = r.theme || 'ertiga';
+    const features = (r.features || '').split(',').map(f => f.trim()).filter(Boolean);
+    const featuresHtml = features.map(f => `<div class="rt-feature-pill"><i class="fas fa-check"></i> ${f}</div>`).join('');
+    const badgeHtml = r.badge ? `<div class="rt-badge">${r.badge}</div>` : '';
+    const nameEsc = (r.name || '').replace(/'/g, "\\'");
+    return `
+    <div class="rt-card ${theme}">
+      <div class="rt-img-wrap">
+        ${badgeHtml}
+        <img src="${r.image || ''}" alt="${r.name}">
+      </div>
+      <h3>${r.name}</h3>
+      <div class="capacity"><span><i class="fas fa-user"></i> ${r.persons} Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> ${r.bags} Bags</span></div>
+      <div class="rt-rate-block">
+        <div class="rt-rate-label">Round Trip Rate</div>
+        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="${r.rate}">${r.rate}</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
+      </div>
+      <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
+      <div class="rt-features">${featuresHtml}</div>
+      <button class="rt-book-btn" onclick="bookRoundTrip('${nameEsc}','${r.rate}')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
+    </div>`;
+  }).join('');
+  initRoundTripCountUp();
+};
 </script>
 
 <!-- ── OPTIONAL FIREBASE MODULE (loaded separately; core site works even if this fails) ── -->
@@ -1647,6 +1627,10 @@ window.saveBookingToFirebase = saveDocument;
 
 fetchCollection('routes', 'order', 'asc').then(routes => {
   if (window.renderRoutesGrid) window.renderRoutesGrid(routes);
+});
+
+fetchCollection('roundTripRates', 'order', 'asc').then(rates => {
+  if (window.renderRoundTripGrid) window.renderRoundTripGrid(rates);
 });
 </script>
 
