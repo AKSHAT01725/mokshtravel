@@ -161,6 +161,57 @@ body{
 /* ══════════════ SHELL ══════════════ */
 #adminApp{ display:none; }
 
+/* ── DASHBOARD BRIEFING BANNER ── */
+.briefing{
+  position:relative; overflow:hidden;
+  background:linear-gradient(135deg, var(--ink-2) 0%, var(--navy) 100%);
+  border:1px solid var(--line-2);
+  border-radius:18px;
+  padding:30px 32px;
+  margin-bottom:22px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px; flex-wrap:wrap;
+}
+.briefing::before{
+  content:''; position:absolute; top:0; left:10%; right:10%; height:2px;
+  background:linear-gradient(90deg,transparent,var(--amber),transparent);
+}
+.briefing::after{
+  content:''; position:absolute; right:-60px; top:-60px; width:220px; height:220px;
+  border-radius:50%; background:radial-gradient(circle, rgba(255,180,0,0.14), transparent 70%);
+  pointer-events:none;
+}
+.briefing-date{ font-family:'Space Grotesk'; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); margin-bottom:8px; display:flex; align-items:center; gap:7px; position:relative; z-index:1; }
+.briefing-date .pip{ width:6px; height:6px; border-radius:50%; background:var(--teal); animation:pulse 1.4s infinite; }
+.briefing h2{ font-family:'Space Grotesk'; font-size:24px; font-weight:700; margin-bottom:6px; position:relative; z-index:1; }
+.briefing p{ color:var(--mute); font-size:13.5px; max-width:420px; position:relative; z-index:1; }
+.briefing-actions{ display:flex; gap:10px; flex-wrap:wrap; position:relative; z-index:1; }
+.briefing-btn{
+  display:flex; align-items:center; gap:8px;
+  padding:11px 18px; border-radius:10px; font-size:13px; font-weight:700;
+  cursor:pointer; transition:.2s; border:1px solid var(--line-2);
+  background:rgba(255,255,255,0.04); color:var(--ice); white-space:nowrap;
+}
+.briefing-btn:hover{ border-color:var(--amber); color:var(--amber); }
+.briefing-btn.primary{ background:var(--amber); color:#1a1200; border-color:var(--amber); }
+.briefing-btn.primary:hover{ filter:brightness(1.1); color:#1a1200; }
+@media(max-width:640px){ .briefing{ padding:24px 20px; } }
+
+/* ── STAT CARD ACCENT + FOOTER ── */
+.stat-card::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:var(--accent, var(--amber));
+}
+.stat-foot{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:14px; padding-top:12px; border-top:1px solid var(--line);
+  font-size:11.5px; position:relative; z-index:1;
+}
+.stat-foot a{ color:var(--amber); text-decoration:none; font-weight:600; cursor:pointer; }
+.stat-foot a:hover{ text-decoration:underline; }
+.stat-foot .trend{ color:var(--mute-2); font-family:'Space Grotesk'; }
+.stat-foot .trend.up{ color:var(--teal); }
+
 .sidebar{
   position:fixed; left:0; top:0; bottom:0;
   width:240px;
@@ -564,52 +615,82 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       <div class="ticker-time" id="tickerTime"></div>
     </div>
 
-    <!-- DASHBOARD -->
     <div class="page active" id="page-dashboard">
-      <div class="stats-row">
-        <div class="stat-card" style="--accent-glow:rgba(255,180,0,0.1)">
-          <div class="stat-top">
-            <div class="stat-icon amber"><i class="fas fa-calendar-check"></i></div>
-          </div>
-          <div class="stat-num num" id="stat-total">—</div>
-          <div class="stat-label">Total Bookings</div>
-        </div>
-        <div class="stat-card" style="--accent-glow:rgba(61,220,151,0.1)">
-          <div class="stat-top">
-            <div class="stat-icon teal"><i class="fas fa-route"></i></div>
-          </div>
-          <div class="stat-num num" id="stat-routes">—</div>
-          <div class="stat-label">Route Inquiries</div>
-        </div>
-        <div class="stat-card" style="--accent-glow:rgba(120,160,255,0.1)">
-          <div class="stat-top">
-            <div class="stat-icon blue"><i class="fas fa-rotate"></i></div>
-          </div>
-          <div class="stat-num num" id="stat-round">—</div>
-          <div class="stat-label">Round Trip Requests</div>
-        </div>
-        <div class="stat-card" style="--accent-glow:rgba(255,92,92,0.1)">
-          <div class="stat-top">
-            <div class="stat-icon red"><i class="fas fa-list-check"></i></div>
-          </div>
-          <div class="stat-num num" id="stat-all">—</div>
-          <div class="stat-label">All Inquiries</div>
-        </div>
-      </div>
 
-      <div class="table-card">
-        <div class="table-header">
-          <h3><i class="fas fa-clock"></i>Recent Bookings</h3>
-          <button class="btn-sm btn-outline" onclick="document.querySelector('.nav-item:nth-child(2)').click()">View All</button>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Mobile</th><th>Pickup</th><th>Destination</th><th>Date</th><th>Type</th></tr></thead>
-            <tbody id="recentBookingsBody"><tr class="loading-row"><td colspan="5">Loading…</td></tr></tbody>
-          </table>
-        </div>
-      </div>
+  <div class="briefing">
+    <div>
+      <div class="briefing-date"><span class="pip"></span><span id="briefingDate">—</span></div>
+      <h2 id="briefingGreeting">Welcome back</h2>
+      <p>Here's what's moving across bookings, routes and round trips right now.</p>
     </div>
+    <div class="briefing-actions">
+      <button class="briefing-btn" onclick="refreshAll(true)"><i class="fas fa-rotate"></i> Refresh</button>
+      <button class="briefing-btn" onclick="goToPage('bookings')"><i class="fas fa-calendar-check"></i> View Bookings</button>
+      <button class="briefing-btn primary" onclick="goToPage('routepricing'); openRouteModal();"><i class="fas fa-plus"></i> Add Route</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card" style="--accent-glow:rgba(255,180,0,0.1);--accent:var(--amber)">
+      <div class="stat-top"><div class="stat-icon amber"><i class="fas fa-calendar-check"></i></div></div>
+      <div class="stat-num num" id="stat-total">—</div>
+      <div class="stat-label">Total Bookings</div>
+      <div class="stat-foot"><a onclick="goToPage('bookings')">View all →</a><span class="trend" id="stat-total-trend">—</span></div>
+    </div>
+    <div class="stat-card" style="--accent-glow:rgba(61,220,151,0.1);--accent:var(--teal)">
+      <div class="stat-top"><div class="stat-icon teal"><i class="fas fa-route"></i></div></div>
+      <div class="stat-num num" id="stat-routes">—</div>
+      <div class="stat-label">Route Inquiries</div>
+      <div class="stat-foot"><a onclick="goToPage('routes')">View all →</a><span class="trend" id="stat-routes-trend">—</span></div>
+    </div>
+    <div class="stat-card" style="--accent-glow:rgba(120,160,255,0.1);--accent:#7fa3ff">
+      <div class="stat-top"><div class="stat-icon blue"><i class="fas fa-rotate"></i></div></div>
+      <div class="stat-num num" id="stat-round">—</div>
+      <div class="stat-label">Round Trip Requests</div>
+      <div class="stat-foot"><a onclick="goToPage('roundtrip')">View all →</a><span class="trend" id="stat-round-trend">—</span></div>
+    </div>
+    <div class="stat-card" style="--accent-glow:rgba(255,92,92,0.1);--accent:var(--red)">
+      <div class="stat-top"><div class="stat-icon red"><i class="fas fa-list-check"></i></div></div>
+      <div class="stat-num num" id="stat-all">—</div>
+      <div class="stat-label">All Inquiries</div>
+      <div class="stat-foot"><a onclick="goToPage('routepricing')">Manage routes →</a><span class="trend" id="stat-all-trend">—</span></div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card" style="--accent-glow:rgba(255,180,0,0.1);--accent:var(--amber)">
+      <div class="stat-top"><div class="stat-icon amber"><i class="fas fa-star"></i></div></div>
+      <div class="stat-num num">4.9★</div>
+      <div class="stat-label">Google Rating</div>
+      <div class="stat-foot"><a href="https://g.page/r/CTQaIJuvHQ3REBE/review" target="_blank">Google reviews →</a><span class="trend up">100+ reviews</span></div>
+    </div>
+    <div class="stat-card" style="--accent-glow:rgba(61,220,151,0.1);--accent:var(--teal)">
+      <div class="stat-top"><div class="stat-icon teal"><i class="fas fa-calendar-days"></i></div></div>
+      <div class="stat-num num" id="stat-month">—</div>
+      <div class="stat-label">Bookings This Month</div>
+      <div class="stat-foot"><a onclick="goToPage('bookings')">View all →</a><span class="trend" id="stat-month-trend">—</span></div>
+    </div>
+    <div class="stat-card" style="--accent-glow:rgba(120,160,255,0.1);--accent:#7fa3ff">
+      <div class="stat-top"><div class="stat-icon blue"><i class="fas fa-map-location-dot"></i></div></div>
+      <div class="stat-num" id="stat-toproute" style="font-family:'Space Grotesk';font-size:18px;font-weight:700;line-height:1.3;">—</div>
+      <div class="stat-label">Most Requested Route</div>
+      <div class="stat-foot"><a onclick="goToPage('routes')">View inquiries →</a><span class="trend" id="stat-toproute-count">—</span></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="table-header">
+      <h3><i class="fas fa-clock"></i>Recent Bookings</h3>
+      <button class="btn-sm btn-outline" onclick="goToPage('bookings')">View All</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mobile</th><th>Pickup</th><th>Destination</th><th>Date</th><th>Type</th></tr></thead>
+        <tbody id="recentBookingsBody"><tr class="loading-row"><td colspan="5">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
     <!-- BOOKINGS -->
     <div class="page" id="page-bookings">
@@ -842,6 +923,56 @@ document.getElementById('loginPass').addEventListener('keydown', e=>{
   if(e.key === 'Enter') window.doLogin();
 });
 
+// Sidebar nav order: 1=brand, 2=dashboard, 3=bookings, 4=routes, 5=roundtrip, 6=routepricing, 7=settings
+window.goToPage = function(name){
+  const idx = { dashboard:2, bookings:3, routes:4, roundtrip:5, routepricing:6, settings:7 };
+  const el = document.querySelector(`.nav-item:nth-child(${idx[name]})`);
+  if(el) el.click();
+};
+
+function updateInsights(){
+  const now = new Date();
+  const hour = now.getHours();
+  const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const emailPrefix = (auth.currentUser && auth.currentUser.email) ? auth.currentUser.email.split('@')[0] : 'Admin';
+  document.getElementById('briefingGreeting').textContent = `${greet}, ${emailPrefix}`;
+  document.getElementById('briefingDate').textContent = now.toLocaleDateString('en-IN',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+
+  const toDate = ts => { try { return ts.toDate ? ts.toDate() : new Date(ts); } catch(e){ return null; } };
+  const weekAgo = new Date(now.getTime() - 7*24*60*60*1000);
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  const countSince = (arr, since) => arr.filter(x => { const d = toDate(x.received); return d && d >= since; }).length;
+
+  const bookingsWeek = countSince(bookingsCache, weekAgo);
+  const routesWeek   = countSince(routesCache, weekAgo);
+  const roundWeek    = countSince(roundCache, weekAgo);
+  const monthCount   = countSince(bookingsCache, monthStart);
+
+  const setTrend = (id, n) => {
+    const el = document.getElementById(id);
+    el.textContent = n ? `+${n} this week` : 'No change this week';
+    el.classList.toggle('up', n > 0);
+  };
+  setTrend('stat-total-trend', bookingsWeek);
+  setTrend('stat-routes-trend', routesWeek);
+  setTrend('stat-round-trend', roundWeek);
+  document.getElementById('stat-all-trend').textContent = routePricingCache.length + ' active routes';
+
+  document.getElementById('stat-month').textContent = monthCount;
+  document.getElementById('stat-month-trend').textContent = now.toLocaleDateString('en-IN',{month:'long'});
+
+  const tally = {};
+  routesCache.forEach(r => { if(r.route) tally[r.route] = (tally[r.route]||0) + 1; });
+  const sorted = Object.entries(tally).sort((a,b)=>b[1]-a[1]);
+  if(sorted.length){
+    document.getElementById('stat-toproute').textContent = sorted[0][0];
+    document.getElementById('stat-toproute-count').textContent = `${sorted[0][1]} inquiries`;
+  } else {
+    document.getElementById('stat-toproute').textContent = 'No data yet';
+    document.getElementById('stat-toproute-count').textContent = '—';
+  }
+}
+
 // ─────────────────────────────────────────
 // DATA FETCH
 // ─────────────────────────────────────────
@@ -865,6 +996,7 @@ window.refreshAll = async function(showSpinner){
 
     updateStats();
     updateTicker();
+    updateInsights(); 
     renderRecent();
     renderBookings();
     renderRoutes();
