@@ -774,6 +774,7 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
         <div class="table-header">
   <h3><i class="fas fa-map-signs"></i>Routes &amp; Pricing</h3>
   <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-sm btn-outline" id="revertBtnRoutes" style="display:none;" onclick="revertBulkAdjust('routes')"><i class="fas fa-rotate-left"></i> Revert Last Change</button>
     <button class="btn-sm btn-outline" onclick="openBulkAdjustModal('routes')"><i class="fas fa-percent"></i> Bulk Adjust</button>
     <span class="settings-val" id="rpCount"></span>
   </div>
@@ -797,6 +798,7 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
     <div class="table-header">
   <h3><i class="fas fa-tags"></i>Round Trip Pricing</h3>
   <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-sm btn-outline" id="revertBtnRoundtrip" style="display:none;" onclick="revertBulkAdjust('roundtrip')"><i class="fas fa-rotate-left"></i> Revert Last Change</button>
     <button class="btn-sm btn-outline" onclick="openBulkAdjustModal('roundtrip')"><i class="fas fa-percent"></i> Bulk Adjust</button>
     <span class="settings-val" id="rtpCount"></span>
   </div>
@@ -1039,6 +1041,7 @@ watchAuthState(user => {
     document.getElementById('adminEmailLabel').textContent = user.email;
     document.getElementById('settingsEmail').textContent = user.email;
     refreshAll(false);
+    updateRevertButtons();
   } else {
     document.getElementById('adminApp').style.display = 'none';
     document.getElementById('loginScreen').style.display = 'flex';
@@ -1566,6 +1569,11 @@ window.applyBulkAdjust = async function(){
         btn.innerHTML = '<i class="fas fa-check"></i> &nbsp;Apply to All';
         return;
       }
+
+      // Snapshot original values BEFORE changing anything
+      const snapshot = routePricingCache.map(r => ({ id: r.id, sedan: r.sedan, suv: r.suv }));
+      saveSnapshot('routes', snapshot);
+
       const jobs = routePricingCache.map(r => {
         const updates = {};
         if(applySedan) updates.sedan = String(computeAdjusted(r.sedan, direction, method, value));
@@ -1575,6 +1583,10 @@ window.applyBulkAdjust = async function(){
       await Promise.all(jobs);
       showToast(`Updated ${routePricingCache.length} route(s)`);
     } else {
+      // Snapshot original values BEFORE changing anything
+      const snapshot = roundTripRatesCache.map(r => ({ id: r.id, rate: r.rate }));
+      saveSnapshot('roundtrip', snapshot);
+
       const jobs = roundTripRatesCache.map(r => {
         const newRate = computeAdjusted(r.rate, direction, method, value);
         return updateDocument('roundTripRates', r.id, { rate: String(newRate) });
@@ -1593,9 +1605,60 @@ window.applyBulkAdjust = async function(){
   }
 };
 
-document.getElementById('bulkAdjustModal').addEventListener('click', function(e){
-  if(e.target === this) closeBulkAdjustModal();
-});
+// ─────────────────────────────────────────
+// SNAPSHOT / REVERT (undo last bulk adjustment)
+// ─────────────────────────────────────────
+function snapshotKey(target){
+  return `moksh_bulk_snapshot_${target}`;
+}
+
+function saveSnapshot(target, records){
+  localStorage.setItem(snapshotKey(target), JSON.stringify({
+    timestamp: Date.now(),
+    records
+  }));
+  updateRevertButtons();
+}
+
+function clearSnapshot(target){
+  localStorage.removeItem(snapshotKey(target));
+  updateRevertButtons();
+}
+
+function updateRevertButtons(){
+  const routesBtn = document.getElementById('revertBtnRoutes');
+  const roundBtn  = document.getElementById('revertBtnRoundtrip');
+  routesBtn.style.display = localStorage.getItem(snapshotKey('routes')) ? 'flex' : 'none';
+  roundBtn.style.display  = localStorage.getItem(snapshotKey('roundtrip')) ? 'flex' : 'none';
+}
+
+window.revertBulkAdjust = async function(target){
+  const raw = localStorage.getItem(snapshotKey(target));
+  if(!raw){ showToast('No previous adjustment to revert'); return; }
+
+  const snapshot = JSON.parse(raw);
+  const ageMins = Math.round((Date.now() - snapshot.timestamp) / 60000);
+  const label = target === 'routes' ? 'route prices' : 'round trip rates';
+
+  if(!confirm(`Revert ${label} back to what they were before your last bulk adjustment (made ${ageMins} min ago)? This restores the original values.`)) return;
+
+  try{
+    const jobs = snapshot.records.map(r => {
+      if(target === 'routes'){
+        return updateDocument('routes', r.id, { sedan: r.sedan, suv: r.suv });
+      } else {
+        return updateDocument('roundTripRates', r.id, { rate: r.rate });
+      }
+    });
+    await Promise.all(jobs);
+    clearSnapshot(target);
+    showToast(`Reverted ${snapshot.records.length} record(s) to original values`);
+    refreshAll(false);
+  }catch(e){
+    console.error(e);
+    showToast('⚠ Could not revert: ' + (e.message||'check Firestore rules'));
+  }
+};
 
 // ─────────────────────────────────────────
 // EXPORT CSV
