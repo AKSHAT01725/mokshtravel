@@ -582,9 +582,12 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       <i class="fas fa-rotate"></i> Round Trips <span class="nav-count" id="navCountRound">0</span>
     </div>
     <div class="nav-item" onclick="showPage('routepricing',this)">
-      <i class="fas fa-map-signs"></i> Routes &amp; Pricing <span class="nav-count" id="navCountRoutePricing">0</span>
-    </div>
-    <div class="nav-item" onclick="showPage('settings',this)">
+  <i class="fas fa-map-signs"></i> Routes &amp; Pricing <span class="nav-count" id="navCountRoutePricing">0</span>
+</div>
+<div class="nav-item" onclick="showPage('roundtrippricing',this)">
+  <i class="fas fa-tags"></i> Round Trip Pricing <span class="nav-count" id="navCountRoundTripPricing">0</span>
+</div>
+<div class="nav-item" onclick="showPage('settings',this)">
       <i class="fas fa-gear"></i> Settings
     </div>
     <div class="sidebar-bottom">
@@ -781,6 +784,26 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       </div>
     </div>
 
+    <!-- ROUND TRIP PRICING -->
+<div class="page" id="page-roundtrippricing">
+  <div class="search-bar">
+    <input type="text" id="rtpSearch" placeholder="Search vehicle name…" oninput="renderRoundTripPricing()">
+    <button class="btn-sm btn-amber" onclick="openRtRateModal()"><i class="fas fa-plus"></i> Add Vehicle</button>
+  </div>
+  <div class="table-card">
+    <div class="table-header">
+      <h3><i class="fas fa-tags"></i>Round Trip Pricing</h3>
+      <span class="settings-val" id="rtpCount"></span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Vehicle</th><th>Rate/KM</th><th>Persons</th><th>Bags</th><th>Badge</th><th>Theme</th><th>Action</th></tr></thead>
+        <tbody id="rtpBody"><tr class="loading-row"><td colspan="7">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
     <!-- SETTINGS -->
      
     <div class="page" id="page-settings">
@@ -844,6 +867,53 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
   </div>
 </div>
 
+<!-- ROUND TRIP RATE ADD/EDIT MODAL -->
+<div id="rtRateModal" style="position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;background:rgba(4,10,24,0.75);backdrop-filter:blur(10px);padding:20px;">
+  <div style="background:var(--ink);border:1px solid var(--line-2);border-radius:16px;padding:32px;max-width:440px;width:100%;position:relative;max-height:90vh;overflow-y:auto;">
+    <h3 style="font-family:'Space Grotesk';font-size:18px;margin-bottom:20px;color:var(--amber);" id="rtRateModalTitle">Add Vehicle</h3>
+    <div class="field">
+      <label>Vehicle Name</label>
+      <input type="text" id="rtrName" placeholder="Swift Dzire">
+    </div>
+    <div class="field">
+      <label>Rate per KM (₹)</label>
+      <input type="number" id="rtrRate" placeholder="11">
+    </div>
+    <div class="field">
+      <label>Persons Capacity</label>
+      <input type="number" id="rtrPersons" placeholder="4">
+    </div>
+    <div class="field">
+      <label>Bags Capacity</label>
+      <input type="number" id="rtrBags" placeholder="3">
+    </div>
+    <div class="field">
+      <label>Image Filename</label>
+      <input type="text" id="rtrImage" placeholder="Swift Dzire.webp">
+    </div>
+    <div class="field">
+      <label>Badge Text (optional)</label>
+      <input type="text" id="rtrBadge" placeholder="Most Popular">
+    </div>
+    <div class="field">
+      <label>Accent Color</label>
+      <select id="rtrTheme" style="width:100%;padding:13px 15px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:9px;color:var(--ice);font-size:14.5px;outline:none;">
+        <option value="ertiga">Gold (default)</option>
+        <option value="sedan">Blue</option>
+        <option value="crysta">Teal</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Features (comma-separated)</label>
+      <input type="text" id="rtrFeatures" placeholder="AC Comfort, 24×7 Available">
+    </div>
+    <button class="login-btn" onclick="saveRtRate()" style="margin-bottom:12px;">
+      <i class="fas fa-check"></i> &nbsp;Save Vehicle
+    </button>
+    <button style="width:100%;background:none;border:none;color:var(--mute);font-size:13px;cursor:pointer;padding:6px;" onclick="closeRtRateModal()">Cancel</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script type="module">
@@ -859,6 +929,7 @@ let bookingsCache = [];
 let routesCache   = [];
 let roundCache    = [];
 let routePricingCache = [];
+let roundTripRatesCache = [];
 let isFetching    = false;
 
 // ─────────────────────────────────────────
@@ -925,7 +996,7 @@ document.getElementById('loginPass').addEventListener('keydown', e=>{
 
 // Sidebar nav order: 1=brand, 2=dashboard, 3=bookings, 4=routes, 5=roundtrip, 6=routepricing, 7=settings
 window.goToPage = function(name){
-  const idx = { dashboard:2, bookings:3, routes:4, roundtrip:5, routepricing:6, settings:7 };
+  const idx = { dashboard:2, bookings:3, routes:4, roundtrip:5, routepricing:6, roundtrippricing:7, settings:8 };
   const el = document.querySelector(`.nav-item:nth-child(${idx[name]})`);
   if(el) el.click();
 };
@@ -983,25 +1054,28 @@ window.refreshAll = async function(showSpinner){
   if(showSpinner) btn.classList.add('spinning');
 
   try{
-    const [bookings, routes, round, routePricing] = await Promise.all([
-      fetchCollection('bookings'),
-      fetchCollection('routeInquiries'),
-      fetchCollection('roundTripRequests'),
-      fetchCollection('routes', 'order', 'asc')
-    ]);
-    bookingsCache = bookings;
-    routesCache   = routes;
-    roundCache    = round;
-    routePricingCache = routePricing;
+    const [bookings, routes, round, routePricing, roundTripRates] = await Promise.all([
+  fetchCollection('bookings'),
+  fetchCollection('routeInquiries'),
+  fetchCollection('roundTripRequests'),
+  fetchCollection('routes', 'order', 'asc'),
+  fetchCollection('roundTripRates', 'order', 'asc')
+]);
+bookingsCache = bookings;
+routesCache   = routes;
+roundCache    = round;
+routePricingCache = routePricing;
+roundTripRatesCache = roundTripRates;
 
-    updateStats();
-    updateTicker();
-    updateInsights(); 
-    renderRecent();
-    renderBookings();
-    renderRoutes();
-    renderRound();
-    renderRoutePricing();
+updateStats();
+updateTicker();
+updateInsights(); 
+renderRecent();
+renderBookings();
+renderRoutes();
+renderRound();
+renderRoutePricing();
+renderRoundTripPricing();
   }catch(e){
     console.error(e);
     showToast('⚠ Could not load data: ' + (e.message||'check Firestore rules'));
@@ -1056,6 +1130,7 @@ function updateStats(){
   document.getElementById('navCountRoutes').textContent   = routesCache.length;
   document.getElementById('navCountRound').textContent    = roundCache.length;
   document.getElementById('navCountRoutePricing').textContent = routePricingCache.length;
+document.getElementById('navCountRoundTripPricing').textContent = roundTripRatesCache.length;
 }
 
 function updateTicker(){
@@ -1258,6 +1333,107 @@ window.deleteRoutePricing = async function(id){
 };
 
 // ─────────────────────────────────────────
+// RENDER: ROUND TRIP PRICING
+// ─────────────────────────────────────────
+window.renderRoundTripPricing = function(){
+  const q = (document.getElementById('rtpSearch').value||'').toLowerCase();
+  let data = roundTripRatesCache;
+  if(q) data = data.filter(r => (r.name||'').toLowerCase().includes(q));
+  document.getElementById('rtpCount').textContent = data.length + ' vehicle(s)';
+  const tbody = document.getElementById('rtpBody');
+  if(!data.length){
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="7"><div class="empty-icon">🚗</div>No round trip vehicles added yet</td></tr>`;
+    return;
+  }
+  const themeLabel = { ertiga:'Gold', sedan:'Blue', crysta:'Teal' };
+  tbody.innerHTML = data.map(r => `
+    <tr class="data-row">
+      <td><strong>${esc(r.name)}</strong></td>
+      <td>₹${esc(r.rate)}/km</td>
+      <td>${esc(r.persons)}</td>
+      <td>${esc(r.bags)}</td>
+      <td>${r.badge ? `<span class="tag tag-amber">${esc(r.badge)}</span>` : '—'}</td>
+      <td>${themeLabel[r.theme] || 'Gold'}</td>
+      <td>
+        <button class="del-btn" style="border-color:rgba(255,180,0,0.3);color:var(--amber);margin-right:6px;" onclick="openRtRateModal('${r.id}')"><i class="fas fa-pen"></i></button>
+        <button class="del-btn" onclick="deleteRtRate('${r.id}')"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+  `).join('');
+};
+
+window.openRtRateModal = function(id){
+  const modal = document.getElementById('rtRateModal');
+  const title = document.getElementById('rtRateModalTitle');
+  window._editingRtRateId = id || null;
+  if(id){
+    const r = roundTripRatesCache.find(x => x.id === id);
+    title.textContent = 'Edit Vehicle';
+    document.getElementById('rtrName').value     = r ? r.name     : '';
+    document.getElementById('rtrRate').value     = r ? r.rate     : '';
+    document.getElementById('rtrPersons').value  = r ? r.persons  : '';
+    document.getElementById('rtrBags').value     = r ? r.bags     : '';
+    document.getElementById('rtrImage').value    = r ? r.image    : '';
+    document.getElementById('rtrBadge').value    = r ? r.badge    : '';
+    document.getElementById('rtrTheme').value    = r ? (r.theme||'ertiga') : 'ertiga';
+    document.getElementById('rtrFeatures').value = r ? r.features : '';
+  } else {
+    title.textContent = 'Add Vehicle';
+    document.getElementById('rtrName').value     = '';
+    document.getElementById('rtrRate').value     = '';
+    document.getElementById('rtrPersons').value  = '';
+    document.getElementById('rtrBags').value     = '';
+    document.getElementById('rtrImage').value    = '';
+    document.getElementById('rtrBadge').value    = '';
+    document.getElementById('rtrTheme').value    = 'ertiga';
+    document.getElementById('rtrFeatures').value = '';
+  }
+  modal.style.display = 'flex';
+};
+
+window.closeRtRateModal = function(){
+  document.getElementById('rtRateModal').style.display = 'none';
+};
+
+window.saveRtRate = async function(){
+  const name     = document.getElementById('rtrName').value.trim();
+  const rate     = document.getElementById('rtrRate').value.trim();
+  const persons  = document.getElementById('rtrPersons').value.trim();
+  const bags     = document.getElementById('rtrBags').value.trim();
+  const image    = document.getElementById('rtrImage').value.trim();
+  const badge    = document.getElementById('rtrBadge').value.trim();
+  const theme    = document.getElementById('rtrTheme').value;
+  const features = document.getElementById('rtrFeatures').value.trim();
+
+  if(!name || !rate || !persons || !bags){
+    showToast('Please fill in vehicle name, rate, persons and bags');
+    return;
+  }
+
+  try{
+    if(window._editingRtRateId){
+      await updateDocument('roundTripRates', window._editingRtRateId, { name, rate, persons, bags, image, badge, theme, features });
+      showToast('Vehicle updated');
+    } else {
+      await saveDocument('roundTripRates', { name, rate, persons, bags, image, badge, theme, features, order: Date.now() });
+      showToast('Vehicle added');
+    }
+    closeRtRateModal();
+    refreshAll(false);
+  }catch(e){
+    console.error(e);
+    showToast('⚠ Could not save vehicle: ' + (e.message||'check Firestore rules'));
+  }
+};
+
+window.deleteRtRate = async function(id){
+  if(!confirm('Delete this vehicle from round trip pricing?')) return;
+  await deleteDocument('roundTripRates', id);
+  showToast('Vehicle deleted');
+  refreshAll(false);
+};
+
+// ─────────────────────────────────────────
 // EXPORT CSV
 // ─────────────────────────────────────────
 window.exportCSV = function(type){
@@ -1317,7 +1493,7 @@ window.showPage = function(name, el){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   if(el) el.classList.add('active');
-  const titles = {dashboard:'Dashboard',bookings:'Bookings',routes:'Route Inquiries',roundtrip:'Round Trip Requests',routepricing:'Routes & Pricing',settings:'Settings'};
+  const titles = {dashboard:'Dashboard',bookings:'Bookings',routes:'Route Inquiries',roundtrip:'Round Trip Requests',routepricing:'Routes & Pricing',roundtrippricing:'Round Trip Pricing',settings:'Settings'};
   document.getElementById('pageTitle').textContent = titles[name]||name;
   document.getElementById('sidebar').classList.remove('open');
 };
@@ -1328,6 +1504,10 @@ window.toggleSidebar = function(){
 
 document.getElementById('routeModal').addEventListener('click', function(e){
   if(e.target === this) closeRouteModal();
+});
+
+document.getElementById('rtRateModal').addEventListener('click', function(e){
+  if(e.target === this) closeRtRateModal();
 });
 
 // live ticker clock-style refresh of "time ago" feel
