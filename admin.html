@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel — Moksh Travel</title>
+<title>Dispatch Console — Moksh Travel</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -772,9 +772,12 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       </div>
       <div class="table-card">
         <div class="table-header">
-          <h3><i class="fas fa-map-signs"></i>Routes &amp; Pricing</h3>
-          <span class="settings-val" id="rpCount"></span>
-        </div>
+  <h3><i class="fas fa-map-signs"></i>Routes &amp; Pricing</h3>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-sm btn-outline" onclick="openBulkAdjustModal('routes')"><i class="fas fa-percent"></i> Bulk Adjust</button>
+    <span class="settings-val" id="rpCount"></span>
+  </div>
+</div>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Route</th><th>Sedan Price</th><th>SUV Price</th><th>Image</th><th>Action</th></tr></thead>
@@ -792,9 +795,12 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
   </div>
   <div class="table-card">
     <div class="table-header">
-      <h3><i class="fas fa-tags"></i>Round Trip Pricing</h3>
-      <span class="settings-val" id="rtpCount"></span>
-    </div>
+  <h3><i class="fas fa-tags"></i>Round Trip Pricing</h3>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-sm btn-outline" onclick="openBulkAdjustModal('roundtrip')"><i class="fas fa-percent"></i> Bulk Adjust</button>
+    <span class="settings-val" id="rtpCount"></span>
+  </div>
+</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Vehicle</th><th>Rate/KM</th><th>Persons</th><th>Bags</th><th>Badge</th><th>Theme</th><th>Action</th></tr></thead>
@@ -911,6 +917,57 @@ tr.data-row:hover td{ background:rgba(255,255,255,0.018); }
       <i class="fas fa-check"></i> &nbsp;Save Vehicle
     </button>
     <button style="width:100%;background:none;border:none;color:var(--mute);font-size:13px;cursor:pointer;padding:6px;" onclick="closeRtRateModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- BULK RATE ADJUST MODAL -->
+<div id="bulkAdjustModal" style="position:fixed;inset:0;z-index:10001;display:none;align-items:center;justify-content:center;background:rgba(4,10,24,0.75);backdrop-filter:blur(10px);padding:20px;">
+  <div style="background:var(--ink);border:1px solid var(--line-2);border-radius:16px;padding:32px;max-width:440px;width:100%;position:relative;">
+    <h3 style="font-family:'Space Grotesk';font-size:18px;margin-bottom:6px;color:var(--amber);" id="bulkAdjustTitle">Bulk Adjust Rates</h3>
+    <p style="font-size:12.5px;color:var(--mute);margin-bottom:22px;" id="bulkAdjustSub">This will update all records currently in the table.</p>
+
+    <div class="field">
+      <label>Direction</label>
+      <select id="baDirection" style="width:100%;padding:13px 15px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:9px;color:var(--ice);font-size:14.5px;outline:none;">
+        <option value="increase">Increase</option>
+        <option value="decrease">Decrease</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Method</label>
+      <select id="baMethod" onchange="updateBaValueLabel()" style="width:100%;padding:13px 15px;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:9px;color:var(--ice);font-size:14.5px;outline:none;">
+        <option value="percent">Percentage (%)</option>
+        <option value="fixed">Fixed Amount (₹)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label id="baValueLabel">Value (%)</label>
+      <input type="number" id="baValue" placeholder="e.g. 10" min="0" step="any">
+    </div>
+
+    <div class="field" id="baFieldsWrap">
+      <label>Apply To</label>
+      <div style="display:flex;gap:16px;margin-top:6px;">
+        <label style="display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--ice);">
+          <input type="checkbox" id="baApplySedan" checked style="width:auto;"> Sedan
+        </label>
+        <label style="display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--ice);">
+          <input type="checkbox" id="baApplySuv" checked style="width:auto;"> SUV
+        </label>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,180,0,0.08);border:1px solid rgba(255,180,0,0.25);border-radius:9px;padding:12px 14px;font-size:12.5px;color:var(--mute);margin-bottom:18px;">
+      <i class="fas fa-triangle-exclamation" style="color:var(--amber);margin-right:6px;"></i>
+      Prices are rounded to the nearest whole rupee. This directly updates Firestore and cannot be undone automatically.
+    </div>
+
+    <button class="login-btn" onclick="applyBulkAdjust()" style="margin-bottom:12px;">
+      <i class="fas fa-check"></i> &nbsp;Apply to All
+    </button>
+    <button style="width:100%;background:none;border:none;color:var(--mute);font-size:13px;cursor:pointer;padding:6px;" onclick="closeBulkAdjustModal()">Cancel</button>
   </div>
 </div>
 
@@ -1432,6 +1489,113 @@ window.deleteRtRate = async function(id){
   showToast('Vehicle deleted');
   refreshAll(false);
 };
+
+// ─────────────────────────────────────────
+// BULK RATE ADJUST
+// ─────────────────────────────────────────
+window._bulkAdjustTarget = null;
+
+window.openBulkAdjustModal = function(target){
+  window._bulkAdjustTarget = target; // 'routes' or 'roundtrip'
+  const title = document.getElementById('bulkAdjustTitle');
+  const sub   = document.getElementById('bulkAdjustSub');
+  const fieldsWrap = document.getElementById('baFieldsWrap');
+
+  document.getElementById('baValue').value = '';
+  document.getElementById('baDirection').value = 'increase';
+  document.getElementById('baMethod').value = 'percent';
+  updateBaValueLabel();
+
+  if(target === 'routes'){
+    if(!routePricingCache.length){ showToast('No routes to adjust'); return; }
+    title.textContent = 'Bulk Adjust Route Prices';
+    sub.textContent = `This will update all ${routePricingCache.length} route(s) currently in the table.`;
+    fieldsWrap.style.display = 'block';
+  } else {
+    if(!roundTripRatesCache.length){ showToast('No vehicles to adjust'); return; }
+    title.textContent = 'Bulk Adjust Round Trip Rates';
+    sub.textContent = `This will update all ${roundTripRatesCache.length} vehicle(s) currently in the table.`;
+    fieldsWrap.style.display = 'none';
+  }
+  document.getElementById('bulkAdjustModal').style.display = 'flex';
+};
+
+window.closeBulkAdjustModal = function(){
+  document.getElementById('bulkAdjustModal').style.display = 'none';
+};
+
+window.updateBaValueLabel = function(){
+  const method = document.getElementById('baMethod').value;
+  document.getElementById('baValueLabel').textContent = method === 'percent' ? 'Value (%)' : 'Value (₹)';
+};
+
+function computeAdjusted(oldVal, direction, method, value){
+  const n = parseFloat(oldVal);
+  if(isNaN(n)) return oldVal;
+  let result;
+  if(method === 'percent'){
+    result = direction === 'increase' ? n * (1 + value/100) : n * (1 - value/100);
+  } else {
+    result = direction === 'increase' ? n + value : n - value;
+  }
+  return Math.max(0, Math.round(result));
+}
+
+window.applyBulkAdjust = async function(){
+  const direction = document.getElementById('baDirection').value;
+  const method    = document.getElementById('baMethod').value;
+  const value     = parseFloat(document.getElementById('baValue').value);
+
+  if(isNaN(value) || value <= 0){
+    showToast('Please enter a valid positive value');
+    return;
+  }
+
+  const target = window._bulkAdjustTarget;
+  const btn = document.querySelector('#bulkAdjustModal .login-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> &nbsp;Applying…';
+
+  try{
+    if(target === 'routes'){
+      const applySedan = document.getElementById('baApplySedan').checked;
+      const applySuv   = document.getElementById('baApplySuv').checked;
+      if(!applySedan && !applySuv){
+        showToast('Select at least Sedan or SUV to adjust');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-check"></i> &nbsp;Apply to All';
+        return;
+      }
+      const jobs = routePricingCache.map(r => {
+        const updates = {};
+        if(applySedan) updates.sedan = String(computeAdjusted(r.sedan, direction, method, value));
+        if(applySuv)   updates.suv   = String(computeAdjusted(r.suv, direction, method, value));
+        return updateDocument('routes', r.id, updates);
+      });
+      await Promise.all(jobs);
+      showToast(`Updated ${routePricingCache.length} route(s)`);
+    } else {
+      const jobs = roundTripRatesCache.map(r => {
+        const newRate = computeAdjusted(r.rate, direction, method, value);
+        return updateDocument('roundTripRates', r.id, { rate: String(newRate) });
+      });
+      await Promise.all(jobs);
+      showToast(`Updated ${roundTripRatesCache.length} vehicle(s)`);
+    }
+    closeBulkAdjustModal();
+    refreshAll(false);
+  }catch(e){
+    console.error(e);
+    showToast('⚠ Could not apply bulk update: ' + (e.message||'check Firestore rules'));
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-check"></i> &nbsp;Apply to All';
+  }
+};
+
+document.getElementById('bulkAdjustModal').addEventListener('click', function(e){
+  if(e.target === this) closeBulkAdjustModal();
+});
 
 // ─────────────────────────────────────────
 // EXPORT CSV
