@@ -637,11 +637,12 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <i class="fas fa-phone"></i> 97277 29334
     </a>
     <div class="menu" id="mainMenu">
-      <a href="#services">Services</a>
+      <a href="#booking">Booking</a>
+      <a href="#roundtrip">Round Trip</a>
+      <a href="#routes">Routes</a>
       <a href="#ticket-services">Tickets</a>
       <a href="#cars">Fleet</a>
-      <a href="#routes">Routes</a>
-      <a href="#booking">Booking</a>
+      <a href="#services">Services</a>
       <a href="#faq">FAQ</a>
       <a href="reviews.html">Reviews</a>
       <a href="about.html">About</a>
@@ -758,20 +759,32 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   <div class="trust-pill"><i class="fas fa-check-circle"></i> Safe Travel</div>
 </div>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="section-header-center" style="margin-bottom:48px">
-    <div class="section-tag">What We Offer</div>
-    <h2 class="section-title">Our Services</h2>
-    <p class="section-sub">From daily city rides to complete Gujarat tour packages — we've got every journey covered.</p>
+<!-- ROUND TRIP -->
+<section id="roundtrip">
+  <div class="section-header-center" style="margin-bottom:56px">
+    <div class="section-tag">Round Trip</div>
+    <h2 class="section-title">Round Trip Rates</h2>
+    <p class="section-sub">Transparent per-kilometre pricing for your complete round trip journey. No hidden charges, ever.</p>
   </div>
-  <div class="services-grid">
-    <div class="service-card"><div class="service-icon">🚖</div><h3>Outstation Booking</h3><p>Comfortable, safe long-distance cab service to any destination across Gujarat and India.</p></div>
-    <div class="service-card"><div class="service-icon">✈️</div><h3>Airport Transfer</h3><p>On-time pickup and drop with flight-tracking and professional chauffeurs.</p></div>
-    <div class="service-card"><div class="service-icon">🏢</div><h3>Corporate Travel</h3><p>Dedicated professional travel solutions for businesses, teams and executives.</p></div>
-    <div class="service-card"><div class="service-icon">💍</div><h3>Wedding & Events</h3><p>Luxury vehicle arrangements for weddings, ceremonies and special occasions.</p></div>
-    <div class="service-card"><div class="service-icon">🌆</div><h3>Gujarat Tours</h3><p>Explore Gujarat's heritage, beaches and wildlife with premium rides and expert drivers.</p></div>
-    <div class="service-card"><div class="service-icon">🔁</div><h3>One Way & Round Trip</h3><p>Flexible booking options — pay only for the distance you travel, no hassle.</p></div>
+
+  <div class="rt-slider-wrap" id="roundtripSliderWrap">
+    <button class="rt-nav rt-nav-prev" onclick="scrollRoundTrip(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <div class="roundtrip-grid" id="roundtripGrid">
+      <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading round trip rates…</div>
+    </div>
+    <button class="rt-nav rt-nav-next" onclick="scrollRoundTrip(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</section>
+
+<!-- ROUTES -->
+<section id="routes">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Popular Routes</div>
+    <h2 class="section-title">Route & Pricing</h2>
+    <p class="section-sub">Transparent pricing — no surprises.</p>
+  </div>
+  <div class="routes-grid" id="routesGrid">
+    <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading routes…</div>
   </div>
 </section>
 
@@ -870,32 +883,20 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   </div>
 </section>
 
-<!-- ROUTES -->
-<section id="routes">
+<!-- SERVICES -->
+<section id="services">
   <div class="section-header-center" style="margin-bottom:48px">
-    <div class="section-tag">Popular Routes</div>
-    <h2 class="section-title">Route & Pricing</h2>
-    <p class="section-sub">Transparent pricing — no surprises.</p>
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">From daily city rides to complete Gujarat tour packages — we've got every journey covered.</p>
   </div>
-  <div class="routes-grid" id="routesGrid">
-    <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading routes…</div>
-  </div>
-</section>
-
-<!-- ROUND TRIP -->
-<section id="roundtrip">
-  <div class="section-header-center" style="margin-bottom:56px">
-    <div class="section-tag">Round Trip</div>
-    <h2 class="section-title">Round Trip Rates</h2>
-    <p class="section-sub">Transparent per-kilometre pricing for your complete round trip journey. No hidden charges, ever.</p>
-  </div>
-
-  <div class="rt-slider-wrap" id="roundtripSliderWrap">
-    <button class="rt-nav rt-nav-prev" onclick="scrollRoundTrip(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-    <div class="roundtrip-grid" id="roundtripGrid">
-      <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading round trip rates…</div>
-    </div>
-    <button class="rt-nav rt-nav-next" onclick="scrollRoundTrip(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🚖</div><h3>Outstation Booking</h3><p>Comfortable, safe long-distance cab service to any destination across Gujarat and India.</p></div>
+    <div class="service-card"><div class="service-icon">✈️</div><h3>Airport Transfer</h3><p>On-time pickup and drop with flight-tracking and professional chauffeurs.</p></div>
+    <div class="service-card"><div class="service-icon">🏢</div><h3>Corporate Travel</h3><p>Dedicated professional travel solutions for businesses, teams and executives.</p></div>
+    <div class="service-card"><div class="service-icon">💍</div><h3>Wedding & Events</h3><p>Luxury vehicle arrangements for weddings, ceremonies and special occasions.</p></div>
+    <div class="service-card"><div class="service-icon">🌆</div><h3>Gujarat Tours</h3><p>Explore Gujarat's heritage, beaches and wildlife with premium rides and expert drivers.</p></div>
+    <div class="service-card"><div class="service-icon">🔁</div><h3>One Way & Round Trip</h3><p>Flexible booking options — pay only for the distance you travel, no hassle.</p></div>
   </div>
 </section>
 
@@ -1014,15 +1015,9 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   <div class="reviews-grid">
     <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">Booked an outstation cab for a family trip across Gujarat. Vehicle arrived exactly on time, clean and comfortable. The driver was polite and professional. Highly recommended!</p><div class="reviewer">— Harsh P.</div></div>
     <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">Excellent experience from start to finish. Transparent pricing with no hidden charges. The driver was courteous and knowledgeable about the routes.</p><div class="reviewer">— Riya S.</div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">Used Moksh for airport pickup and a sightseeing tour. Both experiences were outstanding. Driver arrived before scheduled time and the journey was very comfortable.</p><div class="reviewer">— Karan M.</div></div>
-    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">Our group trip was perfectly managed. Spacious, clean vehicle ideal for long-distance travel. Safe driving style and very helpful driver throughout the journey.</p><div class="reviewer">— Nehal T.</div></div>
-    <div class="review-card hidden-review"><div class="review-stars">★★★★★</div><p class="review-text">Hired an Innova for Ahmedabad to Mount Abu trip. Vehicle condition was excellent and the journey was very comfortable. Highly recommended.</p><div class="reviewer">— Mehul S.</div></div>
-    <div class="review-card hidden-review"><div class="review-stars">★★★★★</div><p class="review-text">Booked cabs for our wedding guests from Ahmedabad to Vadodara. Everything was managed perfectly and all vehicles arrived on time. Excellent coordination.</p><div class="reviewer">— Krunal T.</div></div>
-    <div class="review-card hidden-review"><div class="review-stars">★★★★★</div><p class="review-text">Amazing experience during our Saputara family vacation. Clean vehicle, safe driving and transparent pricing. Will definitely book again.</p><div class="reviewer">— Nidhi R.</div></div>
-    <div class="review-card hidden-review"><div class="review-stars">★★★★★</div><p class="review-text">Booked a round trip to Dwarka and Somnath. The driver was polite and knew all routes well. The trip was comfortable and completely hassle-free.</p><div class="reviewer">— Jay M.</div></div>
   </div>
   <div class="see-more-wrap" style="margin-bottom:24px">
-    <button class="see-more-btn" onclick="showMoreReviews()">Show More Reviews</button>
+    <a href="reviews.html" class="see-more-btn">Show More Reviews</a>
   </div>
   <div class="write-review-cta">
     <h3>Enjoyed Your Ride? 🌟</h3>
@@ -1053,11 +1048,12 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   <div class="footer-grid">
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="#services">Our Services</a>
-      <a href="#cars">Our Fleet</a>
-      <a href="#routes">Popular Routes</a>
-      <a href="#roundtrip">Round Trip</a>
       <a href="#booking">Book Online</a>
+      <a href="#roundtrip">Round Trip</a>
+      <a href="#routes">Popular Routes</a>
+      <a href="#ticket-services">Railway, Flight &amp; Hotel</a>
+      <a href="#cars">Our Fleet</a>
+      <a href="#services">Our Services</a>
       <a href="#faq">FAQ</a>
       <a href="reviews.html">Reviews</a>
       <a href="about.html">About Us</a>
