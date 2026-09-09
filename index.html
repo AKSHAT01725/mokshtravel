@@ -1687,6 +1687,7 @@ window.renderRoundTripGrid = function(rates) {
   }).join('');
   initRoundTripCountUp();
   initRoundTripNav();
+  initRoundTripAutoSlide();
 };
 
 // ── ROUND TRIP SLIDER NAV ─────────────────────────
@@ -1715,6 +1716,51 @@ function initRoundTripNav() {
   grid.addEventListener('scroll', updateNav, { passive: true });
   window.addEventListener('resize', updateNav);
   updateNav();
+}
+
+// ── ROUND TRIP AUTO SLIDE ─────────────────────────
+let rtAutoSlideTimer = null;
+let rtAutoSlidePaused = false;
+let rtAutoSlideResumeTimeout = null;
+
+function rtAdvanceSlide() {
+  if (rtAutoSlidePaused) return;
+  const grid = document.getElementById('roundtripGrid');
+  if (!grid) return;
+  const max = grid.scrollWidth - grid.clientWidth - 2;
+  if (max <= 0) return; // nothing to slide
+  if (grid.scrollLeft >= max) {
+    grid.scrollTo({ left: 0, behavior: 'smooth' }); // loop back to start
+  } else {
+    scrollRoundTrip(1);
+  }
+}
+
+function rtPauseAutoSlide() {
+  rtAutoSlidePaused = true;
+  clearTimeout(rtAutoSlideResumeTimeout);
+}
+
+function rtResumeAutoSlideSoon() {
+  clearTimeout(rtAutoSlideResumeTimeout);
+  rtAutoSlideResumeTimeout = setTimeout(() => { rtAutoSlidePaused = false; }, 4000);
+}
+
+function initRoundTripAutoSlide() {
+  const wrap = document.getElementById('roundtripSliderWrap');
+  const grid = document.getElementById('roundtripGrid');
+  if (!wrap || !grid || wrap.dataset.autoBound) return;
+  wrap.dataset.autoBound = '1';
+
+  wrap.addEventListener('mouseenter', rtPauseAutoSlide);
+  wrap.addEventListener('mouseleave', () => { rtAutoSlidePaused = false; });
+  wrap.addEventListener('touchstart', rtPauseAutoSlide, { passive: true });
+  wrap.addEventListener('touchend', rtResumeAutoSlideSoon, { passive: true });
+  wrap.querySelectorAll('.rt-nav').forEach(btn => {
+    btn.addEventListener('click', () => { rtPauseAutoSlide(); rtResumeAutoSlideSoon(); });
+  });
+
+  if (!rtAutoSlideTimer) rtAutoSlideTimer = setInterval(rtAdvanceSlide, 2500);
 }
 </script>
 
