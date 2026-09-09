@@ -431,7 +431,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
   scrollbar-width:none;
 }
 .roundtrip-grid.rt-slider::-webkit-scrollbar { display:none; }
-.roundtrip-grid.rt-slider .rt-card { flex:0 0 320px; scroll-snap-align:start; }
+.roundtrip-grid.rt-slider .rt-card { flex:0 0 320px; scroll-snap-align:start; scroll-snap-stop:always; }
 
 @media (max-width:768px) {
   /* Sections were stacking 90px + 90px of padding between them (plus a
@@ -455,7 +455,7 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     scrollbar-width:none;
   }
   .roundtrip-grid::-webkit-scrollbar { display:none; }
-  .roundtrip-grid .rt-card { flex:0 0 82%; max-width:340px; scroll-snap-align:center; }
+  .roundtrip-grid .rt-card { flex:0 0 100%; max-width:100%; scroll-snap-align:start; scroll-snap-stop:always; }
 }
 @keyframes countUp { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
 .rt-rate-num.animate { animation:countUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
@@ -739,8 +739,24 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
       <i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp
     </button>
   </form>
+  
+  <div class="hero-stats">
+      <div><div class="hero-stat-num">100+</div><div class="hero-stat-label">Happy Customers</div></div>
+      <div><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Google Rating</div></div>
+      <div><div class="hero-stat-num">24×7</div><div class="hero-stat-label">Available</div></div>
+      <div><div class="hero-stat-num">50+</div><div class="hero-stat-label">Gujarat Destinations</div></div>
+    </div>
 </section>
 
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> 24×7 Service</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Verified Drivers</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Clean Vehicles</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Transparent Pricing</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> No Hidden Charges</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Safe Travel</div>
+</div>
 
 <!-- SERVICES -->
 <section id="services">
@@ -757,24 +773,6 @@ select.loc-input option { background:#0f2348; color:var(--ice); font-size:15px; 
     <div class="service-card"><div class="service-icon">🌆</div><h3>Gujarat Tours</h3><p>Explore Gujarat's heritage, beaches and wildlife with premium rides and expert drivers.</p></div>
     <div class="service-card"><div class="service-icon">🔁</div><h3>One Way & Round Trip</h3><p>Flexible booking options — pay only for the distance you travel, no hassle.</p></div>
   </div>
-  
-<div class="hero-stats">
-    <div><div class="hero-stat-num">100+</div><div class="hero-stat-label">Happy Customers</div></div>
-    <div><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Google Rating</div></div>
-    <div><div class="hero-stat-num">24×7</div><div class="hero-stat-label">Available</div></div>
-    <div><div class="hero-stat-num">50+</div><div class="hero-stat-label">Gujarat Destinations</div></div>
-</div>
-
-  <!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> 24×7 Service</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Verified Drivers</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Clean Vehicles</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Transparent Pricing</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> No Hidden Charges</div>
-  <div class="trust-pill"><i class="fas fa-check-circle"></i> Safe Travel</div>
-</div>
-
 </section>
 
 <!-- TICKET BOOKING SERVICES (Railway / Flight / Hotel) -->
@@ -1700,7 +1698,8 @@ function scrollRoundTrip(dir) {
   const grid = document.getElementById('roundtripGrid');
   if (!grid) return;
   const card = grid.querySelector('.rt-card');
-  const step = card ? (card.getBoundingClientRect().width + 24) : grid.clientWidth * 0.85;
+  const gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap || '24') || 24;
+  const step = card ? (card.getBoundingClientRect().width + gap) : grid.clientWidth * 0.85;
   grid.scrollBy({ left: dir * step, behavior: 'smooth' });
 }
 window.scrollRoundTrip = scrollRoundTrip;
