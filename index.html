@@ -1,675 +1,2438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Moksh Travel | Website Under Maintenance</title>
-  <meta name="description" content="Moksh Travel website is currently under maintenance. For cab bookings, contact us on WhatsApp or call us.">
-
-  <link rel="icon" href="/favicon.ico">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <style>
-    :root {
-      --navy: #060f22;
-      --navy-2: #0b1a35;
-      --navy-3: #0f2348;
-
-      --gold: #f5a623;
-      --gold-light: #ffc45c;
-
-      --white: #ffffff;
-      --ice: #eaf1ff;
-      --mute: #9caac2;
-
-      --line: rgba(255,255,255,0.10);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(245,166,35,0.08), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(30,90,180,0.15), transparent 35%),
-        linear-gradient(135deg, var(--navy), var(--navy-2));
-      color: var(--white);
-      overflow-x: hidden;
-    }
-
-    /* Background */
-    .background {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .circle {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(245,166,35,0.10);
-    }
-
-    .circle.one {
-      width: 500px;
-      height: 500px;
-      top: -220px;
-      left: -180px;
-    }
-
-    .circle.two {
-      width: 700px;
-      height: 700px;
-      bottom: -400px;
-      right: -250px;
-    }
-
-    .circle.three {
-      width: 280px;
-      height: 280px;
-      top: 35%;
-      right: 8%;
-      border-color: rgba(255,255,255,0.05);
-    }
-
-    /* Header */
-    header {
-      position: relative;
-      z-index: 5;
-      width: 100%;
-      padding: 24px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: white;
-    }
-
-    .logo img {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      border-radius: 12px;
-    }
-
-    .logo-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: -0.4px;
-    }
-
-    .logo-text span {
-      color: var(--gold);
-    }
-
-    .status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background: rgba(255,255,255,0.035);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--mute);
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 12px rgba(245,166,35,0.8);
-      animation: pulse 1.7s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      50% {
-        opacity: .45;
-        transform: scale(.75);
-      }
-    }
-
-    /* Main */
-    main {
-      position: relative;
-      z-index: 2;
-      min-height: calc(100vh - 100px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px 70px;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1050px;
-      display: grid;
-      grid-template-columns: 1fr 0.85fr;
-      gap: 70px;
-      align-items: center;
-    }
-
-    /* Left */
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 15px;
-      border-radius: 30px;
-      background: rgba(245,166,35,0.08);
-      border: 1px solid rgba(245,166,35,0.22);
-      color: var(--gold-light);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .tag i {
-      font-size: 10px;
-    }
-
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(46px, 6vw, 78px);
-      line-height: 0.98;
-      letter-spacing: -3px;
-      margin-bottom: 25px;
-    }
-
-    h1 span {
-      color: var(--gold);
-    }
-
-    .description {
-      color: var(--mute);
-      font-size: 16px;
-      line-height: 1.8;
-      max-width: 570px;
-      margin-bottom: 32px;
-    }
-
-    .description strong {
-      color: var(--ice);
-    }
-
-    /* Buttons */
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 13px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      min-height: 50px;
-      padding: 0 22px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 800;
-      transition: .25s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .btn-primary {
-      color: #07101f;
-      background: var(--gold);
-      box-shadow: 0 12px 30px rgba(245,166,35,0.18);
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      box-shadow: 0 16px 35px rgba(245,166,35,0.28);
-    }
-
-    .btn-secondary {
-      color: var(--ice);
-      background: rgba(255,255,255,0.045);
-      border: 1px solid var(--line);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.18);
-    }
-
-    /* Right Maintenance Card */
-    .maintenance-card {
-      position: relative;
-      padding: 42px 34px;
-      border-radius: 28px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,0.075),
-          rgba(255,255,255,0.025)
-        );
-      border: 1px solid var(--line);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.28);
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .maintenance-card::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(245,166,35,0.08);
-      filter: blur(5px);
-      top: -100px;
-      right: -100px;
-    }
-
-    .maintenance-card::after {
-      content: "";
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      background: rgba(30,90,180,0.10);
-      filter: blur(5px);
-      bottom: -90px;
-      left: -70px;
-    }
-
-    .car-icon {
-      position: relative;
-      z-index: 2;
-      width: 105px;
-      height: 105px;
-      margin: 0 auto 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      background: rgba(245,166,35,0.09);
-      border: 1px solid rgba(245,166,35,0.22);
-      color: var(--gold);
-      font-size: 42px;
-      animation: floatCar 3s ease-in-out infinite;
-    }
-
-    @keyframes floatCar {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-8px);
-      }
-    }
-
-    .maintenance-card h2 {
-      position: relative;
-      z-index: 2;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
-
-    .maintenance-card p {
-      position: relative;
-      z-index: 2;
-      color: var(--mute);
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 27px;
-    }
-
-    .progress {
-      position: relative;
-      z-index: 2;
-      height: 7px;
-      width: 100%;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.07);
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-
-    .progress span {
-      display: block;
-      width: 68%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-      animation: progress 2.4s ease-in-out infinite alternate;
-    }
-
-    @keyframes progress {
-      from {
-        width: 45%;
-      }
-      to {
-        width: 78%;
-      }
-    }
-
-    .progress-text {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      color: #7f8da6;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    /* Contact strip */
-    .contact-box {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px;
-      text-align: left;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .contact-item i {
-      color: var(--gold);
-      font-size: 14px;
-    }
-
-    .contact-item small {
-      display: block;
-      color: #75839b;
-      font-size: 9px;
-      margin-bottom: 2px;
-      text-transform: uppercase;
-      letter-spacing: .7px;
-    }
-
-    .contact-item strong {
-      display: block;
-      color: var(--ice);
-      font-size: 11px;
-    }
-
-    /* Footer */
-    footer {
-      position: relative;
-      z-index: 3;
-      padding: 0 20px 25px;
-      text-align: center;
-      color: #68758b;
-      font-size: 11px;
-    }
-
-    footer span {
-      color: var(--gold);
-    }
-
-    /* Mobile */
-    @media (max-width: 850px) {
-      header {
-        padding: 18px 20px;
-      }
-
-      .status {
-        display: none;
-      }
-
-      main {
-        padding: 45px 20px 55px;
-      }
-
-      .container {
-        grid-template-columns: 1fr;
-        gap: 45px;
-        max-width: 600px;
-      }
-
-      .left {
-        text-align: center;
-      }
-
-      .description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .buttons {
-        justify-content: center;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .logo img {
-        width: 45px;
-        height: 45px;
-      }
-
-      .logo-text {
-        font-size: 18px;
-      }
-
-      main {
-        padding-top: 30px;
-      }
-
-      h1 {
-        font-size: 49px;
-      }
-
-      .description {
-        font-size: 14px;
-        line-height: 1.7;
-      }
-
-      .buttons {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .maintenance-card {
-        padding: 32px 20px;
-        border-radius: 22px;
-      }
-
-      .maintenance-card h2 {
-        font-size: 26px;
-      }
-
-      .contact-box {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cab Service in Ahmedabad | Taxi Booking & Airport Cabs | Moksh Travel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="canonical" href="https://www.mokshtravel.com/">
+  
+<!-- Favicon (upload the actual image files to your site root — see note below) -->
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){ emailjs.init("shZzGfL3Tpe1cy09F"); })();
+</script>
+
+<meta name="description" content="Moksh Travel — Ahmedabad's most trusted cab service. Outstation taxi, airport transfer, one way & round trip cab across Gujarat. Call +91 97277 29334.">
+<meta name="keywords" content="Moksh Travel, Moksh Tours and Travel, Ahmedabad Taxi Service, Best Taxi Service in Ahmedabad, Taxi Service in Ahmedabad, Taxi Booking Ahmedabad, Online Taxi Booking Ahmedabad, Local Taxi Service Ahmedabad, One Way Taxi Ahmedabad, Round Trip Taxi Ahmedabad, Outstation Taxi Service Ahmedabad, Outstation Taxi Ahmedabad, Affordable Taxi Service Ahmedabad, Cheap Taxi Service Ahmedabad, 24/7 Taxi Service Ahmedabad, AC Taxi Service Ahmedabad, Luxury Taxi Service Ahmedabad, SUV Taxi Service Ahmedabad, Sedan Taxi Service Ahmedabad, Taxi Rental Ahmedabad, Corporate Taxi Service Ahmedabad, Family Taxi Service Ahmedabad, Driver on Call Ahmedabad, Taxi Near Me, Taxi Service Near Me, Best Taxi Near Me, Local Taxi Near Me, Airport Taxi Near Me, Outstation Taxi Near Me, Ahmedabad Airport Taxi, Airport Taxi Service Ahmedabad, Airport Pickup Ahmedabad, Airport Drop Ahmedabad, Taxi to Ahmedabad Airport, Airport Transfer Ahmedabad, Airport Taxi Booking Ahmedabad, Ahmedabad to Dwarka Taxi, Ahmedabad to Somnath Taxi, Ahmedabad to Surat Taxi, Ahmedabad to Rajkot Taxi, Ahmedabad to Vadodara Taxi, Ahmedabad to Bhavnagar Taxi, Ahmedabad to Jamnagar Taxi, Ahmedabad to Junagadh Taxi, Ahmedabad to Kutch Taxi, Ahmedabad to Bhuj Taxi, Ahmedabad to Gandhinagar Taxi, Ahmedabad to Statue of Unity Taxi, Ahmedabad to Mount Abu Taxi, Ahmedabad to Udaipur Taxi, Ahmedabad to Jaipur Taxi, Ahmedabad to Mumbai Taxi, Ahmedabad to Pune Taxi, Ahmedabad to Nashik Taxi, Ahmedabad to Diu Taxi, Ahmedabad to Saputara Taxi, Ahmedabad to Ambaji Taxi, Ahmedabad to Palitana Taxi, Ahmedabad to Virpur Taxi, Ahmedabad to Dakor Taxi, Ahmedabad to Kevadia Taxi, Ahmedabad to Anand Taxi, Ahmedabad to Nadiad Taxi, Ahmedabad to Mehsana Taxi, Ahmedabad to Patan Taxi, Ahmedabad to Modhera Taxi, Ahmedabad to Morbi Taxi, Ahmedabad to Porbandar Taxi, Ahmedabad to Veraval Taxi, Ahmedabad to Sasan Gir Taxi, Ahmedabad to Dholavira Taxi, Ahmedabad to Mandvi Taxi, Ahmedabad to Vapi Taxi, Ahmedabad to Valsad Taxi, Ahmedabad to Bharuch Taxi, Ahmedabad to Ankleshwar Taxi, Ahmedabad to Godhra Taxi, Ahmedabad to Dahod Taxi, Ahmedabad to Abu Road Taxi, Ahmedabad to Ajmer Taxi, Ahmedabad to Jodhpur Taxi, Ahmedabad to Chotila Taxi, Ahmedabad to Shirdi Taxi, Ahmedabad to Indore Taxi, Ahmedabad to Silvassa Taxi, Ahmedabad to Mahudi Taxi, Book Taxi Online Ahmedabad, Hire Taxi in Ahmedabad, Taxi for Family Trip Ahmedabad, Taxi for Gujarat Tour, Gujarat Tour Taxi Package, Wedding Taxi Service Ahmedabad, Tempo Traveller Ahmedabad, Innova Taxi Ahmedabad, Ertiga Taxi Ahmedabad, Swift Dzire Taxi Ahmedabad, Cab Near Me, Cab Service Near Me, Cab Booking Near Me, Taxi Booking Near Me, Book Cab Near Me, Book Taxi Near Me, 24/7 Taxi Near Me, 24 Hour Cab Service Near Me, Cheap Taxi Near Me, Affordable Cab Near Me, Reliable Taxi Near Me, Trusted Cab Near Me, One Way Taxi Near Me, Round Trip Cab Near Me, Railway Station Taxi Near Me, Hotel Taxi Near Me, Taxi Near Me Ahmedabad, Cab Near Me Ahmedabad, Taxi Service Near Me Ahmedabad, Cab Service Near Me Ahmedabad, Taxi Open Now Near Me, Cab Available Near Me">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Moksh Travel">
+<meta name="geo.region" content="IN-GJ">
+<meta name="geo.placename" content="Ahmedabad">
+<meta name="geo.position" content="23.0225;72.5714">
+<meta name="ICBM" content="23.0225, 72.5714">
+<link rel="alternate" href="https://mokshtravel.com/" hreflang="en-in">
+
+<meta property="og:title" content="Moksh Travel — Best Cab Service in Ahmedabad, Gujarat">
+<meta property="og:description" content="Book Taxi, Airport Cab, One Way & Round Trip Cab Across Gujarat with Moksh Travel — 24×7, transparent pricing, 100+ happy customers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mokshtravel.com/">
+<meta property="og:site_name" content="Moksh Travel">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://mokshtravel.com/logo.jpeg">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Moksh Travel — Best Cab Service in Ahmedabad">
+<meta name="twitter:description" content="Ahmedabad's most trusted cab service — outstation, airport, corporate & Gujarat tours.">
+<meta name="twitter:image" content="https://mokshtravel.com/logo.jpeg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TaxiService",
+  "name": "Moksh Travel",
+  "alternateName": "Moksh Tours and Travel",
+  "image": "https://mokshtravel.com/logo.jpeg",
+  "logo": "https://mokshtravel.com/logo.jpeg",
+  "telephone": "+919727729334",
+  "email": "mokshtour.travel@gmail.com",
+  "priceRange": "₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1600 Bhavsar No Khacho, Opp Swaminarayan Temple",
+    "addressLocality": "Ahmedabad",
+    "addressRegion": "Gujarat",
+    "postalCode": "380018",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 23.0225,
+    "longitude": 72.5714
+  },
+  "areaServed": "Gujarat",
+  "url": "https://mokshtravel.com/",
+  "sameAs": [
+    "https://www.instagram.com/mokshtravel/",
+    "https://g.page/r/CTQaIJuvHQ3REBE/review"
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  }
+}
+</script>
+  
+<style>
+:root {
+  /* ══ PREMIUM WHITE THEME ══
+     Same token names as the original dark build (so every var() reference
+     below keeps working) — values swapped from navy/ice to ivory/ink. */
+  --navy:       #ffffff;   /* page background (was near-black navy) */
+  --navy-2:     #faf7f0;   /* alt section band — warm ivory */
+  --navy-3:     #ffffff;   /* card surface — white, lifted with shadow */
+  --surface:    rgba(23,20,14,0.035);
+  --surface-2:  rgba(23,20,14,0.06);
+  --line:       rgba(23,20,14,0.10);
+  --line-2:     rgba(23,20,14,0.16);
+  --gold:       #b8862c;   /* deepened bronze-gold for contrast on white */
+  --gold-light: #d9a94a;
+  --gold-dim:   rgba(184,134,44,0.10);
+  --teal:       #1c9a71;   /* deepened emerald for contrast on white */
+  --teal-dim:   rgba(28,154,113,0.08);
+  --ice:        #17140f;   /* primary text ink (was near-white "ice") */
+  --mute:       #756c5c;   /* warm taupe secondary text */
+  --radius:     16px;
+  --radius-lg:  24px;
+  --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+  /* additive tokens for the light theme */
+  --shadow-sm:  0 2px 14px rgba(23,20,10,0.05);
+  --shadow-md:  0 16px 40px rgba(23,20,10,0.09);
+  --shadow-lg:  0 34px 90px rgba(23,20,10,0.15);
+  --anchor:     #100d0a;   /* deep charcoal — the one deliberate dark band (final CTA + footer) */
+  --anchor-2:   #1c170f;   /* lighter charcoal for cards/inputs inside the dark band */
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  background: var(--navy);
+  color: var(--ice);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--navy); }
+::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
+
+/* ── HEADER ── */
+header {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 1000;
+  padding: 0 5%;
+  height: 72px;
+  display: flex; align-items: center;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+header.scrolled { background: rgba(255,255,255,0.92); border-bottom-color: var(--line-2); box-shadow:0 4px 24px rgba(23,20,10,0.06); }
+.navbar { display:flex; align-items:center; justify-content:space-between; width:100%; gap:10px; }
+.logo { display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0; }
+.logo img { width:52px; border-radius:10px; background:#fff; padding:3px; border:1px solid var(--line); }
+.logo-text { display:flex; flex-direction:column; }
+.logo-text strong { font-family:'Space Grotesk'; font-size:15px; font-weight:700; color:var(--ice); letter-spacing:.3px; line-height:1.2; }
+.logo-text span { font-size:10.5px; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase; }
+.menu { display:flex; align-items:center; gap:4px; }
+.menu a { color: rgba(23,20,14,0.75); text-decoration:none; font-size:13.5px; font-weight:600; padding:8px 14px; border-radius:8px; transition:var(--transition); letter-spacing:.2px; }
+.menu a:hover { color:var(--ice); background:var(--surface-2); }
+.nav-cta { background:var(--gold); color:#1a0f00 !important; padding:10px 22px !important; border-radius:30px !important; font-weight:700 !important; letter-spacing:.3px !important; }
+.nav-cta:hover { background:var(--ice) !important; color:#fff !important; transform:translateY(-1px); box-shadow:0 8px 24px rgba(23,20,10,0.28) !important; }
+.hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:var(--ice); font-size:22px; flex-shrink:0; }
+
+/* ── MOBILE NAV PHONE PILL ── */
+.mobile-nav-phone { display:none; }
+@media(max-width:860px) {
+  .hamburger { display:flex; }
+  .menu { display:none; flex-direction:column; align-items:flex-start; position:absolute; top:72px; left:0; right:0; background:rgba(255,255,255,0.98); backdrop-filter:blur(20px); padding:16px 5% 24px; border-bottom:1px solid var(--line); gap:2px; box-shadow:0 16px 40px rgba(23,20,10,0.08); }
+  .menu.open { display:flex; }
+  .menu a { width:100%; padding:12px 16px; font-size:15px; }
+  .mobile-nav-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(184,134,44,0.35);
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: .3px;
+    white-space: nowrap;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .mobile-nav-phone:hover { background: var(--gold); color: #1a0f00; }
+  .mobile-nav-phone i { font-size: 10px; }
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; display:flex; align-items:center;
+  padding:120px 6% 80px; position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(184,134,44,0.10), transparent),
+    radial-gradient(ellipse 60% 80% at 10% 80%, rgba(28,154,113,0.06), transparent),
+    linear-gradient(160deg, #ffffff 0%, #fbf7ee 55%, #f6ecd7 100%);
+}
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background-image: linear-gradient(rgba(23,20,14,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23,20,14,0.035) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
+}
+.hero-inner { position:relative; z-index:1; max-width:680px; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.25); border-radius:30px; padding:6px 16px; font-size:12px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:24px; }
+.hero-eyebrow .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:pulse 1.8s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+.hero h1 { font-family:'Space Grotesk'; font-size:clamp(38px,5.5vw,68px); font-weight:700; line-height:1.08; letter-spacing:-1px; margin-bottom:20px; color:var(--ice); }
+.hero h1 em { font-style:normal; color:var(--gold); }
+.hero-sub { font-size:clamp(15px,1.8vw,18px); color:var(--mute); line-height:1.65; margin-bottom:36px; max-width:520px; }
+.hero-btns { display:flex; flex-wrap:wrap; gap:12px; }
+.btn-primary { display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#1a0f00; font-weight:700; font-size:15px; padding:14px 28px; border-radius:50px; text-decoration:none; transition:var(--transition); box-shadow:0 10px 28px rgba(184,134,44,0.28); }
+.btn-primary:hover { background:var(--ice); color:#fff; transform:translateY(-2px); box-shadow:0 14px 34px rgba(23,20,10,0.28); }
+.btn-secondary { display:inline-flex; align-items:center; gap:9px; background:rgba(37,211,102,0.12); color:#25d366; border:1px solid rgba(37,211,102,0.3); font-weight:700; font-size:15px; padding:14px 28px; border-radius:50px; text-decoration:none; transition:var(--transition); }
+.btn-secondary:hover { background:rgba(37,211,102,0.2); transform:translateY(-2px); }
+.hero-stats { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; margin-top:48px; padding-top:40px; border-top:1px solid var(--line); }
+.hero-stats > div { text-align:center; }
+.hero-stat-num { font-family:'Space Grotesk'; font-size:32px; font-weight:700; color:var(--gold); }
+.hero-stat-label { font-size:12px; color:var(--mute); margin-top:2px; letter-spacing:.5px; }
+
+/* Mobile: hero shouldn't force a full 100vh box — that's what leaves a
+   big empty gap under the buttons before the next section starts. */
+@media(max-width:768px) {
+  .hero { min-height:auto; padding:110px 6% 48px; }
+  .hero-stats { margin-top:32px; padding-top:24px; gap:18px 24px; }
+}
+
+/* ── TRUST STRIP ── */
+.trust-strip { background:var(--navy-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:18px 6%; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+.trust-pill { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:30px; padding:8px 18px; font-size:13px; font-weight:600; color:var(--ice); transition:var(--transition); cursor:default; }
+.trust-pill:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+.trust-pill i { color:var(--teal); font-size:12px; }
+
+/* ── SECTIONS ── */
+section { padding:90px 6%; }
+.section-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.section-title { font-family:'Space Grotesk'; font-size:clamp(28px,3.5vw,42px); font-weight:700; color:var(--ice); margin-bottom:14px; line-height:1.15; }
+.section-sub { font-size:15px; color:var(--mute); line-height:1.65; max-width:560px; margin-bottom:48px; }
+.section-header-center { text-align:center; }
+.section-header-center .section-sub { margin:0 auto 48px; }
+
+/* ── BOOKING FORM ── */
+#booking { background:var(--navy-2); }
+.booking-wrap { max-width:860px; margin:0 auto; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-lg); position:relative; overflow:hidden; }
+.booking-wrap::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.booking-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.booking-full { grid-column:1/-1; }
+.form-group { display:flex; flex-direction:column; gap:6px; }
+.form-label { font-size:11.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mute); }
+.form-input, .form-select { background:rgba(23,20,14,0.035); border:1px solid var(--line); border-radius:10px; padding:13px 15px; color:var(--ice); font-size:14.5px; font-family:'Plus Jakarta Sans',Arial,sans-serif; outline:none; transition:var(--transition); width:100%; }
+.form-input::placeholder { color:rgba(117,108,92,0.55); }
+.form-input:focus, .form-select:focus { border-color:var(--gold); background:rgba(184,134,44,0.05); box-shadow:0 0 0 3px rgba(184,134,44,0.12); }
+.form-select { cursor:pointer; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23756c5c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
+.form-select option { background:var(--navy-2); color:var(--ice); }
+.booking-submit { width:100%; padding:16px; margin-top:6px; background:var(--gold); color:#1a0f00; border:none; border-radius:12px; font-family:'Space Grotesk'; font-size:16px; font-weight:700; cursor:pointer; transition:var(--transition); display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 8px 24px rgba(184,134,44,0.3); }
+.booking-submit:hover { background:var(--ice); color:#fff; transform:translateY(-2px); box-shadow:0 14px 36px rgba(23,20,10,0.3); }
+.booking-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+/* ── TRIP PILLS ── */
+.trip-pills { display:flex; gap:8px; overflow-x:auto; margin-bottom:20px; padding-bottom:2px; scrollbar-width:none; }
+.trip-pills::-webkit-scrollbar { display:none; }
+.trip-pill { flex-shrink:0; padding:10px 22px; border-radius:30px; background:rgba(23,20,14,0.035); border:1px solid var(--line); color:var(--mute); font-weight:700; font-size:13.5px; cursor:pointer; transition:var(--transition); white-space:nowrap; font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.trip-pill:hover { border-color:var(--line-2); color:var(--ice); }
+.trip-pill.active { background:var(--gold); color:#1a0f00; border-color:var(--gold); box-shadow:0 6px 20px rgba(184,134,44,0.3); }
+
+/* Mobile: fit all 4 pills in one row, no horizontal scroll */
+@media(max-width:480px){
+  .trip-pills {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow-x: visible;
+    gap: 6px;
+  }
+  .trip-pill {
+    padding: 9px 4px;
+    font-size: 11px;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+/* ── FROM / TO CARD ── */
+.loc-card { background:rgba(23,20,14,0.03); border:1px solid var(--line); border-radius:16px; position:relative; margin-bottom:14px; }
+.loc-row { position: relative; }
+.loc-dropdown {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--navy-3); border: 1px solid var(--line-2);
+  border-radius: 12px; margin-top: 6px; max-height: 220px;
+  overflow-y: auto; box-shadow: var(--shadow-lg);
+  z-index: 50; display: none;
+}
+.loc-dropdown.open { display: block; }
+.loc-dropdown-item { padding: 11px 16px; font-size: 14px; color: var(--ice); cursor: pointer; transition: background .15s; }
+.loc-dropdown-item:hover, .loc-dropdown-item.highlighted { background: var(--gold-dim); color: var(--gold); }
+.loc-dropdown-empty { padding: 14px 16px; font-size: 13px; color: var(--mute); }
+
+/* Native date/time picker icon styling */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: .65;
+}
+.loc-row { padding:16px 60px 16px 20px; }
+.loc-row + .loc-row { border-top:1px solid var(--line); }
+.loc-label { display:block; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mute); margin-bottom:5px; }
+.loc-input { width:100%; background:transparent; border:none; outline:none; color:var(--ice); font-family:'Space Grotesk'; font-size:19px; font-weight:700; padding:0; }
+.loc-input::placeholder { color:rgba(23,20,14,0.28); font-weight:600; }
+select.loc-input { cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23756c5c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 6px center; padding-right:26px; }
+select.loc-input option { background:var(--navy-2); color:var(--ice); font-size:15px; }
+.swap-btn { position:absolute; right:14px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; background:var(--navy-3); border:1.5px solid var(--gold); color:var(--gold); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:var(--transition); z-index:2; box-shadow:var(--shadow-sm); padding:0; }
+.swap-btn:hover { background:var(--gold); color:#1a0f00; }
+.swap-btn i { font-size:14px; transform:rotate(90deg); display:block; transition:var(--transition); }
+.swap-btn:hover i { transform:rotate(270deg); }
+
+/* ── DATE / TIME / DETAIL CARDS ── */
+.date-time-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.dt-card { background:rgba(23,20,14,0.03); border:1px solid var(--line); border-radius:14px; padding:14px 18px; transition:var(--transition); }
+.dt-card:focus-within { border-color:var(--gold); background:rgba(184,134,44,0.04); }
+.dt-input { font-size:17px !important; }
+.dt-card select.loc-input { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23756c5c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 2px center; padding-right:22px; }
+.dt-card select.loc-input option { background:var(--navy-2); font-size:14px; }
+
+@media(max-width:640px){
+  .date-time-grid { grid-template-columns:1fr; }
+  .loc-input { font-size:17px; }
+}
+@media(max-width:640px){ .booking-grid { grid-template-columns:1fr; } .booking-wrap { padding:24px 18px; } }
+
+/* ── SERVICES ── */
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+.service-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; transition:var(--transition); }
+.service-card:hover { border-color:var(--gold); background:var(--gold-dim); transform:translateY(-4px); }
+.service-icon { width:46px; height:46px; border-radius:12px; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.2); display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:18px; }
+.service-card h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
+.service-card p { font-size:13.5px; color:var(--mute); line-height:1.6; }
+
+/* ── SERVICE DETAIL SUB-SECTIONS ── */
+.service-detail { margin-top:64px; padding-top:56px; border-top:1px solid var(--line); }
+.service-eyebrow { display:inline-flex; align-items:center; gap:7px; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.25); border-radius:30px; padding:5px 14px; font-size:11px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:14px; }
+.service-eyebrow i { font-size:10px; }
+.service-detail-head h3 { font-family:'Space Grotesk'; font-size:clamp(21px,2.6vw,28px); font-weight:700; color:var(--ice); margin-bottom:12px; }
+.service-detail-head h3 em { font-style:normal; color:var(--gold); }
+.service-detail-head p { font-size:14.5px; color:var(--mute); line-height:1.7; max-width:780px; margin-bottom:26px; }
+.service-detail-head p strong { color:var(--ice); }
+
+.tag-list { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; }
+.tag-pill { background:var(--surface); border:1px solid var(--line); border-radius:30px; padding:8px 16px; font-size:13px; font-weight:600; color:rgba(23,20,14,0.8); transition:var(--transition); }
+.tag-pill:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+
+.mini-feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+.mini-feature-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:24px; transition:var(--transition); }
+.mini-feature-card:hover { border-color:var(--gold); background:var(--gold-dim); }
+.mini-feature-icon { width:40px; height:40px; border-radius:10px; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.2); display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:14px; color:var(--gold); }
+.mini-feature-card h4 { font-size:14.5px; font-weight:700; margin-bottom:6px; }
+.mini-feature-card p { font-size:13px; color:var(--mute); line-height:1.6; }
+
+.airport-card-outer { background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); padding:32px; }
+.airport-card-head { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+.airport-card-icon { width:52px; height:52px; border-radius:14px; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.2); display:flex; align-items:center; justify-content:center; font-size:21px; color:var(--gold); flex-shrink:0; }
+.airport-card-outer h4 { font-family:'Space Grotesk'; font-size:17px; font-weight:700; }
+.airport-card-outer > p { font-size:13.5px; color:var(--mute); line-height:1.65; margin-bottom:24px; }
+.airport-area-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+.airport-area-card { background:rgba(23,20,14,0.03); border:1px solid var(--line); border-radius:12px; padding:16px 18px; transition:var(--transition); }
+.airport-area-card:hover { border-color:var(--gold); }
+.airport-area-card strong { display:block; font-size:13.5px; font-weight:700; margin-bottom:4px; }
+.airport-area-card span { font-size:12px; color:var(--mute); }
+
+.info-note { display:flex; gap:12px; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.25); border-left:3px solid var(--gold); border-radius:12px; padding:16px 20px; font-size:13px; color:rgba(23,20,14,0.8); line-height:1.65; margin-top:22px; }
+.info-note i { color:var(--gold); font-size:15px; margin-top:1px; }
+.info-note strong { color:var(--gold); }
+
+.fare-table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--navy-3); box-shadow:var(--shadow-md); }
+.fare-table { width:100%; border-collapse:collapse; min-width:600px; }
+.fare-table th { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:#1a0f00; text-align:left; font-size:11px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; padding:15px 18px; white-space:nowrap; }
+.fare-table td { padding:14px 18px; font-size:13.5px; color:rgba(23,20,14,0.85); border-top:1px solid var(--line); white-space:nowrap; }
+.fare-table tbody tr:nth-child(even) td { background:rgba(23,20,14,0.02); }
+.fare-table tr:hover td { background:rgba(184,134,44,0.06); }
+.fare-table td.fare-amt { color:var(--gold); font-weight:700; font-family:'Space Grotesk'; }
+.fare-table td.fare-dist { color:var(--teal); }
+.fare-table td:first-child { color:var(--ice); font-weight:600; }
+.fare-table td a.fare-route-link { color:inherit; text-decoration:none; }
+.fare-table td a.fare-route-link:hover { color:var(--gold); text-decoration:underline; }
+
+
+/* Fare tables become stacked cards on mobile — every column fits, no horizontal sliding */
+/* =========================================
+   MOBILE FARE TABLE → SEPARATE CARDS
+   ========================================= */
+@media (max-width: 700px) {
+
+  .fare-table-wrap {
+    overflow: visible !important;
+    border: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .fare-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+  }
+
+  .fare-table thead {
+    display: none !important;
+  }
+
+  .fare-table tbody {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  /* ===== EACH CARD ===== */
+  .fare-table tbody tr {
+    display: block !important;
+    width: 100% !important;
+
+    /* IMPORTANT: creates real space between cards */
+    margin-bottom: 6px !important;
+
+    background: var(--navy-3) !important;
+
+    border: 1px solid var(--line) !important;
+    border-radius: 18px !important;
+
+    padding: 4px 18px !important;
+
+    box-shadow:
+      0 8px 25px rgba(23, 20, 10, 0.08),
+      0 2px 8px rgba(23, 20, 10, 0.05) !important;
+
+    overflow: hidden !important;
+  }
+
+  /* Remove gap after final card */
+  .fare-table tbody tr:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* ===== ROUTE NAME ===== */
+  .fare-table td:first-child {
+    display: block !important;
+
+    width: 100% !important;
+
+    padding: 16px 0 14px !important;
+
+    border-top: none !important;
+
+    text-align: left !important;
+
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+
+    color: var(--gold) !important;
+  }
+
+  .fare-table td:first-child::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* Rows that link through to a dedicated route page: whole card is tappable,
+     with a chevron on the right of the destination name */
+  .fare-table tbody tr[data-href] {
+    cursor: pointer !important;
+  }
+  .fare-table tbody tr[data-href] td:first-child {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+  }
+  .fare-table tbody tr[data-href] td:first-child::after {
+    content: '\f105' !important;
+    font-family: 'Font Awesome 6 Free' !important;
+    font-weight: 900 !important;
+    font-size: 14px !important;
+    color: var(--gold) !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ===== DISTANCE + FARE ROWS ===== */
+  .fare-table td {
+    display: flex !important;
+
+    width: 100% !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 15px !important;
+
+    padding: 13px 0 !important;
+
+    border-top: 1px solid var(--line) !important;
+
+    font-size: 13px !important;
+
+    white-space: normal !important;
+
+    text-align: right !important;
+
+    background: transparent !important;
+  }
+
+  /* Labels on left */
+  .fare-table td::before {
+    content: attr(data-label) !important;
+
+    display: block !important;
+
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 0.7px !important;
+    text-transform: uppercase !important;
+
+    color: var(--mute) !important;
+
+    text-align: left !important;
+
+    flex: 1 !important;
+  }
+
+  /* Values on right */
+  .fare-table td {
+    color: var(--ice);
+  }
+
+  /* Distance */
+  .fare-table td.fare-dist {
+    color: var(--teal) !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Fare */
+  .fare-table td.fare-price {
+    color: var(--gold) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+  }
+
+  /* Make sure hover doesn't join cards */
+  .fare-table tr:hover td {
+    background: transparent !important;
+  }
+}
+
+.vehicle-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; }
+.vehicle-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px; text-align:center; transition:var(--transition); }
+.vehicle-card:hover { border-color:var(--gold); transform:translateY(-4px); }
+.vehicle-card .service-icon { margin:0 auto 16px; }
+.vehicle-card h4 { font-family:'Space Grotesk'; font-size:16px; font-weight:700; margin-bottom:8px; }
+.vehicle-card p { font-size:13px; color:var(--mute); line-height:1.6; }
+
+.why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; }
+.why-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow-sm); transition:var(--transition); }
+.why-card:hover { border-color:rgba(184,134,44,0.3); box-shadow:var(--shadow-md); transform:translateY(-3px); }
+.why-card i { color:var(--gold); font-size:18px; margin-bottom:12px; display:block; }
+.why-card h4 { font-size:14px; font-weight:700; margin-bottom:6px; color:var(--ice); }
+.why-card p { font-size:12.5px; color:var(--mute); line-height:1.6; }
+
+.book-cta-bar { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; background:linear-gradient(135deg,var(--navy-2),var(--navy-3)); border:1px solid var(--line-2); border-radius:var(--radius-lg); padding:32px 36px; box-shadow:var(--shadow-sm); }
+.book-cta-bar h4 { font-family:'Space Grotesk'; font-size:19px; font-weight:700; margin-bottom:6px; }
+.book-cta-bar p { font-size:13px; color:var(--mute); }
+
+/* ── CARS ── */
+
+/* ── ROUTES ── */
+.routes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; }
+.route-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; }
+.route-card:hover { border-color:rgba(184,134,44,0.3); transform:translateY(-4px); }
+.route-card img { width:100%; height:auto; display:block; }
+.route-body { padding:20px; flex:1; display:flex; flex-direction:column; }
+.route-body h3 { font-family:'Space Grotesk'; font-size:15.5px; font-weight:700; margin-bottom:10px; }
+.route-prices { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:8px; }
+.route-price { font-size:13px; }
+.route-price span { font-weight:700; color:var(--gold); font-family:'Space Grotesk'; }
+.route-note { font-size:11.5px; color:var(--mute); margin-bottom:16px; }
+.route-btn { margin-top:auto; width:100%; padding:12px; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.3); color:var(--gold); font-weight:700; font-size:14px; border-radius:10px; cursor:pointer; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.route-btn:hover { background:var(--gold); color:#1a0f00; border-color:var(--gold); }
+
+/* ── TRIP DARSHAN ── */
+.td-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
+.td-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; cursor:pointer; text-decoration:none; color:inherit; }
+.td-card:hover { border-color:rgba(184,134,44,0.35); transform:translateY(-5px); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+.td-img-wrap { position:relative; overflow:hidden; aspect-ratio:16/10; }
+.td-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease; }
+.td-card:hover .td-img-wrap img { transform:scale(1.06); }
+.td-badge { position:absolute; bottom:12px; right:12px; background:var(--gold); color:#1a0f00; font-size:11px; font-weight:800; letter-spacing:.5px; padding:5px 13px; border-radius:20px; font-family:'Space Grotesk'; box-shadow:0 4px 12px rgba(184,134,44,0.4); }
+.td-body { padding:20px 22px 22px; flex:1; display:flex; flex-direction:column; }
+.td-body h3 { font-family:'Space Grotesk'; font-size:17px; font-weight:700; margin-bottom:6px; color:var(--gold-light); }
+.td-route { font-size:12.5px; color:var(--mute); margin-bottom:14px; line-height:1.5; }
+.td-footer { display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:14px; border-top:1px solid var(--line); }
+.td-price { font-family:'Space Grotesk'; font-size:19px; font-weight:700; color:var(--ice); }
+.td-price span { font-size:11.5px; font-weight:600; color:var(--mute); }
+.td-arrow { width:34px; height:34px; border-radius:50%; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.25); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:13px; transition:var(--transition); flex-shrink:0; }
+.td-card:hover .td-arrow { background:var(--gold); color:#1a0f00; transform:translateX(3px); }
+.td-grid.rt-slider { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:4px; }
+.td-grid.rt-slider::-webkit-scrollbar { display:none; }
+.td-grid.rt-slider .td-card { flex:0 0 320px; scroll-snap-align:start; scroll-snap-stop:always; }
+@media (max-width:768px) {
+  .td-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:0; scrollbar-width:none; padding-bottom:4px; }
+  .td-grid::-webkit-scrollbar { display:none; }
+  .td-grid .td-card { flex:0 0 88% !important; max-width:88% !important; margin:0 6% !important; scroll-snap-align:center !important; scroll-snap-stop:always !important; }
+}
+
+/* ── ROUND TRIP ── */
+#roundtrip { background:var(--navy-2); }
+.roundtrip-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; }
+.rt-card { background: var(--navy-3); border: 1px solid var(--line-2); border-radius: 24px; padding: 28px 28px 32px; text-align:center; transition: var(--transition); position:relative; overflow:hidden; cursor:default; box-shadow: var(--shadow-md); }
+.rt-card::after { content:''; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); width:200px; height:200px; border-radius:50%; background:var(--rt-glow, rgba(184,134,44,0.08)); filter:blur(40px); pointer-events:none; transition:var(--transition); }
+.rt-card:hover::after { opacity:1.8; transform:translateX(-50%) scale(1.2); }
+.rt-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--rt-accent, linear-gradient(90deg, #f5a623, #ffcc66)); }
+.rt-card:hover { transform:translateY(-8px); border-color: rgba(184,134,44,0.25); box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(184,134,44,0.1); }
+
+/* ── ROUND TRIP IMAGE — full bleed like route cards ── */
+.rt-img-wrap {
+  position: relative;
+  margin: -28px -28px 20px -28px;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+}
+.rt-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.rt-card:hover .rt-img-wrap img {
+  transform: scale(1.06);
+}
+/* ── END ROUND TRIP IMAGE ── */
+
+.rt-badge { position:absolute; top:12px; right:12px; background: linear-gradient(90deg, #f5a623, #ffcc66); color:#1a0f00; font-size:10px; font-weight:800; letter-spacing:1.2px; text-transform:uppercase; padding:4px 12px; border-radius:20px; font-family:'Space Grotesk'; box-shadow:0 4px 12px rgba(184,134,44,0.4); z-index:1; }
+.rt-card h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; color:var(--ice); margin-bottom:4px; }
+.rt-card .capacity { font-size:12.5px; color:var(--mute); display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:24px; }
+.rt-card .capacity i { font-size:11px; color:var(--teal); }
+.rt-rate-block { margin:0 -8px 24px; padding:20px 16px; background: rgba(23,20,14,0.035); border:1px solid var(--line); border-radius:16px; position:relative; }
+.rt-rate-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--mute); margin-bottom:6px; }
+.rt-rate { font-family:'Space Grotesk'; font-size:56px; font-weight:700; line-height:1; color: var(--gold); letter-spacing:-2px; position:relative; display:inline-flex; align-items:flex-start; gap:2px; transition: all 0.3s ease; }
+.rt-rate-sym { font-size:26px; font-weight:700; color:var(--gold-light); margin-top:6px; letter-spacing:0; }
+.rt-rate-num { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:shimmerRate 3s infinite; transition:all 0.3s ease; }
+.rt-card:hover .rt-rate-num { animation:shimmerRate 1.2s infinite; filter:drop-shadow(0 0 20px rgba(184,134,44,0.5)); }
+@keyframes shimmerRate { 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+.rt-rate-unit { font-family:'Space Grotesk'; font-size:13px; color:var(--mute); font-weight:600; align-self:flex-end; margin-bottom:8px; letter-spacing:.5px; }
+.rt-rate-num { display:inline-block; }
+.rt-divider { display:flex; align-items:center; gap:10px; margin:0 0 20px; color:var(--mute); font-size:11px; }
+.rt-divider::before, .rt-divider::after { content:''; flex:1; height:1px; background:var(--line); }
+.rt-features { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:24px; }
+.rt-feature-pill { display:inline-flex; align-items:center; gap:5px; background:rgba(23,20,14,0.035); border:1px solid var(--line); border-radius:20px; padding:5px 12px; font-size:11.5px; color:rgba(23,20,14,0.65); }
+.rt-feature-pill i { color:var(--teal); font-size:10px; }
+.rt-book-btn { width:100%; padding:15px; background: linear-gradient(135deg, var(--gold), #e8941a); color:#1a0f00; border:none; border-radius:50px; font-weight:800; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; letter-spacing:.3px; box-shadow: 0 8px 24px rgba(184,134,44,0.3); position:relative; overflow:hidden; }
+.rt-book-btn::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,0.15), transparent); opacity:0; transition:opacity .25s; }
+.rt-book-btn:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 16px 40px rgba(184,134,44,0.45); }
+.rt-book-btn:hover::after { opacity:1; }
+.rt-book-btn:active { transform:translateY(0) scale(0.99); }
+.rt-card.sedan { --rt-glow:rgba(120,160,255,0.1); --rt-accent:linear-gradient(90deg,#4a90d9,#7fb3f5); }
+.rt-card.sedan .rt-rate-num { background:linear-gradient(135deg,#4a90d9 0%,#a0c4f8 50%,#4a90d9 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.rt-card.sedan .rt-book-btn { background:linear-gradient(135deg,#4a90d9,#2e6bb0); color:white; box-shadow:0 8px 24px rgba(74,144,217,0.35); }
+.rt-card.sedan .rt-book-btn:hover { box-shadow:0 16px 40px rgba(74,144,217,0.5); }
+.rt-card.ertiga { --rt-glow:rgba(184,134,44,0.1); --rt-accent:linear-gradient(90deg,#f5a623,#ffcc66); }
+.rt-card.crysta { --rt-glow:rgba(28,154,113,0.1); --rt-accent:linear-gradient(90deg,#3ddc97,#22b075); }
+.rt-card.crysta .rt-rate-num { background:linear-gradient(135deg,#3ddc97 0%,#a8f0d8 50%,#3ddc97 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.rt-card.crysta .rt-book-btn { background:linear-gradient(135deg,#3ddc97,#22b075); color:#081a10; box-shadow:0 8px 24px rgba(28,154,113,0.3); }
+.rt-card.crysta .rt-book-btn:hover { box-shadow:0 16px 40px rgba(28,154,113,0.45); }
+
+/* ── ROUND TRIP SLIDER (mobile always · desktop when >3 cards) ── */
+.rt-slider-wrap { position:relative; }
+.rt-nav { display:none; position:absolute; top:38%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:var(--navy-3); border:1px solid var(--line-2); color:var(--ice); align-items:center; justify-content:center; cursor:pointer; z-index:5; box-shadow:0 8px 24px rgba(0,0,0,0.45); transition:var(--transition); font-size:15px; }
+.rt-nav:hover { background:var(--gold); color:#1a0f00; border-color:var(--gold); }
+.rt-nav[disabled] { opacity:.35; cursor:default; pointer-events:none; }
+.rt-nav-prev { left:-6px; }
+.rt-nav-next { right:-6px; }
+.rt-slider-wrap.is-slider .rt-nav { display:flex; }
+
+.roundtrip-grid.rt-slider {
+  display:flex;
+  flex-wrap:nowrap;
+  gap:24px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scroll-padding-left:4px;
+  padding:4px 4px 10px;
+  scrollbar-width:none;
+}
+.roundtrip-grid.rt-slider::-webkit-scrollbar { display:none; }
+.roundtrip-grid.rt-slider .rt-card { flex:0 0 320px; scroll-snap-align:start; scroll-snap-stop:always; }
+
+@media (max-width:768px) {
+  /* Sections were stacking 90px + 90px of padding between them (plus a
+     48–56px header margin on top of that) — that's the big empty gap
+     seen between sections on mobile. Tighten it up. */
+  section { padding:56px 6%; }
+  .section-header-center { margin-bottom:32px !important; }
+  .section-sub { margin-bottom:32px !important; }
+  .rt-nav { width:36px; height:36px; font-size:12px; }
+  .rt-nav-prev { left:0; }
+  .rt-nav-next { right:0; }
+  .rt-slider-wrap .rt-nav { display:flex; }
+  .roundtrip-grid {
+    display:flex !important;
+    flex-wrap:nowrap;
+    gap:0;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    padding:4px 0 12px;
+    scrollbar-width:none;
+  }
+  .roundtrip-grid::-webkit-scrollbar { display:none; }
+  .roundtrip-grid .rt-card { flex:0 0 88% !important; max-width:88% !important; margin:0 6% !important; scroll-snap-align:center !important; scroll-snap-stop:always !important; }
+}
+@keyframes countUp { from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);} }
+.rt-rate-num.animate { animation:countUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+
+
+
+/* ── REVIEWS ── */
+#reviews { background:var(--navy); }
+.reviews-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-bottom:36px; }
+.review-card { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px; transition:var(--transition); }
+.review-card:hover { border-color:var(--line-2); transform:translateY(-3px); }
+.review-stars { color:var(--gold); font-size:13px; margin-bottom:12px; letter-spacing:1px; }
+.review-text { font-size:13.5px; color:rgba(23,20,14,0.8); line-height:1.65; margin-bottom:16px; }
+.reviewer { font-size:12.5px; font-weight:700; color:var(--mute); }
+.hidden-review { display:none; }
+.see-more-wrap { text-align:center; }
+.see-more-btn { padding:13px 32px; background:transparent; border:1px solid var(--line-2); color:var(--ice); border-radius:50px; font-weight:700; cursor:pointer; font-size:14px; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.see-more-btn:hover { border-color:var(--gold); color:var(--gold); background:var(--gold-dim); }
+.write-review-cta { margin-top:48px; text-align:center; padding:40px; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); position:relative; overflow:hidden; }
+.write-review-cta::before { content:''; position:absolute; top:0; left:20%; right:20%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.write-review-cta h3 { font-family:'Space Grotesk'; font-size:22px; font-weight:700; margin-bottom:8px; }
+.write-review-cta p { color:var(--mute); font-size:14px; margin-bottom:24px; }
+.review-btn-gold { display:inline-flex; align-items:center; gap:9px; background:var(--gold); color:#1a0f00; font-weight:700; font-size:15px; padding:14px 28px; border-radius:50px; border:none; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; box-shadow:0 8px 24px rgba(184,134,44,0.3); }
+.review-btn-gold:hover { background:var(--ice); color:#fff; transform:translateY(-2px); }
+
+/* ── CONTACT ── */
+#contact { background:var(--navy-2); border-top:1px solid var(--line); }
+.contact-inner { max-width:680px; margin:0 auto; text-align:center; }
+.contact-phone { font-family:'Space Grotesk'; font-size:clamp(36px,6vw,64px); font-weight:700; color:var(--gold); margin:20px 0 32px; letter-spacing:-1px; }
+.contact-btns { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
+.contact-btn { display:inline-flex; align-items:center; gap:9px; padding:13px 26px; border-radius:50px; font-weight:700; font-size:14.5px; text-decoration:none; transition:var(--transition); }
+.contact-btn-gold { background:var(--gold); color:#1a0f00; box-shadow:0 8px 24px rgba(184,134,44,0.3); }
+.contact-btn-gold:hover { background:#fff; transform:translateY(-2px); }
+.contact-btn-green { background:rgba(37,211,102,0.12); color:#25d366; border:1px solid rgba(37,211,102,0.3); }
+.contact-btn-green:hover { background:rgba(37,211,102,0.22); transform:translateY(-2px); }
+.contact-btn-outline { background:var(--surface-2); color:var(--ice); border:1px solid var(--line-2); }
+.contact-btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px); }
+
+/* ── FOOTER ── */
+.footer { background:var(--anchor); border-top:1px solid rgba(255,255,255,0.08); padding:60px 6% 30px; }
+.footer-grid { display:grid; grid-template-columns:1.1fr 1fr 1fr 1fr; gap:40px; max-width:1200px; margin:0 auto 48px; }
+.footer-col h4 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; color:var(--navy); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
+.footer-col a { display:block; color:var(--navy); text-decoration:none; font-size:13.5px; margin-bottom:10px; transition:var(--transition); }
+.footer-col a:hover { color:var(--gold-light); transform:translateX(4px); }
+.footer-col p { font-size:13px; color:var(--navy); line-height:1.7; margin-bottom:8px; }
+.footer-map { border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid rgba(255,255,255,0.12); }
+.footer-map iframe { display:block; }
+.footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--navy-2); padding-top:24px; text-align:center; font-size:12.5px; color:var(--navy-3); }
+.footer-keywords { font-size:12px; color:var(--navy-3); max-width:1100px; margin:12px auto 0; text-align:center; line-height:1.8; }
+.footer-logo { width:84px; height:84px; border-radius:50%; object-fit:cover; margin-bottom:14px; display:block; }
+.footer-brand-name { font-family:'Space Grotesk'; font-weight:700; font-size:16px; color:var(--navy); margin-bottom:4px; letter-spacing:.3px; }
+.footer-brand-tag { font-size:11.5px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-bottom:18px; }
+.footer-social { display:flex; flex-wrap:wrap; gap:10px; }
+.footer-social a { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14); color:var(--navy); display:flex; align-items:center; justify-content:center; font-size:14.5px; text-decoration:none; transition:var(--transition); margin-bottom:0; }
+.footer-social a:hover { background:var(--gold); border-color:var(--gold); color:#1a0f00; transform:translateY(-3px); }
+@media(max-width:1024px){ .footer-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:768px){ .footer-grid { grid-template-columns:1fr; gap:32px; } }
+
+/* ── FLOATING BUTTONS ── */
+.float-wrap { position:fixed; bottom:28px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px; }
+.float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 10px 28px rgba(23,20,10,0.22); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; cursor:pointer; border:none; }
+.float-btn:hover { transform:scale(1.12) translateY(-2px); animation:none; }
+.float-wa { background:linear-gradient(135deg,#25d366,#128c7e); color:white; }
+.float-call { background:linear-gradient(135deg,var(--gold),#d9861f); color:#fff; animation-delay:.5s; }
+@keyframes floatAnim { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+
+.rating-box { position:fixed; left:20px; bottom:28px; background:var(--navy-3); border:1px solid var(--line-2); border-radius:12px; padding:10px 16px; font-size:13px; font-weight:600; z-index:9999; box-shadow:var(--shadow-md); }
+.rating-box span { color:var(--gold); font-family:'Space Grotesk'; font-weight:700; }
+.rating-count { font-size:11px; color:var(--mute); margin-top:2px; }
+@media(max-width:640px) { .rating-box { display:none; } }
+
+/* ── LOADING / TOAST ── */
+#loadingScreen { position:fixed; inset:0; background:rgba(255,255,255,0.88); display:none; align-items:center; justify-content:center; z-index:99999; backdrop-filter:blur(6px); }
+.loader-box { text-align:center; padding:36px 42px; background:var(--navy-3); border:1px solid var(--line-2); border-radius:var(--radius-lg); box-shadow:var(--shadow-lg); }
+.spinner { width:60px; height:60px; margin:0 auto 18px; border:5px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.9s linear infinite; }
+@keyframes spin { 100%{transform:rotate(360deg);} }
+.loader-box h3 { font-family:'Space Grotesk'; color:var(--gold); font-size:17px; margin-bottom:6px; }
+.loader-box p { color:var(--mute); font-size:13.5px; }
+#toast { position:fixed; top:80px; right:20px; z-index:99999; background:var(--navy-3); border:1px solid var(--teal); color:var(--teal); padding:14px 20px; border-radius:10px; font-size:14px; font-weight:600; opacity:0; transform:translateX(30px); transition:.3s ease; pointer-events:none; max-width:320px; box-shadow:var(--shadow-md); }
+#toast.show { opacity:1; transform:translateX(0); }
+#toast.error { border-color:var(--gold); color:var(--gold); }
+
+/* ── SUCCESS MODAL ── */
+#successModal { position:fixed; inset:0; z-index:10000; display:none; align-items:center; justify-content:center; background:rgba(23,20,14,0.55); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+.success-card { background: linear-gradient(145deg, #ffffff 0%, #fdfaf3 100%); border:1px solid rgba(184,134,44,0.3); border-radius:28px; padding:52px 44px 44px; max-width:480px; width:calc(100% - 40px); text-align:center; box-shadow:0 0 0 1px rgba(184,134,44,0.06), var(--shadow-lg); position:relative; overflow:hidden; animation:successSlideIn 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+.success-card::before { content:''; position:absolute; top:0; left:12%; right:12%; height:2px; background:linear-gradient(90deg,transparent,#b8862c 40%,#d9a94a 60%,transparent); }
+.success-card::after { content:''; position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(184,134,44,0.08), transparent 70%); pointer-events:none; }
+.success-check { width:88px; height:88px; border-radius:50%; background:rgba(28,154,113,0.1); border:2px solid rgba(28,154,113,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 28px; animation:successPop 0.55s 0.15s cubic-bezier(0.22,1,0.36,1) both; position:relative; z-index:1; }
+.success-check svg path { stroke-dasharray:42; stroke-dashoffset:42; animation:drawCheck 0.5s 0.5s ease forwards; }
+.success-eyebrow { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; position:relative; z-index:1; }
+.success-title { font-family:'Space Grotesk'; font-size:28px; font-weight:700; color:var(--gold); margin-bottom:16px; letter-spacing:-0.5px; position:relative; z-index:1; }
+.success-message { font-size:15.5px; color:rgba(23,20,14,0.78); line-height:1.72; margin-bottom:32px; position:relative; z-index:1; }
+.success-progress-wrap { background:rgba(23,20,14,0.08); border-radius:4px; height:4px; overflow:hidden; margin-bottom:14px; position:relative; z-index:1; }
+.success-progress-bar { height:100%; background:linear-gradient(90deg,#b8862c,#d9a94a); border-radius:4px; width:100%; animation:drainBar 3s linear forwards; }
+.success-hint { font-size:12px; color:var(--mute); letter-spacing:.3px; position:relative; z-index:1; }
+@keyframes successSlideIn { from{opacity:0; transform:translateY(32px) scale(0.94);} to{opacity:1; transform:translateY(0) scale(1);} }
+@keyframes successPop { from{opacity:0; transform:scale(0.5) rotate(-10deg);} to{opacity:1; transform:scale(1) rotate(0deg);} }
+@keyframes drawCheck { to{stroke-dashoffset:0;} }
+@keyframes drainBar { from{width:100%;} to{width:0%;} }
+@keyframes fadeOutModal { from{opacity:1; transform:scale(1);} to{opacity:0; transform:scale(0.96);} }
+
+/* ── ROUND TRIP MODAL ── */
+#rtModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(23,20,14,0.55); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
+.rt-modal-card { background:linear-gradient(145deg, #ffffff 0%, #fdfaf3 100%); border:1px solid rgba(184,134,44,0.3); border-radius:24px; padding:40px 36px; max-width:400px; width:100%; text-align:center; box-shadow:var(--shadow-lg); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+.rt-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+.rt-modal-icon { width:68px; height:68px; border-radius:50%; background:var(--gold-dim); border:2px solid rgba(184,134,44,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:26px; color:var(--gold); }
+.rt-modal-card h3 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; margin-bottom:6px; }
+.rt-modal-vehicle { font-size:13px; font-weight:600; margin-bottom:18px; display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; }
+.rt-modal-card .rt-modal-note { color:var(--mute); font-size:13.5px; margin-bottom:20px; line-height:1.6; }
+.rt-modal-input { width:100%; padding:14px 16px; background:rgba(23,20,14,0.035); border:1px solid var(--line); border-radius:10px; color:var(--ice); font-size:16px; font-family:'Plus Jakarta Sans',Arial,sans-serif; outline:none; transition:var(--transition); text-align:center; letter-spacing:2px; margin-bottom:14px; }
+.rt-modal-input:focus { border-color:var(--gold); background:rgba(184,134,44,0.05); box-shadow:0 0 0 3px rgba(184,134,44,0.12); }
+.rt-modal-submit { width:100%; padding:14px; background:linear-gradient(135deg,var(--gold),#e8941a); color:#1a0f00; border:none; border-radius:50px; font-weight:700; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; display:flex; align-items:center; justify-content:center; gap:9px; margin-bottom:10px; box-shadow:0 8px 24px rgba(184,134,44,0.3); }
+.rt-modal-submit:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(184,134,44,0.4); background:linear-gradient(135deg,#a5741f,#d9a94a); }
+.rt-modal-cancel { background:none; border:none; color:var(--mute); font-size:13px; cursor:pointer; padding:6px 12px; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; }
+.rt-modal-cancel:hover { color:var(--ice); }
+.rt-phone-err { color:#c0392b; font-size:12.5px; margin-bottom:10px; display:none; }
+
+/* ── REVIEW MODAL ── */
+#reviewModal { position:fixed; inset:0; z-index:10001; display:none; align-items:center; justify-content:center; background:rgba(23,20,14,0.6); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); padding:20px; }
+.review-modal-card { background:linear-gradient(145deg, #ffffff 0%, #fdfaf3 100%); border:1px solid rgba(184,134,44,0.28); border-radius:24px; padding:40px 36px; max-width:520px; width:100%; text-align:center; box-shadow:var(--shadow-lg); position:relative; overflow:hidden; animation:successSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both; max-height:90vh; overflow-y:auto; }
+.review-modal-card::before { content:''; position:absolute; top:0; left:15%; right:15%; height:2px; background:linear-gradient(90deg,transparent,#b8862c,transparent); }
+.rm-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(23,20,14,0.05); border:1px solid var(--line-2); color:var(--mute); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+.rm-close:hover { color:var(--ice); border-color:var(--gold); }
+.rm-stars { font-size:28px; color:var(--gold); letter-spacing:4px; margin-bottom:16px; }
+.rm-tag { display:inline-block; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.25); border-radius:20px; padding:4px 14px; font-size:11px; font-weight:700; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-bottom:16px; }
+.rm-review-text { background:rgba(23,20,14,0.03); border:1px solid var(--line); border-radius:12px; padding:18px 20px; font-size:14.5px; color:rgba(23,20,14,0.85); line-height:1.75; text-align:left; margin-bottom:20px; font-style:italic; position:relative; }
+.rm-review-text::before { content:'"'; position:absolute; top:-10px; left:14px; font-size:48px; color:rgba(184,134,44,0.18); font-family:Georgia,serif; line-height:1; }
+.rm-copy-btn { width:100%; padding:14px; background:var(--gold); color:#1a0f00; border:none; border-radius:50px; font-weight:700; font-size:15px; cursor:pointer; transition:var(--transition); font-family:'Space Grotesk'; display:flex; align-items:center; justify-content:center; gap:9px; box-shadow:0 8px 24px rgba(184,134,44,0.3); margin-bottom:12px; }
+.rm-copy-btn:hover { background:var(--ice); color:#fff; transform:translateY(-2px); }
+.rm-copy-btn.copied { background:var(--teal); color:#081a10; }
+.rm-redirect-hint { font-size:12.5px; color:var(--mute); line-height:1.6; }
+.rm-redirect-hint a { color:var(--gold); text-decoration:none; }
+.rm-loader { display:flex; flex-direction:column; align-items:center; gap:12px; padding:20px 0; }
+.rm-spinner { width:40px; height:40px; border:4px solid var(--line); border-top-color:var(--gold); border-radius:50%; animation:spin 0.8s linear infinite; }
+.rm-loader p { color:var(--mute); font-size:14px; }
+
+/* ── TICKET SERVICES (Railway / Flight / Hotel) ── */
+#ticket-services { background:var(--navy-2); }
+.ticket-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+.ticket-card { background:var(--navy-3); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; box-shadow:var(--shadow-sm); }
+.ticket-card:hover { border-color:rgba(184,134,44,0.3); transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+.ticket-img-wrap { position:relative; overflow:hidden; }
+.ticket-img-wrap img { width:100%; height:190px; object-fit:cover; display:block; transition:transform 0.5s ease; }
+.ticket-card:hover .ticket-img-wrap img { transform:scale(1.06); }
+.ticket-badge { position:absolute; top:12px; left:12px; background:rgba(23,20,14,0.65); backdrop-filter:blur(6px); border:1px solid rgba(184,134,44,0.3); color:var(--gold-light); font-size:18px; width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.ticket-body { padding:24px 22px 26px; flex:1; display:flex; flex-direction:column; }
+.ticket-body h3 { font-family:'Space Grotesk'; font-size:17.5px; font-weight:700; margin-bottom:6px; color:var(--ice); }
+.ticket-desc { font-size:13px; color:var(--mute); line-height:1.6; margin-bottom:18px; }
+.ticket-list { list-style:none; display:flex; flex-direction:column; gap:11px; margin-bottom:20px; }
+.ticket-list li { display:flex; align-items:center; gap:11px; font-size:13.5px; color:rgba(23,20,14,0.85); font-weight:600; }
+.ticket-check { flex-shrink:0; width:23px; height:23px; border-radius:50%; background:var(--gold-dim); border:1px solid rgba(184,134,44,0.3); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:10.5px; }
+.ticket-btn { margin-top:auto; width:100%; padding:13px; background:rgba(37,211,102,0.12); border:1px solid rgba(37,211,102,0.3); color:#25d366; font-weight:700; font-size:13.5px; border-radius:10px; cursor:pointer; transition:var(--transition); font-family:'Plus Jakarta Sans',Arial,sans-serif; text-decoration:none; display:flex; align-items:center; justify-content:center; gap:8px; }
+.ticket-btn:hover { background:#25d366; color:#06341f; border-color:#25d366; }
+
+/* ── FAQ ── */
+#faq { background:var(--navy); }
+.faq-list { max-width:820px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+.faq-item { background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:var(--transition); }
+.faq-item:hover { border-color:var(--line-2); }
+.faq-item.open { border-color:rgba(184,134,44,0.35); background:var(--gold-dim); }
+.faq-question { width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 24px; background:none; border:none; text-align:left; cursor:pointer; font-family:'Space Grotesk'; font-size:15.5px; font-weight:700; color:var(--ice); }
+.faq-question .faq-icon { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(184,134,44,0.14); border:1px solid rgba(184,134,44,0.3); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:13px; transition:var(--transition); }
+.faq-item.open .faq-icon { transform:rotate(45deg); background:var(--gold); color:#1a0f00; }
+.faq-answer { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+.faq-answer-inner { padding:0 24px 22px; font-size:14px; color:var(--mute); line-height:1.75; }
+</style>
 </head>
-
 <body>
 
-  <!-- Background -->
-  <div class="background">
-    <div class="circle one"></div>
-    <div class="circle two"></div>
-    <div class="circle three"></div>
-  </div>
+<div class="rating-box">
+  <div>⭐ <span>4.9/5</span> Rating</div>
+  <div class="rating-count">100+ Happy Customers</div>
+</div>
 
-  <!-- Header -->
-  <header>
-
-    <a href="/" class="logo">
-      <img src="/logo.jpeg" alt="Moksh Travel Logo">
+<header id="siteHeader">
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <img src="logo.jpeg" alt="Moksh Travel Logo">
       <div class="logo-text">
-        Moksh <span>Travel</span>
+        <strong>MOKSH</strong>
+        <span>Travel</span>
       </div>
     </a>
+    <!-- Mobile phone pill — visible only on mobile beside logo -->
+    <a href="tel:+919727729334" class="mobile-nav-phone">
+      <i class="fas fa-phone"></i> 97277 29334
+    </a>
+    <div class="menu" id="mainMenu">
+      <a href="#booking">Booking</a>
+      <a href="#roundtrip">Round Trip</a>
+      <a href="#routes">Routes</a>
+      <a href="#ticket-services">Tickets</a>
+      <a href="#services">Services</a>
+      <a href="#faq">FAQ</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="about.html">About</a>
+      <a href="#contact" class="nav-cta">📞 97277 29334</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+      <i class="fas fa-bars" id="hamburgerIcon"></i>
+    </button>
+  </nav>
+</header>
 
-    <div class="status">
-      <span class="status-dot"></span>
-      Website Maintenance
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Ahmedabad's Most Trusted Cab Service</div>
+    <h1>Premium Cab Service<br>Across <em>Gujarat</em></h1>
+    <p class="hero-sub">Safe, comfortable and reliable travel for outstation trips, airport transfers, corporate travel and Gujarat tours — available 24×7.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Your Cab</a>
+      <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="btn-secondary"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- BOOKING FORM -->
+<section id="booking">
+  <div class="section-header-center" style="margin-bottom:40px">
+    <div class="section-tag">Online Booking</div>
+    <h2 class="section-title">Book Your Cab Instantly</h2>
+    <p class="section-sub">Fill in your trip details and we'll confirm on WhatsApp within minutes.</p>
+  </div>
+
+  <form id="bookingForm" class="booking-wrap">
+
+    <!-- Trip Type Pills -->
+    <div class="trip-pills" id="tripPills">
+      <button type="button" class="trip-pill active" data-trip="One Way">One Way</button>
+      <button type="button" class="trip-pill" data-trip="Round Trip">Round Trip</button>
+      <button type="button" class="trip-pill" data-trip="Rental">Rental</button>
+      <button type="button" class="trip-pill" data-trip="Airport">Airport</button>
     </div>
 
-  </header>
+    <!-- Unified From / To Card -->
+    <div class="loc-card">
+  <div class="loc-row">
+    <label class="loc-label" id="bPickupLabel">From</label>
+    <input type="text" class="loc-input" id="bPickup" placeholder="Enter pickup city" autocomplete="off" required>
+    <div class="loc-dropdown" id="bPickupDropdown"></div>
+  </div>
+  <div class="loc-row">
+    <label class="loc-label">To</label>
+    <input type="text" class="loc-input" id="bDestination" placeholder="Enter destination city" autocomplete="off" required>
+    <div class="loc-dropdown" id="bDestinationDropdown"></div>
+  </div>
+  <button type="button" class="swap-btn" id="swapBtn" title="Swap locations" aria-label="Swap pickup and destination">
+    <i class="fas fa-right-left"></i>
+  </button>
+</div>
 
+    <!-- Pickup Date / Return Date -->
+    <div class="date-time-grid" id="dateGrid">
+  <div class="dt-card" id="pickupDateCard">
+    <label class="loc-label">Pickup Date</label>
+    <input class="loc-input dt-input" type="date" id="bDate" required>
+  </div>
+  <div class="dt-card" id="returnDateCard" style="display:none;">
+    <label class="loc-label">Return Date</label>
+    <input class="loc-input dt-input" type="date" id="bReturnDate">
+  </div>
+  <div class="dt-card" id="rentalHoursCard" style="display:none;">
+    <label class="loc-label">Rental Duration</label>
+    <select class="loc-input dt-input" id="bRentalHours">
+      <option>8 Hours / 80 KM</option>
+      <option>12 Hours / 120 KM</option>
+    </select>
+  </div>
+</div>
 
-  <!-- Main -->
-  <main>
+<div class="date-time-grid">
+  <div class="dt-card">
+    <label class="loc-label">Pickup Time</label>
+    <input class="loc-input dt-input" type="time" id="bTime" required>
+  </div>
+  <div class="dt-card">
+    <label class="loc-label">Mobile Number</label>
+    <input class="loc-input dt-input" type="tel" id="bMobile" placeholder="10-digit number" pattern="[0-9]{10}" inputmode="numeric" required>
+  </div>
+</div>
 
-    <div class="container">
+    
 
-      <!-- Left Content -->
-      <div class="left">
+    <button type="submit" class="booking-submit" id="bookBtn">
+      <i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp
+    </button>
+  </form>
+</section>
 
-        <div class="tag">
-          <i class="fas fa-wrench"></i>
-          We'll Be Back Soon
-        </div>
+<!-- ROUND TRIP -->
+<section id="roundtrip">
+  <div class="section-header-center" style="margin-bottom:56px">
+    <div class="section-tag">Round Trip</div>
+    <h2 class="section-title">Round Trip Rates</h2>
+    <p class="section-sub">Transparent per-kilometre pricing for your complete round trip journey. No hidden charges, ever.</p>
+  </div>
 
-        <h1>
-          We're making<br>
-          things <span>better.</span>
-        </h1>
+  <div class="rt-slider-wrap" id="roundtripSliderWrap">
+    <button class="rt-nav rt-nav-prev" onclick="scrollRoundTrip(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <div class="roundtrip-grid" id="roundtripGrid">
+      <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading round trip rates…</div>
+    </div>
+    <button class="rt-nav rt-nav-next" onclick="scrollRoundTrip(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</section>
 
-        <p class="description">
-          Our website is currently undergoing a little maintenance
-          to bring you a <strong>faster, smoother and better travel experience.</strong>
-          We'll be back online shortly.
-        </p>
+<!-- ROUTES -->
+<section id="routes">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Popular Routes</div>
+    <h2 class="section-title">Route & Pricing</h2>
+    <p class="section-sub">Transparent pricing — no surprises.</p>
+  </div>
+  <div class="routes-grid" id="routesGrid">
+    <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading routes…</div>
+  </div>
+</section>
 
-        <div class="buttons">
+<!-- TRIP DARSHAN -->
+<section id="tripdarshan">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Trip Darshan</div>
+    <h2 class="section-title">Multi-Day Darshan &amp; Sightseeing Packages</h2>
+    <p class="section-sub">All-inclusive pilgrimage and sightseeing tour packages from Ahmedabad — transparent pricing, day-by-day planning.</p>
+  </div>
 
-          <a
-            href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details."
-            target="_blank"
-            class="btn btn-primary">
+  <div class="rt-slider-wrap" id="tripDarshanSliderWrap">
+    <button class="rt-nav rt-nav-prev" onclick="scrollTripDarshan(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <div class="td-grid" id="tripDarshanGrid">
+      <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading trip darshan packages…</div>
+    </div>
+    <button class="rt-nav rt-nav-next" onclick="scrollTripDarshan(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</section>
 
-            <i class="fab fa-whatsapp"></i>
-            Book on WhatsApp
+<!-- TICKET BOOKING SERVICES (Railway / Flight / Hotel) -->
+<section id="ticket-services">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Beyond Cabs</div>
+    <h2 class="section-title">Railway, Flight &amp; Hotel Booking</h2>
+    <p class="section-sub">One-stop travel assistance — let us handle your train tickets, flights and hotel stays alongside your cab, all under one roof.</p>
+  </div>
+  <div class="ticket-grid">
 
-          </a>
-
-          <a
-            href="tel:+919727729334"
-            class="btn btn-secondary">
-
-            <i class="fas fa-phone"></i>
-            Call Us
-
-          </a>
-
-        </div>
-
+    <div class="ticket-card">
+      <div class="ticket-img-wrap">
+        <img src="railway-booking.webp" alt="Railway Ticket Booking">
       </div>
-
-
-      <!-- Maintenance Card -->
-      <div class="maintenance-card">
-
-        <div class="car-icon">
-          <i class="fas fa-car-side"></i>
-        </div>
-
-        <h2>Website Under Maintenance</h2>
-
-        <p>
-          We're working behind the scenes to improve our website.
-          Don't worry — our cab services are still available.
-        </p>
-
-        <div class="progress">
-          <span></span>
-        </div>
-
-        <div class="progress-text">
-          <span>Updating website</span>
-          <span>Please wait...</span>
-        </div>
-
-
-        <div class="contact-box">
-
-          <div class="contact-item">
-            <i class="fab fa-whatsapp"></i>
-
-            <div>
-              <small>WhatsApp</small>
-              <strong>+91 97277 29334</strong>
-            </div>
-          </div>
-
-
-          <div class="contact-item">
-            <i class="fas fa-clock"></i>
-
-            <div>
-              <small>Availability</small>
-              <strong>24 × 7</strong>
-            </div>
-          </div>
-
-        </div>
-
+      <div class="ticket-body">
+        <h3>Railway Ticket Booking</h3>
+        <p class="ticket-desc">Book train tickets quickly and securely across India.</p>
+        <ul class="ticket-list">
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Instant Ticket Booking</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> PNR Status Check</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> 24/7 Booking Support</li>
+        </ul>
+        <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20to%20book%20a%20Railway%20Ticket.%20Please%20share%20details." target="_blank" class="ticket-btn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</a>
       </div>
-
     </div>
 
-  </main>
+    <div class="ticket-card">
+      <div class="ticket-img-wrap">
+        <img src="flight-booking.webp" alt="Flight Ticket Booking">
+      </div>
+      <div class="ticket-body">
+        <h3>Flight Ticket Booking</h3>
+        <p class="ticket-desc">Book domestic and international flights at the best prices.</p>
+        <ul class="ticket-list">
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Easy Online Booking</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Multiple Airline Options</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> 24/7 Customer Support</li>
+        </ul>
+        <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20to%20book%20a%20Flight%20Ticket.%20Please%20share%20details." target="_blank" class="ticket-btn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="ticket-card">
+      <div class="ticket-img-wrap">
+        <img src="hotel-booking.webp" alt="Hotel Booking">
+      </div>
+      <div class="ticket-body">
+        <h3>Hotel Booking</h3>
+        <p class="ticket-desc">Find and book comfortable stays anywhere across India.</p>
+        <ul class="ticket-list">
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Best Price Guarantee</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Wide Range of Hotels</li>
+          <li><span class="ticket-check"><i class="fas fa-check"></i></span> Instant Confirmation</li>
+        </ul>
+        <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20to%20book%20a%20Hotel.%20Please%20share%20details." target="_blank" class="ticket-btn"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Reliable cab booking from Ahmedabad — airport transfers, local travel, one-way journeys and outstation trips across Gujarat, Rajasthan, Maharashtra, Madhya Pradesh and beyond.</p>
+  </div>
+
+  <!-- ONE WAY CAB SERVICE -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-route"></i>One-Way Travel</div>
+      <h3>One Way Cab <em>Service</em></h3>
+      <p>Travel from Ahmedabad to your destination with a convenient one-way taxi. One-way cab booking is ideal when you do not require the vehicle for the return journey. Choose from Sedan, Ertiga or Innova Crysta depending on your travel requirements and group size.</p>
+    </div>
+    <div class="tag-list">
+      <a class="tag-pill" href="ahmedabad-to-surat-taxi.html">Ahmedabad to Surat</a>
+      <a class="tag-pill" href="ahmedabad-to-rajkot-taxi.html">Ahmedabad to Rajkot</a>
+      <a class="tag-pill" href="ahmedabad-to-udaipur-taxi.html">Ahmedabad to Udaipur</a>
+      <a class="tag-pill" href="ahmedabad-to-gandhinagar-taxi.html">Ahmedabad to Gandhinagar</a>
+      <a class="tag-pill" href="ahmedabad-to-mount-abu-taxi.html">Ahmedabad to Mount Abu</a>
+      <a class="tag-pill" href="ahmedabad-to-bhuj-taxi.html">Ahmedabad to Bhuj</a>
+      <a class="tag-pill" href="ahmedabad-to-dwarka-taxi.html">Ahmedabad to Dwarka</a>
+      <a class="tag-pill" href="ahmedabad-to-somnath-taxi.html">Ahmedabad to Somnath</a>
+      <a class="tag-pill" href="ahmedabad-to-mumbai-taxi.html">Ahmedabad to Mumbai</a>
+      <a class="tag-pill" href="ahmedabad-to-jaipur-taxi.html">Ahmedabad to Jaipur</a>
+      <a class="tag-pill" href="ahmedabad-to-indore-taxi.html">Ahmedabad to Indore</a>
+    </div>
+    <div class="mini-feature-grid">
+      <div class="mini-feature-card">
+        <div class="mini-feature-icon">₹</div>
+        <h4>Transparent Fare</h4>
+        <p>Get an estimated fare before your journey so you can plan your travel budget more easily.</p>
+      </div>
+      <div class="mini-feature-card">
+        <div class="mini-feature-icon">🚗</div>
+        <h4>Multiple Vehicles</h4>
+        <p>Choose from Sedan, Ertiga SUV and Innova Crysta according to your group size and comfort needs.</p>
+      </div>
+      <div class="mini-feature-card">
+        <div class="mini-feature-icon">🔀</div>
+        <h4>Long Distance Routes</h4>
+        <p>Book one-way taxis from Ahmedabad to major Gujarat destinations and selected cities outside Gujarat.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AIRPORT TAXI SERVICE -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-plane-departure"></i>Airport Transfers</div>
+      <h3>Ahmedabad Airport <em>Taxi Service</em></h3>
+      <p>Moksh Travel provides convenient <strong>Ahmedabad airport taxi service</strong> for pickup and drop-off between Sardar Vallabhbhai Patel International Airport (AMD) and different parts of Ahmedabad. Whether you have an early morning departure, late-night arrival or a scheduled business trip, you can pre-book your cab for a smoother airport transfer.</p>
+    </div>
+    <div class="airport-card-outer">
+      <div class="airport-card-head">
+        <div class="airport-card-icon">✈️</div>
+        <h4>Airport Pickup &amp; Drop Across Ahmedabad</h4>
+      </div>
+      <p>Airport taxi service is available for major residential, commercial and business areas of Ahmedabad. Final airport fare depends on the pickup/drop location, vehicle category, timing and applicable charges. Contact Moksh Travel before booking for the latest confirmed airport transfer fare.</p>
+      <div class="airport-area-grid">
+        <div class="airport-area-card"><strong>SG Highway</strong><span>Airport pickup and drop service available.</span></div>
+        <div class="airport-area-card"><strong>Satellite</strong><span>Convenient pre-booked airport transfers.</span></div>
+        <div class="airport-area-card"><strong>Prahlad Nagar</strong><span>Reliable city-to-airport cab service.</span></div>
+      </div>
+    </div>
+    <div class="tag-list" style="margin-top:24px">
+      <span class="tag-pill">Airport to City</span>
+      <span class="tag-pill">City to Airport</span>
+      <span class="tag-pill">Airport to Gandhinagar</span>
+      <span class="tag-pill">Airport to Hotels &amp; Business Locations</span>
+      <span class="tag-pill">Family &amp; Group Transfers</span>
+      <span class="tag-pill">Outstation Travel from the Airport</span>
+    </div>
+  </div>
+
+  <!-- OUTSTATION TAXI SERVICE -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-signs-post"></i>Outstation Trips</div>
+      <h3>Outstation Taxi <em>Service from Ahmedabad</em></h3>
+      <p>Moksh Travel provides outstation taxi services for short and long-distance travel. Whether you are travelling to Gujarat, Rajasthan, Maharashtra or Madhya Pradesh, you can select a vehicle according to your journey and passenger requirements. Our outstation taxi service is suitable for:</p>
+    </div>
+    <div class="tag-list">
+      <span class="tag-pill">Family Vacations</span>
+      <span class="tag-pill">Business Travel</span>
+      <span class="tag-pill">Religious Trips</span>
+      <span class="tag-pill">Weekend Getaways</span>
+      <span class="tag-pill">Wedding Transportation</span>
+      <span class="tag-pill">Hotel Transfers</span>
+      <span class="tag-pill">Multi-City Journeys</span>
+      <span class="tag-pill">One-Way &amp; Round-Trip Travel</span>
+    </div>
+  </div>
+
+  <!-- LOCAL TAXI SERVICE + PACKAGE TABLE -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-city"></i>City &amp; Local</div>
+      <h3>Ahmedabad Local <em>Taxi Service</em></h3>
+      <p>Need a cab for local sightseeing, meetings, shopping, events or multiple stops within Ahmedabad? Our local cab packages are designed for flexible city travel.</p>
+    </div>
+    <div class="fare-table-wrap">
+      <table class="fare-table">
+        <thead>
+          <tr><th>Package</th><th>Sedan</th><th>Ertiga</th><th>Innova Crysta</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>8 Hours / 80 KM</td><td class="fare-amt" data-label="Sedan">₹2,000</td><td class="fare-amt" data-label="Ertiga">₹2,800</td><td class="fare-amt" data-label="Innova Crysta">₹4,000</td></tr>
+          <tr><td>12 Hours / 120 KM</td><td class="fare-amt" data-label="Sedan">₹2,800</td><td class="fare-amt" data-label="Ertiga">₹3,600</td><td class="fare-amt" data-label="Innova Crysta">₹5,000</td></tr>
+          <tr><td>Extra KM</td><td class="fare-amt" data-label="Sedan">₹11</td><td class="fare-amt" data-label="Ertiga">₹15</td><td class="fare-amt" data-label="Innova Crysta">₹20</td></tr>
+          <tr><td>Extra Hour</td><td class="fare-amt" data-label="Sedan">₹180</td><td class="fare-amt" data-label="Ertiga">₹200</td><td class="fare-amt" data-label="Innova Crysta">₹250</td></tr>
+          <tr><td>Parking</td><td data-label="Sedan">Extra</td><td data-label="Ertiga">Extra</td><td data-label="Innova Crysta">Extra</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-note"><i class="fas fa-circle-info"></i><span><strong>Local package note:</strong> Additional kilometres are charged according to the selected vehicle. Night charges may apply for journeys during the applicable night hours. Parking charges are extra where applicable.</span></div>
+  </div>
+
+  <!-- ONE WAY TAXI FARE TABLE -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-tags"></i>Fare Chart</div>
+      <h3>Ahmedabad One Way <em>Taxi Fare</em></h3>
+      <p>Below are selected estimated one-way fares from Ahmedabad. Prices vary depending on the travel date, vehicle availability, route, pickup location and other applicable charges.</p>
+    </div>
+    <div class="fare-table-wrap">
+      <table class="fare-table">
+        <thead>
+          <tr><th>Destination</th><th>Approx. Distance</th><th>Sedan</th><th>Ertiga</th><th>Innova Crysta</th></tr>
+        </thead>
+        <tbody>
+          <tr data-href="ahmedabad-to-surat-taxi.html"><td>Ahmedabad &ndash; Surat</a></td><td class="fare-dist" data-label="Approx. Distance">260 KM</td><td class="fare-amt" data-label="Sedan">₹3,400</td><td class="fare-amt" data-label="Ertiga">₹4,000</td><td class="fare-amt" data-label="Innova Crysta">₹8,500</td></tr>
+          <tr data-href="ahmedabad-to-rajkot-taxi.html"><td>Ahmedabad &ndash; Rajkot</a></td><td class="fare-dist" data-label="Approx. Distance">215 KM</td><td class="fare-amt" data-label="Sedan">₹2,400</td><td class="fare-amt" data-label="Ertiga">₹3,000</td><td class="fare-amt" data-label="Innova Crysta">₹8,600</td></tr>
+          <tr data-href="ahmedabad-to-udaipur-taxi.html"><td>Ahmedabad &ndash; Udaipur</a></td><td class="fare-dist" data-label="Approx. Distance">269 KM</td><td class="fare-amt" data-label="Sedan">₹3,400</td><td class="fare-amt" data-label="Ertiga">₹4,000</td><td class="fare-amt" data-label="Innova Crysta">₹9,500</td></tr>
+          <tr data-href="ahmedabad-to-gandhinagar-taxi.html"><td>Ahmedabad &ndash; Gandhinagar</a></td><td class="fare-dist" data-label="Approx. Distance">26 KM</td><td class="fare-amt" data-label="Sedan">₹800</td><td class="fare-amt" data-label="Ertiga">₹1,100</td><td class="fare-amt" data-label="Innova Crysta">₹2,200</td></tr>
+          <tr data-href="ahmedabad-to-dwarka-taxi.html"><td>Ahmedabad &ndash; Dwarka</a></td><td class="fare-dist" data-label="Approx. Distance">448 KM</td><td class="fare-amt" data-label="Sedan">₹7,000</td><td class="fare-amt" data-label="Ertiga">₹8,300</td><td class="fare-amt" data-label="Innova Crysta">₹14,920</td></tr>
+          <tr data-href="ahmedabad-to-somnath-taxi.html"><td>Ahmedabad &ndash; Somnath</a></td><td class="fare-dist" data-label="Approx. Distance">424 KM </td><td class="fare-amt" data-label="Sedan">₹6,784 </td><td class="fare-amt" data-label="Ertiga">₹8,480</td><td class="fare-amt" data-label="Innova Crysta">₹13,960</td></tr>
+          <tr data-href="ahmedabad-to-mumbai-taxi.html"><td>Ahmedabad &ndash; Mumbai</a></td><td class="fare-dist" data-label="Approx. Distance">533 KM</td><td class="fare-amt" data-label="Sedan">₹7,528</td><td class="fare-amt" data-label="Ertiga">₹8,660</td><td class="fare-amt" data-label="Innova Crysta">₹18,500</td></tr>
+          <tr data-href="ahmedabad-to-mount-abu-taxi.html"><td>Ahmedabad &ndash; Mount Abu</a></td><td class="fare-dist" data-label="Approx. Distance">229 KM</td><td class="fare-amt" data-label="Sedan">₹3,664</td><td class="fare-amt" data-label="Ertiga">₹4,580</td><td class="fare-amt" data-label="Innova Crysta">₹9,160</td></tr>
+          <tr data-href="ahmedabad-to-jaipur-taxi.html"><td>Ahmedabad &ndash; Jaipur</a></td><td class="fare-dist" data-label="Approx. Distance">659 KM</td><td class="fare-amt" data-label="Sedan">₹11,862</td><td class="fare-amt" data-label="Ertiga">₹16,475</td><td class="fare-amt" data-label="Innova Crysta">₹26,360</td></tr>
+          <tr data-href="ahmedabad-to-bhuj-taxi.html"><td>Ahmedabad &ndash; Bhuj</a></td><td class="fare-dist" data-label="Approx. Distance">334 KM</td><td class="fare-amt" data-label="Sedan">₹4,500</td><td class ="fare-amt" data-label ="Ertiga">₹5,580 </td><td class="fare-amt" data-label="Innova Crysta">₹13,360</td></tr>
+          <tr data-href="ahmedabad-to-indore-taxi.html"><td>Ahmedabad &ndash; Indore</a></td><td class="fare-dist" data-label="Approx. Distance"> 388 KM </td><td class="fare-amt" data-label="Sedan">₹6,208</td><td class="fare-amt" data-label="Ertiga">₹7,760</td><td class="fare-amt" data-label="Innova Crysta">₹15,520</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-note"><i class="fas fa-circle-info"></i><span><strong>Fare information:</strong> The above prices are estimated fares and may vary depending on the travel date, vehicle availability, route, pickup location and other applicable charges. Tolls, parking, taxes, night charges or other applicable expenses may be extra. Please contact Moksh Travel for the latest fare before confirming your booking.</span></div>
+  </div>
+
+  <!-- POPULAR OUTSTATION ROUTES -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-map"></i>Popular Routes</div>
+      <h3>Popular Outstation <em>Routes &amp; Starting Fares</em></h3>
+      <p>Moksh Travel provides taxi services on a wide range of intercity routes. Starting fares are indicative and subject to vehicle type, travel date, route and applicable charges.</p>
+    </div>
+    <div class="fare-table-wrap">
+      <table class="fare-table">
+        <thead>
+          <tr><th>Route</th><th>Approx. Distance</th><th>Starting Fare</th></tr>
+        </thead>
+        <tbody>
+          <tr data-href="ahmedabad-to-dhoraji-taxi.html"><td>Ahmedabad – Dhoraji</td><td class="fare-dist" data-label="Approx. Distance">320 KM</td><td class="fare-amt" data-label="Starting Fare">₹5,000</td></tr>
+          <tr data-href="rajkot-to-dhoraji-taxi.html"><td>Rajkot – Dhoraji</td><td class="fare-dist" data-label="Approx. Distance">90 KM</td><td class="fare-amt" data-label="Starting Fare">₹2,700</td></tr>
+          <tr data-href="rajkot-to-gondal-taxi.html"><td>Rajkot – Gondal</td><td class="fare-dist" data-label="Approx. Distance">40 KM</td><td class="fare-amt" data-label="Starting Fare">₹1,700</td></tr>
+          <tr data-href="somnath-to-porbandar-taxi.html"><td>Somnath – Porbandar</td><td class="fare-dist" data-label="Approx. Distance">132 KM</td><td class="fare-amt" data-label="Starting Fare">₹4,000</td></tr>
+          <tr data-href="diu-to-somnath-taxi.html"><td>Diu – Somnath</td><td class="fare-dist" data-label="Approx. Distance">95 KM</td><td class="fare-amt" data-label="Starting Fare">₹3,000</td></tr>
+          <tr data-href="dwarka-to-somnath-taxi.html"><td>Dwarka – Somnath</td><td class="fare-dist" data-label="Approx. Distance">270 KM</td><td class="fare-amt" data-label="Starting Fare">₹6,500</td></tr>
+          <tr data-href="vadodara-to-kevadiya-taxi.html"><td>Vadodara – Kevadiya</td><td class="fare-dist" data-label="Approx. Distance">90 KM</td><td class="fare-amt" data-label="Starting Fare">₹2,700</td></tr>
+          <tr data-href="vadodara-to-statue-of-unity-taxi.html"><td>Vadodara – Statue of Unity</td><td class="fare-dist" data-label="Approx. Distance">90 KM</td><td class="fare-amt" data-label="Starting Fare">₹2,700</td></tr>
+          <tr data-href="vadodara-to-pavagadh-taxi.html"><td>Vadodara – Pavagadh</td><td class="fare-dist" data-label="Approx. Distance">40 KM</td><td class="fare-amt" data-label="Starting Fare">₹1,500</td></tr>
+          <tr data-href="vadodara-to-halol-taxi.html"><td>Vadodara – Halol</td><td class="fare-dist" data-label="Approx. Distance">40 KM</td><td class="fare-amt" data-label="Starting Fare">₹1,500</td></tr>
+          <tr data-href="dahej-to-bharuch-taxi.html"><td>Dahej – Bharuch</td><td class="fare-dist" data-label="Approx. Distance">55 KM</td><td class="fare-amt" data-label="Starting Fare">₹1,700</td></tr>
+          <tr data-href="bharuch-to-vadodara-taxi.html"><td>Bharuch – Vadodara</td><td class="fare-dist" data-label="Approx. Distance">80 KM</td><td class="fare-amt" data-label="Starting Fare">₹2,000</td></tr>
+          <tr data-href="surat-to-bharuch-taxi.html"><td>Surat – Bharuch</td><td class="fare-dist" data-label="Approx. Distance">75 KM</td><td class="fare-amt" data-label="Starting Fare">₹1,700</td></tr>
+          <tr data-href="surat-to-mumbai-taxi.html"><td>Surat – Mumbai</td><td class="fare-dist" data-label="Approx. Distance">295 KM</td><td class="fare-amt" data-label="Starting Fare">₹4,000</td></tr>
+          <tr data-href="mumbai-to-vapi-taxi.html"><td>Mumbai – Vapi</td><td class="fare-dist" data-label="Approx. Distance">180 KM</td><td class="fare-amt" data-label="Starting Fare">₹3,500</td></tr>
+          <tr data-href="gandhidham-to-bhuj-taxi.html"><td>Gandhidham – Bhuj</td><td class="fare-dist" data-label="Approx. Distance">50 KM</td><td class="fare-amt" data-label="Starting Fare">₹1,700</td></tr>
+          <tr data-href="mundra-to-gandhidham-taxi.html"><td>Mundra – Gandhidham</td><td class="fare-dist" data-label="Approx. Distance">55 KM</td><td class="fare-amt" data-label="Starting Fare">₹2,000</td></tr>
+          <tr data-href="mount-abu-to-rajkot-taxi.html"><td>Mount Abu – Rajkot</td><td class="fare-dist" data-label="Approx. Distance">402 KM</td><td class="fare-amt" data-label="Starting Fare">₹7,000</td></tr>
+          <tr data-href="ahmedabad-to-ramdevra-taxi.html"><td>Ahmedabad – Ramdevra</td><td class="fare-dist" data-label="Approx. Distance">590 KM</td><td class="fare-amt" data-label="Starting Fare">₹12,500</td></tr>
+          <tr data-href="ahmedabad-to-jalore-taxi.html"><td>Ahmedabad – Jalore</td><td class="fare-dist" data-label="Approx. Distance">325 KM</td><td class="fare-amt" data-label="Starting Fare">₹5,300</td></tr>
+          <tr data-href="ahmedabad-to-siwana-taxi.html"><td>Ahmedabad – Siwana</td><td class="fare-dist" data-label="Approx. Distance">407 KM</td><td class="fare-amt" data-label="Starting Fare">₹8,000</td></tr>
+          <tr data-href="ahmedabad-to-balotra-taxi.html"><td>Ahmedabad – Balotra</td><td class="fare-dist" data-label="Approx. Distance">395 KM</td><td class="fare-amt" data-label="Starting Fare">₹7,500</td></tr>
+          <tr data-href="ahmedabad-to-balesar-taxi.html"><td>Ahmedabad – Balesar</td><td class="fare-dist" data-label="Approx. Distance">475 KM</td><td class="fare-amt" data-label="Starting Fare">₹9,000</td></tr>
+          <tr data-href="ahmedabad-to-nagaur-taxi.html"><td>Ahmedabad – Nagaur</td><td class="fare-dist" data-label="Approx. Distance">590 KM</td><td class="fare-amt" data-label="Starting Fare">₹12,500</td></tr>
+          <tr data-href="ahmedabad-to-khatu-shyam-taxi.html"><td>Ahmedabad – Khatu Shyam</td><td class="fare-dist" data-label="Approx. Distance">740 KM</td><td class="fare-amt" data-label="Starting Fare">₹12,500</td></tr>
+          <tr data-href="ahmedabad-to-pushkar-taxi.html"><td>Ahmedabad – Pushkar</td><td class="fare-dist" data-label="Approx. Distance">551 KM</td><td class="fare-amt" data-label="Starting Fare">₹9,500</td></tr>
+          <tr data-href="ahmedabad-to-kumbhalgarh-taxi.html"><td>Ahmedabad – Kumbhalgarh</td><td class="fare-dist" data-label="Approx. Distance">335 KM</td><td class="fare-amt" data-label="Starting Fare">₹7,300</td></tr>
+          <tr data-href="ahmedabad-to-beawar-taxi.html"><td>Ahmedabad – Beawar</td><td class="fare-dist" data-label="Approx. Distance">486 KM</td><td class="fare-amt" data-label="Starting Fare">₹8,500</td></tr>
+          <tr data-href="ahmedabad-to-bikaner-taxi.html"><td>Ahmedabad – Bikaner</td><td class="fare-dist" data-label="Approx. Distance">680 KM</td><td class="fare-amt" data-label="Starting Fare">₹15,200</td></tr>
+          <tr data-href="ahmedabad-to-sri-ganganagar-taxi.html"><td>Ahmedabad – Sri Ganganagar</td><td class="fare-dist" data-label="Approx. Distance">910 KM</td><td class="fare-amt" data-label="Starting Fare">₹18,500</td></tr>
+          <tr data-href="ahmedabad-to-jhabua-taxi.html"><td>Ahmedabad – Jhabua</td><td class="fare-dist" data-label="Approx. Distance">260 KM</td><td class="fare-amt" data-label="Starting Fare">₹6,500</td></tr>
+          <tr data-href="ahmedabad-to-thandla-taxi.html"><td>Ahmedabad – Thandla</td><td class="fare-dist" data-label="Approx. Distance">280 KM</td><td class="fare-amt" data-label="Starting Fare">₹7,000</td></tr>
+          <tr data-href="ahmedabad-to-sojat-taxi.html"><td>Ahmedabad – Sojat</td><td class="fare-dist" data-label="Approx. Distance">430 KM</td><td class="fare-amt" data-label="Starting Fare">₹7,500</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CHOOSE THE RIGHT CAB -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-car"></i>Fleet Guide</div>
+      <h3>Choose the Right <em>Cab for Your Journey</em></h3>
+    </div>
+    <div class="vehicle-grid">
+      <div class="vehicle-card">
+        <div class="service-icon" style="margin:0 auto 16px">🚗</div>
+        <h4>Sedan Cab</h4>
+        <p>A practical choice for couples, small families and business travellers looking for comfortable and economical transportation.</p>
+      </div>
+      <div class="vehicle-card">
+        <div class="service-icon" style="margin:0 auto 16px">🚙</div>
+        <h4>Ertiga</h4>
+        <p>A spacious option for families and small groups who need additional passenger and luggage space.</p>
+      </div>
+      <div class="vehicle-card">
+        <div class="service-icon" style="margin:0 auto 16px">🚐</div>
+        <h4>Innova Crysta</h4>
+        <p>A premium and spacious choice for longer journeys, family trips and travellers who prefer additional comfort.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY CHOOSE MOKSH TRAVEL -->
+  <div class="service-detail">
+    <div class="service-detail-head">
+      <div class="service-eyebrow"><i class="fas fa-star"></i>Why Us</div>
+      <h3>Why Choose <em>Moksh Travel?</em></h3>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><i class="fas fa-couch"></i><h4>Comfortable Travel</h4><p>Choose a vehicle that suits your passenger count, luggage and travel requirements.</p></div>
+      <div class="why-card"><i class="fas fa-phone-volume"></i><h4>Convenient Booking</h4><p>Book your taxi by contacting Moksh Travel directly for availability and fare information.</p></div>
+      <div class="why-card"><i class="fas fa-route"></i><h4>Multiple Travel Options</h4><p>From short city rides to long-distance journeys — local, one-way, airport and outstation taxi services.</p></div>
+      <div class="why-card"><i class="fas fa-tags"></i><h4>Transparent Fare Information</h4><p>Estimated fares are provided clearly so you understand the expected travel cost before booking.</p></div>
+      <div class="why-card"><i class="fas fa-car-side"></i><h4>Suitable Vehicles</h4><p>Select from Sedan, Ertiga and Innova Crysta according to your journey requirements.</p></div>
+      <div class="why-card"><i class="fas fa-map-marked-alt"></i><h4>Ahmedabad &amp; Outstation Coverage</h4><p>Travel from Ahmedabad to popular destinations across Gujarat and other nearby states.</p></div>
+    </div>
+  </div>
+
+  <!-- BOOK CTA -->
+  <div class="service-detail" style="border-top:none; margin-top:48px; padding-top:0">
+    <div class="book-cta-bar">
+      <div>
+        <h4>Book Your Ahmedabad Cab with Moksh Travel</h4>
+        <p>Tell us your pickup location, destination, travel date, number of passengers and preferred vehicle.</p>
+      </div>
+      <a href="tel:+919727729334" class="btn-primary"><i class="fas fa-phone"></i> Call +91 97277 29334</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+      <div><div class="hero-stat-num">100+</div><div class="hero-stat-label">Happy Customers</div></div>
+      <div><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Google Rating</div></div>
+      <div><div class="hero-stat-num">24×7</div><div class="hero-stat-label">Available</div></div>
+      <div><div class="hero-stat-num">50+</div><div class="hero-stat-label">Gujarat Destinations</div></div>
+    </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> 24×7 Service</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Verified Drivers</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Clean Vehicles</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Transparent Pricing</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> No Hidden Charges</div>
+  <div class="trust-pill"><i class="fas fa-check-circle"></i> Safe Travel</div>
+</div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Got Questions?</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about one way taxi booking with Moksh Travel.</p>
+  </div>
+  <div class="faq-list" id="faqList">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What is a one way taxi service?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">A one way taxi service allows you to travel from your pickup point to your destination without paying for a return trip. It's perfect for airport transfers, intercity travel, or point-to-point journeys.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>How can I book a one way taxi with Moksh Travel?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">You can book online via our website, through WhatsApp, or by calling our customer support team. Just provide your pickup location, destination, and preferred time, and your cab will be ready.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>What types of vehicles are available for one way trips?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Moksh Travel offers a range of vehicles including sedans, SUVs, and luxury cars. All our taxis are well-maintained, clean, and equipped with modern amenities for a comfortable ride.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Are one way taxi fares fixed or flexible?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Our one way taxi fares are transparent and based on distance, vehicle type, and route. There are no hidden charges, making it a cost-effective solution for both short and long-distance travel.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>Is the one way taxi service available for outstation trips?</span>
+        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">Yes! Moksh Travel provides one way taxi services for intercity and outstation travel. You can reach your destination without worrying about return trips, ensuring a hassle-free journey.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a one way taxi service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A one way taxi service allows you to travel from your pickup point to your destination without paying for a return trip. It's perfect for airport transfers, intercity travel, or point-to-point journeys."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I book a one way taxi with Moksh Travel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can book online via our website, through WhatsApp, or by calling our customer support team. Just provide your pickup location, destination, and preferred time, and your cab will be ready."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of vehicles are available for one way trips?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Moksh Travel offers a range of vehicles including sedans, SUVs, and luxury cars. All our taxis are well-maintained, clean, and equipped with modern amenities for a comfortable ride."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are one way taxi fares fixed or flexible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our one way taxi fares are transparent and based on distance, vehicle type, and route. There are no hidden charges, making it a cost-effective solution for both short and long-distance travel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the one way taxi service available for outstation trips?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Moksh Travel provides one way taxi services for intercity and outstation travel. You can reach your destination without worrying about return trips, ensuring a hassle-free journey."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header-center" style="margin-bottom:48px">
+    <div class="section-tag">Customer Reviews</div>
+    <h2 class="section-title">Trusted by Travelers Across Gujarat</h2>
+    <p class="section-sub">Real experiences from real customers who chose Moksh Travel.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">Booked an outstation cab for a family trip across Gujarat. Vehicle arrived exactly on time, clean and comfortable. The driver was polite and professional. Highly recommended!</p><div class="reviewer">— Harsh P.</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">Excellent experience from start to finish. Transparent pricing with no hidden charges. The driver was courteous and knowledgeable about the routes.</p><div class="reviewer">— Riya S.</div></div>
+  </div>
+  <div class="see-more-wrap" style="margin-bottom:24px">
+    <a href="reviews.html" class="see-more-btn">Show More Reviews</a>
+  </div>
+  <div class="write-review-cta">
+    <h3>Enjoyed Your Ride? 🌟</h3>
+    <p>Share your experience and help other travelers discover Moksh Travel.</p>
+    <button class="review-btn-gold" onclick="openReviewModal()">
+      <i class="fab fa-google"></i> Write a Google Review
+    </button>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-phone">97277 29334</div>
+    <div class="contact-btns">
+      <a href="tel:+919727729334" class="contact-btn contact-btn-gold"><i class="fas fa-phone"></i> Call Now</a>
+      <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" class="contact-btn contact-btn-green"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://www.instagram.com/mokshtravel/" target="_blank" class="contact-btn contact-btn-outline"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.google.com/search?q=Moksh+Travel" target="_blank" class="contact-btn contact-btn-outline"><i class="fas fa-star"></i> Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col footer-brand">
+      <img src="logo.jpeg" alt="Moksh Travel" class="footer-logo">
+      <div class="footer-brand-name">Moksh Travel</div>
+      <div class="footer-brand-tag">Ahmedabad Cab Service</div>
+      <div class="footer-social">
+        <a href="https://wa.me/919727729334" target="_blank" rel="noopener" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.google.com/search?q=Moksh+Travel" target="_blank" rel="noopener" aria-label="Google"><i class="fas fa-star"></i></a>
+        <a href="https://www.instagram.com/mokshtravel/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://maps.google.com/?q=1600+Bhavsar+No+Khacho,+Opp+Swaminarayan+Temple,+Ahmedabad+380018" target="_blank" rel="noopener" aria-label="Location"><i class="fas fa-location-dot"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#booking">Book Online</a>
+      <a href="about.html">About Us</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="cancellation-policy.html">Cancellation &amp; Return Policy</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Our Service</h4>
+      <!-- Popular Outstation Routes -->
+      <a href="ahmedabad-to-rajkot-taxi.html">Ahmedabad To Rajkot</a>
+      <a href="ahmedabad-to-surat-taxi.html">Ahmedabad To Surat</a>
+      <a href="ahmedabad-to-mumbai-taxi.html">Ahmedabad To Mumbai</a>
+      <a href="ahmedabad-to-bhuj-taxi.html">Ahmedabad To Bhuj</a>
+      <a href="ahmedabad-to-dwarka-taxi.html">Ahmedabad To Dwarka</a>
+      <a href="ahmedabad-to-somnath-taxi.html">Ahmedabad To Somnath</a>
+      <a href="ahmedabad-to-udaipur-taxi.html">Ahmedabad To Udaipur</a>
+      <a href="ahmedabad-to-mount-abu-taxi.html">Ahmedabad To Mount Abu</a>
+      <a href="ahmedabad-to-jaipur-taxi.html">Ahmedabad To Jaipur</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect With Us</h4>
+      <p>Safe & Reliable Cab Service Across Gujarat — Ahmedabad Based Travel Partner</p>
+      <p>1600 Bhavsar No Khacho,<br>Opp Swaminarayan Temple,<br>Ahmedabad — 380018</p>
+      <a href="mailto:mokshtour.travel@gmail.com">mokshtour.travel@gmail.com</a>
+      <a href="tel:+919727729334">+91 97277 29334</a>
+    </div>
+  </div>
+  <div class="footer-keywords">
+    Ahmedabad Taxi Service • Airport Cab Ahmedabad • Outstation Taxi Gujarat • One Way Cab Ahmedabad • Round Trip Taxi Gujarat • Corporate Cab Ahmedabad • Cab Near Me • Taxi Near Me Ahmedabad • Book Cab Near Me
+  </div>
+  <div class="footer-bottom">© 2026 Moksh Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
+</footer>
+
+<div class="float-wrap">
+  <a href="https://wa.me/919727729334?text=Hello%20Moksh%20Travel,%20I%20want%20cab%20service.%20Please%20share%20details." class="float-btn float-wa" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="tel:+919727729334" class="float-btn float-call" title="Call Now"><i class="fas fa-phone"></i></a>
+</div>
+
+<!-- Loading Screen -->
+<div id="loadingScreen">
+  <div class="loader-box">
+    <div class="spinner"></div>
+    <h3>Booking Your Cab…</h3>
+    <p>Saving your details and opening WhatsApp</p>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModal">
+  <div class="success-card" id="successCard">
+    <div class="success-check">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M9 21 L17 29 L31 13" stroke="#3ddc97" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="success-eyebrow">✦ Booking Received ✦</div>
+    <h2 class="success-title">You're All Set!</h2>
+    <p class="success-message" id="successMessage"></p>
+    <div class="success-progress-wrap"><div class="success-progress-bar" id="successProgress"></div></div>
+    <div class="success-hint">Redirecting to WhatsApp…</div>
+  </div>
+</div>
 
 
-  <!-- Footer -->
-  <footer>
-    © 2026 <span>Moksh Travel</span> · Ahmedabad's Trusted Travel Partner
-  </footer>
 
+<!-- ROUND TRIP MODAL -->
+<div id="rtModal">
+  <div class="rt-modal-card">
+    <div class="rt-modal-icon"><i class="fas fa-car-side"></i></div>
+    <h3>Book Round Trip</h3>
+    <div class="rt-modal-vehicle" id="rtModalVehicle"></div>
+    <p class="rt-modal-note">Enter your mobile number and we'll confirm pricing &amp; availability on WhatsApp.</p>
+    <input type="tel" class="rt-modal-input" id="rtPhone" placeholder="9999999999" maxlength="10" inputmode="numeric">
+    <div class="rt-phone-err" id="rtPhoneErr">Please enter a valid 10-digit number.</div>
+    <button class="rt-modal-submit" onclick="submitRtWA()">
+      <i class="fab fa-whatsapp"></i> Book on WhatsApp
+    </button>
+    <button class="rt-modal-cancel" onclick="closeRtModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- REVIEW MODAL -->
+<div id="reviewModal">
+  <div class="review-modal-card" id="reviewModalCard">
+    <button class="rm-close" onclick="closeReviewModal()">×</button>
+    <div id="reviewModalContent">
+      <div class="rm-loader">
+        <div class="rm-spinner"></div>
+        <p>Generating your personalised review…</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CORE UI SCRIPT (runs always, no external dependency) ── -->
+<script>
+// ── LOCATIONS DATA ─────────────────────────────────────
+const gujaratLocations = [
+  "Ahmedabad","Gandhinagar","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Junagadh",
+  "Porbandar","Anand","Nadiad","Mehsana","Patan","Palanpur","Bharuch","Navsari","Valsad","Vapi",
+  "Morbi","Surendranagar","Amreli","Gandhidham","Bhuj","Mundra","Dwarka","Somnath","Gir Somnath",
+  "Sasan Gir","Ambaji","Saputara","White Rann","Dhordo","Dholavira","Statue of Unity","Kevadia",
+  "Mount Abu","Rani Ki Vav","Modhera Sun Temple","Lothal","Adalaj","Palitana","Girnar",
+  "Ahmedpur Mandvi Beach","Mandvi Beach","Polo Forest","Sabarmati Ashram","Akshardham Gandhinagar",
+  "Daman","Diu","Vadnagar","Siddhpur","Mumbai","Pune","Jaipur"
+];
+
+const airportLocations = [
+  "Ahmedabad Airport (SVPI)","Surat Airport","Vadodara Airport",
+  "Rajkot Airport (Hirasar)","Bhavnagar Airport","Mumbai Airport (CSMT)"
+];
+let pickupLocationList = gujaratLocations;
+
+function setupLocationAutocomplete(inputId, dropdownId, getList) {
+  const input = document.getElementById(inputId);
+  const dropdown = document.getElementById(dropdownId);
+  let highlightedIndex = -1;
+  let currentMatches = [];
+  const listSource = getList || (() => gujaratLocations);
+
+  function filterLocations(query) {
+    const list = listSource();
+    const q = query.trim().toLowerCase();
+    if (!q) return list.slice(0, 8);
+    return list.filter(loc => loc.toLowerCase().includes(q)).slice(0, 8);
+  }
+
+  function renderDropdown(matches) {
+    currentMatches = matches;
+    highlightedIndex = -1;
+    if (matches.length === 0) {
+      dropdown.innerHTML = '';
+      dropdown.classList.remove('open');
+      return;
+    }
+    dropdown.innerHTML = matches.map((loc, i) =>
+      `<div class="loc-dropdown-item" data-index="${i}">${loc}</div>`
+    ).join('');
+    dropdown.classList.add('open');
+  }
+
+  function updateHighlight(items) {
+    items.forEach((item, i) => item.classList.toggle('highlighted', i === highlightedIndex));
+    if (highlightedIndex >= 0) items[highlightedIndex].scrollIntoView({ block: 'nearest' });
+  }
+
+  input.addEventListener('input', () => renderDropdown(filterLocations(input.value)));
+  input.addEventListener('focus', () => renderDropdown(filterLocations(input.value)));
+  input.addEventListener('blur', () => setTimeout(() => dropdown.classList.remove('open'), 150));
+
+  input.addEventListener('keydown', (e) => {
+    const items = dropdown.querySelectorAll('.loc-dropdown-item');
+    if (!dropdown.classList.contains('open') || items.length === 0) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1); updateHighlight(items); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); highlightedIndex = Math.max(highlightedIndex - 1, 0); updateHighlight(items); }
+    else if (e.key === 'Enter' && highlightedIndex >= 0) { e.preventDefault(); input.value = currentMatches[highlightedIndex]; dropdown.classList.remove('open'); }
+    else if (e.key === 'Escape') { dropdown.classList.remove('open'); }
+  });
+
+  dropdown.addEventListener('mousedown', (e) => {
+    const item = e.target.closest('.loc-dropdown-item');
+    if (!item) return;
+    e.preventDefault();
+    input.value = currentMatches[parseInt(item.dataset.index, 10)];
+    dropdown.classList.remove('open');
+  });
+}
+
+document.getElementById('bPickup').value = 'Ahmedabad';
+setupLocationAutocomplete('bPickup', 'bPickupDropdown', () => pickupLocationList);
+setupLocationAutocomplete('bDestination', 'bDestinationDropdown');
+
+
+// ── SWAP FROM / TO ─────────────────────────────────────
+document.getElementById('swapBtn').addEventListener('click', () => {
+  const pickupEl = document.getElementById('bPickup');
+  const destEl   = document.getElementById('bDestination');
+  const temp = pickupEl.value;
+  pickupEl.value = destEl.value;
+  destEl.value = temp;
+});
+
+// Prevent past-date selection
+document.getElementById('bDate').min = new Date().toISOString().split('T')[0];
+document.getElementById('bReturnDate').min = new Date().toISOString().split('T')[0];
+
+// ── TRIP TYPE PILLS ────────────────────────────────────
+let selectedTrip = 'One Way';
+document.querySelectorAll('.trip-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    selectedTrip = pill.dataset.trip;
+
+    const rentalCard  = document.getElementById('rentalHoursCard');
+    const returnCard   = document.getElementById('returnDateCard');
+    const pickupLabel  = document.getElementById('bPickupLabel');
+    const pickupInput  = document.getElementById('bPickup');
+
+    rentalCard.style.display = 'none';
+    returnCard.style.display = 'none';
+
+    if (selectedTrip === 'Rental') {
+      rentalCard.style.display = 'block';
+    } else if (selectedTrip === 'Round Trip') {
+      returnCard.style.display = 'block';
+    }
+
+    if (selectedTrip === 'Airport') {
+      pickupLocationList = airportLocations;
+      pickupLabel.textContent = 'Which Airport';
+      pickupInput.placeholder = 'Select airport';
+      pickupInput.value = '';
+    } else {
+      pickupLocationList = gujaratLocations;
+      pickupLabel.textContent = 'From';
+      pickupInput.placeholder = 'Enter pickup city';
+    }
+  });
+});
+
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show' + (isError ? ' error' : '');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.className = '', 3500);
+}
+window.showToast = showToast;
+
+function showSuccessModal(message) {
+  const modal    = document.getElementById('successModal');
+  const msgEl    = document.getElementById('successMessage');
+  const progress = document.getElementById('successProgress');
+  msgEl.innerHTML = message;
+  modal.style.display = 'flex';
+  progress.style.animation = 'none';
+  void progress.offsetWidth;
+  progress.style.animation = 'drainBar 2.5s linear forwards';
+  clearTimeout(window._successTimer);
+  window._successTimer = setTimeout(closeSuccessModal, 2600);
+}
+function closeSuccessModal() {
+  const modal = document.getElementById('successModal');
+  const card  = document.getElementById('successCard');
+  card.style.animation = 'fadeOutModal 0.35s cubic-bezier(0.4,0,0.2,1) forwards';
+  setTimeout(() => { modal.style.display = 'none'; card.style.animation = ''; }, 350);
+}
+window.closeSuccessModal = closeSuccessModal;
+
+function toDMY(isoDate) {
+  if (!isoDate) return '';
+  const [y, m, d] = isoDate.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function to12Hour(time24) {
+  if (!time24) return '';
+  let [h, m] = time24.split(':').map(Number);
+  const period = h >= 12 ? 'PM' : 'AM';
+  h = h % 12;
+  if (h === 0) h = 12;
+  return `${h}:${String(m).padStart(2,'0')} ${period}`;
+}
+
+
+// ── MAIN BOOKING FORM ─────────────────────────────────
+document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn        = document.getElementById('bookBtn');
+  const mobile     = document.getElementById('bMobile').value.trim();
+  const pickup     = document.getElementById('bPickup').value.trim();
+  const dest       = document.getElementById('bDestination').value.trim();
+  const date       = document.getElementById('bDate').value;
+  const returnDate = document.getElementById('bReturnDate').value;
+  const time       = document.getElementById('bTime').value;
+  const rentalHours = document.getElementById('bRentalHours').value;
+  const trip       = selectedTrip;
+
+  if (!pickup) { showToast(trip === 'Airport' ? 'Please select an airport' : 'Please select a pickup city', true); return; }
+  if (!dest) { showToast('Please select a destination city', true); return; }
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
+    showToast('Please enter a valid 10-digit mobile number', true); return;
+  }
+  if (!time) {
+    showToast('Please select a pickup time', true); return;
+  }
+  if (trip === 'Round Trip' && !returnDate) {
+    showToast('Please select a return date', true); return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+  document.getElementById('loadingScreen').style.display = 'flex';
+
+  if (window.saveBookingToFirebase) {
+    try {
+      await window.saveBookingToFirebase('bookings', {
+        mobile, pickup, destination: dest, date,
+        returnDate: trip === 'Round Trip' ? returnDate : '',
+        rentalHours: trip === 'Rental' ? rentalHours : '',
+        time, trip, received: new Date()
+      });
+    } catch(err) {
+      console.error('Firebase save error:', err);
+    }
+  }
+
+  try {
+    await emailjs.send('service_xmnox9n', 'template_lqoj3yg', {
+      mobile, pickup, destination: dest,
+      date: toDMY(date),
+      returnDate: trip === 'Round Trip' ? toDMY(returnDate) : '',
+      time: to12Hour(time),
+      trip,
+      rentalHours: trip === 'Rental' ? rentalHours : ''
+    });
+  } catch(err) {
+    console.error('EmailJS error:', err);
+  }
+  
+
+  const waMsg =
+`━━━━━━━━━━━━━━━━━━━━━━━━━
+🚖 I WANT TO BOOK CAB
+━━━━━━━━━━━━━━━━━━━━━━━━━
+▪️ Contact Number : ${mobile}
+▪️ Pickup Location : ${pickup}
+▪️ Destination : ${dest}
+▪️ Pickup Date : ${date}${trip === 'Round Trip' ? `\n▪️ Return Date : ${returnDate}` : ''}
+▪️ Pickup Time : ${time}
+▪️ Trip Type : ${trip}${trip === 'Rental' ? `\n▪️ Rental Package : ${rentalHours}` : ''}
+━━━━━━━━━━━━━━━━━━━━━━━━━`;
+
+  const waUrl = 'https://wa.me/919727729334?text=' + encodeURIComponent(waMsg);
+
+  document.getElementById('loadingScreen').style.display = 'none';
+  showSuccessModal('Booking saved! Redirecting you to WhatsApp to confirm with our team.');
+
+  setTimeout(() => {
+    window.open(waUrl, '_blank');
+    document.getElementById('bookingForm').reset();
+    document.getElementById('bPickup').value = 'Ahmedabad';
+    document.getElementById('bDestination').value = '';
+    document.querySelectorAll('.trip-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('.trip-pill[data-trip="One Way"]').classList.add('active');
+    selectedTrip = 'One Way';
+    pickupLocationList = gujaratLocations;
+    document.getElementById('bPickupLabel').textContent = 'From';
+    document.getElementById('bPickup').placeholder = 'Enter pickup city';
+    document.getElementById('rentalHoursCard').style.display = 'none';
+    document.getElementById('returnDateCard').style.display = 'none';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fab fa-whatsapp"></i> Confirm Booking on WhatsApp';
+  }, 1200);
+});
+
+// ── ROUTE BOOKING ─────────────────────────────────────
+window.bookRoute = async function(route, sedan, suv) {
+  const mobile = prompt('Enter your 10-digit mobile number to book this route:');
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) { alert('Please enter a valid 10-digit mobile number.'); return; }
+
+  if (window.saveBookingToFirebase) {
+    try { await window.saveBookingToFirebase('routeInquiries', { route, sedan, suv, mobile, received: new Date() }); }
+    catch(err) { console.error('Firebase error:', err); }
+  }
+
+  try {
+    await emailjs.send('service_xmnox9n', 'template_lqoj3yg', {
+      mobile,
+      pickup: 'Route Inquiry',
+      destination: route,
+      date: '',
+      returnDate: '',
+      time: '',
+      trip: `Route Booking — Sedan ₹${sedan} / SUV ₹${suv}`,
+      rentalHours: ''
+    });
+  } catch(err) { console.error('EmailJS error:', err); }
+
+  const waMsg =
+`🚖 I WANT TO BOOK CAB
+━━━━━━━━━━━━━━━━━━━━
+📍 Route: ${route}
+💺 Sedan Price: ₹${sedan}
+🚙 SUV Price: ₹${suv}
+📱 Customer Number: ${mobile}
+━━━━━━━━━━━━━━━━━━━━`;
+
+  window.open('https://wa.me/919727729334?text=' + encodeURIComponent(waMsg), '_blank');
+};
+
+// ── ROUND TRIP BOOKING ────────────────────────────────
+window.bookRoundTrip = function(car, rate) {
+  window._rtCar  = car;
+  window._rtRate = rate;
+  document.getElementById('rtPhone').value = '';
+  document.getElementById('rtPhoneErr').style.display = 'none';
+  document.getElementById('rtModalVehicle').innerHTML =
+    `<i class="fas fa-circle" style="font-size:7px;color:var(--teal)"></i>
+     <span style="color:var(--ice);font-weight:700">${car}</span>
+     <span style="color:var(--gold);font-family:'Space Grotesk'">₹${rate} / km</span>`;
+  document.getElementById('rtModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('rtPhone').focus(), 100);
+};
+
+window.closeRtModal = function() {
+  document.getElementById('rtModal').style.display = 'none';
+};
+
+window.submitRtWA = async function() {
+  const mobile = document.getElementById('rtPhone').value.trim();
+  const errEl  = document.getElementById('rtPhoneErr');
+  if (!mobile || mobile.length !== 10 || isNaN(mobile)) {
+    errEl.style.display = 'block';
+    document.getElementById('rtPhone').focus();
+    return;
+  }
+  errEl.style.display = 'none';
+  const car  = window._rtCar;
+  const rate = window._rtRate;
+  closeRtModal();
+
+  if (window.saveBookingToFirebase) {
+    try {
+      await window.saveBookingToFirebase('roundTripRequests', { car, rate, mobile, received: new Date() });
+    } catch(err) { console.error('Firebase error:', err); }
+  }
+
+  try {
+    await emailjs.send('service_xmnox9n', 'template_lqoj3yg', {
+      mobile,
+      pickup: 'Round Trip Request',
+      destination: car,
+      date: '',
+      returnDate: '',
+      time: '',
+      trip: `Round Trip — ₹${rate}/km`,
+      rentalHours: ''
+    });
+  } catch(err) { console.error('EmailJS error:', err); }
+
+  const waMsg =
+`🚖 ROUND TRIP BOOKING
+━━━━━━━━━━━━━━━━━━━━
+🚘 Vehicle : ${car}
+💰 Rate : ₹${rate}/KM
+📱 Customer Number : ${mobile}
+━━━━━━━━━━━━━━━━━━━━`;
+
+  window.open('https://wa.me/919727729334?text=' + encodeURIComponent(waMsg), '_blank');
+};
+
+document.getElementById('rtPhone').addEventListener('keydown', e => {
+  if (e.key === 'Enter') window.submitRtWA();
+  if (!/[0-9]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/.test(e.key)) e.preventDefault();
+});
+document.getElementById('rtModal').addEventListener('click', function(e) {
+  if (e.target === this) closeRtModal();
+});
+
+// ── REVIEW MODAL ──────────────────────────────────────
+const reviewTemplates = [
+  "Outstanding cab service! The driver was punctual, the car was spotless, and the entire trip was smooth and comfortable. Transparent pricing with no hidden charges. Moksh Travel is the best cab service in Ahmedabad — will definitely book again!",
+  "Excellent experience with Moksh Travel! Professional driver, well-maintained vehicle, and on-time pickup. The pricing was fair and completely transparent. Highly recommend for anyone looking for a reliable cab service in Ahmedabad or Gujarat.",
+  "Very impressed with Moksh Travel. From easy booking to a comfortable journey, everything was perfect. The driver was courteous and took the best route. Loved the clean car and professional service. 5 stars without any hesitation!",
+  "Booked a cab with Moksh Travel and had a wonderful experience. The vehicle was clean, AC was perfect, driver was polite and professional. Arrived on time and the trip was stress-free. Best cab service in Ahmedabad!",
+  "Absolutely wonderful service by Moksh Travel! Quick response, punctual driver, and a comfortable ride throughout. The pricing was exactly as quoted — no hidden charges. Perfect for outstation trips from Ahmedabad. Highly recommended!",
+  "Moksh Travel deserves all 5 stars! From prompt booking confirmation to a smooth, comfortable journey, they exceeded expectations. The driver was experienced and friendly. This is the most trustworthy cab service I have used in Gujarat."
+];
+
+window.openReviewModal = function() {
+  document.getElementById('reviewModal').style.display = 'flex';
+  const content = document.getElementById('reviewModalContent');
+  content.innerHTML = `
+    <div class="rm-loader">
+      <div class="rm-spinner"></div>
+      <p>Generating your personalised review…</p>
+    </div>`;
+
+  setTimeout(() => {
+    const review = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
+    window._currentReview = review;
+    content.innerHTML = `
+      <div class="rm-stars">★★★★★</div>
+      <div class="rm-tag">✦ Your Review is Ready ✦</div>
+      <div class="rm-review-text" id="rmReviewText">${review}</div>
+      <button class="rm-copy-btn" id="rmCopyBtn" onclick="copyReview()">
+        <i class="fas fa-copy"></i> Copy Review
+      </button>
+      <p class="rm-redirect-hint">
+        After copying, click <strong>"Go to Google Reviews"</strong> and paste your review there.<br>
+        <a href="https://g.page/r/CTQaIJuvHQ3REBE/review" target="_blank" id="rmGoogleLink" style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:var(--gold-dim);border:1px solid rgba(184,134,44,0.3);padding:10px 20px;border-radius:30px;font-weight:700;font-size:13.5px;">
+          <i class="fab fa-google"></i> Go to Google Reviews
+        </a>
+      </p>`;
+  }, 1400);
+};
+
+window.copyReview = function() {
+  const review = window._currentReview || '';
+  navigator.clipboard.writeText(review).then(() => {
+    const btn = document.getElementById('rmCopyBtn');
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied! Now paste on Google';
+    showToast('Review copied to clipboard!');
+    setTimeout(() => { window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank'); }, 1500);
+  }).catch(() => {
+    const el = document.createElement('textarea');
+    el.value = review;
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    const btn = document.getElementById('rmCopyBtn');
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied! Now paste on Google';
+    showToast('Review copied!');
+    setTimeout(() => { window.open('https://g.page/r/CTQaIJuvHQ3REBE/review', '_blank'); }, 1500);
+  });
+};
+
+window.closeReviewModal = function() {
+  document.getElementById('reviewModal').style.display = 'none';
+};
+document.getElementById('reviewModal').addEventListener('click', function(e) {
+  if (e.target === this) closeReviewModal();
+});
+
+// Header scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu
+function toggleMenu() {
+  const menu = document.getElementById('mainMenu');
+  const icon = document.getElementById('hamburgerIcon');
+  menu.classList.toggle('open');
+  icon.className = menu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+}
+document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', () => {
+  document.getElementById('mainMenu').classList.remove('open');
+  document.getElementById('hamburgerIcon').className = 'fas fa-bars';
+}));
+
+// ── DYNAMIC ROUTES RENDER ─────────────────────────────
+window.renderRoutesGrid = function(routes) {
+  const grid = document.getElementById('routesGrid');
+  if (!routes || !routes.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">No routes available right now. Please check back soon.</div>`;
+    return;
+  }
+  grid.innerHTML = routes.map(r => `
+    <div class="route-card">
+      <img src="${r.image || ''}" alt="${r.name}">
+      <div class="route-body">
+        <h3>${r.name}</h3>
+        <div class="route-prices">
+          <div class="route-price">Sedan: <span>₹${r.sedan}</span></div>
+          <div class="route-price">SUV: <span>₹${r.suv}</span></div>
+        </div>
+        <button class="route-btn" onclick="bookRoute('${(r.name||'').replace(/'/g, "\\'")}','${r.sedan}','${r.suv}')"><i class="fas fa-arrow-right"></i> Book Now</button>
+      </div>
+    </div>
+  `).join('');
+};
+
+// ── FARE TABLE ROWS → TAP ANYWHERE TO OPEN ROUTE PAGE ──
+document.querySelectorAll('.fare-table tbody tr[data-href]').forEach(function(row) {
+  row.addEventListener('click', function(e) {
+    if (e.target.closest('a')) return; // let the link's own click behave normally
+    window.location.href = row.getAttribute('data-href');
+  });
+});
+
+// ── FAQ ACCORDION ─────────────────────────────────────
+window.toggleFaq = function(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-answer');
+  const wasOpen = item.classList.contains('open');
+
+  document.querySelectorAll('.faq-item.open').forEach(other => {
+    if (other !== item) {
+      other.classList.remove('open');
+      other.querySelector('.faq-answer').style.maxHeight = null;
+    }
+  });
+
+  if (wasOpen) {
+    item.classList.remove('open');
+    answer.style.maxHeight = null;
+  } else {
+    item.classList.add('open');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+};
+
+// Show more reviews
+function showMoreReviews() {
+  document.querySelectorAll('.hidden-review').forEach(r => r.style.display = 'block');
+  document.querySelector('.see-more-btn').style.display = 'none';
+}
+
+// Round trip count-up animation on scroll
+function initRoundTripCountUp() {
+  const rateNums = document.querySelectorAll('.rt-rate-num');
+  function animateCount(el) {
+    if (el.dataset.animated) return;
+    el.dataset.animated = 'true';
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 900;
+    const start = Date.now();
+    el.classList.add('animate');
+    function tick() {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) animateCount(entry.target); });
+  }, { threshold: 0.4 });
+  rateNums.forEach(el => observer.observe(el));
+}
+
+// ── DYNAMIC ROUND TRIP RENDER ─────────────────────────
+window.renderRoundTripGrid = function(rates) {
+  const grid = document.getElementById('roundtripGrid');
+  const wrap = document.getElementById('roundtripSliderWrap');
+  if (!rates || !rates.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Round trip rates coming soon. Please check back shortly.</div>`;
+    if (wrap) wrap.classList.remove('is-slider');
+    return;
+  }
+  // Desktop only becomes a slider once there are more than 3 cards;
+  // mobile is always a slider (handled purely by the CSS media query).
+  if (wrap) {
+    grid.classList.toggle('rt-slider', rates.length > 3);
+    wrap.classList.toggle('is-slider', rates.length > 3);
+  }
+  grid.innerHTML = rates.map(r => {
+    const theme = r.theme || 'ertiga';
+    const features = (r.features || '').split(',').map(f => f.trim()).filter(Boolean);
+    const featuresHtml = features.map(f => `<div class="rt-feature-pill"><i class="fas fa-check"></i> ${f}</div>`).join('');
+    const badgeHtml = r.badge ? `<div class="rt-badge">${r.badge}</div>` : '';
+    const nameEsc = (r.name || '').replace(/'/g, "\\'");
+    return `
+    <div class="rt-card ${theme}">
+      <div class="rt-img-wrap">
+        ${badgeHtml}
+        <img src="${r.image || ''}" alt="${r.name}">
+      </div>
+      <h3>${r.name}</h3>
+      <div class="capacity"><span><i class="fas fa-user"></i> ${r.persons} Persons</span><span>·</span><span><i class="fas fa-briefcase"></i> ${r.bags} Bags</span></div>
+      <div class="rt-rate-block">
+        <div class="rt-rate-label">Round Trip Rate</div>
+        <div class="rt-rate"><span class="rt-rate-sym">₹</span><span class="rt-rate-num" data-target="${r.rate}">${r.rate}</span><span class="rt-rate-unit">&nbsp;/ km</span></div>
+      </div>
+      <div class="rt-divider"><i class="fas fa-circle" style="font-size:5px"></i></div>
+      <div class="rt-features">${featuresHtml}</div>
+      <button class="rt-book-btn" onclick="bookRoundTrip('${nameEsc}','${r.rate}')"><i class="fab fa-whatsapp"></i> &nbsp;Book on WhatsApp</button>
+    </div>`;
+  }).join('');
+  initRoundTripCountUp();
+  initRoundTripNav();
+  initRoundTripAutoSlide();
+};
+
+// ── ROUND TRIP SLIDER NAV ─────────────────────────
+function scrollRoundTrip(dir) {
+  const grid = document.getElementById('roundtripGrid');
+  if (!grid) return;
+  const card = grid.querySelector('.rt-card');
+  let step;
+  if (card) {
+    const cs = getComputedStyle(card);
+    const marginLeft = parseFloat(cs.marginLeft) || 0;
+    const marginRight = parseFloat(cs.marginRight) || 0;
+    const gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap || '0') || 0;
+    step = card.getBoundingClientRect().width + marginLeft + marginRight + gap;
+  } else {
+    step = grid.clientWidth * 0.85;
+  }
+  grid.scrollBy({ left: dir * step, behavior: 'smooth' });
+}
+window.scrollRoundTrip = scrollRoundTrip;
+
+function initRoundTripNav() {
+  const grid = document.getElementById('roundtripGrid');
+  const wrap = document.getElementById('roundtripSliderWrap');
+  if (!grid || !wrap || grid.dataset.navBound) return;
+  grid.dataset.navBound = '1';
+  const prevBtn = wrap.querySelector('.rt-nav-prev');
+  const nextBtn = wrap.querySelector('.rt-nav-next');
+  const updateNav = () => {
+    const max = grid.scrollWidth - grid.clientWidth - 2;
+    if (prevBtn) prevBtn.disabled = grid.scrollLeft <= 2;
+    if (nextBtn) nextBtn.disabled = grid.scrollLeft >= max;
+  };
+  grid.addEventListener('scroll', updateNav, { passive: true });
+  window.addEventListener('resize', updateNav);
+  updateNav();
+}
+
+// ── ROUND TRIP AUTO SLIDE ─────────────────────────
+let rtAutoSlideTimer = null;
+let rtAutoSlidePaused = false;
+let rtAutoSlideResumeTimeout = null;
+
+function rtAdvanceSlide() {
+  if (rtAutoSlidePaused) return;
+  const grid = document.getElementById('roundtripGrid');
+  if (!grid) return;
+  const max = grid.scrollWidth - grid.clientWidth - 2;
+  if (max <= 0) return; // nothing to slide
+  if (grid.scrollLeft >= max) {
+    grid.scrollTo({ left: 0, behavior: 'smooth' }); // loop back to start
+  } else {
+    scrollRoundTrip(1);
+  }
+}
+
+function rtPauseAutoSlide() {
+  rtAutoSlidePaused = true;
+  clearTimeout(rtAutoSlideResumeTimeout);
+}
+
+function rtResumeAutoSlideSoon() {
+  clearTimeout(rtAutoSlideResumeTimeout);
+  rtAutoSlideResumeTimeout = setTimeout(() => { rtAutoSlidePaused = false; }, 4000);
+}
+
+function initRoundTripAutoSlide() {
+  const wrap = document.getElementById('roundtripSliderWrap');
+  const grid = document.getElementById('roundtripGrid');
+  if (!wrap || !grid || wrap.dataset.autoBound) return;
+  wrap.dataset.autoBound = '1';
+
+  wrap.addEventListener('mouseenter', rtPauseAutoSlide);
+  wrap.addEventListener('mouseleave', () => { rtAutoSlidePaused = false; });
+  wrap.addEventListener('touchstart', rtPauseAutoSlide, { passive: true });
+  wrap.addEventListener('touchend', rtResumeAutoSlideSoon, { passive: true });
+  wrap.querySelectorAll('.rt-nav').forEach(btn => {
+    btn.addEventListener('click', () => { rtPauseAutoSlide(); rtResumeAutoSlideSoon(); });
+  });
+
+  if (!rtAutoSlideTimer) rtAutoSlideTimer = setInterval(rtAdvanceSlide, 2500);
+}
+
+// ── DYNAMIC TRIP DARSHAN RENDER ─────────────────────────
+window.renderTripDarshanGrid = function(list) {
+  const grid = document.getElementById('tripDarshanGrid');
+  const wrap = document.getElementById('tripDarshanSliderWrap');
+  if (!grid) return;
+  if (!list || !list.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Trip Darshan packages coming soon. Please check back shortly.</div>`;
+    if (wrap) wrap.classList.remove('is-slider');
+    return;
+  }
+  if (wrap) {
+    grid.classList.toggle('rt-slider', list.length > 3);
+    wrap.classList.toggle('is-slider', list.length > 3);
+  }
+  grid.innerHTML = list.map(p => `
+    <a href="tripdarshan.html?id=${encodeURIComponent(p.id)}" class="td-card">
+      <div class="td-img-wrap">
+        ${p.badge ? `<div class="td-badge">${p.badge}</div>` : ''}
+        <img src="${p.image || ''}" alt="${p.title || ''}">
+      </div>
+      <div class="td-body">
+        <h3>${p.title || ''}</h3>
+        <div class="td-route"><i class="fas fa-route"></i>&nbsp; ${p.route || ''}</div>
+        <div class="td-footer">
+          <div class="td-price">₹${p.price || ''}<span>&nbsp;onwards</span></div>
+          <div class="td-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </a>
+  `).join('');
+  initTripDarshanNav();
+  initTripDarshanAutoSlide();
+};
+
+// ── TRIP DARSHAN SLIDER NAV ─────────────────────────
+function scrollTripDarshan(dir) {
+  const grid = document.getElementById('tripDarshanGrid');
+  if (!grid) return;
+  const card = grid.querySelector('.td-card');
+  let step;
+  if (card) {
+    const cs = getComputedStyle(card);
+    const marginLeft = parseFloat(cs.marginLeft) || 0;
+    const marginRight = parseFloat(cs.marginRight) || 0;
+    const gap = parseFloat(getComputedStyle(grid).columnGap || getComputedStyle(grid).gap || '0') || 0;
+    step = card.getBoundingClientRect().width + marginLeft + marginRight + gap;
+  } else {
+    step = grid.clientWidth * 0.85;
+  }
+  grid.scrollBy({ left: dir * step, behavior: 'smooth' });
+}
+window.scrollTripDarshan = scrollTripDarshan;
+
+function initTripDarshanNav() {
+  const grid = document.getElementById('tripDarshanGrid');
+  const wrap = document.getElementById('tripDarshanSliderWrap');
+  if (!grid || !wrap || grid.dataset.navBound) return;
+  grid.dataset.navBound = '1';
+  const prevBtn = wrap.querySelector('.rt-nav-prev');
+  const nextBtn = wrap.querySelector('.rt-nav-next');
+  const updateNav = () => {
+    const max = grid.scrollWidth - grid.clientWidth - 2;
+    if (prevBtn) prevBtn.disabled = grid.scrollLeft <= 2;
+    if (nextBtn) nextBtn.disabled = grid.scrollLeft >= max;
+  };
+  grid.addEventListener('scroll', updateNav, { passive: true });
+  window.addEventListener('resize', updateNav);
+  updateNav();
+}
+
+// ── TRIP DARSHAN AUTO SLIDE ─────────────────────────
+let tdAutoSlideTimer = null;
+let tdAutoSlidePaused = false;
+let tdAutoSlideResumeTimeout = null;
+
+function tdAdvanceSlide() {
+  if (tdAutoSlidePaused) return;
+  const grid = document.getElementById('tripDarshanGrid');
+  if (!grid) return;
+  const max = grid.scrollWidth - grid.clientWidth - 2;
+  if (max <= 0) return; // nothing to slide
+  if (grid.scrollLeft >= max) {
+    grid.scrollTo({ left: 0, behavior: 'smooth' }); // loop back to start
+  } else {
+    scrollTripDarshan(1);
+  }
+}
+
+function tdPauseAutoSlide() {
+  tdAutoSlidePaused = true;
+  clearTimeout(tdAutoSlideResumeTimeout);
+}
+
+function tdResumeAutoSlideSoon() {
+  clearTimeout(tdAutoSlideResumeTimeout);
+  tdAutoSlideResumeTimeout = setTimeout(() => { tdAutoSlidePaused = false; }, 4000);
+}
+
+function initTripDarshanAutoSlide() {
+  const wrap = document.getElementById('tripDarshanSliderWrap');
+  const grid = document.getElementById('tripDarshanGrid');
+  if (!wrap || !grid || wrap.dataset.autoBound) return;
+  wrap.dataset.autoBound = '1';
+
+  wrap.addEventListener('mouseenter', tdPauseAutoSlide);
+  wrap.addEventListener('mouseleave', () => { tdAutoSlidePaused = false; });
+  wrap.addEventListener('touchstart', tdPauseAutoSlide, { passive: true });
+  wrap.addEventListener('touchend', tdResumeAutoSlideSoon, { passive: true });
+  wrap.querySelectorAll('.rt-nav').forEach(btn => {
+    btn.addEventListener('click', () => { tdPauseAutoSlide(); tdResumeAutoSlideSoon(); });
+  });
+
+  if (!tdAutoSlideTimer) tdAutoSlideTimer = setInterval(tdAdvanceSlide, 2500);
+}
+</script>
+
+<!-- ── OPTIONAL FIREBASE MODULE (loaded separately; core site works even if this fails) ── -->
+<script type="module">
+import { saveDocument, fetchCollection } from './firebase-config.js';
+window.saveBookingToFirebase = saveDocument;
+
+fetchCollection('routes', 'order', 'asc').then(routes => {
+  if (window.renderRoutesGrid) window.renderRoutesGrid(routes);
+});
+
+fetchCollection('roundTripRates', 'order', 'asc').then(rates => {
+  if (window.renderRoundTripGrid) window.renderRoundTripGrid(rates);
+});
+
+fetchCollection('tripDarshan', 'order', 'asc').then(list => {
+  if (window.renderTripDarshanGrid) window.renderTripDarshanGrid(list);
+});
+</script>
 
 </body>
 </html>
