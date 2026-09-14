@@ -19,29 +19,38 @@
 <link rel="icon" href="/favicon.ico"> 
   
 <meta name="description" content="Read Moksh Travel's Cancellation & Return Policy — booking rules, modifications, payment terms and cancellation charges for cab bookings in Ahmedabad and across Gujarat.">
-<meta name="keywords" content="Moksh Travel Cancellation Policy, Cab Cancellation Policy Ahmedabad, Taxi Booking Terms Ahmedabad, Refund Policy Ahmedabad Taxi, Moksh Travel Booking Policy">
+<meta name="keywords" content="Moksh Travel Cancellation Policy, Cab Cancellation Policy Ahmedabad, Taxi Booking Terms Ahmedabad, Refund Policy Ahmedabad Taxi, Moksh Travel Booking Policy, Cab Booking Near Me, Taxi Booking Near Me, Book Cab Near Me, Book Taxi Near Me, Online Taxi Booking Near Me, Instant Cab Booking Near Me, Cab Booking Near Me Open Now">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Moksh Travel">
 
 <style>
 :root {
-  --navy:       #060f22;
-  --navy-2:     #0b1a35;
-  --navy-3:     #0f2348;
-  --surface:    rgba(255,255,255,0.04);
-  --surface-2:  rgba(255,255,255,0.08);
-  --line:       rgba(255,255,255,0.08);
-  --line-2:     rgba(255,255,255,0.14);
-  --gold:       #f5a623;
-  --gold-light: #ffcc66;
-  --gold-dim:   rgba(245,166,35,0.12);
-  --teal:       #3ddc97;
-  --teal-dim:   rgba(61,220,151,0.1);
-  --ice:        #eef2f8;
-  --mute:       #7e8fa8;
+  /* ══ PREMIUM WHITE THEME ══
+     Same token names as the original dark build (so every var() reference
+     below keeps working) — values swapped from navy/ice to ivory/ink. */
+  --navy:       #ffffff;   /* page background (was near-black navy) */
+  --navy-2:     #faf7f0;   /* alt section band — warm ivory */
+  --navy-3:     #ffffff;   /* card surface — white, lifted with shadow */
+  --surface:    rgba(23,20,14,0.035);
+  --surface-2:  rgba(23,20,14,0.06);
+  --line:       rgba(23,20,14,0.10);
+  --line-2:     rgba(23,20,14,0.16);
+  --gold:       #b8862c;   /* deepened bronze-gold for contrast on white */
+  --gold-light: #d9a94a;
+  --gold-dim:   rgba(184,134,44,0.10);
+  --teal:       #1c9a71;   /* deepened emerald for contrast on white */
+  --teal-dim:   rgba(28,154,113,0.08);
+  --ice:        #17140f;   /* primary text ink (was near-white "ice") */
+  --mute:       #756c5c;   /* warm taupe secondary text */
   --radius:     16px;
   --radius-lg:  24px;
   --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+  /* additive tokens for the light theme */
+  --shadow-sm:  0 2px 14px rgba(23,20,10,0.05);
+  --shadow-md:  0 16px 40px rgba(23,20,10,0.09);
+  --shadow-lg:  0 34px 90px rgba(23,20,10,0.15);
+  --anchor:     #100d0a;   /* deep charcoal — the one deliberate dark band (final CTA + footer) */
+  --anchor-2:   #1c170f;   /* lighter charcoal for cards/inputs inside the dark band */
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -63,29 +72,29 @@ header {
   padding: 0 5%;
   height: 72px;
   display: flex; align-items: center;
-  background: rgba(6,15,34,0.72);
+  background: rgba(255,255,255,0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--line);
-  transition: background var(--transition);
+  transition: background var(--transition), box-shadow var(--transition);
 }
-header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--line-2); }
+header.scrolled { background: rgba(255,255,255,0.92); border-bottom-color: var(--line-2); box-shadow:0 4px 24px rgba(23,20,10,0.06); }
 .navbar { display:flex; align-items:center; justify-content:space-between; width:100%; gap:10px; }
 .logo { display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0; }
-.logo img { width:52px; border-radius:10px; background:white; padding:3px; }
+.logo img { width:52px; border-radius:10px; background:#fff; padding:3px; border:1px solid var(--line); }
 .logo-text { display:flex; flex-direction:column; }
 .logo-text strong { font-family:'Space Grotesk'; font-size:15px; font-weight:700; color:var(--ice); letter-spacing:.3px; line-height:1.2; }
 .logo-text span { font-size:10.5px; color:var(--gold); letter-spacing:1.5px; text-transform:uppercase; }
 .menu { display:flex; align-items:center; gap:4px; }
-.menu a { color: rgba(238,242,248,0.75); text-decoration:none; font-size:13.5px; font-weight:600; padding:8px 14px; border-radius:8px; transition:var(--transition); letter-spacing:.2px; }
+.menu a { color: rgba(23,20,14,0.75); text-decoration:none; font-size:13.5px; font-weight:600; padding:8px 14px; border-radius:8px; transition:var(--transition); letter-spacing:.2px; }
 .menu a:hover { color:var(--ice); background:var(--surface-2); }
 .nav-cta { background:var(--gold); color:#1a0f00 !important; padding:10px 22px !important; border-radius:30px !important; font-weight:700 !important; letter-spacing:.3px !important; }
-.nav-cta:hover { background:#fff !important; color:#000 !important; transform:translateY(-1px); box-shadow:0 8px 24px rgba(245,166,35,0.4) !important; }
+.nav-cta:hover { background:var(--ice) !important; color:#fff !important; transform:translateY(-1px); box-shadow:0 8px 24px rgba(23,20,10,0.28) !important; }
 .hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:var(--ice); font-size:22px; flex-shrink:0; }
 .mobile-nav-phone { display:none; }
 @media(max-width:860px) {
   .hamburger { display:flex; }
-  .menu { display:none; flex-direction:column; align-items:flex-start; position:absolute; top:72px; left:0; right:0; background:rgba(6,15,34,0.97); backdrop-filter:blur(20px); padding:16px 5% 24px; border-bottom:1px solid var(--line); gap:2px; }
+  .menu { display:none; flex-direction:column; align-items:flex-start; position:absolute; top:72px; left:0; right:0; background:rgba(255,255,255,0.98); backdrop-filter:blur(20px); padding:16px 5% 24px; border-bottom:1px solid var(--line); gap:2px; box-shadow:0 16px 40px rgba(23,20,10,0.08); }
   .menu.open { display:flex; }
   .menu a { width:100%; padding:12px 16px; font-size:15px; }
   .mobile-nav-phone {
@@ -105,7 +114,7 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
   text-align:center;
   background:
     radial-gradient(ellipse 80% 60% at 70% 30%, rgba(245,166,35,0.07), transparent),
-    linear-gradient(160deg, #060f22 0%, #0b1a35 60%, #0d2040 100%);
+    linear-gradient(160deg, #ffffff 0%, #fbf7ee 60%, #f6ecd7 100%);
   border-bottom:1px solid var(--line);
 }
 .page-hero .section-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
@@ -128,11 +137,11 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
   padding:26px 28px;
 }
-.policy-card p { font-size:14.5px; color:rgba(238,242,248,0.82); line-height:1.75; margin-bottom:14px; }
+.policy-card p { font-size:14.5px; color:rgba(23,20,14,0.82); line-height:1.75; margin-bottom:14px; }
 .policy-card p:last-child { margin-bottom:0; }
 .policy-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
 .policy-list li {
-  font-size:14.5px; color:rgba(238,242,248,0.82); line-height:1.7;
+  font-size:14.5px; color:rgba(23,20,14,0.82); line-height:1.7;
   padding-left:26px; position:relative;
 }
 .policy-list li::before {
@@ -148,14 +157,14 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
   display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700;
   letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:12px;
 }
-.note-card p { font-size:14px; color:rgba(238,242,248,0.78); line-height:1.75; margin-bottom:10px; }
+.note-card p { font-size:14px; color:rgba(23,20,14,0.78); line-height:1.75; margin-bottom:10px; }
 .note-card p:last-child { margin-bottom:0; }
 
 /* Cancellation rules table */
 .cancel-table { display:flex; flex-direction:column; gap:10px; }
 .cancel-row {
   display:flex; align-items:center; justify-content:space-between; gap:16px;
-  background:rgba(255,255,255,0.03); border:1px solid var(--line);
+  background:rgba(23,20,14,0.03); border:1px solid var(--line);
   border-radius:12px; padding:16px 20px; flex-wrap:wrap;
 }
 .cancel-row .cancel-when { font-size:14px; font-weight:600; color:var(--ice); }
@@ -176,29 +185,37 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 .policy-cta p { color:var(--mute); font-size:14px; margin-bottom:22px; }
 .policy-cta-btns { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
 .contact-btn { display:inline-flex; align-items:center; gap:9px; padding:13px 26px; border-radius:50px; font-weight:700; font-size:14.5px; text-decoration:none; transition:var(--transition); }
-.contact-btn-gold { background:var(--gold); color:#1a0f00; box-shadow:0 8px 24px rgba(245,166,35,0.3); }
+.contact-btn-gold { background:var(--gold); color:#1a0f00; box-shadow:0 8px 24px rgba(184,134,44,0.3); }
 .contact-btn-gold:hover { background:#fff; transform:translateY(-2px); }
 .contact-btn-green { background:rgba(37,211,102,0.12); color:#25d366; border:1px solid rgba(37,211,102,0.3); }
 .contact-btn-green:hover { background:rgba(37,211,102,0.22); transform:translateY(-2px); }
 
 /* ── FOOTER ── */
-.footer { background:#030810; border-top:1px solid var(--line); padding:60px 6% 30px; }
-.footer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; max-width:1100px; margin:0 auto 48px; }
-.footer-col h4 { font-family:'Space Grotesk'; font-size:13.5px; font-weight:700; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
-.footer-col a { display:block; color:rgba(238,242,248,0.6); text-decoration:none; font-size:13.5px; margin-bottom:10px; transition:var(--transition); }
-.footer-col a:hover { color:var(--gold); transform:translateX(4px); }
-.footer-col p { font-size:13px; color:rgba(238,242,248,0.55); line-height:1.7; margin-bottom:8px; }
-.footer-map { border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid var(--line); }
+.footer { background:var(--anchor); border-top:1px solid rgba(255,255,255,0.08); padding:60px 6% 30px; }
+.footer-grid { display:grid; grid-template-columns:1.1fr 1fr 1fr 1fr; gap:40px; max-width:1200px; margin:0 auto 48px; }
+.footer-col h4 { font-family:'Space Grotesk'; font-size:20px; font-weight:700; color:var(--navy); letter-spacing:1px; text-transform:uppercase; margin-bottom:18px; }
+.footer-col a { display:block; color:var(--navy); text-decoration:none; font-size:13.5px; margin-bottom:10px; transition:var(--transition); }
+.footer-col a:hover { color:var(--gold-light); transform:translateX(4px); }
+.footer-col p { font-size:13px; color:var(--navy); line-height:1.7; margin-bottom:8px; }
+.footer-map { border-radius:10px; overflow:hidden; margin-top:12px; border:1px solid rgba(255,255,255,0.12); }
 .footer-map iframe { display:block; }
-.footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--line); padding-top:24px; text-align:center; font-size:12.5px; color:rgba(238,242,248,0.35); }
+.footer-bottom { max-width:1100px; margin:0 auto; border-top:1px solid var(--navy-2); padding-top:24px; text-align:center; font-size:12.5px; color:var(--navy-3); }
+.footer-keywords { font-size:12px; color:var(--navy-3); max-width:1100px; margin:12px auto 0; text-align:center; line-height:1.8; }
+.footer-logo { width:84px; height:84px; border-radius:50%; object-fit:cover; margin-bottom:14px; display:block; }
+.footer-brand-name { font-family:'Space Grotesk'; font-weight:700; font-size:16px; color:var(--navy); margin-bottom:4px; letter-spacing:.3px; }
+.footer-brand-tag { font-size:11.5px; color:rgba(255,255,255,0.5); text-transform:uppercase; letter-spacing:1px; margin-bottom:18px; }
+.footer-social { display:flex; flex-wrap:wrap; gap:10px; }
+.footer-social a { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14); color:var(--navy); display:flex; align-items:center; justify-content:center; font-size:14.5px; text-decoration:none; transition:var(--transition); margin-bottom:0; }
+.footer-social a:hover { background:var(--gold); border-color:var(--gold); color:#1a0f00; transform:translateY(-3px); }
+@media(max-width:1024px){ .footer-grid { grid-template-columns:1fr 1fr; } }
 @media(max-width:768px){ .footer-grid { grid-template-columns:1fr; gap:32px; } }
 
 /* ── FLOATING BUTTONS ── */
 .float-wrap { position:fixed; bottom:28px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:12px; }
-.float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.4); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; cursor:pointer; border:none; }
+.float-btn { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; text-decoration:none; box-shadow:0 10px 28px rgba(23,20,10,0.22); transition:var(--transition); animation:floatAnim 3s infinite ease-in-out; cursor:pointer; border:none; }
 .float-btn:hover { transform:scale(1.12) translateY(-2px); animation:none; }
 .float-wa { background:linear-gradient(135deg,#25d366,#128c7e); color:white; }
-.float-call { background:linear-gradient(135deg,var(--gold),#ff8800); color:#1a0f00; animation-delay:.5s; }
+.float-call { background:linear-gradient(135deg,var(--gold),#d9861f); color:#fff; animation-delay:.5s; }
 @keyframes floatAnim { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
 
 @media(max-width:640px) {
@@ -325,18 +342,37 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-grid">
+    <div class="footer-col footer-brand">
+      <img src="logo.jpeg" alt="Moksh Travel" class="footer-logo">
+      <div class="footer-brand-name">Moksh Travel</div>
+      <div class="footer-brand-tag">Ahmedabad Cab Service</div>
+      <div class="footer-social">
+        <a href="https://wa.me/919727729334" target="_blank" rel="noopener" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.google.com/search?q=Moksh+Travel" target="_blank" rel="noopener" aria-label="Google"><i class="fas fa-star"></i></a>
+        <a href="https://www.instagram.com/mokshtravel/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://maps.google.com/?q=1600+Bhavsar+No+Khacho,+Opp+Swaminarayan+Temple,+Ahmedabad+380018" target="_blank" rel="noopener" aria-label="Location"><i class="fas fa-location-dot"></i></a>
+      </div>
+    </div>
     <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="index.html#services">Our Services</a>
-      <a href="index.html#cars">Our Fleet</a>
-      <a href="index.html#routes">Popular Routes</a>
-      <a href="index.html#roundtrip">Round Trip</a>
+      <h4>Company</h4>
       <a href="index.html#booking">Book Online</a>
-      <a href="index.html#faq">FAQ</a>
-      <a href="reviews.html">Reviews</a>
       <a href="about.html">About Us</a>
+      <a href="reviews.html">Reviews</a>
       <a href="cancellation-policy.html">Cancellation &amp; Return Policy</a>
       <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Our Service</h4>
+      <!-- Popular Outstation Routes -->
+      <a href="ahmedabad-to-rajkot-taxi.html">Ahmedabad To Rajkot</a>
+      <a href="ahmedabad-to-surat-taxi.html">Ahmedabad To Surat</a>
+      <a href="ahmedabad-to-mumbai-taxi.html">Ahmedabad To Mumbai</a>
+      <a href="ahmedabad-to-bhuj-taxi.html">Ahmedabad To Bhuj</a>
+      <a href="ahmedabad-to-dwarka-taxi.html">Ahmedabad To Dwarka</a>
+      <a href="ahmedabad-to-somnath-taxi.html">Ahmedabad To Somnath</a>
+      <a href="ahmedabad-to-udaipur-taxi.html">Ahmedabad To Udaipur</a>
+      <a href="ahmedabad-to-mount-abu-taxi.html">Ahmedabad To Mount Abu</a>
+      <a href="ahmedabad-to-jaipur-taxi.html">Ahmedabad To Jaipur</a>
     </div>
     <div class="footer-col">
       <h4>Connect With Us</h4>
@@ -345,12 +381,9 @@ header.scrolled { background: rgba(6,15,34,0.95); border-bottom-color: var(--lin
       <a href="mailto:mokshtour.travel@gmail.com">mokshtour.travel@gmail.com</a>
       <a href="tel:+919727729334">+91 97277 29334</a>
     </div>
-    <div class="footer-col">
-      <h4>Our Location</h4>
-      <div class="footer-map">
-        <iframe src="https://www.google.com/maps?q=Moksh+Travel+Ahmedabad&output=embed" width="100%" height="180" style="border:0;" loading="lazy"></iframe>
-      </div>
-    </div>
+  </div>
+  <div class="footer-keywords">
+    Ahmedabad Taxi Service • Airport Cab Ahmedabad • Outstation Taxi Gujarat • One Way Cab Ahmedabad • Round Trip Taxi Gujarat • Corporate Cab Ahmedabad • Cab Booking Near Me • Book Taxi Near Me
   </div>
   <div class="footer-bottom">© 2026 Moksh Travel. All Rights Reserved. Ahmedabad's Trusted Travel Partner — Available 24×7</div>
 </footer>
