@@ -568,6 +568,13 @@ select.loc-input option { background:var(--navy-2); color:var(--ice); font-size:
 .book-cta-bar h4 { font-family:'Space Grotesk'; font-size:19px; font-weight:700; margin-bottom:6px; }
 .book-cta-bar p { font-size:13px; color:var(--mute); }
 
+/* ── SKELETON LOADING ── */
+.skeleton { position:relative; overflow:hidden; background:rgba(23,20,14,0.07); border-radius:8px; display:block; }
+.skeleton::after { content:''; position:absolute; top:0; left:0; height:100%; width:100%; transform:translateX(-100%);
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent); animation:skeletonShimmer 1.5s infinite; }
+@keyframes skeletonShimmer { 100% { transform:translateX(100%); } }
+.sk-route-card, .sk-rt-card, .sk-td-card { pointer-events:none; }
+
 /* ── CARS ── */
 
 /* ── ROUTES ── */
@@ -1018,7 +1025,30 @@ select.loc-input option { background:var(--navy-2); color:var(--ice); font-size:
   <div class="rt-slider-wrap" id="roundtripSliderWrap">
     <button class="rt-nav rt-nav-prev" onclick="scrollRoundTrip(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
     <div class="roundtrip-grid" id="roundtripGrid">
-      <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading round trip rates…</div>
+      <div class="rt-card sk-rt-card">
+        <div class="rt-img-wrap"><div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div></div>
+        <div class="skeleton" style="height:20px;width:55%;margin:0 auto 10px;border-radius:6px;"></div>
+        <div class="skeleton" style="height:13px;width:40%;margin:0 auto 24px;border-radius:6px;"></div>
+        <div class="skeleton" style="height:76px;border-radius:16px;margin:0 -8px 24px;"></div>
+        <div class="skeleton" style="height:30px;width:85%;margin:0 auto 24px;border-radius:20px;"></div>
+        <div class="skeleton" style="height:48px;border-radius:50px;"></div>
+      </div>
+      <div class="rt-card sk-rt-card">
+        <div class="rt-img-wrap"><div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div></div>
+        <div class="skeleton" style="height:20px;width:55%;margin:0 auto 10px;border-radius:6px;"></div>
+        <div class="skeleton" style="height:13px;width:40%;margin:0 auto 24px;border-radius:6px;"></div>
+        <div class="skeleton" style="height:76px;border-radius:16px;margin:0 -8px 24px;"></div>
+        <div class="skeleton" style="height:30px;width:85%;margin:0 auto 24px;border-radius:20px;"></div>
+        <div class="skeleton" style="height:48px;border-radius:50px;"></div>
+      </div>
+      <div class="rt-card sk-rt-card">
+        <div class="rt-img-wrap"><div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div></div>
+        <div class="skeleton" style="height:20px;width:55%;margin:0 auto 10px;border-radius:6px;"></div>
+        <div class="skeleton" style="height:13px;width:40%;margin:0 auto 24px;border-radius:6px;"></div>
+        <div class="skeleton" style="height:76px;border-radius:16px;margin:0 -8px 24px;"></div>
+        <div class="skeleton" style="height:30px;width:85%;margin:0 auto 24px;border-radius:20px;"></div>
+        <div class="skeleton" style="height:48px;border-radius:50px;"></div>
+      </div>
     </div>
     <button class="rt-nav rt-nav-next" onclick="scrollRoundTrip(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
   </div>
@@ -1032,7 +1062,72 @@ select.loc-input option { background:var(--navy-2); color:var(--ice); font-size:
     <p class="section-sub">Transparent pricing — no surprises.</p>
   </div>
   <div class="routes-grid" id="routesGrid">
-    <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading routes…</div>
+    <div class="route-card sk-route-card">
+      <div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div>
+      <div class="route-body">
+        <div class="skeleton" style="height:15px;width:70%;border-radius:6px;margin-bottom:14px;"></div>
+        <div class="route-prices" style="margin-bottom:14px;">
+          <div class="skeleton" style="height:12px;width:72px;border-radius:6px;"></div>
+          <div class="skeleton" style="height:12px;width:60px;border-radius:6px;"></div>
+        </div>
+        <div class="skeleton" style="height:40px;border-radius:10px;margin-top:auto;"></div>
+      </div>
+    </div>
+    <div class="route-card sk-route-card">
+      <div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div>
+      <div class="route-body">
+        <div class="skeleton" style="height:15px;width:70%;border-radius:6px;margin-bottom:14px;"></div>
+        <div class="route-prices" style="margin-bottom:14px;">
+          <div class="skeleton" style="height:12px;width:72px;border-radius:6px;"></div>
+          <div class="skeleton" style="height:12px;width:60px;border-radius:6px;"></div>
+        </div>
+        <div class="skeleton" style="height:40px;border-radius:10px;margin-top:auto;"></div>
+      </div>
+    </div>
+    <div class="route-card sk-route-card">
+      <div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div>
+      <div class="route-body">
+        <div class="skeleton" style="height:15px;width:70%;border-radius:6px;margin-bottom:14px;"></div>
+        <div class="route-prices" style="margin-bottom:14px;">
+          <div class="skeleton" style="height:12px;width:72px;border-radius:6px;"></div>
+          <div class="skeleton" style="height:12px;width:60px;border-radius:6px;"></div>
+        </div>
+        <div class="skeleton" style="height:40px;border-radius:10px;margin-top:auto;"></div>
+      </div>
+    </div>
+    <div class="route-card sk-route-card">
+      <div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div>
+      <div class="route-body">
+        <div class="skeleton" style="height:15px;width:70%;border-radius:6px;margin-bottom:14px;"></div>
+        <div class="route-prices" style="margin-bottom:14px;">
+          <div class="skeleton" style="height:12px;width:72px;border-radius:6px;"></div>
+          <div class="skeleton" style="height:12px;width:60px;border-radius:6px;"></div>
+        </div>
+        <div class="skeleton" style="height:40px;border-radius:10px;margin-top:auto;"></div>
+      </div>
+    </div>
+    <div class="route-card sk-route-card">
+      <div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div>
+      <div class="route-body">
+        <div class="skeleton" style="height:15px;width:70%;border-radius:6px;margin-bottom:14px;"></div>
+        <div class="route-prices" style="margin-bottom:14px;">
+          <div class="skeleton" style="height:12px;width:72px;border-radius:6px;"></div>
+          <div class="skeleton" style="height:12px;width:60px;border-radius:6px;"></div>
+        </div>
+        <div class="skeleton" style="height:40px;border-radius:10px;margin-top:auto;"></div>
+      </div>
+    </div>
+    <div class="route-card sk-route-card">
+      <div class="skeleton" style="aspect-ratio:16/10;border-radius:0;"></div>
+      <div class="route-body">
+        <div class="skeleton" style="height:15px;width:70%;border-radius:6px;margin-bottom:14px;"></div>
+        <div class="route-prices" style="margin-bottom:14px;">
+          <div class="skeleton" style="height:12px;width:72px;border-radius:6px;"></div>
+          <div class="skeleton" style="height:12px;width:60px;border-radius:6px;"></div>
+        </div>
+        <div class="skeleton" style="height:40px;border-radius:10px;margin-top:auto;"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1047,7 +1142,39 @@ select.loc-input option { background:var(--navy-2); color:var(--ice); font-size:
   <div class="rt-slider-wrap" id="tripDarshanSliderWrap">
     <button class="rt-nav rt-nav-prev" onclick="scrollTripDarshan(-1)" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
     <div class="td-grid" id="tripDarshanGrid">
-      <div style="grid-column:1/-1;text-align:center;color:var(--mute);padding:40px;">Loading trip darshan packages…</div>
+      <div class="td-card sk-td-card">
+        <div class="td-img-wrap"><div class="skeleton" style="position:absolute;inset:0;border-radius:0;"></div></div>
+        <div class="td-body">
+          <div class="skeleton" style="height:16px;width:75%;border-radius:6px;margin-bottom:12px;"></div>
+          <div class="skeleton" style="height:11px;width:55%;border-radius:6px;margin-bottom:14px;"></div>
+          <div class="td-footer" style="border-top:none;padding-top:0;">
+            <div class="skeleton" style="height:19px;width:70px;border-radius:6px;"></div>
+            <div class="skeleton" style="height:32px;width:32px;border-radius:50%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="td-card sk-td-card">
+        <div class="td-img-wrap"><div class="skeleton" style="position:absolute;inset:0;border-radius:0;"></div></div>
+        <div class="td-body">
+          <div class="skeleton" style="height:16px;width:75%;border-radius:6px;margin-bottom:12px;"></div>
+          <div class="skeleton" style="height:11px;width:55%;border-radius:6px;margin-bottom:14px;"></div>
+          <div class="td-footer" style="border-top:none;padding-top:0;">
+            <div class="skeleton" style="height:19px;width:70px;border-radius:6px;"></div>
+            <div class="skeleton" style="height:32px;width:32px;border-radius:50%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="td-card sk-td-card">
+        <div class="td-img-wrap"><div class="skeleton" style="position:absolute;inset:0;border-radius:0;"></div></div>
+        <div class="td-body">
+          <div class="skeleton" style="height:16px;width:75%;border-radius:6px;margin-bottom:12px;"></div>
+          <div class="skeleton" style="height:11px;width:55%;border-radius:6px;margin-bottom:14px;"></div>
+          <div class="td-footer" style="border-top:none;padding-top:0;">
+            <div class="skeleton" style="height:19px;width:70px;border-radius:6px;"></div>
+            <div class="skeleton" style="height:32px;width:32px;border-radius:50%;"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <button class="rt-nav rt-nav-next" onclick="scrollTripDarshan(1)" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
   </div>
