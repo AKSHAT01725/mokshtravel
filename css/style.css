@@ -802,7 +802,6 @@ body{font-family:'Plus Jakarta Sans', Arial, sans-serif;background:var(--navy);c
 .article-figure img{display:block;width:100%;height:auto}
 .article-body p{font-size:16px;line-height:1.85;color:rgba(23,20,14,0.82);margin-bottom:18px}
 .article-body h2{font-family:'Space Grotesk';font-size:clamp(21px,2.6vw,27px);font-weight:700;color:var(--ice);margin:34px 0 12px;line-height:1.25}
-.article-body a{color:var(--gold);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .article-body .info-note{margin:26px 0}
 .article-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:linear-gradient(145deg,#ffffff 0%,#fdfaf3 100%);border:1px solid rgba(184,134,44,0.3);border-radius:var(--radius-lg);padding:26px 28px;margin:34px 0 10px;box-shadow:var(--shadow-sm)}
 .article-cta h3{font-family:'Space Grotesk';font-size:20px;margin-bottom:4px;color:var(--ice)}
@@ -823,3 +822,37 @@ body{font-family:'Plus Jakarta Sans', Arial, sans-serif;background:var(--navy);c
 .blog-card .blog-thumb{display:block;margin:-26px -26px 6px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;background:var(--surface)}
 .blog-card .blog-thumb img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transition:transform .4s ease}
 .blog-card:hover .blog-thumb img{transform:scale(1.04)}
+
+/* lists, sub-headings, FAQ and related guides inside articles */
+.article-body h3{font-family:'Space Grotesk';font-size:19px;font-weight:700;color:var(--ice);margin:26px 0 8px}
+.article-body ul,.article-body ol{margin:0 0 20px 22px;padding:0}
+.article-body li{font-size:16px;line-height:1.8;color:rgba(23,20,14,0.82);margin-bottom:8px}
+.article-body li::marker{color:var(--gold)}
+.article-faq{margin-top:38px}
+.article-faq .faq-list{max-width:none;margin:16px 0 0}
+.article-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
+.article-cta-btns .contact-btn{white-space:nowrap}
+.article-related{margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
+.article-related h2{font-family:'Space Grotesk';font-size:clamp(20px,2.4vw,25px);font-weight:700;color:var(--ice);margin-bottom:18px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.related-card{display:flex;flex-direction:column;background:var(--navy-3);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;text-decoration:none;transition:var(--transition)}
+.related-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--line-2)}
+.related-card img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.related-card span{padding:12px 14px 14px;font-size:13.5px;font-weight:600;line-height:1.45;color:var(--ice)}
+.related-card:hover span{color:var(--gold)}
+
+/* body links: keep buttons inside articles readable */
+.article-body a:not(.contact-btn){color:var(--gold);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.article-body a.contact-btn,.article-cta a.contact-btn{text-decoration:none}
+
+/* blog pagination (9 guides per page) */
+.blog-grid{scroll-margin-top:100px}
+.blog-card[hidden]{display:none}
+.blog-pagination{max-width:1180px;margin:44px auto 0;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
+.blog-pagination[hidden]{display:none}
+.pg-btn{min-width:44px;height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line-2);background:var(--navy-3);color:var(--ice);font:inherit;font-size:15px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:var(--transition)}
+.pg-btn:hover:not(:disabled):not(.active){border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.pg-btn.active{background:var(--gold);border-color:var(--gold);color:#1a0f00;box-shadow:0 8px 20px rgba(184,134,44,0.3)}
+.pg-btn:disabled{opacity:.4;cursor:not-allowed}
+.pg-arrow .pg-txt{font-size:24px;line-height:1;padding-bottom:3px}
+@media (max-width:480px){.pg-btn{min-width:40px;height:40px;padding:0 10px}}

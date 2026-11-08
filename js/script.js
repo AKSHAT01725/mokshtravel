@@ -12,8 +12,46 @@
 
 const EMAILJS_PUBLIC_KEY = 'shZzGfL3Tpe1cy09F';
 
-// ---- lazy Firebase helpers (js/firebase-config.js) ---------------------
-const loadFirebase = () => import('./firebase-config.js');
+// ---- Firebase (Firestore) — loaded lazily from Google's CDN ------------
+// Same project / helpers as js/firebase-config.js (which admin.html still uses).
+// Loaded here with import() so it also works when a page is opened straight
+// from a folder (file://), not only on a web server.
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyCqxT97xCnww9P8csG2xyDYrs6jOOLVC7o",
+  authDomain: "moksh-tours-and-travel-e29ab.firebaseapp.com",
+  projectId: "moksh-tours-and-travel-e29ab",
+  storageBucket: "moksh-tours-and-travel-e29ab.firebasestorage.app",
+  messagingSenderId: "511906793574",
+  appId: "1:511906793574:web:c54d18ec742b294fa205a7",
+  measurementId: "G-FN4ND9C4TM"
+  };
+let _fbPromise = null;
+function loadFirebase() {
+  if (!_fbPromise) {
+    _fbPromise = (async () => {
+      const V = 'https://www.gstatic.com/firebasejs/10.12.0/';
+      const [appM, fsM] = await Promise.all([import(V + 'firebase-app.js'), import(V + 'firebase-firestore.js')]);
+      const app = appM.initializeApp(FIREBASE_CONFIG);
+      import(V + 'firebase-analytics.js').then(a => { try { a.getAnalytics(app); } catch (e) {} }).catch(() => {});
+      const db = fsM.getFirestore(app);
+      return {
+        saveDocument: (name, data) => fsM.addDoc(fsM.collection(db, name), { ...data, received: fsM.serverTimestamp() }),
+        fetchCollection: async (name, orderField = 'received', direction = 'desc') => {
+          try {
+            const ref = fsM.collection(db, name);
+            const q = orderField ? fsM.query(ref, fsM.orderBy(orderField, direction)) : fsM.query(ref);
+            const snap = await fsM.getDocs(q);
+            return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+          } catch (e) {
+            console.warn('fetchCollection(' + name + '):', e.message);
+            return [];
+          }
+        }
+      };
+    })().catch(err => { _fbPromise = null; throw err; });
+  }
+  return _fbPromise;
+}
 const saveDocument = (...a) => loadFirebase().then(m => m.saveDocument(...a));
 const fetchCollection = (...a) => loadFirebase().then(m => m.fetchCollection(...a));
 
@@ -72,6 +110,42 @@ function initRouteSearch() {
     items.forEach(li => { const ok = li.textContent.toLowerCase().includes(q); li.hidden = !ok; if (ok) shown++; });
     if (empty) empty.hidden = shown !== 0;
   });
+}
+
+// ---- blog index: 9 guides per page with prev / 1 2 3 / next ------------
+function initBlogPager() {
+  const nav = document.getElementById('blogPager');
+  const grid = document.querySelector('.blog-grid');
+  if (!nav || !grid) return;
+  const PER_PAGE = 9;
+  const cards = Array.from(grid.querySelectorAll('.blog-card'));
+  const pages = Math.max(1, Math.ceil(cards.length / PER_PAGE));
+  let current = 1;
+  const fromUrl = () => {
+    const n = parseInt(new URLSearchParams(location.search).get('page'), 10);
+    return n >= 1 && n <= pages ? n : 1;
+  };
+  function render(scroll) {
+    cards.forEach((c, i) => { c.hidden = Math.floor(i / PER_PAGE) + 1 !== current; });
+    nav.hidden = pages < 2;
+    let h = '<button type="button" class="pg-btn pg-arrow" data-go="' + (current - 1) + '" aria-label="Previous page"' + (current === 1 ? ' disabled' : '') + '><span class="pg-txt">&lsaquo;</span></button>';
+    for (let n = 1; n <= pages; n++) {
+      h += '<button type="button" class="pg-btn' + (n === current ? ' active' : '') + '" data-go="' + n + '" aria-label="Page ' + n + '"' + (n === current ? ' aria-current="page"' : '') + '>' + n + '</button>';
+    }
+    h += '<button type="button" class="pg-btn pg-arrow" data-go="' + (current + 1) + '" aria-label="Next page"' + (current === pages ? ' disabled' : '') + '><span class="pg-txt">&rsaquo;</span></button>';
+    nav.innerHTML = h;
+    if (scroll) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  nav.addEventListener('click', e => {
+    const b = e.target.closest('[data-go]');
+    if (!b || b.disabled) return;
+    current = parseInt(b.dataset.go, 10);
+    try { history.pushState({ page: current }, '', current === 1 ? location.pathname : '?page=' + current); } catch (err) {}
+    render(true);
+  });
+  window.addEventListener('popstate', () => { current = fromUrl(); render(false); });
+  current = fromUrl();
+  render(false);
 }
 
 // ---- route pages: booking forms (pickup / drop come from <body data-pick data-drop>)
@@ -1552,7 +1626,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // ---- start ---------------------------------------------------------------
-if (isPage('route')) { initCommon(); initRouteSearch(); if (document.body.dataset.drop) initRoutePage(); }
+if (isPage('route')) { initCommon(); initRouteSearch(); initBlogPager(); if (document.body.dataset.drop) initRoutePage(); }
 else if (isPage('cancel')) initCommon();
 else if (isPage('about')) initAbout();
 else if (isPage('trip')) initTrip();
