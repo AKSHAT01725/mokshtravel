@@ -1,8 +1,8 @@
 /* Moksh Travel – Google Analytics 4
    >>> Replace the placeholder below with your GA4 Measurement ID (Admin > Data streams > Web). <<< */
 (function () {
-  var GA_ID = 'G-XXXXXXXXXX';
-  if (!/^G-[A-Z0-9]{8,12}$/.test(GA_ID) || GA_ID === 'G-XXXXXXXXXX') return;
+  var GA_ID = 'G-YVGHTXH3RX';
+  if (!/^G-[A-Z0-9]{8,12}$/.test(GA_ID)) return;
 
   var s = document.createElement('script');
   s.async = true;
