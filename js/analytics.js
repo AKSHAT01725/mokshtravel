@@ -1,3 +1,12 @@
+/* Clean URLs: if an old .html address is opened, show the clean one in the address bar */
+(function () {
+  var p = location.pathname;
+  if (/\.html$/.test(p) && window.history && history.replaceState) {
+    var c = p.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+    try { history.replaceState(null, '', c + location.search + location.hash); } catch (e) {}
+  }
+})();
+
 /* Moksh Travel – Google Analytics 4
    >>> Replace the placeholder below with your GA4 Measurement ID (Admin > Data streams > Web). <<< */
 (function () {

@@ -534,7 +534,7 @@ Please share availability and full details.`;
 
 function renderPackageCard(p) {
   return `
-    <a href="tripdarshan.html?id=${encodeURIComponent(p.id)}" class="td-card">
+    <a href="/tripdarshan?id=${encodeURIComponent(p.id)}" class="td-card">
       <div class="td-img-wrap">
         ${p.badge ? `<div class="td-badge">${esc(p.badge)}</div>` : ''}
         <img src="${p.image || ''}" alt="${esc(p.title || '')}">
@@ -1475,7 +1475,7 @@ window.renderTripDarshanGrid = function(list) {
     wrap.classList.toggle('is-slider', list.length > 3);
   }
   grid.innerHTML = list.map(p => `
-    <a href="tripdarshan.html?id=${encodeURIComponent(p.id)}" class="td-card">
+    <a href="/tripdarshan?id=${encodeURIComponent(p.id)}" class="td-card">
       <div class="td-img-wrap">
         ${p.badge ? `<div class="td-badge">${p.badge}</div>` : ''}
         <img src="${p.image || ''}" alt="${p.title || ''}">
